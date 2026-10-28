@@ -63,7 +63,7 @@ flatpak build-finish "$BUILD_DIR" \
     --talk-name=org.freedesktop.Flatpak
 
 echo "==> [5/6] Exporting and GPG-signing OSTree repository (./${REPO_DIR})..."
-rm -rf "$REPO_DIR/deltas" "$REPO_DIR/delta-indexes" "$REPO_DIR/summaries"
+rm -rf "$REPO_DIR"
 flatpak build-export --gpg-homedir="$GPG_DIR" --gpg-sign="$KEY_ID" "$REPO_DIR" "$BUILD_DIR" stable
 flatpak build-update-repo --gpg-homedir="$GPG_DIR" --gpg-sign="$KEY_ID" --title="Taygun86 Flatpak Repository" --generate-static-deltas "$REPO_DIR"
 
@@ -94,7 +94,14 @@ if [ -d "../taygun86-repo" ]; then
     rm -rf "../taygun86-repo/flatpak"
     cp -r "$REPO_DIR" "../taygun86-repo/flatpak"
     touch "../taygun86-repo/.nojekyll"
-    echo "==> ../taygun86-repo/flatpak automatically updated!"
+    echo "==> Committing and pushing ../taygun86-repo ('flatpak update')..."
+    (
+        cd "../taygun86-repo"
+        git add .
+        git commit -m "flatpak update" || echo "No new changes to commit."
+        git push
+    )
+    echo "==> ../taygun86-repo/flatpak automatically updated and pushed!"
 fi
 
 echo ""
