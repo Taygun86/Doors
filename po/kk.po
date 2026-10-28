@@ -242,3 +242,9 @@ msgstr "Префикс қалпына келтірілді!"
 msgid "Run after installation"
 msgstr "Орнатудан кейін іске қосу"
 
+
+msgid "About"
+msgstr "Бағдарлама туралы"
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux."
+msgstr "Linux үшін минималды GTK4/Libadwaita Windows (.exe) бағдарлама орнатқышы мен іске қосқышы."

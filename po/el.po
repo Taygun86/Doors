@@ -242,3 +242,9 @@ msgstr "Το Prefix επαναφέρθηκε!"
 msgid "Run after installation"
 msgstr "Εκτέλεση μετά την εγκατάσταση"
 
+
+msgid "About"
+msgstr "Σχετικά"
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux."
+msgstr "Ελάχιστο πρόγραμμα εγκατάστασης και εκτέλεσης εφαρμογών Windows (.exe) GTK4/Libadwaita για Linux."

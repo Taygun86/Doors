@@ -242,3 +242,9 @@ msgstr "Prefix visszaállítva!"
 msgid "Run after installation"
 msgstr "Futtatás a telepítés után"
 
+
+msgid "About"
+msgstr "Névjegy"
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux."
+msgstr "Minimalista GTK4/Libadwaita Windows (.exe) programtelepítő és -indító Linuxra."

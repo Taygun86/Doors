@@ -242,3 +242,9 @@ msgstr "Prefiks Sıfırlandı!"
 msgid "Run after installation"
 msgstr "Quraşdırmadan sonra işə sal"
 
+
+msgid "About"
+msgstr "Haqqında"
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux."
+msgstr "Linux üçün minimal GTK4/Libadwaita Windows (.exe) proqram quraşdırıcısı və işəsalanı."

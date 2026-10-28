@@ -242,3 +242,9 @@ msgstr "¡Prefijo restablecido!"
 msgid "Run after installation"
 msgstr "Ejecutar después de la instalación"
 
+
+msgid "About"
+msgstr "Acerca de"
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux."
+msgstr "Instalador y ejecutor minimalista de programas Windows (.exe) en GTK4/Libadwaita para Linux."

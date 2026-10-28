@@ -70,6 +70,16 @@ pub fn present_install_window(app: &adw::Application, exe_path: PathBuf) {
     let header = adw::HeaderBar::new();
     let title_widget = adw::WindowTitle::new("Doors", "");
     header.set_title_widget(Some(&title_widget));
+
+    let about_btn = gtk4::Button::from_icon_name("help-about-symbolic");
+    about_btn.set_tooltip_text(Some(&tr("About")));
+    header.pack_start(&about_btn);
+
+    let win_for_about = window.clone();
+    about_btn.connect_clicked(move |_| {
+        present_about_dialog(&win_for_about);
+    });
+
     toolbar_view.add_top_bar(&header);
 
     let main_box = gtk4::Box::new(gtk4::Orientation::Vertical, 20);
@@ -291,6 +301,31 @@ fn build_exe_preview_image(exe_path: &std::path::Path, size: i32) -> gtk4::Image
     fallback
 }
 
+/// Present the About dialog (matching zapret-gtk's AboutDialog design).
+pub fn present_about_dialog(parent: &impl IsA<gtk4::Window>) {
+    let icon_bytes = glib::Bytes::from_static(include_bytes!("../data/io.github.doors.Doors.png"));
+    let logo_texture = gdk4::Texture::from_bytes(&icon_bytes).ok();
+
+    let mut builder = gtk4::AboutDialog::builder()
+        .transient_for(parent)
+        .modal(true)
+        .program_name("Doors")
+        .version("0.1")
+        .comments(tr(
+            "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux.",
+        ))
+        .website("https://github.com/Taygun86/Doors")
+        .copyright("© 2026 Doors")
+        .license_type(gtk4::License::Gpl30);
+
+    if let Some(ref texture) = logo_texture {
+        builder = builder.logo(texture);
+    }
+
+    let about = builder.build();
+    about.present();
+}
+
 /// Library window when Doors is opened directly from the application menu.
 pub fn present_library_window(app: &adw::Application) {
     let window = adw::ApplicationWindow::builder()
@@ -306,6 +341,15 @@ pub fn present_library_window(app: &adw::Application) {
     let add_btn = gtk4::Button::from_icon_name("list-add-symbolic");
     add_btn.set_tooltip_text(Some(&tr("Install .exe")));
     header.pack_start(&add_btn);
+
+    let about_btn = gtk4::Button::from_icon_name("help-about-symbolic");
+    about_btn.set_tooltip_text(Some(&tr("About")));
+    header.pack_end(&about_btn);
+
+    let win_for_about = window.clone();
+    about_btn.connect_clicked(move |_| {
+        present_about_dialog(&win_for_about);
+    });
 
     toolbar_view.add_top_bar(&header);
 

@@ -242,3 +242,9 @@ msgstr "前缀已重置！"
 msgid "Run after installation"
 msgstr "安装完成后运行"
 
+
+msgid "About"
+msgstr "关于"
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux."
+msgstr "适用于 Linux 的极简 GTK4/Libadwaita Windows (.exe) 程序安装与运行器。"

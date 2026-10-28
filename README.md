@@ -101,3 +101,10 @@ A Flatpak manifest ([`io.github.doors.Doors.yml`](io.github.doors.Doors.yml)) is
 flatpak-builder --user --install --force-clean build-dir io.github.doors.Doors.yml
 ```
 
+---
+
+## License
+
+This project is licensed under the **GNU General Public License v3.0 or later (GPL-3.0-or-later)** — see the [LICENSE](LICENSE) file for details.
+
+

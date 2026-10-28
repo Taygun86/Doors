@@ -242,3 +242,9 @@ msgstr "प्रीफ़िक्स रीसेट हो गया!"
 msgid "Run after installation"
 msgstr "इंस्टॉलेशन के बाद चलाएं"
 
+
+msgid "About"
+msgstr "के बारे में"
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux."
+msgstr "Linux के लिए न्यूनतम GTK4/Libadwaita Windows (.exe) प्रोग्राम इंस्टॉलर और रनर।"

@@ -242,3 +242,9 @@ msgstr "Prefix återställt!"
 msgid "Run after installation"
 msgstr "Kör efter installationen"
 
+
+msgid "About"
+msgstr "Om"
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux."
+msgstr "Minimal GTK4/Libadwaita Windows (.exe) programinstallerare och startare för Linux."

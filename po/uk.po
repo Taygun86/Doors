@@ -242,3 +242,9 @@ msgstr "Префікс скинуто!"
 msgid "Run after installation"
 msgstr "Запустити після встановлення"
 
+
+msgid "About"
+msgstr "Про програму"
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux."
+msgstr "Мінімалістичний встановлення та запуск програм Windows (.exe) на GTK4/Libadwaita для Linux."

@@ -242,3 +242,9 @@ msgstr "Prefix gereset!"
 msgid "Run after installation"
 msgstr "Starten na installatie"
 
+
+msgid "About"
+msgstr "Over"
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux."
+msgstr "Minimale GTK4/Libadwaita Windows (.exe) programma-installatie en starter voor Linux."

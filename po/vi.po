@@ -242,3 +242,9 @@ msgstr "Đã đặt lại Prefix!"
 msgid "Run after installation"
 msgstr "Chạy sau khi cài đặt"
 
+
+msgid "About"
+msgstr "Giới thiệu"
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux."
+msgstr "Trình cài đặt và chạy chương trình Windows (.exe) GTK4/Libadwaita tối giản cho Linux."

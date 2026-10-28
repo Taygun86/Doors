@@ -242,3 +242,9 @@ msgstr "Préfixe réinitialisé !"
 msgid "Run after installation"
 msgstr "Lancer après l'installation"
 
+
+msgid "About"
+msgstr "À propos"
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux."
+msgstr "Installateur et lanceur minimal de programmes Windows (.exe) GTK4/Libadwaita pour Linux."

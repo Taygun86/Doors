@@ -242,3 +242,9 @@ msgstr "Prefiks zresetowany!"
 msgid "Run after installation"
 msgstr "Uruchom po zakończeniu instalacji"
 
+
+msgid "About"
+msgstr "O programie"
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux."
+msgstr "Minimalistyczny instalator i program uruchamiający aplikacje Windows (.exe) GTK4/Libadwaita dla systemu Linux."

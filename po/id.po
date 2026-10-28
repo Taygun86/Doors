@@ -242,3 +242,9 @@ msgstr "Prefix Diatur Ulang!"
 msgid "Run after installation"
 msgstr "Jalankan setelah pemasangan"
 
+
+msgid "About"
+msgstr "Tentang"
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux."
+msgstr "Penginstal dan penjalan program Windows (.exe) GTK4/Libadwaita minimalis untuk Linux."

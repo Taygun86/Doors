@@ -242,3 +242,9 @@ msgstr "Prefisso Ripristinato!"
 msgid "Run after installation"
 msgstr "Avvia dopo l'installazione"
 
+
+msgid "About"
+msgstr "Informazioni"
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux."
+msgstr "Installatore e avviatore minimale di programmi Windows (.exe) GTK4/Libadwaita per Linux."

@@ -242,3 +242,9 @@ msgstr "프리픽스 초기화됨!"
 msgid "Run after installation"
 msgstr "설치 후 실행"
 
+
+msgid "About"
+msgstr "정보"
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux."
+msgstr "Linux용 미니멀한 GTK4/Libadwaita Windows (.exe) 프로그램 설치 및 실행기."

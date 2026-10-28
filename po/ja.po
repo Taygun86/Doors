@@ -242,3 +242,9 @@ msgstr "リセット完了！"
 msgid "Run after installation"
 msgstr "インストール後に起動する"
 
+
+msgid "About"
+msgstr "このアプリについて"
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux."
+msgstr "Linux 向けのミニマルな GTK4/Libadwaita Windows (.exe) プログラムインストーラー兼ランチャー。"
