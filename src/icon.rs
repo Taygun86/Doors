@@ -21,13 +21,18 @@ impl CandidateIcon {
 /// Extract the best icon from `exe_path` (or sibling `.ico`/`.exe` files in `game_dir`)
 /// and return the raw `.png` bytes in memory.
 pub fn extract_exe_icon_png_bytes(exe_path: &Path, game_dir: Option<&Path>) -> Option<Vec<u8>> {
-    // 1. Try extracting directly from the main .exe
-    if let Some(best) = extract_best_icon_from_pe_file(exe_path) {
+    // 1. Try extracting directly from the main .exe or .msi
+    if let Some(best) = extract_best_icon_from_pe_file(exe_path)
+        .or_else(|| extract_best_icon_from_msi_file(exe_path))
+    {
         return Some(best.png_bytes);
     }
 
-    // 2. Fallback: look for .ico files or other .exe files in the game directory
+    // 2. Fallback: look for .ico files or other .exe files in the game directory (skip protected dirs like ~/Downloads)
     if let Some(dir) = game_dir.or_else(|| exe_path.parent()) {
+        if crate::detector::is_protected_directory(dir) {
+            return None;
+        }
         let mut best_fallback: Option<CandidateIcon> = None;
 
         for entry in WalkDir::new(dir).max_depth(3).into_iter().flatten() {
@@ -125,6 +130,67 @@ fn extract_best_icon_from_ico_file(ico_path: &Path) -> Option<CandidateIcon> {
             }
         }
     }
+    best
+}
+
+/// Extract an embedded `.ico` stream from a Windows Installer (`.msi` OLE2 Compound Document) if one is present.
+fn extract_best_icon_from_msi_file(msi_path: &Path) -> Option<CandidateIcon> {
+    let ext = msi_path.extension()?.to_str()?;
+    if !ext.eq_ignore_ascii_case("msi") {
+        return None;
+    }
+
+    let mut file = File::open(msi_path).ok()?;
+    let file_len = file.metadata().ok()?.len() as usize;
+    if file_len < 512 {
+        return None;
+    }
+
+    let read_len = file_len.min(32 * 1024 * 1024);
+    let mut buf = vec![0u8; read_len];
+    file.read_exact(&mut buf).ok()?;
+
+    // OLE2 magic header: D0 CF 11 E0 A1 B1 1A E1
+    if &buf[0..8] != b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1" {
+        return None;
+    }
+
+    let mut best: Option<CandidateIcon> = None;
+
+    // OLE2 streams and mini-streams are aligned to 64-byte boundaries
+    let mut off = 512;
+    while off + 22 < buf.len() {
+        // Check for ICO header: Reserved=0, Type=1, Count=1..=32
+        if buf[off] == 0
+            && buf[off + 1] == 0
+            && buf[off + 2] == 1
+            && buf[off + 3] == 0
+            && (1..=32).contains(&buf[off + 4])
+            && buf[off + 5] == 0
+        {
+            let slice_end = (off + 512 * 1024).min(buf.len());
+            if let Ok(icon_dir) = ico::IconDir::read(Cursor::new(&buf[off..slice_end])) {
+                for entry in icon_dir.entries() {
+                    if let Ok(image) = entry.decode() {
+                        let mut png_buf = Vec::new();
+                        if image.write_png(&mut png_buf).is_ok() {
+                            let cand = CandidateIcon {
+                                width: image.width(),
+                                height: image.height(),
+                                bpp: entry.bits_per_pixel(),
+                                png_bytes: png_buf,
+                            };
+                            if best.as_ref().map_or(true, |b| cand.score() > b.score()) {
+                                best = Some(cand);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        off += 64;
+    }
+
     best
 }
 
