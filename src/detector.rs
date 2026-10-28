@@ -211,8 +211,9 @@ impl InstallPlan {
 
         let parent_dir = exe_abs.parent().unwrap_or_else(|| Path::new("/tmp"));
 
-        // 1. Check if this is an installer (`*setup*`, `*install*`, `autorun.exe`, FitGirl/GOG repack)
-        let is_installer_name = file_name_lower.contains("setup")
+        // 1. Check if this is an installer (`*.msi`, `*setup*`, `*install*`, `autorun.exe`, FitGirl/GOG repack)
+        let is_installer_name = file_name_lower.ends_with(".msi")
+            || file_name_lower.contains("setup")
             || file_name_lower.contains("install")
             || file_name_lower == "autorun.exe"
             || file_name_lower.contains("repack");
@@ -457,6 +458,10 @@ pub fn is_auxiliary_exe(exe_path: &Path) -> bool {
         .and_then(|s| s.to_str())
         .unwrap_or("")
         .to_lowercase();
+
+    if fname.ends_with(".msi") {
+        return true;
+    }
 
     let path_lower = exe_path.to_string_lossy().to_lowercase();
     if path_lower.contains("_commonredist")

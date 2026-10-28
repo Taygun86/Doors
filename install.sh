@@ -36,6 +36,9 @@ if command -v xdg-mime >/dev/null 2>&1; then
     xdg-mime default io.github.doors.Doors.desktop application/x-ms-dos-executable || true
     xdg-mime default io.github.doors.Doors.desktop application/x-msdownload || true
     xdg-mime default io.github.doors.Doors.desktop application/vnd.microsoft.portable-executable || true
+    xdg-mime default io.github.doors.Doors.desktop application/x-msi || true
+    xdg-mime default io.github.doors.Doors.desktop application/x-ms-installer || true
+    xdg-mime default io.github.doors.Doors.desktop application/vnd.ms-msi || true
 fi
 
 if command -v update-desktop-database >/dev/null 2>&1; then

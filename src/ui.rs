@@ -310,7 +310,7 @@ pub fn present_about_dialog(parent: &impl IsA<gtk4::Window>) {
         .transient_for(parent)
         .modal(true)
         .program_name("Doors")
-        .version("0.1")
+        .version("0.1 Beta")
         .comments(tr(
             "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux.",
         ))
@@ -372,6 +372,8 @@ pub fn present_library_window(app: &adw::Application) {
         filter.set_name(Some(&tr("Windows Executable (*.exe)")));
         filter.add_pattern("*.exe");
         filter.add_pattern("*.EXE");
+        filter.add_pattern("*.msi");
+        filter.add_pattern("*.MSI");
         let filters = gio::ListStore::new::<gtk4::FileFilter>();
         filters.append(&filter);
         dialog.set_filters(Some(&filters));
@@ -875,6 +877,8 @@ fn present_program_settings_window(
             filter.set_name(Some(&tr("Windows Executable (*.exe)")));
             filter.add_pattern("*.exe");
             filter.add_pattern("*.EXE");
+            filter.add_pattern("*.msi");
+            filter.add_pattern("*.MSI");
             let filters = gio::ListStore::new::<gtk4::FileFilter>();
             filters.append(&filter);
             dialog.set_filters(Some(&filters));
@@ -926,6 +930,8 @@ fn present_program_settings_window(
             filter.set_name(Some(&tr("Windows Executable (*.exe)")));
             filter.add_pattern("*.exe");
             filter.add_pattern("*.EXE");
+            filter.add_pattern("*.msi");
+            filter.add_pattern("*.MSI");
             let filters = gio::ListStore::new::<gtk4::FileFilter>();
             filters.append(&filter);
             dialog.set_filters(Some(&filters));

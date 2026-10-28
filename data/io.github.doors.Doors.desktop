@@ -21,6 +21,6 @@ Icon=io.github.doors.Doors
 Terminal=false
 Type=Application
 Categories=Utility;System;GTK;GNOME;
-MimeType=application/x-ms-dos-executable;application/x-msdownload;application/vnd.microsoft.portable-executable;application/x-wine-extension-msp;
+MimeType=application/x-ms-dos-executable;application/x-msdownload;application/vnd.microsoft.portable-executable;application/x-msi;application/x-ms-installer;application/vnd.ms-msi;application/x-ole-storage;application/x-wine-extension-msp;application/x-wine-extension-msi;
 StartupNotify=true
 StartupWMClass=io.github.doors.Doors

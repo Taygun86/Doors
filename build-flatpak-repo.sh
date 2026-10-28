@@ -89,6 +89,14 @@ cp -f "doors.flatpak" "$REPO_DIR/doors.flatpak"
 
 rm -rf "$BUILD_DIR"
 
+if [ -d "../taygun86-repo" ]; then
+    echo "==> Syncing ./${REPO_DIR} into ../taygun86-repo/flatpak..."
+    rm -rf "../taygun86-repo/flatpak"
+    cp -r "$REPO_DIR" "../taygun86-repo/flatpak"
+    touch "../taygun86-repo/.nojekyll"
+    echo "==> ../taygun86-repo/flatpak automatically updated!"
+fi
+
 echo ""
 echo "=================================================================="
 echo "GPG-signed Flatpak repository generated in: ./${REPO_DIR}/"

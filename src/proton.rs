@@ -380,6 +380,14 @@ pub fn spawn_with_proton_config(
     if tool.is_proton_script {
         cmd_parts.push("waitforexitandrun".to_string());
     }
+    let is_msi = exe_path
+        .extension()
+        .and_then(|e| e.to_str())
+        .map_or(false, |e| e.eq_ignore_ascii_case("msi"));
+    if is_msi {
+        cmd_parts.push("msiexec.exe".to_string());
+        cmd_parts.push("/i".to_string());
+    }
     cmd_parts.push(exe_path.display().to_string());
     cmd_parts.extend(exe_args);
 
