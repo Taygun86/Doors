@@ -68,7 +68,11 @@ DefaultBranch=stable
 NoDeps=false
 EOF
 
-flatpak build-bundle "$REPO_DIR" "$REPO_DIR/doors.flatpak" "$APP_ID" stable --runtime-repo=https://flathub.org/repo/flathub.flatpakrepo
+flatpak build-bundle \
+    --repo-url="${REPO_URL}" \
+    --runtime-repo=https://flathub.org/repo/flathub.flatpakrepo \
+    "$REPO_DIR" "doors.flatpak" "$APP_ID" stable
+cp -f "doors.flatpak" "$REPO_DIR/doors.flatpak"
 
 rm -rf "$BUILD_DIR"
 
