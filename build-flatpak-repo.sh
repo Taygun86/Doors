@@ -63,6 +63,7 @@ flatpak build-finish "$BUILD_DIR" \
     --talk-name=org.freedesktop.Flatpak
 
 echo "==> [5/6] Exporting and GPG-signing OSTree repository (./${REPO_DIR})..."
+rm -rf "$REPO_DIR/deltas" "$REPO_DIR/delta-indexes" "$REPO_DIR/summaries"
 flatpak build-export --gpg-homedir="$GPG_DIR" --gpg-sign="$KEY_ID" "$REPO_DIR" "$BUILD_DIR" stable
 flatpak build-update-repo --gpg-homedir="$GPG_DIR" --gpg-sign="$KEY_ID" --title="Taygun86 Flatpak Repository" --generate-static-deltas "$REPO_DIR"
 
