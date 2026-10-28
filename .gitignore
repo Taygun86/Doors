@@ -3,6 +3,7 @@
 
 # Flatpak build artifacts
 /.flatpak-builder/
+/.flatpak-gpg/
 /build-dir/
 /build-flatpak/
 /flatpak/

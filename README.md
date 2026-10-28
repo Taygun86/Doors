@@ -98,7 +98,7 @@ To uninstall:
 You can install **Doors** directly from the **Taygun86** 3rd-party Flatpak repository hosted on GitHub Pages:
 
 ```bash
-flatpak remote-add --if-not-exists --no-gpg-verify taygun86 https://taygun86.github.io/taygun86-repo/flatpak
+flatpak remote-add --if-not-exists taygun86 https://taygun86.github.io/taygun86-repo/flatpak/taygun86.flatpakrepo
 flatpak install taygun86 io.github.doors.Doors
 ```
 
