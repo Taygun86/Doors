@@ -93,9 +93,24 @@ To uninstall:
 ./uninstall.sh
 ```
 
-### Flatpak Build
+### Flatpak (Taygun86 Repository)
 
-A Flatpak manifest ([`io.github.doors.Doors.yml`](io.github.doors.Doors.yml)) is included with preconfigured permissions for `compatibilitytools.d`, `/mnt`, and `/run/media`:
+You can install **Doors** directly from the **Taygun86** 3rd-party Flatpak repository hosted on GitHub Pages:
+
+```bash
+flatpak remote-add --if-not-exists --no-gpg-verify taygun86 https://taygun86.github.io/taygun86-repo/flatpak
+flatpak install taygun86 io.github.doors.Doors
+```
+
+### Local Flatpak Build & Repository Export
+
+To generate the static OSTree Flatpak repository (`./flatpak/`) and single-file bundle (`./flatpak/doors.flatpak`) for publishing to `taygun86-repo`:
+
+```bash
+./build-flatpak-repo.sh
+```
+
+Or build and install locally using `flatpak-builder` ([`io.github.doors.Doors.yml`](io.github.doors.Doors.yml)):
 
 ```bash
 flatpak-builder --user --install --force-clean build-dir io.github.doors.Doors.yml
