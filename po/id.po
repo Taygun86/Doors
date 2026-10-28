@@ -1,0 +1,244 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: doors 0.1.0\n"
+"Language: id\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Main Disk"
+msgstr "Disk Utama"
+
+msgid "free"
+msgstr "tersedia"
+
+msgid "Disk"
+msgstr "Disk"
+
+msgid "Proton"
+msgstr "Proton"
+
+msgid "Install"
+msgstr "Pasang"
+
+msgid "No disks found"
+msgstr "Disk tidak ditemukan"
+
+msgid "compatibilitytools.d is empty"
+msgstr "compatibilitytools.d kosong"
+
+msgid "Starting..."
+msgstr "Memulai..."
+
+msgid "Completed!"
+msgstr "Selesai!"
+
+msgid "Error:"
+msgstr "Kesalahan:"
+
+msgid "Install .exe"
+msgstr "Pasang .exe"
+
+msgid "Select Executable (.exe)"
+msgstr "Pilih File Eksekusi (.exe)"
+
+msgid "Windows Executable (*.exe)"
+msgstr "Eksekusi Windows (*.exe)"
+
+msgid "No Programs Yet"
+msgstr "Belum Ada Program"
+
+msgid "Double-click any .exe file or use the + button to install."
+msgstr "Klik dua kali file .exe apa pun atau gunakan tombol + untuk memasang."
+
+msgid "Installed Programs"
+msgstr "Program Terpasang"
+
+msgid "Run"
+msgstr "Jalankan"
+
+msgid "Delete Program and Prefix"
+msgstr "Hapus Program dan Prefix"
+
+msgid "Run with Doors"
+msgstr "Jalankan dengan Doors"
+
+msgid "Program"
+msgstr "Program"
+
+msgid "Preparing folder:"
+msgstr "Menyiapkan folder:"
+
+msgid "Detecting main executable (.exe)..."
+msgstr "Mendeteksi eksekusi utama (.exe)..."
+
+msgid "Extracting icon (.ico -> .png)..."
+msgstr "Mengekstrak ikon (.ico -> .png)..."
+
+msgid "Creating application shortcut (.desktop)..."
+msgstr "Membuat pintasan aplikasi (.desktop)..."
+
+msgid "Completed! Launching program..."
+msgstr "Selesai! Menjalankan program..."
+
+msgid "Running installer (Please complete the setup)..."
+msgstr "Menjalankan pemasang (Selesaikan pemasangan)..."
+
+msgid "Detecting installed main .exe..."
+msgstr "Mendeteksi .exe terpasang..."
+
+msgid "No executable file (.exe) found in installation directory."
+msgstr "File eksekusi (.exe) tidak ditemukan di direktori pemasangan."
+
+msgid "Installation completed!"
+msgstr "Pemasangan selesai!"
+
+msgid "Moving file to disk..."
+msgstr "Memindahkan file ke disk..."
+
+msgid "Running..."
+msgstr "Menjalankan..."
+
+msgid "Detecting main .exe and icon..."
+msgstr "Mendeteksi .exe utama dan ikon..."
+
+msgid "Folder moved."
+msgstr "Folder dipindahkan."
+
+msgid "Moving..."
+msgstr "Memindahkan..."
+
+msgid "Settings"
+msgstr "Pengaturan"
+
+msgid "Runner & Launch"
+msgstr "Runner & Peluncuran"
+
+msgid "Launch Arguments"
+msgstr "Argumen Peluncuran"
+
+msgid "Disabled"
+msgstr "Dinonaktifkan"
+
+msgid "Synchronization"
+msgstr "Sinkronisasi"
+
+msgid "Select Wine/Proton synchronization method."
+msgstr "Pilih metode sinkronisasi Wine/Proton."
+
+msgid "Display & Performance"
+msgstr "Tampilan & Performa"
+
+msgid "Native Wayland"
+msgstr "Wayland Asli"
+
+msgid "Force running directly on Wayland instead of Xwayland."
+msgstr "Paksa berjalan langsung di Wayland alih-alih Xwayland."
+
+msgid "High Dynamic Range"
+msgstr "High Dynamic Range (HDR)"
+
+msgid "Expose HDR using DXVK. Requires native Wayland or Gamescope. Older NVIDIA drivers also need HdrWsi and ENABLE_HDR_WSI=1."
+msgstr "Aktifkan HDR menggunakan DXVK. Memerlukan Wayland asli atau Gamescope."
+
+msgid "Optimize system performance on demand using Feral GameMode."
+msgstr "Optimalkan performa sistem sesuai permintaan menggunakan Feral GameMode."
+
+msgid "gamemode is not installed on the system"
+msgstr "gamemode tidak terpasang di sistem"
+
+msgid "Display FPS, temperatures, and frame timing overlay."
+msgstr "Tampilkan overlay FPS, suhu, dan waktu frame."
+
+msgid "mangohud is not installed on the system"
+msgstr "mangohud tidak terpasang di sistem"
+
+msgid "Manage how programs are displayed on screen using Gamescope."
+msgstr "Kelola cara program ditampilkan di layar menggunakan Gamescope."
+
+msgid "gamescope is not installed on the system"
+msgstr "gamescope tidak terpasang di sistem"
+
+msgid "Width"
+msgstr "Lebar"
+
+msgid "Height"
+msgstr "Tinggi"
+
+msgid "FPS Limit"
+msgstr "Batas FPS"
+
+msgid "Fullscreen"
+msgstr "Layar Penuh"
+
+msgid "Main Executable (.exe)"
+msgstr "Eksekusi Utama (.exe)"
+
+msgid "Change"
+msgstr "Ubah"
+
+msgid "Use Discrete GPU"
+msgstr "Gunakan GPU Diskrit"
+
+msgid "Prefer dedicated NVIDIA/AMD graphics card over integrated GPU."
+msgstr "Utamakan kartu grafis khusus NVIDIA/AMD dibanding GPU terintegrasi."
+
+msgid "NVIDIA DLSS / NVAPI"
+msgstr "NVIDIA DLSS / NVAPI"
+
+msgid "Enable NVAPI, DLSS, and Reflex support (PROTON_ENABLE_NVAPI=1)."
+msgstr "Aktifkan dukungan NVAPI, DLSS, dan Reflex (PROTON_ENABLE_NVAPI=1)."
+
+msgid "AMD FidelityFX Super Resolution (FSR)"
+msgstr "AMD FidelityFX Super Resolution (FSR)"
+
+msgid "Enable fullscreen FSR upscaling in supported Proton builds."
+msgstr "Aktifkan peningkatan skala FSR layar penuh di Proton yang didukung."
+
+msgid "Enable Vulkan post-processing and sharpening layer."
+msgstr "Aktifkan lapisan pascapemrosesan dan penajaman Vulkan."
+
+msgid "vkBasalt is not installed on the system"
+msgstr "vkBasalt tidak terpasang di sistem"
+
+msgid "Prefix & Tools"
+msgstr "Prefix & Alat"
+
+msgid "Open Program Folder"
+msgstr "Buka Folder Program"
+
+msgid "Browse program files and prefix directory in file manager."
+msgstr "Jelajahi file program dan direktori prefix di manajer file."
+
+msgid "Open"
+msgstr "Buka"
+
+msgid "Run .exe in Prefix"
+msgstr "Jalankan .exe di Prefix"
+
+msgid "Run a patch, update, or redistributable installer inside this prefix."
+msgstr "Jalankan patch, pembaruan, atau pemasang di dalam prefix ini."
+
+msgid "Select .exe"
+msgstr "Pilih .exe"
+
+msgid "Wine Tools"
+msgstr "Alat Wine"
+
+msgid "Open Wine configuration (winecfg) or Winetricks for this prefix."
+msgstr "Buka konfigurasi Wine (winecfg) atau Winetricks untuk prefix ini."
+
+msgid "Reset Prefix"
+msgstr "Atur Ulang Prefix"
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching program files."
+msgstr "Hapus dan buat ulang prefix Wine/Proton (pfx) tanpa menyentuh file program."
+
+msgid "Reset"
+msgstr "Atur Ulang"
+
+msgid "Prefix Reset!"
+msgstr "Prefix Diatur Ulang!"
+
+msgid "Run after installation"
+msgstr "Jalankan setelah pemasangan"
+

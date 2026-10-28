@@ -1,0 +1,26 @@
+[Desktop Entry]
+Name=Doors
+Comment=Windows (.exe) program installer and runner
+Comment[tr]=Windows (.exe) program kurucu ve çalıştırıcı
+Comment[ru]=Установка и запуск программ Windows (.exe)
+Comment[de]=Windows (.exe) Programm-Installer und Starter
+Comment[fr]=Installateur et lanceur de programmes Windows (.exe)
+Comment[es]=Instalador y ejecutor de programas de Windows (.exe)
+Comment[pt]=Instalador e executor de programas do Windows (.exe)
+Comment[it]=Installatore e avviatore di programmi Windows (.exe)
+Comment[pl]=Instalator i uruchamiacz programów Windows (.exe)
+Comment[uk]=Встановлення та запуск програм Windows (.exe)
+Comment[nl]=Windows (.exe) programma-installatie en starter
+Comment[zh]=Windows (.exe) 程序安装与运行器
+Comment[ja]=Windows (.exe) プログラムインストーラー・ランチャー
+Comment[ko]=Windows (.exe) 프로그램 설치 및 실행기
+Comment[ar]=مثبت ومشغل برامج ويندوز (.exe)
+Comment[az]=Windows (.exe) proqram quraşdırıcısı və işəsalanı
+Exec=doors %f
+Icon=io.github.doors.Doors
+Terminal=false
+Type=Application
+Categories=Utility;System;GTK;GNOME;
+MimeType=application/x-ms-dos-executable;application/x-msdownload;application/vnd.microsoft.portable-executable;application/x-wine-extension-msp;
+StartupNotify=true
+StartupWMClass=io.github.doors.Doors

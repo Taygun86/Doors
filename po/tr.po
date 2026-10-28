@@ -1,0 +1,244 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: doors 0.1.0\n"
+"Language: tr\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Main Disk"
+msgstr "Ana Disk"
+
+msgid "free"
+msgstr "boş"
+
+msgid "Disk"
+msgstr "Disk"
+
+msgid "Proton"
+msgstr "Proton"
+
+msgid "Install"
+msgstr "Kur"
+
+msgid "No disks found"
+msgstr "Disk bulunamadı"
+
+msgid "compatibilitytools.d is empty"
+msgstr "compatibilitytools.d boş"
+
+msgid "Starting..."
+msgstr "Başlatılıyor..."
+
+msgid "Completed!"
+msgstr "Tamamlandı!"
+
+msgid "Error:"
+msgstr "Hata:"
+
+msgid "Install .exe"
+msgstr ".exe Kur"
+
+msgid "Select Executable (.exe)"
+msgstr "Çalıştırılabilir (.exe) Seç"
+
+msgid "Windows Executable (*.exe)"
+msgstr "Windows Çalıştırılabilir (*.exe)"
+
+msgid "No Programs Yet"
+msgstr "Henüz Program Yok"
+
+msgid "Double-click any .exe file or use the + button to install."
+msgstr "Herhangi bir .exe dosyasına çift tıklayarak veya + butonundan seçerek kurabilirsiniz."
+
+msgid "Installed Programs"
+msgstr "Kurulu Programlar"
+
+msgid "Run"
+msgstr "Çalıştır"
+
+msgid "Delete Program and Prefix"
+msgstr "Programı ve Prefix'i Sil"
+
+msgid "Run with Doors"
+msgstr "Doors ile çalıştır"
+
+msgid "Program"
+msgstr "Program"
+
+msgid "Preparing folder:"
+msgstr "Klasör hazırlanıyor:"
+
+msgid "Detecting main executable (.exe)..."
+msgstr "Ana çalıştırılabilir (.exe) tespit ediliyor..."
+
+msgid "Extracting icon (.ico -> .png)..."
+msgstr "İkon (.ico -> .png) çıkarılıyor..."
+
+msgid "Creating application shortcut (.desktop)..."
+msgstr "Uygulama kısayolu (.desktop) oluşturuluyor..."
+
+msgid "Completed! Launching program..."
+msgstr "Tamamlandı! Program başlatılıyor..."
+
+msgid "Running installer (Please complete the setup)..."
+msgstr "Kurucu çalışıyor (Lütfen kurulumu tamamlayın)..."
+
+msgid "Detecting installed main .exe..."
+msgstr "Kurulan ana .exe tespit ediliyor..."
+
+msgid "No executable file (.exe) found in installation directory."
+msgstr "Kurulum dizininde çalıştırılabilir dosya (.exe) bulunamadı."
+
+msgid "Installation completed!"
+msgstr "Kurulum tamamlandı!"
+
+msgid "Moving file to disk..."
+msgstr "Dosya diske taşınıyor..."
+
+msgid "Running..."
+msgstr "Çalıştırılıyor..."
+
+msgid "Detecting main .exe and icon..."
+msgstr "Ana .exe ve ikon tespit ediliyor..."
+
+msgid "Folder moved."
+msgstr "Klasör taşındı."
+
+msgid "Moving..."
+msgstr "Taşınıyor..."
+
+msgid "Settings"
+msgstr "Ayarlar"
+
+msgid "Runner & Launch"
+msgstr "Çalıştırıcı ve Başlatma"
+
+msgid "Launch Arguments"
+msgstr "Başlangıç Komutu / Argümanlar"
+
+msgid "Disabled"
+msgstr "Devre Dışı"
+
+msgid "Synchronization"
+msgstr "Senkronizasyon"
+
+msgid "Select Wine/Proton synchronization method."
+msgstr "Wine/Proton senkronizasyon yöntemini seçin."
+
+msgid "Display & Performance"
+msgstr "Görüntü ve Performans"
+
+msgid "Native Wayland"
+msgstr "Doğrudan Wayland"
+
+msgid "Force running directly on Wayland instead of Xwayland."
+msgstr "Xwayland yerine doğrudan Wayland üzerinde çalışmaya zorla."
+
+msgid "High Dynamic Range"
+msgstr "Yüksek Dinamik Aralık (HDR)"
+
+msgid "Expose HDR using DXVK. Requires native Wayland or Gamescope. Older NVIDIA drivers also need HdrWsi and ENABLE_HDR_WSI=1."
+msgstr "DXVK kullanarak HDR'yi etkinleştirir. Doğrudan Wayland veya Gamescope gerektirir. Eski NVIDIA sürücüleri ayrıca HdrWsi ve ENABLE_HDR_WSI=1 gerektirir."
+
+msgid "Optimize system performance on demand using Feral GameMode."
+msgstr "Feral GameMode kullanarak sistem performansını optimize edin."
+
+msgid "gamemode is not installed on the system"
+msgstr "Sistemde gamemode yüklü değil"
+
+msgid "Display FPS, temperatures, and frame timing overlay."
+msgstr "FPS, sıcaklık ve kare süresi katmanını gösterin."
+
+msgid "mangohud is not installed on the system"
+msgstr "Sistemde mangohud yüklü değil"
+
+msgid "Manage how programs are displayed on screen using Gamescope."
+msgstr "Gamescope kullanarak programların ekranda nasıl görüntüleneceğini yönetin."
+
+msgid "gamescope is not installed on the system"
+msgstr "Sistemde gamescope yüklü değil"
+
+msgid "Width"
+msgstr "Genişlik"
+
+msgid "Height"
+msgstr "Yükseklik"
+
+msgid "FPS Limit"
+msgstr "FPS Sınırı"
+
+msgid "Fullscreen"
+msgstr "Tam Ekran"
+
+msgid "Main Executable (.exe)"
+msgstr "Ana Çalıştırılabilir (.exe)"
+
+msgid "Change"
+msgstr "Değiştir"
+
+msgid "Use Discrete GPU"
+msgstr "Harici Ekran Kartı Kullan"
+
+msgid "Prefer dedicated NVIDIA/AMD graphics card over integrated GPU."
+msgstr "Dahili GPU yerine harici NVIDIA/AMD ekran kartını tercih et."
+
+msgid "NVIDIA DLSS / NVAPI"
+msgstr "NVIDIA DLSS / NVAPI"
+
+msgid "Enable NVAPI, DLSS, and Reflex support (PROTON_ENABLE_NVAPI=1)."
+msgstr "NVAPI, DLSS ve Reflex desteğini etkinleştir (PROTON_ENABLE_NVAPI=1)."
+
+msgid "AMD FidelityFX Super Resolution (FSR)"
+msgstr "AMD FidelityFX Super Resolution (FSR)"
+
+msgid "Enable fullscreen FSR upscaling in supported Proton builds."
+msgstr "Desteklenen Proton sürümlerinde tam ekran FSR ölçeklendirmesini etkinleştir."
+
+msgid "Enable Vulkan post-processing and sharpening layer."
+msgstr "Vulkan son işleme ve keskinleştirme katmanını etkinleştir."
+
+msgid "vkBasalt is not installed on the system"
+msgstr "Sistemde vkBasalt yüklü değil"
+
+msgid "Prefix & Tools"
+msgstr "Prefix ve Araçlar"
+
+msgid "Open Program Folder"
+msgstr "Program Klasörünü Aç"
+
+msgid "Browse program files and prefix directory in file manager."
+msgstr "Program dosyalarına ve prefix dizinine dosya yöneticisinde göz at."
+
+msgid "Open"
+msgstr "Aç"
+
+msgid "Run .exe in Prefix"
+msgstr "Prefix İçinde .exe Çalıştır"
+
+msgid "Run a patch, update, or redistributable installer inside this prefix."
+msgstr "Bu prefix içinde bir yama, güncelleme veya ek kurucu çalıştır."
+
+msgid "Select .exe"
+msgstr ".exe Seç"
+
+msgid "Wine Tools"
+msgstr "Wine Araçları"
+
+msgid "Open Wine configuration (winecfg) or Winetricks for this prefix."
+msgstr "Bu prefix için Wine yapılandırmasını (winecfg) veya Winetricks'i aç."
+
+msgid "Reset Prefix"
+msgstr "Prefix'i Sıfırla"
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching program files."
+msgstr "Program dosyalarına dokunmadan Wine/Proton prefix'ini (pfx) sil ve yeniden oluştur."
+
+msgid "Reset"
+msgstr "Sıfırla"
+
+msgid "Prefix Reset!"
+msgstr "Prefix Sıfırlandı!"
+
+msgid "Run after installation"
+msgstr "Kurulumdan sonra çalıştır"
+

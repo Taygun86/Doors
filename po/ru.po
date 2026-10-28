@@ -1,0 +1,244 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: doors 0.1.0\n"
+"Language: ru\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Main Disk"
+msgstr "Основной диск"
+
+msgid "free"
+msgstr "свободно"
+
+msgid "Disk"
+msgstr "Диск"
+
+msgid "Proton"
+msgstr "Proton"
+
+msgid "Install"
+msgstr "Установить"
+
+msgid "No disks found"
+msgstr "Диски не найдены"
+
+msgid "compatibilitytools.d is empty"
+msgstr "compatibilitytools.d пуст"
+
+msgid "Starting..."
+msgstr "Запуск..."
+
+msgid "Completed!"
+msgstr "Готово!"
+
+msgid "Error:"
+msgstr "Ошибка:"
+
+msgid "Install .exe"
+msgstr "Установить .exe"
+
+msgid "Select Executable (.exe)"
+msgstr "Выберите исполняемый файл (.exe)"
+
+msgid "Windows Executable (*.exe)"
+msgstr "Исполняемый файл Windows (*.exe)"
+
+msgid "No Programs Yet"
+msgstr "Программ пока нет"
+
+msgid "Double-click any .exe file or use the + button to install."
+msgstr "Дважды нажмите на любой .exe файл или используйте кнопку + для установки."
+
+msgid "Installed Programs"
+msgstr "Установленные программы"
+
+msgid "Run"
+msgstr "Запустить"
+
+msgid "Delete Program and Prefix"
+msgstr "Удалить программу и префикс"
+
+msgid "Run with Doors"
+msgstr "Запустить через Doors"
+
+msgid "Program"
+msgstr "Программа"
+
+msgid "Preparing folder:"
+msgstr "Подготовка папки:"
+
+msgid "Detecting main executable (.exe)..."
+msgstr "Поиск главного исполняемого файла (.exe)..."
+
+msgid "Extracting icon (.ico -> .png)..."
+msgstr "Извлечение иконки (.ico -> .png)..."
+
+msgid "Creating application shortcut (.desktop)..."
+msgstr "Создание ярлыка приложения (.desktop)..."
+
+msgid "Completed! Launching program..."
+msgstr "Готово! Запуск программы..."
+
+msgid "Running installer (Please complete the setup)..."
+msgstr "Запущен установщик (Завершите установку)..."
+
+msgid "Detecting installed main .exe..."
+msgstr "Поиск установленного .exe..."
+
+msgid "No executable file (.exe) found in installation directory."
+msgstr "Исполняемый файл (.exe) не найден в папке установки."
+
+msgid "Installation completed!"
+msgstr "Установка завершена!"
+
+msgid "Moving file to disk..."
+msgstr "Перемещение файла на диск..."
+
+msgid "Running..."
+msgstr "Выполнение..."
+
+msgid "Detecting main .exe and icon..."
+msgstr "Поиск главного .exe и иконки..."
+
+msgid "Folder moved."
+msgstr "Папка перемещена."
+
+msgid "Moving..."
+msgstr "Перемещение..."
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "Runner & Launch"
+msgstr "Совместимость и запуск"
+
+msgid "Launch Arguments"
+msgstr "Параметры запуска"
+
+msgid "Disabled"
+msgstr "Отключено"
+
+msgid "Synchronization"
+msgstr "Синхронизация"
+
+msgid "Select Wine/Proton synchronization method."
+msgstr "Выберите метод синхронизации Wine/Proton."
+
+msgid "Display & Performance"
+msgstr "Экран и производительность"
+
+msgid "Native Wayland"
+msgstr "Нативный Wayland"
+
+msgid "Force running directly on Wayland instead of Xwayland."
+msgstr "Принудительно запускать напрямую через Wayland вместо Xwayland."
+
+msgid "High Dynamic Range"
+msgstr "Высокий динамический диапазон (HDR)"
+
+msgid "Expose HDR using DXVK. Requires native Wayland or Gamescope. Older NVIDIA drivers also need HdrWsi and ENABLE_HDR_WSI=1."
+msgstr "Включает HDR через DXVK. Требуется Wayland или Gamescope."
+
+msgid "Optimize system performance on demand using Feral GameMode."
+msgstr "Оптимизировать производительность системы с помощью Feral GameMode."
+
+msgid "gamemode is not installed on the system"
+msgstr "gamemode не установлен в системе"
+
+msgid "Display FPS, temperatures, and frame timing overlay."
+msgstr "Отображать оверлей FPS, температур и времени кадра."
+
+msgid "mangohud is not installed on the system"
+msgstr "mangohud не установлен в системе"
+
+msgid "Manage how programs are displayed on screen using Gamescope."
+msgstr "Управление отображением программ на экране с помощью Gamescope."
+
+msgid "gamescope is not installed on the system"
+msgstr "gamescope не установлен в системе"
+
+msgid "Width"
+msgstr "Ширина"
+
+msgid "Height"
+msgstr "Высота"
+
+msgid "FPS Limit"
+msgstr "Лимит FPS"
+
+msgid "Fullscreen"
+msgstr "Полный экран"
+
+msgid "Main Executable (.exe)"
+msgstr "Главный файл (.exe)"
+
+msgid "Change"
+msgstr "Изменить"
+
+msgid "Use Discrete GPU"
+msgstr "Использовать дискретную видеокарту"
+
+msgid "Prefer dedicated NVIDIA/AMD graphics card over integrated GPU."
+msgstr "Предпочитать дискретную видеокарту NVIDIA/AMD встроенной."
+
+msgid "NVIDIA DLSS / NVAPI"
+msgstr "NVIDIA DLSS / NVAPI"
+
+msgid "Enable NVAPI, DLSS, and Reflex support (PROTON_ENABLE_NVAPI=1)."
+msgstr "Включить поддержку NVAPI, DLSS и Reflex (PROTON_ENABLE_NVAPI=1)."
+
+msgid "AMD FidelityFX Super Resolution (FSR)"
+msgstr "AMD FidelityFX Super Resolution (FSR)"
+
+msgid "Enable fullscreen FSR upscaling in supported Proton builds."
+msgstr "Включить полноэкранное масштабирование FSR в поддерживаемых сборках Proton."
+
+msgid "Enable Vulkan post-processing and sharpening layer."
+msgstr "Включить слой постобработки и резкости Vulkan."
+
+msgid "vkBasalt is not installed on the system"
+msgstr "vkBasalt не установлен в системе"
+
+msgid "Prefix & Tools"
+msgstr "Префикс и инструменты"
+
+msgid "Open Program Folder"
+msgstr "Открыть папку программы"
+
+msgid "Browse program files and prefix directory in file manager."
+msgstr "Открыть файлы программы и каталог префикса в файловом менеджере."
+
+msgid "Open"
+msgstr "Открыть"
+
+msgid "Run .exe in Prefix"
+msgstr "Запустить .exe в префиксе"
+
+msgid "Run a patch, update, or redistributable installer inside this prefix."
+msgstr "Запустить патч, обновление или установщик компонента внутри этого префикса."
+
+msgid "Select .exe"
+msgstr "Выбрать .exe"
+
+msgid "Wine Tools"
+msgstr "Инструменты Wine"
+
+msgid "Open Wine configuration (winecfg) or Winetricks for this prefix."
+msgstr "Открыть настройку Wine (winecfg) или Winetricks для этого префикса."
+
+msgid "Reset Prefix"
+msgstr "Сбросить префикс"
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching program files."
+msgstr "Удалить и пересоздать префикс Wine/Proton (pfx), не затрагивая файлы программы."
+
+msgid "Reset"
+msgstr "Сбросить"
+
+msgid "Prefix Reset!"
+msgstr "Префикс сброшен!"
+
+msgid "Run after installation"
+msgstr "Запустить после установки"
+

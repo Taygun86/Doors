@@ -1,0 +1,244 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: doors 0.1.0\n"
+"Language: kk\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Main Disk"
+msgstr "Негізгі диск"
+
+msgid "free"
+msgstr "бос"
+
+msgid "Disk"
+msgstr "Диск"
+
+msgid "Proton"
+msgstr "Proton"
+
+msgid "Install"
+msgstr "Орнату"
+
+msgid "No disks found"
+msgstr "Дискілер табылмады"
+
+msgid "compatibilitytools.d is empty"
+msgstr "compatibilitytools.d бос"
+
+msgid "Starting..."
+msgstr "Іске қосылуда..."
+
+msgid "Completed!"
+msgstr "Аяқталды!"
+
+msgid "Error:"
+msgstr "Қате:"
+
+msgid "Install .exe"
+msgstr ".exe орнату"
+
+msgid "Select Executable (.exe)"
+msgstr "Орындалатын файлды (.exe) таңдау"
+
+msgid "Windows Executable (*.exe)"
+msgstr "Windows орындалатын файлы (*.exe)"
+
+msgid "No Programs Yet"
+msgstr "Бағдарламалар әлі жоқ"
+
+msgid "Double-click any .exe file or use the + button to install."
+msgstr "Кез келген .exe файлын екі рет басыңыз немесе + түймесі арқылы орнатыңыз."
+
+msgid "Installed Programs"
+msgstr "Орнатылған бағдарламалар"
+
+msgid "Run"
+msgstr "Іске қосу"
+
+msgid "Delete Program and Prefix"
+msgstr "Бағдарлама мен префиксті жою"
+
+msgid "Run with Doors"
+msgstr "Doors арқылы іске қосу"
+
+msgid "Program"
+msgstr "Бағдарлама"
+
+msgid "Preparing folder:"
+msgstr "Қалта дайындалуда:"
+
+msgid "Detecting main executable (.exe)..."
+msgstr "Негізгі орындалатын файл (.exe) анықталуда..."
+
+msgid "Extracting icon (.ico -> .png)..."
+msgstr "Белгіше (.ico -> .png) шығарылуда..."
+
+msgid "Creating application shortcut (.desktop)..."
+msgstr "Жарлық (.desktop) жасалуда..."
+
+msgid "Completed! Launching program..."
+msgstr "Аяқталды! Бағдарлама іске қосылуда..."
+
+msgid "Running installer (Please complete the setup)..."
+msgstr "Орнатушы жұмыс істеуде (Орнатуды аяқтаңыз)..."
+
+msgid "Detecting installed main .exe..."
+msgstr "Орнатылған .exe ізделуде..."
+
+msgid "No executable file (.exe) found in installation directory."
+msgstr "Орнату қалтасынан орындалатын файл (.exe) табылмады."
+
+msgid "Installation completed!"
+msgstr "Орнату аяқталды!"
+
+msgid "Moving file to disk..."
+msgstr "Файл дискіге көшірілуде..."
+
+msgid "Running..."
+msgstr "Орындалуда..."
+
+msgid "Detecting main .exe and icon..."
+msgstr "Негізгі .exe және белгіше анықталуда..."
+
+msgid "Folder moved."
+msgstr "Қалта көшірілді."
+
+msgid "Moving..."
+msgstr "Көшірілуде..."
+
+msgid "Settings"
+msgstr "Баптаулар"
+
+msgid "Runner & Launch"
+msgstr "Орындаушы және іске қосу"
+
+msgid "Launch Arguments"
+msgstr "Іске қосу параметрлері"
+
+msgid "Disabled"
+msgstr "Өшірулі"
+
+msgid "Synchronization"
+msgstr "Синхрондау"
+
+msgid "Select Wine/Proton synchronization method."
+msgstr "Wine/Proton синхрондау әдісін таңдаңыз."
+
+msgid "Display & Performance"
+msgstr "Экран және өнімділік"
+
+msgid "Native Wayland"
+msgstr "Тікелей Wayland"
+
+msgid "Force running directly on Wayland instead of Xwayland."
+msgstr "Xwayland орнына тікелей Wayland арқылы іске қосу."
+
+msgid "High Dynamic Range"
+msgstr "Жоғары динамикалық диапазон (HDR)"
+
+msgid "Expose HDR using DXVK. Requires native Wayland or Gamescope. Older NVIDIA drivers also need HdrWsi and ENABLE_HDR_WSI=1."
+msgstr "DXVK арқылы HDR қосу. Wayland немесе Gamescope қажет."
+
+msgid "Optimize system performance on demand using Feral GameMode."
+msgstr "Feral GameMode көмегімен жүйе өнімділігін оңтайландыру."
+
+msgid "gamemode is not installed on the system"
+msgstr "Жүйеде gamemode орнатылмаған"
+
+msgid "Display FPS, temperatures, and frame timing overlay."
+msgstr "FPS, температура және кадр уақытын көрсету."
+
+msgid "mangohud is not installed on the system"
+msgstr "Жүйеде mangohud орнатылмаған"
+
+msgid "Manage how programs are displayed on screen using Gamescope."
+msgstr "Gamescope арқылы бағдарламалардың экранда көрсетілуін басқару."
+
+msgid "gamescope is not installed on the system"
+msgstr "Жүйеде gamescope орнатылмаған"
+
+msgid "Width"
+msgstr "Ені"
+
+msgid "Height"
+msgstr "Биіктігі"
+
+msgid "FPS Limit"
+msgstr "FPS шегі"
+
+msgid "Fullscreen"
+msgstr "Толық экран"
+
+msgid "Main Executable (.exe)"
+msgstr "Негізгі орындалатын файл (.exe)"
+
+msgid "Change"
+msgstr "Өзгерту"
+
+msgid "Use Discrete GPU"
+msgstr "Дискретті бейнекартаны қолдану"
+
+msgid "Prefer dedicated NVIDIA/AMD graphics card over integrated GPU."
+msgstr "Кіріктірілген GPU орнына дискретті NVIDIA/AMD бейнекартасын таңдау."
+
+msgid "NVIDIA DLSS / NVAPI"
+msgstr "NVIDIA DLSS / NVAPI"
+
+msgid "Enable NVAPI, DLSS, and Reflex support (PROTON_ENABLE_NVAPI=1)."
+msgstr "NVAPI, DLSS және Reflex қолдауын қосу (PROTON_ENABLE_NVAPI=1)."
+
+msgid "AMD FidelityFX Super Resolution (FSR)"
+msgstr "AMD FidelityFX Super Resolution (FSR)"
+
+msgid "Enable fullscreen FSR upscaling in supported Proton builds."
+msgstr "Қолдау көрсетілетін Proton нұсқаларында толық экранды FSR масштабтауын қосу."
+
+msgid "Enable Vulkan post-processing and sharpening layer."
+msgstr "Vulkan өңдеу және айқындау қабатын қосу."
+
+msgid "vkBasalt is not installed on the system"
+msgstr "Жүйеде vkBasalt орнатылмаған"
+
+msgid "Prefix & Tools"
+msgstr "Префикс және құралдар"
+
+msgid "Open Program Folder"
+msgstr "Бағдарлама қалтасын ашу"
+
+msgid "Browse program files and prefix directory in file manager."
+msgstr "Файл менеджерінде бағдарлама файлдары мен префикс қалтасын қарау."
+
+msgid "Open"
+msgstr "Ашу"
+
+msgid "Run .exe in Prefix"
+msgstr "Префиксте .exe іске қосу"
+
+msgid "Run a patch, update, or redistributable installer inside this prefix."
+msgstr "Осы префикс ішінде патч, жаңарту немесе орнатушыны іске қосу."
+
+msgid "Select .exe"
+msgstr ".exe таңдау"
+
+msgid "Wine Tools"
+msgstr "Wine құралдары"
+
+msgid "Open Wine configuration (winecfg) or Winetricks for this prefix."
+msgstr "Осы префикс үшін Wine баптауын (winecfg) немесе Winetricks ашу."
+
+msgid "Reset Prefix"
+msgstr "Префиксті қалпына келтіру"
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching program files."
+msgstr "Бағдарлама файлдарына тиіспей Wine/Proton префиксін (pfx) жою және қайта жасау."
+
+msgid "Reset"
+msgstr "Қалпына келтіру"
+
+msgid "Prefix Reset!"
+msgstr "Префикс қалпына келтірілді!"
+
+msgid "Run after installation"
+msgstr "Орнатудан кейін іске қосу"
+

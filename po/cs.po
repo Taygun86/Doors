@@ -1,0 +1,244 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: doors 0.1.0\n"
+"Language: cs\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Main Disk"
+msgstr "Hlavní disk"
+
+msgid "free"
+msgstr "volných"
+
+msgid "Disk"
+msgstr "Disk"
+
+msgid "Proton"
+msgstr "Proton"
+
+msgid "Install"
+msgstr "Instalovat"
+
+msgid "No disks found"
+msgstr "Nebyly nalezeny žádné disky"
+
+msgid "compatibilitytools.d is empty"
+msgstr "compatibilitytools.d je prázdný"
+
+msgid "Starting..."
+msgstr "Spouštění..."
+
+msgid "Completed!"
+msgstr "Hotovo!"
+
+msgid "Error:"
+msgstr "Chyba:"
+
+msgid "Install .exe"
+msgstr "Instalovat .exe"
+
+msgid "Select Executable (.exe)"
+msgstr "Vyberte spustitelný soubor (.exe)"
+
+msgid "Windows Executable (*.exe)"
+msgstr "Spustitelný soubor Windows (*.exe)"
+
+msgid "No Programs Yet"
+msgstr "Zatím žádné programy"
+
+msgid "Double-click any .exe file or use the + button to install."
+msgstr "Dvakrát klikněte na libovolný soubor .exe nebo použijte tlačítko + k instalaci."
+
+msgid "Installed Programs"
+msgstr "Nainstalované programy"
+
+msgid "Run"
+msgstr "Spustit"
+
+msgid "Delete Program and Prefix"
+msgstr "Smazat program a prefix"
+
+msgid "Run with Doors"
+msgstr "Spustit přes Doors"
+
+msgid "Program"
+msgstr "Program"
+
+msgid "Preparing folder:"
+msgstr "Příprava složky:"
+
+msgid "Detecting main executable (.exe)..."
+msgstr "Zjišťování hlavního souboru (.exe)..."
+
+msgid "Extracting icon (.ico -> .png)..."
+msgstr "Extrahování ikony (.ico -> .png)..."
+
+msgid "Creating application shortcut (.desktop)..."
+msgstr "Vytváření zástupce aplikace (.desktop)..."
+
+msgid "Completed! Launching program..."
+msgstr "Hotovo! Spouštění programu..."
+
+msgid "Running installer (Please complete the setup)..."
+msgstr "Běží instalátor (Dokončete prosím instalaci)..."
+
+msgid "Detecting installed main .exe..."
+msgstr "Zjišťování nainstalovaného .exe..."
+
+msgid "No executable file (.exe) found in installation directory."
+msgstr "V instalačním adresáři nebyl nalezen spustitelný soubor (.exe)."
+
+msgid "Installation completed!"
+msgstr "Instalace dokončena!"
+
+msgid "Moving file to disk..."
+msgstr "Přesouvání souboru na disk..."
+
+msgid "Running..."
+msgstr "Spuštěno..."
+
+msgid "Detecting main .exe and icon..."
+msgstr "Zjišťování hlavního .exe a ikony..."
+
+msgid "Folder moved."
+msgstr "Složka přesunuta."
+
+msgid "Moving..."
+msgstr "Přesouvání..."
+
+msgid "Settings"
+msgstr "Nastavení"
+
+msgid "Runner & Launch"
+msgstr "Běhové prostředí a spuštění"
+
+msgid "Launch Arguments"
+msgstr "Parametry spuštění"
+
+msgid "Disabled"
+msgstr "Zakázáno"
+
+msgid "Synchronization"
+msgstr "Synchronizace"
+
+msgid "Select Wine/Proton synchronization method."
+msgstr "Vyberte metodu synchronizace Wine/Proton."
+
+msgid "Display & Performance"
+msgstr "Zobrazení a výkon"
+
+msgid "Native Wayland"
+msgstr "Nativní Wayland"
+
+msgid "Force running directly on Wayland instead of Xwayland."
+msgstr "Vynutit běh přímo na Waylandu místo Xwaylandu."
+
+msgid "High Dynamic Range"
+msgstr "Vysoký dynamický rozsah (HDR)"
+
+msgid "Expose HDR using DXVK. Requires native Wayland or Gamescope. Older NVIDIA drivers also need HdrWsi and ENABLE_HDR_WSI=1."
+msgstr "Povolit HDR pomocí DXVK. Vyžaduje nativní Wayland nebo Gamescope."
+
+msgid "Optimize system performance on demand using Feral GameMode."
+msgstr "Optimalizovat výkon systému pomocí Feral GameMode."
+
+msgid "gamemode is not installed on the system"
+msgstr "gamemode není v systému nainstalován"
+
+msgid "Display FPS, temperatures, and frame timing overlay."
+msgstr "Zobrazit překrytí FPS, teplot a časování snímků."
+
+msgid "mangohud is not installed on the system"
+msgstr "mangohud není v systému nainstalován"
+
+msgid "Manage how programs are displayed on screen using Gamescope."
+msgstr "Spravovat zobrazení programů na obrazovce pomocí Gamescope."
+
+msgid "gamescope is not installed on the system"
+msgstr "gamescope není v systému nainstalován"
+
+msgid "Width"
+msgstr "Šířka"
+
+msgid "Height"
+msgstr "Výška"
+
+msgid "FPS Limit"
+msgstr "Limit FPS"
+
+msgid "Fullscreen"
+msgstr "Celá obrazovka"
+
+msgid "Main Executable (.exe)"
+msgstr "Hlavní spustitelný soubor (.exe)"
+
+msgid "Change"
+msgstr "Změnit"
+
+msgid "Use Discrete GPU"
+msgstr "Použít dedikovanou GPU"
+
+msgid "Prefer dedicated NVIDIA/AMD graphics card over integrated GPU."
+msgstr "Upřednostnit dedikovanou grafickou kartu NVIDIA/AMD před integrovanou."
+
+msgid "NVIDIA DLSS / NVAPI"
+msgstr "NVIDIA DLSS / NVAPI"
+
+msgid "Enable NVAPI, DLSS, and Reflex support (PROTON_ENABLE_NVAPI=1)."
+msgstr "Povolit podporu NVAPI, DLSS a Reflex (PROTON_ENABLE_NVAPI=1)."
+
+msgid "AMD FidelityFX Super Resolution (FSR)"
+msgstr "AMD FidelityFX Super Resolution (FSR)"
+
+msgid "Enable fullscreen FSR upscaling in supported Proton builds."
+msgstr "Povolit celoobrazovkové škálování FSR v podporovaných verzích Protonu."
+
+msgid "Enable Vulkan post-processing and sharpening layer."
+msgstr "Povolit vrstvu post-processingu a ostření Vulkan."
+
+msgid "vkBasalt is not installed on the system"
+msgstr "vkBasalt není v systému nainstalován"
+
+msgid "Prefix & Tools"
+msgstr "Prefix a nástroje"
+
+msgid "Open Program Folder"
+msgstr "Otevřít složku programu"
+
+msgid "Browse program files and prefix directory in file manager."
+msgstr "Procházet soubory programu a složku prefixu ve správci souborů."
+
+msgid "Open"
+msgstr "Otevřít"
+
+msgid "Run .exe in Prefix"
+msgstr "Spustit .exe v prefixu"
+
+msgid "Run a patch, update, or redistributable installer inside this prefix."
+msgstr "Spustit opravu, aktualizaci nebo instalátor uvnitř tohoto prefixu."
+
+msgid "Select .exe"
+msgstr "Vybrat .exe"
+
+msgid "Wine Tools"
+msgstr "Nástroje Wine"
+
+msgid "Open Wine configuration (winecfg) or Winetricks for this prefix."
+msgstr "Otevřít nastavení Wine (winecfg) nebo Winetricks pro tento prefix."
+
+msgid "Reset Prefix"
+msgstr "Obnovit prefix"
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching program files."
+msgstr "Smazat a znovu vytvořit prefix Wine/Proton (pfx) bez dotčení souborů programu."
+
+msgid "Reset"
+msgstr "Obnovit"
+
+msgid "Prefix Reset!"
+msgstr "Prefix obnoven!"
+
+msgid "Run after installation"
+msgstr "Spustit po instalaci"
+

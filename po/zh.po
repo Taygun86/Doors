@@ -1,0 +1,244 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: doors 0.1.0\n"
+"Language: zh\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Main Disk"
+msgstr "主磁盘"
+
+msgid "free"
+msgstr "可用"
+
+msgid "Disk"
+msgstr "磁盘"
+
+msgid "Proton"
+msgstr "Proton"
+
+msgid "Install"
+msgstr "安装"
+
+msgid "No disks found"
+msgstr "未找到磁盘"
+
+msgid "compatibilitytools.d is empty"
+msgstr "compatibilitytools.d 为空"
+
+msgid "Starting..."
+msgstr "正在启动..."
+
+msgid "Completed!"
+msgstr "已完成！"
+
+msgid "Error:"
+msgstr "错误："
+
+msgid "Install .exe"
+msgstr "安装 .exe"
+
+msgid "Select Executable (.exe)"
+msgstr "选择可执行文件 (.exe)"
+
+msgid "Windows Executable (*.exe)"
+msgstr "Windows 可执行文件 (*.exe)"
+
+msgid "No Programs Yet"
+msgstr "暂无程序"
+
+msgid "Double-click any .exe file or use the + button to install."
+msgstr "双击任意 .exe 文件或使用 + 按钮进行安装。"
+
+msgid "Installed Programs"
+msgstr "已安装的程序"
+
+msgid "Run"
+msgstr "运行"
+
+msgid "Delete Program and Prefix"
+msgstr "删除程序和前缀"
+
+msgid "Run with Doors"
+msgstr "使用 Doors 运行"
+
+msgid "Program"
+msgstr "程序"
+
+msgid "Preparing folder:"
+msgstr "正在准备文件夹："
+
+msgid "Detecting main executable (.exe)..."
+msgstr "正在检测主可执行文件 (.exe)..."
+
+msgid "Extracting icon (.ico -> .png)..."
+msgstr "正在提取图标 (.ico -> .png)..."
+
+msgid "Creating application shortcut (.desktop)..."
+msgstr "正在创建应用快捷方式 (.desktop)..."
+
+msgid "Completed! Launching program..."
+msgstr "已完成！正在启动程序..."
+
+msgid "Running installer (Please complete the setup)..."
+msgstr "正在运行安装程序（请完成安装）..."
+
+msgid "Detecting installed main .exe..."
+msgstr "正在检测已安装的主 .exe..."
+
+msgid "No executable file (.exe) found in installation directory."
+msgstr "在安装目录中未找到可执行文件 (.exe)。"
+
+msgid "Installation completed!"
+msgstr "安装完成！"
+
+msgid "Moving file to disk..."
+msgstr "正在将文件移动到磁盘..."
+
+msgid "Running..."
+msgstr "正在运行..."
+
+msgid "Detecting main .exe and icon..."
+msgstr "正在检测主 .exe 和图标..."
+
+msgid "Folder moved."
+msgstr "文件夹已移动。"
+
+msgid "Moving..."
+msgstr "正在移动..."
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Runner & Launch"
+msgstr "运行器与启动"
+
+msgid "Launch Arguments"
+msgstr "启动参数"
+
+msgid "Disabled"
+msgstr "已禁用"
+
+msgid "Synchronization"
+msgstr "同步模式"
+
+msgid "Select Wine/Proton synchronization method."
+msgstr "选择 Wine/Proton 同步方式。"
+
+msgid "Display & Performance"
+msgstr "显示与性能"
+
+msgid "Native Wayland"
+msgstr "原生 Wayland"
+
+msgid "Force running directly on Wayland instead of Xwayland."
+msgstr "强制直接在 Wayland 上运行而非 Xwayland。"
+
+msgid "High Dynamic Range"
+msgstr "高动态范围 (HDR)"
+
+msgid "Expose HDR using DXVK. Requires native Wayland or Gamescope. Older NVIDIA drivers also need HdrWsi and ENABLE_HDR_WSI=1."
+msgstr "通过 DXVK 启用 HDR。需要原生 Wayland 或 Gamescope。"
+
+msgid "Optimize system performance on demand using Feral GameMode."
+msgstr "使用 Feral GameMode 按需优化系统性能。"
+
+msgid "gamemode is not installed on the system"
+msgstr "系统未安装 gamemode"
+
+msgid "Display FPS, temperatures, and frame timing overlay."
+msgstr "显示 FPS、温度和帧时间叠加层。"
+
+msgid "mangohud is not installed on the system"
+msgstr "系统未安装 mangohud"
+
+msgid "Manage how programs are displayed on screen using Gamescope."
+msgstr "使用 Gamescope 管理程序在屏幕上的显示方式。"
+
+msgid "gamescope is not installed on the system"
+msgstr "系统未安装 gamescope"
+
+msgid "Width"
+msgstr "宽度"
+
+msgid "Height"
+msgstr "高度"
+
+msgid "FPS Limit"
+msgstr "帧率限制"
+
+msgid "Fullscreen"
+msgstr "全屏"
+
+msgid "Main Executable (.exe)"
+msgstr "主可执行文件 (.exe)"
+
+msgid "Change"
+msgstr "更改"
+
+msgid "Use Discrete GPU"
+msgstr "使用独立显卡"
+
+msgid "Prefer dedicated NVIDIA/AMD graphics card over integrated GPU."
+msgstr "优先使用 NVIDIA/AMD 独立显卡而非集成显卡。"
+
+msgid "NVIDIA DLSS / NVAPI"
+msgstr "NVIDIA DLSS / NVAPI"
+
+msgid "Enable NVAPI, DLSS, and Reflex support (PROTON_ENABLE_NVAPI=1)."
+msgstr "启用 NVAPI、DLSS 和 Reflex 支持 (PROTON_ENABLE_NVAPI=1)。"
+
+msgid "AMD FidelityFX Super Resolution (FSR)"
+msgstr "AMD 超级分辨率锐画技术 (FSR)"
+
+msgid "Enable fullscreen FSR upscaling in supported Proton builds."
+msgstr "在受支持的 Proton 版本中启用全屏 FSR 缩放。"
+
+msgid "Enable Vulkan post-processing and sharpening layer."
+msgstr "启用 Vulkan 后期处理与锐化层。"
+
+msgid "vkBasalt is not installed on the system"
+msgstr "系统未安装 vkBasalt"
+
+msgid "Prefix & Tools"
+msgstr "前缀与工具"
+
+msgid "Open Program Folder"
+msgstr "打开程序文件夹"
+
+msgid "Browse program files and prefix directory in file manager."
+msgstr "在文件管理器中浏览程序文件和前缀目录。"
+
+msgid "Open"
+msgstr "打开"
+
+msgid "Run .exe in Prefix"
+msgstr "在前缀中运行 .exe"
+
+msgid "Run a patch, update, or redistributable installer inside this prefix."
+msgstr "在此前缀内运行补丁、更新或运行库安装程序。"
+
+msgid "Select .exe"
+msgstr "选择 .exe"
+
+msgid "Wine Tools"
+msgstr "Wine 工具"
+
+msgid "Open Wine configuration (winecfg) or Winetricks for this prefix."
+msgstr "打开此前缀的 Wine 配置 (winecfg) 或 Winetricks。"
+
+msgid "Reset Prefix"
+msgstr "重置前缀"
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching program files."
+msgstr "删除并重新创建 Wine/Proton 前缀 (pfx)，保留程序文件。"
+
+msgid "Reset"
+msgstr "重置"
+
+msgid "Prefix Reset!"
+msgstr "前缀已重置！"
+
+msgid "Run after installation"
+msgstr "安装完成后运行"
+

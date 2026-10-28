@@ -1,0 +1,244 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: doors 0.1.0\n"
+"Language: sv\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Main Disk"
+msgstr "Huvuddisk"
+
+msgid "free"
+msgstr "ledigt"
+
+msgid "Disk"
+msgstr "Disk"
+
+msgid "Proton"
+msgstr "Proton"
+
+msgid "Install"
+msgstr "Installera"
+
+msgid "No disks found"
+msgstr "Inga diskar hittades"
+
+msgid "compatibilitytools.d is empty"
+msgstr "compatibilitytools.d är tom"
+
+msgid "Starting..."
+msgstr "Startar..."
+
+msgid "Completed!"
+msgstr "Klart!"
+
+msgid "Error:"
+msgstr "Fel:"
+
+msgid "Install .exe"
+msgstr "Installera .exe"
+
+msgid "Select Executable (.exe)"
+msgstr "Välj körbar fil (.exe)"
+
+msgid "Windows Executable (*.exe)"
+msgstr "Körbar Windows-fil (*.exe)"
+
+msgid "No Programs Yet"
+msgstr "Inga program ännu"
+
+msgid "Double-click any .exe file or use the + button to install."
+msgstr "Dubbelklicka på valfri .exe-fil eller använd +-knappen för att installera."
+
+msgid "Installed Programs"
+msgstr "Installerade program"
+
+msgid "Run"
+msgstr "Kör"
+
+msgid "Delete Program and Prefix"
+msgstr "Ta bort program och prefix"
+
+msgid "Run with Doors"
+msgstr "Kör med Doors"
+
+msgid "Program"
+msgstr "Program"
+
+msgid "Preparing folder:"
+msgstr "Förbereder mapp:"
+
+msgid "Detecting main executable (.exe)..."
+msgstr "Identifierar huvudfil (.exe)..."
+
+msgid "Extracting icon (.ico -> .png)..."
+msgstr "Extraherar ikon (.ico -> .png)..."
+
+msgid "Creating application shortcut (.desktop)..."
+msgstr "Skapar programgenväg (.desktop)..."
+
+msgid "Completed! Launching program..."
+msgstr "Klart! Startar program..."
+
+msgid "Running installer (Please complete the setup)..."
+msgstr "Kör installationsprogram (Slutför installationen)..."
+
+msgid "Detecting installed main .exe..."
+msgstr "Identifierar installerad .exe..."
+
+msgid "No executable file (.exe) found in installation directory."
+msgstr "Ingen körbar fil (.exe) hittades i installationsmappen."
+
+msgid "Installation completed!"
+msgstr "Installationen är klar!"
+
+msgid "Moving file to disk..."
+msgstr "Flyttar fil till disk..."
+
+msgid "Running..."
+msgstr "Kör..."
+
+msgid "Detecting main .exe and icon..."
+msgstr "Identifierar huvud-.exe och ikon..."
+
+msgid "Folder moved."
+msgstr "Mapp flyttad."
+
+msgid "Moving..."
+msgstr "Flyttar..."
+
+msgid "Settings"
+msgstr "Inställningar"
+
+msgid "Runner & Launch"
+msgstr "Körning & Start"
+
+msgid "Launch Arguments"
+msgstr "Startargument"
+
+msgid "Disabled"
+msgstr "Inaktiverad"
+
+msgid "Synchronization"
+msgstr "Synkronisering"
+
+msgid "Select Wine/Proton synchronization method."
+msgstr "Välj synkroniseringsmetod för Wine/Proton."
+
+msgid "Display & Performance"
+msgstr "Skärm & Prestanda"
+
+msgid "Native Wayland"
+msgstr "Nativ Wayland"
+
+msgid "Force running directly on Wayland instead of Xwayland."
+msgstr "Tvinga körning direkt på Wayland istället för Xwayland."
+
+msgid "High Dynamic Range"
+msgstr "High Dynamic Range (HDR)"
+
+msgid "Expose HDR using DXVK. Requires native Wayland or Gamescope. Older NVIDIA drivers also need HdrWsi and ENABLE_HDR_WSI=1."
+msgstr "Aktivera HDR via DXVK. Kräver nativ Wayland eller Gamescope."
+
+msgid "Optimize system performance on demand using Feral GameMode."
+msgstr "Optimera systemprestanda vid behov med Feral GameMode."
+
+msgid "gamemode is not installed on the system"
+msgstr "gamemode är inte installerat"
+
+msgid "Display FPS, temperatures, and frame timing overlay."
+msgstr "Visa överlägg för FPS, temperaturer och bildtid."
+
+msgid "mangohud is not installed on the system"
+msgstr "mangohud är inte installerat"
+
+msgid "Manage how programs are displayed on screen using Gamescope."
+msgstr "Hantera hur program visas på skärmen med Gamescope."
+
+msgid "gamescope is not installed on the system"
+msgstr "gamescope är inte installerat"
+
+msgid "Width"
+msgstr "Bredd"
+
+msgid "Height"
+msgstr "Höjd"
+
+msgid "FPS Limit"
+msgstr "FPS-gräns"
+
+msgid "Fullscreen"
+msgstr "Helskärm"
+
+msgid "Main Executable (.exe)"
+msgstr "Huvudfil (.exe)"
+
+msgid "Change"
+msgstr "Ändra"
+
+msgid "Use Discrete GPU"
+msgstr "Använd dedikerad GPU"
+
+msgid "Prefer dedicated NVIDIA/AMD graphics card over integrated GPU."
+msgstr "Föredra dedikerat NVIDIA/AMD-grafikkort framför integrerad GPU."
+
+msgid "NVIDIA DLSS / NVAPI"
+msgstr "NVIDIA DLSS / NVAPI"
+
+msgid "Enable NVAPI, DLSS, and Reflex support (PROTON_ENABLE_NVAPI=1)."
+msgstr "Aktivera stöd för NVAPI, DLSS och Reflex (PROTON_ENABLE_NVAPI=1)."
+
+msgid "AMD FidelityFX Super Resolution (FSR)"
+msgstr "AMD FidelityFX Super Resolution (FSR)"
+
+msgid "Enable fullscreen FSR upscaling in supported Proton builds."
+msgstr "Aktivera FSR-uppskalning i helskärm i Proton-versioner som stöds."
+
+msgid "Enable Vulkan post-processing and sharpening layer."
+msgstr "Aktivera Vulkan-efterbearbetning och skärpelager."
+
+msgid "vkBasalt is not installed on the system"
+msgstr "vkBasalt är inte installerat"
+
+msgid "Prefix & Tools"
+msgstr "Prefix & Verktyg"
+
+msgid "Open Program Folder"
+msgstr "Öppna programmapp"
+
+msgid "Browse program files and prefix directory in file manager."
+msgstr "Bläddra bland programfiler och prefixmapp i filhanteraren."
+
+msgid "Open"
+msgstr "Öppna"
+
+msgid "Run .exe in Prefix"
+msgstr "Kör .exe i prefix"
+
+msgid "Run a patch, update, or redistributable installer inside this prefix."
+msgstr "Kör en patch, uppdatering eller ett installationsprogram i detta prefix."
+
+msgid "Select .exe"
+msgstr "Välj .exe"
+
+msgid "Wine Tools"
+msgstr "Wine-verktyg"
+
+msgid "Open Wine configuration (winecfg) or Winetricks for this prefix."
+msgstr "Öppna Wine-konfiguration (winecfg) eller Winetricks för detta prefix."
+
+msgid "Reset Prefix"
+msgstr "Återställ prefix"
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching program files."
+msgstr "Ta bort och återskapa Wine/Proton-prefixet (pfx) utan att röra programfilerna."
+
+msgid "Reset"
+msgstr "Återställ"
+
+msgid "Prefix Reset!"
+msgstr "Prefix återställt!"
+
+msgid "Run after installation"
+msgstr "Kör efter installationen"
+

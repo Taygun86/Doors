@@ -1,0 +1,244 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: doors 0.1.0\n"
+"Language: fa\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Main Disk"
+msgstr "دیسک اصلی"
+
+msgid "free"
+msgstr "خالی"
+
+msgid "Disk"
+msgstr "دیسک"
+
+msgid "Proton"
+msgstr "Proton"
+
+msgid "Install"
+msgstr "نصب"
+
+msgid "No disks found"
+msgstr "هیچ دیسکی یافت نشد"
+
+msgid "compatibilitytools.d is empty"
+msgstr "پوشه compatibilitytools.d خالی است"
+
+msgid "Starting..."
+msgstr "در حال شروع..."
+
+msgid "Completed!"
+msgstr "انجام شد!"
+
+msgid "Error:"
+msgstr "خطا:"
+
+msgid "Install .exe"
+msgstr "نصب .exe"
+
+msgid "Select Executable (.exe)"
+msgstr "انتخاب فایل اجرایی (.exe)"
+
+msgid "Windows Executable (*.exe)"
+msgstr "فایل اجرایی ویندوز (*.exe)"
+
+msgid "No Programs Yet"
+msgstr "هنوز برنامه‌ای وجود ندارد"
+
+msgid "Double-click any .exe file or use the + button to install."
+msgstr "روی هر فایل .exe دوبار کلیک کنید یا از دکمه + برای نصب استفاده کنید."
+
+msgid "Installed Programs"
+msgstr "برنامه‌های نصب‌شده"
+
+msgid "Run"
+msgstr "اجرا"
+
+msgid "Delete Program and Prefix"
+msgstr "حذف برنامه و پیشوند"
+
+msgid "Run with Doors"
+msgstr "اجرا با Doors"
+
+msgid "Program"
+msgstr "برنامه"
+
+msgid "Preparing folder:"
+msgstr "آماده‌سازی پوشه:"
+
+msgid "Detecting main executable (.exe)..."
+msgstr "شناسایی فایل اجرایی اصلی (.exe)..."
+
+msgid "Extracting icon (.ico -> .png)..."
+msgstr "استخراج آیکون (.ico -> .png)..."
+
+msgid "Creating application shortcut (.desktop)..."
+msgstr "ایجاد میانبر برنامه (.desktop)..."
+
+msgid "Completed! Launching program..."
+msgstr "انجام شد! در حال اجرای برنامه..."
+
+msgid "Running installer (Please complete the setup)..."
+msgstr "نصب‌کننده در حال اجراست (لطفاً نصب را کامل کنید)..."
+
+msgid "Detecting installed main .exe..."
+msgstr "شناسایی فایل .exe نصب‌شده..."
+
+msgid "No executable file (.exe) found in installation directory."
+msgstr "فایل اجرایی (.exe) در پوشه نصب یافت نشد."
+
+msgid "Installation completed!"
+msgstr "نصب کامل شد!"
+
+msgid "Moving file to disk..."
+msgstr "انتقال فایل به دیسک..."
+
+msgid "Running..."
+msgstr "در حال اجرا..."
+
+msgid "Detecting main .exe and icon..."
+msgstr "شناسایی .exe اصلی و آیکون..."
+
+msgid "Folder moved."
+msgstr "پوشه منتقل شد."
+
+msgid "Moving..."
+msgstr "در حال انتقال..."
+
+msgid "Settings"
+msgstr "تنظیمات"
+
+msgid "Runner & Launch"
+msgstr "اجراکننده و راه‌اندازی"
+
+msgid "Launch Arguments"
+msgstr "آرگومان‌های راه‌اندازی"
+
+msgid "Disabled"
+msgstr "غیرفعال"
+
+msgid "Synchronization"
+msgstr "همگام‌سازی"
+
+msgid "Select Wine/Proton synchronization method."
+msgstr "روش همگام‌سازی Wine/Proton را انتخاب کنید."
+
+msgid "Display & Performance"
+msgstr "نمایش و کارایی"
+
+msgid "Native Wayland"
+msgstr "Wayland بومی"
+
+msgid "Force running directly on Wayland instead of Xwayland."
+msgstr "اجبار به اجرای مستقیم روی Wayland به‌جای Xwayland."
+
+msgid "High Dynamic Range"
+msgstr "محدوده دینامیکی بالا (HDR)"
+
+msgid "Expose HDR using DXVK. Requires native Wayland or Gamescope. Older NVIDIA drivers also need HdrWsi and ENABLE_HDR_WSI=1."
+msgstr "فعال‌سازی HDR با DXVK. نیازمند Wayland بومی یا Gamescope است."
+
+msgid "Optimize system performance on demand using Feral GameMode."
+msgstr "بهینه‌سازی کارایی سیستم با استفاده از Feral GameMode."
+
+msgid "gamemode is not installed on the system"
+msgstr "gamemode روی سیستم نصب نیست"
+
+msgid "Display FPS, temperatures, and frame timing overlay."
+msgstr "نمایش لایه FPS، دما و زمان‌بندی فریم."
+
+msgid "mangohud is not installed on the system"
+msgstr "mangohud روی سیستم نصب نیست"
+
+msgid "Manage how programs are displayed on screen using Gamescope."
+msgstr "مدیریت نحوه نمایش برنامه‌ها روی صفحه با استفاده از Gamescope."
+
+msgid "gamescope is not installed on the system"
+msgstr "gamescope روی سیستم نصب نیست"
+
+msgid "Width"
+msgstr "عرض"
+
+msgid "Height"
+msgstr "ارتفاع"
+
+msgid "FPS Limit"
+msgstr "محدودیت FPS"
+
+msgid "Fullscreen"
+msgstr "تمام‌صفحه"
+
+msgid "Main Executable (.exe)"
+msgstr "فایل اجرایی اصلی (.exe)"
+
+msgid "Change"
+msgstr "تغییر"
+
+msgid "Use Discrete GPU"
+msgstr "استفاده از کارت گرافیک مجزا"
+
+msgid "Prefer dedicated NVIDIA/AMD graphics card over integrated GPU."
+msgstr "ترجیح دادن کارت گرافیک مجزای NVIDIA/AMD به گرافیک مجتمع."
+
+msgid "NVIDIA DLSS / NVAPI"
+msgstr "NVIDIA DLSS / NVAPI"
+
+msgid "Enable NVAPI, DLSS, and Reflex support (PROTON_ENABLE_NVAPI=1)."
+msgstr "فعال‌سازی پشتیبانی از NVAPI، DLSS و Reflex (PROTON_ENABLE_NVAPI=1)."
+
+msgid "AMD FidelityFX Super Resolution (FSR)"
+msgstr "AMD FidelityFX Super Resolution (FSR)"
+
+msgid "Enable fullscreen FSR upscaling in supported Proton builds."
+msgstr "فعال‌سازی ارتقای مقیاس تمام‌صفحه FSR در نسخه‌های پشتیبانی‌شده Proton."
+
+msgid "Enable Vulkan post-processing and sharpening layer."
+msgstr "فعال‌سازی لایه پس‌پردازش و وضوح Vulkan."
+
+msgid "vkBasalt is not installed on the system"
+msgstr "vkBasalt روی سیستم نصب نیست"
+
+msgid "Prefix & Tools"
+msgstr "پیشوند و ابزارها"
+
+msgid "Open Program Folder"
+msgstr "باز کردن پوشه برنامه"
+
+msgid "Browse program files and prefix directory in file manager."
+msgstr "مرور فایل‌های برنامه و پوشه پیشوند در مدیر فایل."
+
+msgid "Open"
+msgstr "باز کردن"
+
+msgid "Run .exe in Prefix"
+msgstr "اجرای .exe در پیشوند"
+
+msgid "Run a patch, update, or redistributable installer inside this prefix."
+msgstr "اجرای وصله، به‌روزرسانی یا نصب‌کننده در داخل این پیشوند."
+
+msgid "Select .exe"
+msgstr "انتخاب .exe"
+
+msgid "Wine Tools"
+msgstr "ابزارهای Wine"
+
+msgid "Open Wine configuration (winecfg) or Winetricks for this prefix."
+msgstr "باز کردن تنظیمات Wine (winecfg) یا Winetricks برای این پیشوند."
+
+msgid "Reset Prefix"
+msgstr "بازنشانی پیشوند"
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching program files."
+msgstr "حذف و ایجاد مجدد پیشوند Wine/Proton (pfx) بدون دست زدن به فایل‌های برنامه."
+
+msgid "Reset"
+msgstr "بازنشانی"
+
+msgid "Prefix Reset!"
+msgstr "پیشوند بازنشانی شد!"
+
+msgid "Run after installation"
+msgstr "اجرا پس از نصب"
+

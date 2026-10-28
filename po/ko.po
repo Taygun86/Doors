@@ -1,0 +1,244 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: doors 0.1.0\n"
+"Language: ko\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Main Disk"
+msgstr "기본 디스크"
+
+msgid "free"
+msgstr "여유"
+
+msgid "Disk"
+msgstr "디스크"
+
+msgid "Proton"
+msgstr "Proton"
+
+msgid "Install"
+msgstr "설치"
+
+msgid "No disks found"
+msgstr "디스크를 찾을 수 없음"
+
+msgid "compatibilitytools.d is empty"
+msgstr "compatibilitytools.d가 비어 있음"
+
+msgid "Starting..."
+msgstr "시작 중..."
+
+msgid "Completed!"
+msgstr "완료!"
+
+msgid "Error:"
+msgstr "오류:"
+
+msgid "Install .exe"
+msgstr ".exe 설치"
+
+msgid "Select Executable (.exe)"
+msgstr "실행 파일 (.exe) 선택"
+
+msgid "Windows Executable (*.exe)"
+msgstr "Windows 실행 파일 (*.exe)"
+
+msgid "No Programs Yet"
+msgstr "설치된 프로그램 없음"
+
+msgid "Double-click any .exe file or use the + button to install."
+msgstr ".exe 파일을 두 번 클릭하거나 + 버튼을 사용하여 설치하세요."
+
+msgid "Installed Programs"
+msgstr "설치된 프로그램"
+
+msgid "Run"
+msgstr "실행"
+
+msgid "Delete Program and Prefix"
+msgstr "프로그램 및 프리픽스 삭제"
+
+msgid "Run with Doors"
+msgstr "Doors로 실행"
+
+msgid "Program"
+msgstr "프로그램"
+
+msgid "Preparing folder:"
+msgstr "폴더 준비 중:"
+
+msgid "Detecting main executable (.exe)..."
+msgstr "주 실행 파일 (.exe) 감지 중..."
+
+msgid "Extracting icon (.ico -> .png)..."
+msgstr "아이콘 (.ico -> .png) 추출 중..."
+
+msgid "Creating application shortcut (.desktop)..."
+msgstr "바로가기 (.desktop) 생성 중..."
+
+msgid "Completed! Launching program..."
+msgstr "완료! 프로그램 실행 중..."
+
+msgid "Running installer (Please complete the setup)..."
+msgstr "설치 프로그램 실행 중 (설치를 완료해 주세요)..."
+
+msgid "Detecting installed main .exe..."
+msgstr "설치된 .exe 감지 중..."
+
+msgid "No executable file (.exe) found in installation directory."
+msgstr "설치 디렉터리에서 실행 파일 (.exe)을 찾을 수 없습니다."
+
+msgid "Installation completed!"
+msgstr "설치 완료!"
+
+msgid "Moving file to disk..."
+msgstr "디스크로 파일 이동 중..."
+
+msgid "Running..."
+msgstr "실행 중..."
+
+msgid "Detecting main .exe and icon..."
+msgstr "주 .exe 및 아이콘 감지 중..."
+
+msgid "Folder moved."
+msgstr "폴더 이동됨."
+
+msgid "Moving..."
+msgstr "이동 중..."
+
+msgid "Settings"
+msgstr "설정"
+
+msgid "Runner & Launch"
+msgstr "실행기 및 시작"
+
+msgid "Launch Arguments"
+msgstr "시작 옵션"
+
+msgid "Disabled"
+msgstr "비활성화됨"
+
+msgid "Synchronization"
+msgstr "동기화"
+
+msgid "Select Wine/Proton synchronization method."
+msgstr "Wine/Proton 동기화 방식을 선택합니다."
+
+msgid "Display & Performance"
+msgstr "디스플레이 및 성능"
+
+msgid "Native Wayland"
+msgstr "네이티브 Wayland"
+
+msgid "Force running directly on Wayland instead of Xwayland."
+msgstr "Xwayland 대신 Wayland에서 직접 실행하도록 강제합니다."
+
+msgid "High Dynamic Range"
+msgstr "하이 다이내믹 레인지 (HDR)"
+
+msgid "Expose HDR using DXVK. Requires native Wayland or Gamescope. Older NVIDIA drivers also need HdrWsi and ENABLE_HDR_WSI=1."
+msgstr "DXVK를 사용하여 HDR을 활성화합니다. Wayland 또는 Gamescope가 필요합니다."
+
+msgid "Optimize system performance on demand using Feral GameMode."
+msgstr "Feral GameMode를 사용하여 시스템 성능을 최적화합니다."
+
+msgid "gamemode is not installed on the system"
+msgstr "시스템에 gamemode가 설치되어 있지 않습니다"
+
+msgid "Display FPS, temperatures, and frame timing overlay."
+msgstr "FPS, 온도 및 프레임 타이밍 오버레이를 표시합니다."
+
+msgid "mangohud is not installed on the system"
+msgstr "시스템에 mangohud가 설치되어 있지 않습니다"
+
+msgid "Manage how programs are displayed on screen using Gamescope."
+msgstr "Gamescope를 사용하여 프로그램의 화면 표시 방식을 관리합니다."
+
+msgid "gamescope is not installed on the system"
+msgstr "시스템에 gamescope가 설치되어 있지 않습니다"
+
+msgid "Width"
+msgstr "너비"
+
+msgid "Height"
+msgstr "높이"
+
+msgid "FPS Limit"
+msgstr "FPS 제한"
+
+msgid "Fullscreen"
+msgstr "전체 화면"
+
+msgid "Main Executable (.exe)"
+msgstr "주 실행 파일 (.exe)"
+
+msgid "Change"
+msgstr "변경"
+
+msgid "Use Discrete GPU"
+msgstr "외장 GPU 사용"
+
+msgid "Prefer dedicated NVIDIA/AMD graphics card over integrated GPU."
+msgstr "내장 GPU보다 외장 NVIDIA/AMD 그래픽 카드를 우선 사용합니다."
+
+msgid "NVIDIA DLSS / NVAPI"
+msgstr "NVIDIA DLSS / NVAPI"
+
+msgid "Enable NVAPI, DLSS, and Reflex support (PROTON_ENABLE_NVAPI=1)."
+msgstr "NVAPI, DLSS 및 Reflex 지원을 활성화합니다 (PROTON_ENABLE_NVAPI=1)."
+
+msgid "AMD FidelityFX Super Resolution (FSR)"
+msgstr "AMD FidelityFX Super Resolution (FSR)"
+
+msgid "Enable fullscreen FSR upscaling in supported Proton builds."
+msgstr "지원되는 Proton 빌드에서 전체 화면 FSR 업스케일링을 활성화합니다."
+
+msgid "Enable Vulkan post-processing and sharpening layer."
+msgstr "Vulkan 후처리 및 선명화 레이어를 활성화합니다."
+
+msgid "vkBasalt is not installed on the system"
+msgstr "시스템에 vkBasalt가 설치되어 있지 않습니다"
+
+msgid "Prefix & Tools"
+msgstr "프리픽스 및 도구"
+
+msgid "Open Program Folder"
+msgstr "프로그램 폴더 열기"
+
+msgid "Browse program files and prefix directory in file manager."
+msgstr "파일 관리자에서 프로그램 파일과 프리픽스 폴더를 탐색합니다."
+
+msgid "Open"
+msgstr "열기"
+
+msgid "Run .exe in Prefix"
+msgstr "프리픽스에서 .exe 실행"
+
+msgid "Run a patch, update, or redistributable installer inside this prefix."
+msgstr "이 프리픽스 내에서 패치, 업데이트 또는 설치 프로그램을 실행합니다."
+
+msgid "Select .exe"
+msgstr ".exe 선택"
+
+msgid "Wine Tools"
+msgstr "Wine 도구"
+
+msgid "Open Wine configuration (winecfg) or Winetricks for this prefix."
+msgstr "이 프리픽스에 대한 Wine 설정(winecfg) 또는 Winetricks를 엽니다."
+
+msgid "Reset Prefix"
+msgstr "프리픽스 초기화"
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching program files."
+msgstr "프로그램 파일을 유지하면서 Wine/Proton 프리픽스(pfx)를 삭제하고 다시 생성합니다."
+
+msgid "Reset"
+msgstr "초기화"
+
+msgid "Prefix Reset!"
+msgstr "프리픽스 초기화됨!"
+
+msgid "Run after installation"
+msgstr "설치 후 실행"
+

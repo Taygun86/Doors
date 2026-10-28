@@ -1,0 +1,244 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: doors 0.1.0\n"
+"Language: ro\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Main Disk"
+msgstr "Disc principal"
+
+msgid "free"
+msgstr "liber"
+
+msgid "Disk"
+msgstr "Disc"
+
+msgid "Proton"
+msgstr "Proton"
+
+msgid "Install"
+msgstr "Instalează"
+
+msgid "No disks found"
+msgstr "Nu s-au găsit discuri"
+
+msgid "compatibilitytools.d is empty"
+msgstr "compatibilitytools.d este gol"
+
+msgid "Starting..."
+msgstr "Se pornește..."
+
+msgid "Completed!"
+msgstr "Finalizat!"
+
+msgid "Error:"
+msgstr "Eroare:"
+
+msgid "Install .exe"
+msgstr "Instalează .exe"
+
+msgid "Select Executable (.exe)"
+msgstr "Selectează executabilul (.exe)"
+
+msgid "Windows Executable (*.exe)"
+msgstr "Executabil Windows (*.exe)"
+
+msgid "No Programs Yet"
+msgstr "Niciun program încă"
+
+msgid "Double-click any .exe file or use the + button to install."
+msgstr "Faceți dublu clic pe orice fișier .exe sau folosiți butonul + pentru instalare."
+
+msgid "Installed Programs"
+msgstr "Programe instalate"
+
+msgid "Run"
+msgstr "Rulează"
+
+msgid "Delete Program and Prefix"
+msgstr "Șterge programul și prefixul"
+
+msgid "Run with Doors"
+msgstr "Rulează cu Doors"
+
+msgid "Program"
+msgstr "Program"
+
+msgid "Preparing folder:"
+msgstr "Se pregătește dosarul:"
+
+msgid "Detecting main executable (.exe)..."
+msgstr "Se detectează executabilul principal (.exe)..."
+
+msgid "Extracting icon (.ico -> .png)..."
+msgstr "Se extrage pictograma (.ico -> .png)..."
+
+msgid "Creating application shortcut (.desktop)..."
+msgstr "Se creează scurtătura (.desktop)..."
+
+msgid "Completed! Launching program..."
+msgstr "Finalizat! Se pornește programul..."
+
+msgid "Running installer (Please complete the setup)..."
+msgstr "Rulează instalatorul (Finalizați instalarea)..."
+
+msgid "Detecting installed main .exe..."
+msgstr "Se detectează .exe instalat..."
+
+msgid "No executable file (.exe) found in installation directory."
+msgstr "Nu s-a găsit niciun fișier executabil (.exe) în directorul de instalare."
+
+msgid "Installation completed!"
+msgstr "Instalare finalizată!"
+
+msgid "Moving file to disk..."
+msgstr "Se mută fișierul pe disc..."
+
+msgid "Running..."
+msgstr "Se rulează..."
+
+msgid "Detecting main .exe and icon..."
+msgstr "Se detectează .exe principal și pictograma..."
+
+msgid "Folder moved."
+msgstr "Dosar mutat."
+
+msgid "Moving..."
+msgstr "Se mută..."
+
+msgid "Settings"
+msgstr "Setări"
+
+msgid "Runner & Launch"
+msgstr "Runner și Lansare"
+
+msgid "Launch Arguments"
+msgstr "Argumente de Lansare"
+
+msgid "Disabled"
+msgstr "Dezactivat"
+
+msgid "Synchronization"
+msgstr "Sincronizare"
+
+msgid "Select Wine/Proton synchronization method."
+msgstr "Selectați metoda de sincronizare Wine/Proton."
+
+msgid "Display & Performance"
+msgstr "Afișaj și Performanță"
+
+msgid "Native Wayland"
+msgstr "Wayland Nativ"
+
+msgid "Force running directly on Wayland instead of Xwayland."
+msgstr "Forțează rularea direct pe Wayland în loc de Xwayland."
+
+msgid "High Dynamic Range"
+msgstr "Gamă Dinamică Înaltă (HDR)"
+
+msgid "Expose HDR using DXVK. Requires native Wayland or Gamescope. Older NVIDIA drivers also need HdrWsi and ENABLE_HDR_WSI=1."
+msgstr "Activează HDR prin DXVK. Necesită Wayland nativ sau Gamescope."
+
+msgid "Optimize system performance on demand using Feral GameMode."
+msgstr "Optimizează performanța sistemului folosind Feral GameMode."
+
+msgid "gamemode is not installed on the system"
+msgstr "gamemode nu este instalat"
+
+msgid "Display FPS, temperatures, and frame timing overlay."
+msgstr "Afișează suprapunerea pentru FPS, temperaturi și timp de cadru."
+
+msgid "mangohud is not installed on the system"
+msgstr "mangohud nu este instalat"
+
+msgid "Manage how programs are displayed on screen using Gamescope."
+msgstr "Gestionează afișarea programelor pe ecran folosind Gamescope."
+
+msgid "gamescope is not installed on the system"
+msgstr "gamescope nu este instalat"
+
+msgid "Width"
+msgstr "Lățime"
+
+msgid "Height"
+msgstr "Înălțime"
+
+msgid "FPS Limit"
+msgstr "Limită FPS"
+
+msgid "Fullscreen"
+msgstr "Ecran complet"
+
+msgid "Main Executable (.exe)"
+msgstr "Executabil Principal (.exe)"
+
+msgid "Change"
+msgstr "Schimbă"
+
+msgid "Use Discrete GPU"
+msgstr "Folosește placa video dedicată"
+
+msgid "Prefer dedicated NVIDIA/AMD graphics card over integrated GPU."
+msgstr "Preferă placa grafică dedicată NVIDIA/AMD față de cea integrată."
+
+msgid "NVIDIA DLSS / NVAPI"
+msgstr "NVIDIA DLSS / NVAPI"
+
+msgid "Enable NVAPI, DLSS, and Reflex support (PROTON_ENABLE_NVAPI=1)."
+msgstr "Activează suportul NVAPI, DLSS și Reflex (PROTON_ENABLE_NVAPI=1)."
+
+msgid "AMD FidelityFX Super Resolution (FSR)"
+msgstr "AMD FidelityFX Super Resolution (FSR)"
+
+msgid "Enable fullscreen FSR upscaling in supported Proton builds."
+msgstr "Activează scalarea FSR pe tot ecranul în versiunile Proton suportate."
+
+msgid "Enable Vulkan post-processing and sharpening layer."
+msgstr "Activează stratul Vulkan de post-procesare și claritate."
+
+msgid "vkBasalt is not installed on the system"
+msgstr "vkBasalt nu este instalat"
+
+msgid "Prefix & Tools"
+msgstr "Prefix și Instrumente"
+
+msgid "Open Program Folder"
+msgstr "Deschide Dosarul Programului"
+
+msgid "Browse program files and prefix directory in file manager."
+msgstr "Răsfoiește fișierele programului și directorul prefixului."
+
+msgid "Open"
+msgstr "Deschide"
+
+msgid "Run .exe in Prefix"
+msgstr "Rulează .exe în Prefix"
+
+msgid "Run a patch, update, or redistributable installer inside this prefix."
+msgstr "Rulează un patch, o actualizare sau un instalator în acest prefix."
+
+msgid "Select .exe"
+msgstr "Selectează .exe"
+
+msgid "Wine Tools"
+msgstr "Instrumente Wine"
+
+msgid "Open Wine configuration (winecfg) or Winetricks for this prefix."
+msgstr "Deschide configurația Wine (winecfg) sau Winetricks pentru acest prefix."
+
+msgid "Reset Prefix"
+msgstr "Resetează Prefixul"
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching program files."
+msgstr "Șterge și recreează prefixul Wine/Proton (pfx) fără a afecta fișierele programului."
+
+msgid "Reset"
+msgstr "Resetează"
+
+msgid "Prefix Reset!"
+msgstr "Prefix Resetat!"
+
+msgid "Run after installation"
+msgstr "Rulează după instalare"
+

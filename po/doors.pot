@@ -1,0 +1,242 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: doors 0.1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Main Disk"
+msgstr ""
+
+msgid "free"
+msgstr ""
+
+msgid "Disk"
+msgstr ""
+
+msgid "Proton"
+msgstr ""
+
+msgid "Install"
+msgstr ""
+
+msgid "No disks found"
+msgstr ""
+
+msgid "compatibilitytools.d is empty"
+msgstr ""
+
+msgid "Starting..."
+msgstr ""
+
+msgid "Completed!"
+msgstr ""
+
+msgid "Error:"
+msgstr ""
+
+msgid "Install .exe"
+msgstr ""
+
+msgid "Select Executable (.exe)"
+msgstr ""
+
+msgid "Windows Executable (*.exe)"
+msgstr ""
+
+msgid "No Programs Yet"
+msgstr ""
+
+msgid "Double-click any .exe file or use the + button to install."
+msgstr ""
+
+msgid "Installed Programs"
+msgstr ""
+
+msgid "Run"
+msgstr ""
+
+msgid "Delete Program and Prefix"
+msgstr ""
+
+msgid "Run with Doors"
+msgstr ""
+
+msgid "Program"
+msgstr ""
+
+msgid "Preparing folder:"
+msgstr ""
+
+msgid "Detecting main executable (.exe)..."
+msgstr ""
+
+msgid "Extracting icon (.ico -> .png)..."
+msgstr ""
+
+msgid "Creating application shortcut (.desktop)..."
+msgstr ""
+
+msgid "Completed! Launching program..."
+msgstr ""
+
+msgid "Running installer (Please complete the setup)..."
+msgstr ""
+
+msgid "Detecting installed main .exe..."
+msgstr ""
+
+msgid "No executable file (.exe) found in installation directory."
+msgstr ""
+
+msgid "Installation completed!"
+msgstr ""
+
+msgid "Moving file to disk..."
+msgstr ""
+
+msgid "Running..."
+msgstr ""
+
+msgid "Detecting main .exe and icon..."
+msgstr ""
+
+msgid "Folder moved."
+msgstr ""
+
+msgid "Moving..."
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "Runner & Launch"
+msgstr ""
+
+msgid "Launch Arguments"
+msgstr ""
+
+msgid "Disabled"
+msgstr ""
+
+msgid "Synchronization"
+msgstr ""
+
+msgid "Select Wine/Proton synchronization method."
+msgstr ""
+
+msgid "Display & Performance"
+msgstr ""
+
+msgid "Native Wayland"
+msgstr ""
+
+msgid "Force running directly on Wayland instead of Xwayland."
+msgstr ""
+
+msgid "High Dynamic Range"
+msgstr ""
+
+msgid "Expose HDR using DXVK. Requires native Wayland or Gamescope. Older NVIDIA drivers also need HdrWsi and ENABLE_HDR_WSI=1."
+msgstr ""
+
+msgid "Optimize system performance on demand using Feral GameMode."
+msgstr ""
+
+msgid "gamemode is not installed on the system"
+msgstr ""
+
+msgid "Display FPS, temperatures, and frame timing overlay."
+msgstr ""
+
+msgid "mangohud is not installed on the system"
+msgstr ""
+
+msgid "Manage how programs are displayed on screen using Gamescope."
+msgstr ""
+
+msgid "gamescope is not installed on the system"
+msgstr ""
+
+msgid "Width"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "FPS Limit"
+msgstr ""
+
+msgid "Fullscreen"
+msgstr ""
+
+msgid "Main Executable (.exe)"
+msgstr ""
+
+msgid "Change"
+msgstr ""
+
+msgid "Use Discrete GPU"
+msgstr ""
+
+msgid "Prefer dedicated NVIDIA/AMD graphics card over integrated GPU."
+msgstr ""
+
+msgid "NVIDIA DLSS / NVAPI"
+msgstr ""
+
+msgid "Enable NVAPI, DLSS, and Reflex support (PROTON_ENABLE_NVAPI=1)."
+msgstr ""
+
+msgid "AMD FidelityFX Super Resolution (FSR)"
+msgstr ""
+
+msgid "Enable fullscreen FSR upscaling in supported Proton builds."
+msgstr ""
+
+msgid "Enable Vulkan post-processing and sharpening layer."
+msgstr ""
+
+msgid "vkBasalt is not installed on the system"
+msgstr ""
+
+msgid "Prefix & Tools"
+msgstr ""
+
+msgid "Open Program Folder"
+msgstr ""
+
+msgid "Browse program files and prefix directory in file manager."
+msgstr ""
+
+msgid "Open"
+msgstr ""
+
+msgid "Run .exe in Prefix"
+msgstr ""
+
+msgid "Run a patch, update, or redistributable installer inside this prefix."
+msgstr ""
+
+msgid "Select .exe"
+msgstr ""
+
+msgid "Wine Tools"
+msgstr ""
+
+msgid "Open Wine configuration (winecfg) or Winetricks for this prefix."
+msgstr ""
+
+msgid "Reset Prefix"
+msgstr ""
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching program files."
+msgstr ""
+
+msgid "Reset"
+msgstr ""
+
+msgid "Prefix Reset!"
+msgstr ""
+
+msgid "Run after installation"
+msgstr ""

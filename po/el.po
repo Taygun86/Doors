@@ -1,0 +1,244 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: doors 0.1.0\n"
+"Language: el\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Main Disk"
+msgstr "Κύριος δίσκος"
+
+msgid "free"
+msgstr "ελεύθερα"
+
+msgid "Disk"
+msgstr "Δίσκος"
+
+msgid "Proton"
+msgstr "Proton"
+
+msgid "Install"
+msgstr "Εγκατάσταση"
+
+msgid "No disks found"
+msgstr "Δεν βρέθηκαν δίσκοι"
+
+msgid "compatibilitytools.d is empty"
+msgstr "Το compatibilitytools.d είναι κενό"
+
+msgid "Starting..."
+msgstr "Εκκίνηση..."
+
+msgid "Completed!"
+msgstr "Ολοκληρώθηκε!"
+
+msgid "Error:"
+msgstr "Σφάλμα:"
+
+msgid "Install .exe"
+msgstr "Εγκατάσταση .exe"
+
+msgid "Select Executable (.exe)"
+msgstr "Επιλογή εκτελέσιμου (.exe)"
+
+msgid "Windows Executable (*.exe)"
+msgstr "Εκτελέσιμο Windows (*.exe)"
+
+msgid "No Programs Yet"
+msgstr "Δεν υπάρχουν προγράμματα"
+
+msgid "Double-click any .exe file or use the + button to install."
+msgstr "Κάντε διπλό κλικ σε οποιοδήποτε αρχείο .exe ή χρησιμοποιήστε το κουμπί + για εγκατάσταση."
+
+msgid "Installed Programs"
+msgstr "Εγκατεστημένα προγράμματα"
+
+msgid "Run"
+msgstr "Εκτέλεση"
+
+msgid "Delete Program and Prefix"
+msgstr "Διαγραφή προγράμματος και prefix"
+
+msgid "Run with Doors"
+msgstr "Εκτέλεση με το Doors"
+
+msgid "Program"
+msgstr "Πρόγραμμα"
+
+msgid "Preparing folder:"
+msgstr "Προετοιμασία φακέλου:"
+
+msgid "Detecting main executable (.exe)..."
+msgstr "Εντοπισμός κύριου εκτελέσιμου (.exe)..."
+
+msgid "Extracting icon (.ico -> .png)..."
+msgstr "Εξαγωγή εικονιδίου (.ico -> .png)..."
+
+msgid "Creating application shortcut (.desktop)..."
+msgstr "Δημιουργία συντόμευσης (.desktop)..."
+
+msgid "Completed! Launching program..."
+msgstr "Ολοκληρώθηκε! Εκκίνηση προγράμματος..."
+
+msgid "Running installer (Please complete the setup)..."
+msgstr "Εκτέλεση εγκαταστάτη (Ολοκληρώστε την εγκατάσταση)..."
+
+msgid "Detecting installed main .exe..."
+msgstr "Εντοπισμός εγκατεστημένου .exe..."
+
+msgid "No executable file (.exe) found in installation directory."
+msgstr "Δεν βρέθηκε εκτελέσιμο αρχείο (.exe) στον φάκελο εγκατάστασης."
+
+msgid "Installation completed!"
+msgstr "Η εγκατάσταση ολοκληρώθηκε!"
+
+msgid "Moving file to disk..."
+msgstr "Μετακίνηση αρχείου στον δίσκο..."
+
+msgid "Running..."
+msgstr "Εκτελείται..."
+
+msgid "Detecting main .exe and icon..."
+msgstr "Εντοπισμός κύριου .exe και εικονιδίου..."
+
+msgid "Folder moved."
+msgstr "Ο φάκελος μετακινήθηκε."
+
+msgid "Moving..."
+msgstr "Μετακίνηση..."
+
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+msgid "Runner & Launch"
+msgstr "Εκτέλεση & Εκκίνηση"
+
+msgid "Launch Arguments"
+msgstr "Παράμετροι εκκίνησης"
+
+msgid "Disabled"
+msgstr "Απενεργοποιημένο"
+
+msgid "Synchronization"
+msgstr "Συγχρονισμός"
+
+msgid "Select Wine/Proton synchronization method."
+msgstr "Επιλέξτε μέθοδο συγχρονισμού Wine/Proton."
+
+msgid "Display & Performance"
+msgstr "Οθόνη & Απόδοση"
+
+msgid "Native Wayland"
+msgstr "Εγγενές Wayland"
+
+msgid "Force running directly on Wayland instead of Xwayland."
+msgstr "Εξαναγκασμός εκτέλεσης απευθείας σε Wayland αντί για Xwayland."
+
+msgid "High Dynamic Range"
+msgstr "Υψηλό Δυναμικό Εύρος (HDR)"
+
+msgid "Expose HDR using DXVK. Requires native Wayland or Gamescope. Older NVIDIA drivers also need HdrWsi and ENABLE_HDR_WSI=1."
+msgstr "Ενεργοποίηση HDR μέσω DXVK. Απαιτεί Wayland ή Gamescope."
+
+msgid "Optimize system performance on demand using Feral GameMode."
+msgstr "Βελτιστοποίηση απόδοσης συστήματος με το Feral GameMode."
+
+msgid "gamemode is not installed on the system"
+msgstr "Το gamemode δεν είναι εγκατεστημένο"
+
+msgid "Display FPS, temperatures, and frame timing overlay."
+msgstr "Εμφάνιση επικάλυψης FPS και θερμοκρασιών."
+
+msgid "mangohud is not installed on the system"
+msgstr "Το mangohud δεν είναι εγκατεστημένο"
+
+msgid "Manage how programs are displayed on screen using Gamescope."
+msgstr "Διαχείριση εμφάνισης προγραμμάτων στην οθόνη με το Gamescope."
+
+msgid "gamescope is not installed on the system"
+msgstr "Το gamescope δεν είναι εγκατεστημένο"
+
+msgid "Width"
+msgstr "Πλάτος"
+
+msgid "Height"
+msgstr "Ύψος"
+
+msgid "FPS Limit"
+msgstr "Όριο FPS"
+
+msgid "Fullscreen"
+msgstr "Πλήρης οθόνη"
+
+msgid "Main Executable (.exe)"
+msgstr "Κύριο εκτελέσιμο (.exe)"
+
+msgid "Change"
+msgstr "Αλλαγή"
+
+msgid "Use Discrete GPU"
+msgstr "Χρήση διακριτής κάρτας γραφικών"
+
+msgid "Prefer dedicated NVIDIA/AMD graphics card over integrated GPU."
+msgstr "Προτίμηση αποκλειστικής κάρτας NVIDIA/AMD έναντι της ενσωματωμένης."
+
+msgid "NVIDIA DLSS / NVAPI"
+msgstr "NVIDIA DLSS / NVAPI"
+
+msgid "Enable NVAPI, DLSS, and Reflex support (PROTON_ENABLE_NVAPI=1)."
+msgstr "Ενεργοποίηση υποστήριξης NVAPI, DLSS και Reflex (PROTON_ENABLE_NVAPI=1)."
+
+msgid "AMD FidelityFX Super Resolution (FSR)"
+msgstr "AMD FidelityFX Super Resolution (FSR)"
+
+msgid "Enable fullscreen FSR upscaling in supported Proton builds."
+msgstr "Ενεργοποίηση κλιμάκωσης FSR πλήρους οθόνης στο Proton."
+
+msgid "Enable Vulkan post-processing and sharpening layer."
+msgstr "Ενεργοποίηση επιπέδου επεξεργασίας και ευκρίνειας Vulkan."
+
+msgid "vkBasalt is not installed on the system"
+msgstr "Το vkBasalt δεν είναι εγκατεστημένο"
+
+msgid "Prefix & Tools"
+msgstr "Prefix & Εργαλεία"
+
+msgid "Open Program Folder"
+msgstr "Άνοιγμα φακέλου προγράμματος"
+
+msgid "Browse program files and prefix directory in file manager."
+msgstr "Περιήγηση στα αρχεία προγράμματος και στον φάκελο prefix."
+
+msgid "Open"
+msgstr "Άνοιγμα"
+
+msgid "Run .exe in Prefix"
+msgstr "Εκτέλεση .exe στο Prefix"
+
+msgid "Run a patch, update, or redistributable installer inside this prefix."
+msgstr "Εκτέλεση ενημέρωσης ή προγράμματος εγκατάστασης μέσα σε αυτό το prefix."
+
+msgid "Select .exe"
+msgstr "Επιλογή .exe"
+
+msgid "Wine Tools"
+msgstr "Εργαλεία Wine"
+
+msgid "Open Wine configuration (winecfg) or Winetricks for this prefix."
+msgstr "Άνοιγμα ρυθμίσεων Wine (winecfg) ή Winetricks για αυτό το prefix."
+
+msgid "Reset Prefix"
+msgstr "Επαναφορά Prefix"
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching program files."
+msgstr "Διαγραφή και αναδημιουργία του prefix (pfx) χωρίς διαγραφή των αρχείων προγράμματος."
+
+msgid "Reset"
+msgstr "Επαναφορά"
+
+msgid "Prefix Reset!"
+msgstr "Το Prefix επαναφέρθηκε!"
+
+msgid "Run after installation"
+msgstr "Εκτέλεση μετά την εγκατάσταση"
+

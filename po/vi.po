@@ -1,0 +1,244 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: doors 0.1.0\n"
+"Language: vi\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Main Disk"
+msgstr "Ổ đĩa chính"
+
+msgid "free"
+msgstr "trống"
+
+msgid "Disk"
+msgstr "Ổ đĩa"
+
+msgid "Proton"
+msgstr "Proton"
+
+msgid "Install"
+msgstr "Cài đặt"
+
+msgid "No disks found"
+msgstr "Không tìm thấy ổ đĩa"
+
+msgid "compatibilitytools.d is empty"
+msgstr "compatibilitytools.d trống"
+
+msgid "Starting..."
+msgstr "Đang bắt đầu..."
+
+msgid "Completed!"
+msgstr "Hoàn tất!"
+
+msgid "Error:"
+msgstr "Lỗi:"
+
+msgid "Install .exe"
+msgstr "Cài đặt .exe"
+
+msgid "Select Executable (.exe)"
+msgstr "Chọn tệp thực thi (.exe)"
+
+msgid "Windows Executable (*.exe)"
+msgstr "Tệp thực thi Windows (*.exe)"
+
+msgid "No Programs Yet"
+msgstr "Chưa có chương trình"
+
+msgid "Double-click any .exe file or use the + button to install."
+msgstr "Nhấp đúp vào bất kỳ tệp .exe nào hoặc dùng nút + để cài đặt."
+
+msgid "Installed Programs"
+msgstr "Chương trình đã cài đặt"
+
+msgid "Run"
+msgstr "Chạy"
+
+msgid "Delete Program and Prefix"
+msgstr "Xóa chương trình và Prefix"
+
+msgid "Run with Doors"
+msgstr "Chạy bằng Doors"
+
+msgid "Program"
+msgstr "Chương trình"
+
+msgid "Preparing folder:"
+msgstr "Đang chuẩn bị thư mục:"
+
+msgid "Detecting main executable (.exe)..."
+msgstr "Đang phát hiện tệp thực thi chính (.exe)..."
+
+msgid "Extracting icon (.ico -> .png)..."
+msgstr "Đang trích xuất biểu tượng (.ico -> .png)..."
+
+msgid "Creating application shortcut (.desktop)..."
+msgstr "Đang tạo lối tắt ứng dụng (.desktop)..."
+
+msgid "Completed! Launching program..."
+msgstr "Hoàn tất! Đang khởi chạy chương trình..."
+
+msgid "Running installer (Please complete the setup)..."
+msgstr "Đang chạy trình cài đặt (Vui lòng hoàn tất cài đặt)..."
+
+msgid "Detecting installed main .exe..."
+msgstr "Đang phát hiện .exe đã cài đặt..."
+
+msgid "No executable file (.exe) found in installation directory."
+msgstr "Không tìm thấy tệp thực thi (.exe) trong thư mục cài đặt."
+
+msgid "Installation completed!"
+msgstr "Cài đặt hoàn tất!"
+
+msgid "Moving file to disk..."
+msgstr "Đang di chuyển tệp sang ổ đĩa..."
+
+msgid "Running..."
+msgstr "Đang chạy..."
+
+msgid "Detecting main .exe and icon..."
+msgstr "Đang phát hiện .exe chính và biểu tượng..."
+
+msgid "Folder moved."
+msgstr "Đã di chuyển thư mục."
+
+msgid "Moving..."
+msgstr "Đang di chuyển..."
+
+msgid "Settings"
+msgstr "Cài đặt"
+
+msgid "Runner & Launch"
+msgstr "Trình chạy & Khởi động"
+
+msgid "Launch Arguments"
+msgstr "Tham số khởi chạy"
+
+msgid "Disabled"
+msgstr "Đã tắt"
+
+msgid "Synchronization"
+msgstr "Đồng bộ hóa"
+
+msgid "Select Wine/Proton synchronization method."
+msgstr "Chọn phương thức đồng bộ hóa Wine/Proton."
+
+msgid "Display & Performance"
+msgstr "Hiển thị & Hiệu năng"
+
+msgid "Native Wayland"
+msgstr "Wayland gốc"
+
+msgid "Force running directly on Wayland instead of Xwayland."
+msgstr "Buộc chạy trực tiếp trên Wayland thay vì Xwayland."
+
+msgid "High Dynamic Range"
+msgstr "Dải tương phản động mở rộng (HDR)"
+
+msgid "Expose HDR using DXVK. Requires native Wayland or Gamescope. Older NVIDIA drivers also need HdrWsi and ENABLE_HDR_WSI=1."
+msgstr "Bật HDR qua DXVK. Yêu cầu Wayland gốc hoặc Gamescope."
+
+msgid "Optimize system performance on demand using Feral GameMode."
+msgstr "Tối ưu hóa hiệu năng hệ thống bằng Feral GameMode."
+
+msgid "gamemode is not installed on the system"
+msgstr "gamemode chưa được cài đặt"
+
+msgid "Display FPS, temperatures, and frame timing overlay."
+msgstr "Hiển thị lớp phủ FPS, nhiệt độ và thời gian khung hình."
+
+msgid "mangohud is not installed on the system"
+msgstr "mangohud chưa được cài đặt"
+
+msgid "Manage how programs are displayed on screen using Gamescope."
+msgstr "Quản lý cách chương trình hiển thị trên màn hình bằng Gamescope."
+
+msgid "gamescope is not installed on the system"
+msgstr "gamescope chưa được cài đặt"
+
+msgid "Width"
+msgstr "Chiều rộng"
+
+msgid "Height"
+msgstr "Chiều cao"
+
+msgid "FPS Limit"
+msgstr "Giới hạn FPS"
+
+msgid "Fullscreen"
+msgstr "Toàn màn hình"
+
+msgid "Main Executable (.exe)"
+msgstr "Tệp thực thi chính (.exe)"
+
+msgid "Change"
+msgstr "Thay đổi"
+
+msgid "Use Discrete GPU"
+msgstr "Dùng card đồ họa rời"
+
+msgid "Prefer dedicated NVIDIA/AMD graphics card over integrated GPU."
+msgstr "Ưu tiên card đồ họa rời NVIDIA/AMD hơn GPU tích hợp."
+
+msgid "NVIDIA DLSS / NVAPI"
+msgstr "NVIDIA DLSS / NVAPI"
+
+msgid "Enable NVAPI, DLSS, and Reflex support (PROTON_ENABLE_NVAPI=1)."
+msgstr "Bật hỗ trợ NVAPI, DLSS và Reflex (PROTON_ENABLE_NVAPI=1)."
+
+msgid "AMD FidelityFX Super Resolution (FSR)"
+msgstr "AMD FidelityFX Super Resolution (FSR)"
+
+msgid "Enable fullscreen FSR upscaling in supported Proton builds."
+msgstr "Bật nâng cấp FSR toàn màn hình trong các bản Proton hỗ trợ."
+
+msgid "Enable Vulkan post-processing and sharpening layer."
+msgstr "Bật lớp hậu xử lý và làm sắc nét Vulkan."
+
+msgid "vkBasalt is not installed on the system"
+msgstr "vkBasalt chưa được cài đặt"
+
+msgid "Prefix & Tools"
+msgstr "Prefix & Công cụ"
+
+msgid "Open Program Folder"
+msgstr "Mở thư mục chương trình"
+
+msgid "Browse program files and prefix directory in file manager."
+msgstr "Duyệt tệp chương trình và thư mục prefix trong trình quản lý tệp."
+
+msgid "Open"
+msgstr "Mở"
+
+msgid "Run .exe in Prefix"
+msgstr "Chạy .exe trong Prefix"
+
+msgid "Run a patch, update, or redistributable installer inside this prefix."
+msgstr "Chạy bản vá, cập nhật hoặc trình cài đặt trong prefix này."
+
+msgid "Select .exe"
+msgstr "Chọn .exe"
+
+msgid "Wine Tools"
+msgstr "Công cụ Wine"
+
+msgid "Open Wine configuration (winecfg) or Winetricks for this prefix."
+msgstr "Mở cấu hình Wine (winecfg) hoặc Winetricks cho prefix này."
+
+msgid "Reset Prefix"
+msgstr "Đặt lại Prefix"
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching program files."
+msgstr "Xóa và tạo lại prefix Wine/Proton (pfx) mà không ảnh hưởng đến tệp chương trình."
+
+msgid "Reset"
+msgstr "Đặt lại"
+
+msgid "Prefix Reset!"
+msgstr "Đã đặt lại Prefix!"
+
+msgid "Run after installation"
+msgstr "Chạy sau khi cài đặt"
+

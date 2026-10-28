@@ -1,0 +1,244 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: doors 0.1.0\n"
+"Language: hi\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Main Disk"
+msgstr "मुख्य डिस्क"
+
+msgid "free"
+msgstr "खाली"
+
+msgid "Disk"
+msgstr "डिस्क"
+
+msgid "Proton"
+msgstr "Proton"
+
+msgid "Install"
+msgstr "इंस्टॉल करें"
+
+msgid "No disks found"
+msgstr "कोई डिस्क नहीं मिली"
+
+msgid "compatibilitytools.d is empty"
+msgstr "compatibilitytools.d खाली है"
+
+msgid "Starting..."
+msgstr "शुरू हो रहा है..."
+
+msgid "Completed!"
+msgstr "पूर्ण!"
+
+msgid "Error:"
+msgstr "त्रुटि:"
+
+msgid "Install .exe"
+msgstr ".exe इंस्टॉल करें"
+
+msgid "Select Executable (.exe)"
+msgstr "निष्पादन योग्य (.exe) चुनें"
+
+msgid "Windows Executable (*.exe)"
+msgstr "Windows निष्पादन योग्य (*.exe)"
+
+msgid "No Programs Yet"
+msgstr "अभी कोई प्रोग्राम नहीं"
+
+msgid "Double-click any .exe file or use the + button to install."
+msgstr "इंस्टॉल करने के लिए किसी भी .exe फ़ाइल पर डबल-क्लिक करें या + बटन का उपयोग करें।"
+
+msgid "Installed Programs"
+msgstr "इंस्टॉल किए गए प्रोग्राम"
+
+msgid "Run"
+msgstr "चलाएं"
+
+msgid "Delete Program and Prefix"
+msgstr "प्रोग्राम और प्रीफ़िक्स हटाएं"
+
+msgid "Run with Doors"
+msgstr "Doors के साथ चलाएं"
+
+msgid "Program"
+msgstr "प्रोग्राम"
+
+msgid "Preparing folder:"
+msgstr "फ़ोल्डर तैयार किया जा रहा है:"
+
+msgid "Detecting main executable (.exe)..."
+msgstr "मुख्य निष्पादन योग्य (.exe) की पहचान हो रही है..."
+
+msgid "Extracting icon (.ico -> .png)..."
+msgstr "आइकन (.ico -> .png) निकाला जा रहा है..."
+
+msgid "Creating application shortcut (.desktop)..."
+msgstr "शॉर्टकट (.desktop) बनाया जा रहा है..."
+
+msgid "Completed! Launching program..."
+msgstr "पूर्ण! प्रोग्राम शुरू हो रहा है..."
+
+msgid "Running installer (Please complete the setup)..."
+msgstr "इंस्टॉलर चल रहा है (कृपया सेटअप पूरा करें)..."
+
+msgid "Detecting installed main .exe..."
+msgstr "इंस्टॉल किए गए .exe की पहचान हो रही है..."
+
+msgid "No executable file (.exe) found in installation directory."
+msgstr "इंस्टॉलेशन निर्देशिका में कोई निष्पादन योग्य फ़ाइल (.exe) नहीं मिली।"
+
+msgid "Installation completed!"
+msgstr "इंस्टॉलेशन पूर्ण!"
+
+msgid "Moving file to disk..."
+msgstr "फ़ाइल को डिस्क पर ले जाया जा रहा है..."
+
+msgid "Running..."
+msgstr "चल रहा है..."
+
+msgid "Detecting main .exe and icon..."
+msgstr "मुख्य .exe और आइकन की पहचान हो रही है..."
+
+msgid "Folder moved."
+msgstr "फ़ोल्डर स्थानांतरित किया गया।"
+
+msgid "Moving..."
+msgstr "स्थानांतरित हो रहा है..."
+
+msgid "Settings"
+msgstr "सेटिंग्स"
+
+msgid "Runner & Launch"
+msgstr "रनर और लॉन्च"
+
+msgid "Launch Arguments"
+msgstr "लॉन्च विकल्प"
+
+msgid "Disabled"
+msgstr "अक्षम"
+
+msgid "Synchronization"
+msgstr "सिंक्रनाइज़ेशन"
+
+msgid "Select Wine/Proton synchronization method."
+msgstr "Wine/Proton सिंक्रनाइज़ेशन विधि चुनें।"
+
+msgid "Display & Performance"
+msgstr "डिस्प्ले और प्रदर्शन"
+
+msgid "Native Wayland"
+msgstr "नेटिव Wayland"
+
+msgid "Force running directly on Wayland instead of Xwayland."
+msgstr "Xwayland के बजाय सीधे Wayland पर चलाने के लिए बाध्य करें।"
+
+msgid "High Dynamic Range"
+msgstr "हाई डायनेमिक रेंज (HDR)"
+
+msgid "Expose HDR using DXVK. Requires native Wayland or Gamescope. Older NVIDIA drivers also need HdrWsi and ENABLE_HDR_WSI=1."
+msgstr "DXVK का उपयोग करके HDR सक्षम करें। नेटिव Wayland या Gamescope आवश्यक है।"
+
+msgid "Optimize system performance on demand using Feral GameMode."
+msgstr "Feral GameMode का उपयोग करके सिस्टम प्रदर्शन को अनुकूलित करें।"
+
+msgid "gamemode is not installed on the system"
+msgstr "सिस्टम पर gamemode इंस्टॉल नहीं है"
+
+msgid "Display FPS, temperatures, and frame timing overlay."
+msgstr "FPS, तापमान और फ़्रेम टाइमिंग ओवरले प्रदर्शित करें।"
+
+msgid "mangohud is not installed on the system"
+msgstr "सिस्टम पर mangohud इंस्टॉल नहीं है"
+
+msgid "Manage how programs are displayed on screen using Gamescope."
+msgstr "Gamescope का उपयोग करके स्क्रीन पर प्रोग्राम के प्रदर्शन को प्रबंधित करें।"
+
+msgid "gamescope is not installed on the system"
+msgstr "सिस्टम पर gamescope इंस्टॉल नहीं है"
+
+msgid "Width"
+msgstr "चौड़ाई"
+
+msgid "Height"
+msgstr "ऊंचाई"
+
+msgid "FPS Limit"
+msgstr "FPS सीमा"
+
+msgid "Fullscreen"
+msgstr "फ़ुलस्क्रीन"
+
+msgid "Main Executable (.exe)"
+msgstr "मुख्य निष्पादन योग्य (.exe)"
+
+msgid "Change"
+msgstr "बदलें"
+
+msgid "Use Discrete GPU"
+msgstr "डेडिकेटेड GPU का उपयोग करें"
+
+msgid "Prefer dedicated NVIDIA/AMD graphics card over integrated GPU."
+msgstr "इंटीग्रेटेड GPU की तुलना में डेडिकेटेड NVIDIA/AMD ग्राफ़िक्स कार्ड को प्राथमिकता दें।"
+
+msgid "NVIDIA DLSS / NVAPI"
+msgstr "NVIDIA DLSS / NVAPI"
+
+msgid "Enable NVAPI, DLSS, and Reflex support (PROTON_ENABLE_NVAPI=1)."
+msgstr "NVAPI, DLSS और Reflex समर्थन सक्षम करें (PROTON_ENABLE_NVAPI=1)।"
+
+msgid "AMD FidelityFX Super Resolution (FSR)"
+msgstr "AMD FidelityFX Super Resolution (FSR)"
+
+msgid "Enable fullscreen FSR upscaling in supported Proton builds."
+msgstr "समर्थित Proton बिल्ड में फ़ुलस्क्रीन FSR अपस्केलिंग सक्षम करें।"
+
+msgid "Enable Vulkan post-processing and sharpening layer."
+msgstr "Vulkan पोस्ट-प्रोसेसिंग और शार्पनिंग लेयर सक्षम करें।"
+
+msgid "vkBasalt is not installed on the system"
+msgstr "सिस्टम पर vkBasalt इंस्टॉल नहीं है"
+
+msgid "Prefix & Tools"
+msgstr "प्रीफ़िक्स और टूल्स"
+
+msgid "Open Program Folder"
+msgstr "प्रोग्राम फ़ोल्डर खोलें"
+
+msgid "Browse program files and prefix directory in file manager."
+msgstr "फ़ाइल मैनेजर में प्रोग्राम फ़ाइलें और प्रीफ़िक्स फ़ोल्डर ब्राउज़ करें।"
+
+msgid "Open"
+msgstr "खोलें"
+
+msgid "Run .exe in Prefix"
+msgstr "प्रीफ़िक्स में .exe चलाएं"
+
+msgid "Run a patch, update, or redistributable installer inside this prefix."
+msgstr "इस प्रीफ़िक्स के अंदर पैच, अपडेट या इंस्टॉलर चलाएं।"
+
+msgid "Select .exe"
+msgstr ".exe चुनें"
+
+msgid "Wine Tools"
+msgstr "Wine टूल्स"
+
+msgid "Open Wine configuration (winecfg) or Winetricks for this prefix."
+msgstr "इस प्रीफ़िक्स के लिए Wine कॉन्फ़िगरेशन (winecfg) या Winetricks खोलें।"
+
+msgid "Reset Prefix"
+msgstr "प्रीफ़िक्स रीसेट करें"
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching program files."
+msgstr "प्रोग्राम फ़ाइलों को छुए बिना Wine/Proton प्रीफ़िक्स (pfx) को हटाएं और पुनः बनाएं।"
+
+msgid "Reset"
+msgstr "रीसेट करें"
+
+msgid "Prefix Reset!"
+msgstr "प्रीफ़िक्स रीसेट हो गया!"
+
+msgid "Run after installation"
+msgstr "इंस्टॉलेशन के बाद चलाएं"
+

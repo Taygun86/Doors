@@ -1,0 +1,244 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: doors 0.1.0\n"
+"Language: hu\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Main Disk"
+msgstr "Fő lemez"
+
+msgid "free"
+msgstr "szabad"
+
+msgid "Disk"
+msgstr "Lemez"
+
+msgid "Proton"
+msgstr "Proton"
+
+msgid "Install"
+msgstr "Telepítés"
+
+msgid "No disks found"
+msgstr "Nem található lemez"
+
+msgid "compatibilitytools.d is empty"
+msgstr "A compatibilitytools.d üres"
+
+msgid "Starting..."
+msgstr "Indítás..."
+
+msgid "Completed!"
+msgstr "Kész!"
+
+msgid "Error:"
+msgstr "Hiba:"
+
+msgid "Install .exe"
+msgstr ".exe telepítése"
+
+msgid "Select Executable (.exe)"
+msgstr "Futtatható fájl (.exe) kiválasztása"
+
+msgid "Windows Executable (*.exe)"
+msgstr "Windows futtatható fájl (*.exe)"
+
+msgid "No Programs Yet"
+msgstr "Még nincsenek programok"
+
+msgid "Double-click any .exe file or use the + button to install."
+msgstr "Kattintson duplán bármely .exe fájlra, vagy használja a + gombot a telepítéshez."
+
+msgid "Installed Programs"
+msgstr "Telepített programok"
+
+msgid "Run"
+msgstr "Futtatás"
+
+msgid "Delete Program and Prefix"
+msgstr "Program és prefix törlése"
+
+msgid "Run with Doors"
+msgstr "Futtatás a Doors-szal"
+
+msgid "Program"
+msgstr "Program"
+
+msgid "Preparing folder:"
+msgstr "Mappa előkészítése:"
+
+msgid "Detecting main executable (.exe)..."
+msgstr "Fő futtatható fájl (.exe) keresése..."
+
+msgid "Extracting icon (.ico -> .png)..."
+msgstr "Ikon (.ico -> .png) kinyerése..."
+
+msgid "Creating application shortcut (.desktop)..."
+msgstr "Parancsikon (.desktop) létrehozása..."
+
+msgid "Completed! Launching program..."
+msgstr "Kész! Program indítása..."
+
+msgid "Running installer (Please complete the setup)..."
+msgstr "Telepítő fut (Fejezze be a telepítést)..."
+
+msgid "Detecting installed main .exe..."
+msgstr "Telepített .exe keresése..."
+
+msgid "No executable file (.exe) found in installation directory."
+msgstr "Nem található futtatható fájl (.exe) a telepítési mappában."
+
+msgid "Installation completed!"
+msgstr "Telepítés befejezve!"
+
+msgid "Moving file to disk..."
+msgstr "Fájl áthelyezése a lemezre..."
+
+msgid "Running..."
+msgstr "Futtatás..."
+
+msgid "Detecting main .exe and icon..."
+msgstr "Fő .exe és ikon keresése..."
+
+msgid "Folder moved."
+msgstr "Mappa áthelyezve."
+
+msgid "Moving..."
+msgstr "Áthelyezés..."
+
+msgid "Settings"
+msgstr "Beállítások"
+
+msgid "Runner & Launch"
+msgstr "Futtató és Indítás"
+
+msgid "Launch Arguments"
+msgstr "Indítási paraméterek"
+
+msgid "Disabled"
+msgstr "Letiltva"
+
+msgid "Synchronization"
+msgstr "Szinkronizáció"
+
+msgid "Select Wine/Proton synchronization method."
+msgstr "Válassza ki a Wine/Proton szinkronizálási módszert."
+
+msgid "Display & Performance"
+msgstr "Kijelző és Teljesítmény"
+
+msgid "Native Wayland"
+msgstr "Natív Wayland"
+
+msgid "Force running directly on Wayland instead of Xwayland."
+msgstr "Közvetlen Wayland futtatás kényszerítése Xwayland helyett."
+
+msgid "High Dynamic Range"
+msgstr "Nagy dinamikatartomány (HDR)"
+
+msgid "Expose HDR using DXVK. Requires native Wayland or Gamescope. Older NVIDIA drivers also need HdrWsi and ENABLE_HDR_WSI=1."
+msgstr "HDR engedélyezése DXVK használatával. Natív Wayland vagy Gamescope szükséges."
+
+msgid "Optimize system performance on demand using Feral GameMode."
+msgstr "Rendszerteljesítmény optimalizálása a Feral GameMode használatával."
+
+msgid "gamemode is not installed on the system"
+msgstr "A gamemode nincs telepítve"
+
+msgid "Display FPS, temperatures, and frame timing overlay."
+msgstr "FPS, hőmérséklet és képkockaidő réteg megjelenítése."
+
+msgid "mangohud is not installed on the system"
+msgstr "A mangohud nincs telepítve"
+
+msgid "Manage how programs are displayed on screen using Gamescope."
+msgstr "Programok képernyőn történő megjelenítésének kezelése Gamescope-pal."
+
+msgid "gamescope is not installed on the system"
+msgstr "A gamescope nincs telepítve"
+
+msgid "Width"
+msgstr "Szélesség"
+
+msgid "Height"
+msgstr "Magasság"
+
+msgid "FPS Limit"
+msgstr "FPS korlát"
+
+msgid "Fullscreen"
+msgstr "Teljes képernyő"
+
+msgid "Main Executable (.exe)"
+msgstr "Fő futtatható fájl (.exe)"
+
+msgid "Change"
+msgstr "Módosítás"
+
+msgid "Use Discrete GPU"
+msgstr "Dedikált GPU használata"
+
+msgid "Prefer dedicated NVIDIA/AMD graphics card over integrated GPU."
+msgstr "Dedikált NVIDIA/AMD videokártya előnyben részesítése az integrálttal szemben."
+
+msgid "NVIDIA DLSS / NVAPI"
+msgstr "NVIDIA DLSS / NVAPI"
+
+msgid "Enable NVAPI, DLSS, and Reflex support (PROTON_ENABLE_NVAPI=1)."
+msgstr "NVAPI, DLSS és Reflex támogatás engedélyezése (PROTON_ENABLE_NVAPI=1)."
+
+msgid "AMD FidelityFX Super Resolution (FSR)"
+msgstr "AMD FidelityFX Super Resolution (FSR)"
+
+msgid "Enable fullscreen FSR upscaling in supported Proton builds."
+msgstr "Teljes képernyős FSR felskálázás engedélyezése támogatott Proton verziókban."
+
+msgid "Enable Vulkan post-processing and sharpening layer."
+msgstr "Vulkan utófeldolgozó és élesítő réteg engedélyezése."
+
+msgid "vkBasalt is not installed on the system"
+msgstr "A vkBasalt nincs telepítve"
+
+msgid "Prefix & Tools"
+msgstr "Prefix és Eszközök"
+
+msgid "Open Program Folder"
+msgstr "Program mappájának megnyitása"
+
+msgid "Browse program files and prefix directory in file manager."
+msgstr "Programfájlok és prefix mappa tallózása a fájlkezelőben."
+
+msgid "Open"
+msgstr "Megnyitás"
+
+msgid "Run .exe in Prefix"
+msgstr ".exe futtatása a prefixben"
+
+msgid "Run a patch, update, or redistributable installer inside this prefix."
+msgstr "Javítás, frissítés vagy telepítő futtatása ezen a prefixen belül."
+
+msgid "Select .exe"
+msgstr ".exe kiválasztása"
+
+msgid "Wine Tools"
+msgstr "Wine eszközök"
+
+msgid "Open Wine configuration (winecfg) or Winetricks for this prefix."
+msgstr "Wine beállítások (winecfg) vagy Winetricks megnyitása ehhez a prefixhez."
+
+msgid "Reset Prefix"
+msgstr "Prefix visszaállítása"
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching program files."
+msgstr "A Wine/Proton prefix (pfx) törlése és újralétrehozása a programfájlok érintése nélkül."
+
+msgid "Reset"
+msgstr "Visszaállítás"
+
+msgid "Prefix Reset!"
+msgstr "Prefix visszaállítva!"
+
+msgid "Run after installation"
+msgstr "Futtatás a telepítés után"
+

@@ -1,0 +1,244 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: doors 0.1.0\n"
+"Language: ja\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Main Disk"
+msgstr "メインディスク"
+
+msgid "free"
+msgstr "空き"
+
+msgid "Disk"
+msgstr "ディスク"
+
+msgid "Proton"
+msgstr "Proton"
+
+msgid "Install"
+msgstr "インストール"
+
+msgid "No disks found"
+msgstr "ディスクが見つかりません"
+
+msgid "compatibilitytools.d is empty"
+msgstr "compatibilitytools.d が空です"
+
+msgid "Starting..."
+msgstr "開始中..."
+
+msgid "Completed!"
+msgstr "完了！"
+
+msgid "Error:"
+msgstr "エラー:"
+
+msgid "Install .exe"
+msgstr ".exe をインストール"
+
+msgid "Select Executable (.exe)"
+msgstr "実行ファイル (.exe) を選択"
+
+msgid "Windows Executable (*.exe)"
+msgstr "Windows 実行ファイル (*.exe)"
+
+msgid "No Programs Yet"
+msgstr "プログラムがありません"
+
+msgid "Double-click any .exe file or use the + button to install."
+msgstr ".exe ファイルをダブルクリックするか、+ ボタンからインストールしてください。"
+
+msgid "Installed Programs"
+msgstr "インストール済みプログラム"
+
+msgid "Run"
+msgstr "起動"
+
+msgid "Delete Program and Prefix"
+msgstr "プログラムとプレフィックスを削除"
+
+msgid "Run with Doors"
+msgstr "Doors で実行"
+
+msgid "Program"
+msgstr "プログラム"
+
+msgid "Preparing folder:"
+msgstr "フォルダを準備中:"
+
+msgid "Detecting main executable (.exe)..."
+msgstr "メイン実行ファイル (.exe) を検出中..."
+
+msgid "Extracting icon (.ico -> .png)..."
+msgstr "アイコン (.ico -> .png) を抽出中..."
+
+msgid "Creating application shortcut (.desktop)..."
+msgstr "ショートカット (.desktop) を作成中..."
+
+msgid "Completed! Launching program..."
+msgstr "完了！プログラムを起動しています..."
+
+msgid "Running installer (Please complete the setup)..."
+msgstr "インストーラーを実行中 (セットアップを完了してください)..."
+
+msgid "Detecting installed main .exe..."
+msgstr "インストールされた .exe を検出中..."
+
+msgid "No executable file (.exe) found in installation directory."
+msgstr "インストール先に実行ファイル (.exe) が見つかりません。"
+
+msgid "Installation completed!"
+msgstr "インストール完了！"
+
+msgid "Moving file to disk..."
+msgstr "ファイルをディスクへ移動中..."
+
+msgid "Running..."
+msgstr "実行中..."
+
+msgid "Detecting main .exe and icon..."
+msgstr "メイン .exe とアイコンを検出中..."
+
+msgid "Folder moved."
+msgstr "フォルダを移動しました。"
+
+msgid "Moving..."
+msgstr "移動中..."
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "Runner & Launch"
+msgstr "ランナーと起動"
+
+msgid "Launch Arguments"
+msgstr "起動オプション"
+
+msgid "Disabled"
+msgstr "無効"
+
+msgid "Synchronization"
+msgstr "同期モード"
+
+msgid "Select Wine/Proton synchronization method."
+msgstr "Wine/Proton の同期方式を選択します。"
+
+msgid "Display & Performance"
+msgstr "表示とパフォーマンス"
+
+msgid "Native Wayland"
+msgstr "ネイティブ Wayland"
+
+msgid "Force running directly on Wayland instead of Xwayland."
+msgstr "Xwayland ではなく Wayland 上で直接実行します。"
+
+msgid "High Dynamic Range"
+msgstr "ハイダイナミックレンジ (HDR)"
+
+msgid "Expose HDR using DXVK. Requires native Wayland or Gamescope. Older NVIDIA drivers also need HdrWsi and ENABLE_HDR_WSI=1."
+msgstr "DXVK を使用して HDR を有効化します。Wayland または Gamescope が必要です。"
+
+msgid "Optimize system performance on demand using Feral GameMode."
+msgstr "Feral GameMode を使用してシステムパフォーマンスを最適化します。"
+
+msgid "gamemode is not installed on the system"
+msgstr "gamemode がインストールされていません"
+
+msgid "Display FPS, temperatures, and frame timing overlay."
+msgstr "FPS、温度、フレームタイミングのオーバーレイを表示します。"
+
+msgid "mangohud is not installed on the system"
+msgstr "mangohud がインストールされていません"
+
+msgid "Manage how programs are displayed on screen using Gamescope."
+msgstr "Gamescope を使用してプログラムの画面表示を管理します。"
+
+msgid "gamescope is not installed on the system"
+msgstr "gamescope がインストールされていません"
+
+msgid "Width"
+msgstr "幅"
+
+msgid "Height"
+msgstr "高さ"
+
+msgid "FPS Limit"
+msgstr "FPS 制限"
+
+msgid "Fullscreen"
+msgstr "フルスクリーン"
+
+msgid "Main Executable (.exe)"
+msgstr "メイン実行ファイル (.exe)"
+
+msgid "Change"
+msgstr "変更"
+
+msgid "Use Discrete GPU"
+msgstr "専用 GPU を使用"
+
+msgid "Prefer dedicated NVIDIA/AMD graphics card over integrated GPU."
+msgstr "内蔵 GPU よりも専用 NVIDIA/AMD グラフィックスカードを優先します。"
+
+msgid "NVIDIA DLSS / NVAPI"
+msgstr "NVIDIA DLSS / NVAPI"
+
+msgid "Enable NVAPI, DLSS, and Reflex support (PROTON_ENABLE_NVAPI=1)."
+msgstr "NVAPI、DLSS、Reflex サポートを有効化します (PROTON_ENABLE_NVAPI=1)。"
+
+msgid "AMD FidelityFX Super Resolution (FSR)"
+msgstr "AMD FidelityFX Super Resolution (FSR)"
+
+msgid "Enable fullscreen FSR upscaling in supported Proton builds."
+msgstr "対応する Proton ビルドでフルスクリーン FSR アップスケープを有効化します。"
+
+msgid "Enable Vulkan post-processing and sharpening layer."
+msgstr "Vulkan ポストプロセスおよびシャープニングレイヤーを有効化します。"
+
+msgid "vkBasalt is not installed on the system"
+msgstr "vkBasalt がインストールされていません"
+
+msgid "Prefix & Tools"
+msgstr "プレフィックスとツール"
+
+msgid "Open Program Folder"
+msgstr "プログラムフォルダを開く"
+
+msgid "Browse program files and prefix directory in file manager."
+msgstr "ファイルマネージャーでプログラムファイルとプレフィックスを参照します。"
+
+msgid "Open"
+msgstr "開く"
+
+msgid "Run .exe in Prefix"
+msgstr "プレフィックス内で .exe を実行"
+
+msgid "Run a patch, update, or redistributable installer inside this prefix."
+msgstr "このプレフィックス内でパッチ、更新、またはインストーラーを実行します。"
+
+msgid "Select .exe"
+msgstr ".exe を選択"
+
+msgid "Wine Tools"
+msgstr "Wine ツール"
+
+msgid "Open Wine configuration (winecfg) or Winetricks for this prefix."
+msgstr "このプレフィックスの Wine 設定 (winecfg) または Winetricks を開きます。"
+
+msgid "Reset Prefix"
+msgstr "プレフィックスをリセット"
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching program files."
+msgstr "プログラムファイルを保持したまま Wine/Proton プレフィックス (pfx) を再作成します。"
+
+msgid "Reset"
+msgstr "リセット"
+
+msgid "Prefix Reset!"
+msgstr "リセット完了！"
+
+msgid "Run after installation"
+msgstr "インストール後に起動する"
+

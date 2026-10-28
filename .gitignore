@@ -1,0 +1,17 @@
+# Rust / Cargo build artifacts
+/target/
+
+# Flatpak build artifacts
+/.flatpak-builder/
+/build-dir/
+/repo/
+*.flatpak
+
+# Editor & OS temporary files
+*~
+*.swp
+*.swo
+.DS_Store
+.idea/
+.vscode/
+

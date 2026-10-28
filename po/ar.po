@@ -1,0 +1,244 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: doors 0.1.0\n"
+"Language: ar\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Main Disk"
+msgstr "القرص الرئيسي"
+
+msgid "free"
+msgstr "متاح"
+
+msgid "Disk"
+msgstr "القرص"
+
+msgid "Proton"
+msgstr "Proton"
+
+msgid "Install"
+msgstr "تثبيت"
+
+msgid "No disks found"
+msgstr "لم يتم العثور على أقراص"
+
+msgid "compatibilitytools.d is empty"
+msgstr "مجلد compatibilitytools.d فارغ"
+
+msgid "Starting..."
+msgstr "جارٍ البدء..."
+
+msgid "Completed!"
+msgstr "اكتمل!"
+
+msgid "Error:"
+msgstr "خطأ:"
+
+msgid "Install .exe"
+msgstr "تثبيت .exe"
+
+msgid "Select Executable (.exe)"
+msgstr "اختر ملفاً تنفيذياً (.exe)"
+
+msgid "Windows Executable (*.exe)"
+msgstr "ملف تنفيذي لويندوز (*.exe)"
+
+msgid "No Programs Yet"
+msgstr "لا توجد برامج بعد"
+
+msgid "Double-click any .exe file or use the + button to install."
+msgstr "انقر مرتين على أي ملف .exe أو استخدم زر + للتثبيت."
+
+msgid "Installed Programs"
+msgstr "البرامج المثبتة"
+
+msgid "Run"
+msgstr "تشغيل"
+
+msgid "Delete Program and Prefix"
+msgstr "حذف البرنامج والبادئة"
+
+msgid "Run with Doors"
+msgstr "تشغيل بواسطة Doors"
+
+msgid "Program"
+msgstr "برنامج"
+
+msgid "Preparing folder:"
+msgstr "جارٍ تجهيز المجلد:"
+
+msgid "Detecting main executable (.exe)..."
+msgstr "جارٍ اكتشاف الملف التنفيذي الرئيسي (.exe)..."
+
+msgid "Extracting icon (.ico -> .png)..."
+msgstr "جارٍ استخراج الأيقونة (.ico -> .png)..."
+
+msgid "Creating application shortcut (.desktop)..."
+msgstr "جارٍ إنشاء اختصار التطبيق (.desktop)..."
+
+msgid "Completed! Launching program..."
+msgstr "اكتمل! جارٍ تشغيل البرنامج..."
+
+msgid "Running installer (Please complete the setup)..."
+msgstr "مثبت البرنامج قيد التشغيل (يرجى إكمال الإعداد)..."
+
+msgid "Detecting installed main .exe..."
+msgstr "جارٍ اكتشاف ملف .exe المثبت..."
+
+msgid "No executable file (.exe) found in installation directory."
+msgstr "لم يتم العثور على ملف تنفيذي (.exe) في مجلد التثبيت."
+
+msgid "Installation completed!"
+msgstr "اكتمل التثبيت!"
+
+msgid "Moving file to disk..."
+msgstr "جارٍ نقل الملف إلى القرص..."
+
+msgid "Running..."
+msgstr "قيد التشغيل..."
+
+msgid "Detecting main .exe and icon..."
+msgstr "جارٍ اكتشاف .exe الرئيسي والأيقونة..."
+
+msgid "Folder moved."
+msgstr "تم نقل المجلد."
+
+msgid "Moving..."
+msgstr "جارٍ النقل..."
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "Runner & Launch"
+msgstr "المشغل وبدء التشغيل"
+
+msgid "Launch Arguments"
+msgstr "خيارات بدء التشغيل"
+
+msgid "Disabled"
+msgstr "معطل"
+
+msgid "Synchronization"
+msgstr "المزامنة"
+
+msgid "Select Wine/Proton synchronization method."
+msgstr "اختر طريقة مزامنة Wine/Proton."
+
+msgid "Display & Performance"
+msgstr "العرض والأداء"
+
+msgid "Native Wayland"
+msgstr "Wayland الأصلي"
+
+msgid "Force running directly on Wayland instead of Xwayland."
+msgstr "فرض التشغيل مباشرة على Wayland بدلاً من Xwayland."
+
+msgid "High Dynamic Range"
+msgstr "النطاق الديناميكي العالي (HDR)"
+
+msgid "Expose HDR using DXVK. Requires native Wayland or Gamescope. Older NVIDIA drivers also need HdrWsi and ENABLE_HDR_WSI=1."
+msgstr "تفعيل HDR عبر DXVK. يتطلب Wayland الأصلي أو Gamescope."
+
+msgid "Optimize system performance on demand using Feral GameMode."
+msgstr "تحسين أداء النظام عند الطلب باستخدام Feral GameMode."
+
+msgid "gamemode is not installed on the system"
+msgstr "gamemode غير مثبت على النظام"
+
+msgid "Display FPS, temperatures, and frame timing overlay."
+msgstr "عرض طبقة معدل الإطارات ودرجات الحرارة."
+
+msgid "mangohud is not installed on the system"
+msgstr "mangohud غير مثبت على النظام"
+
+msgid "Manage how programs are displayed on screen using Gamescope."
+msgstr "إدارة كيفية عرض البرامج على الشاشة باستخدام Gamescope."
+
+msgid "gamescope is not installed on the system"
+msgstr "gamescope غير مثبت على النظام"
+
+msgid "Width"
+msgstr "العرض"
+
+msgid "Height"
+msgstr "الارتفاع"
+
+msgid "FPS Limit"
+msgstr "حد الإطارات"
+
+msgid "Fullscreen"
+msgstr "ملء الشاشة"
+
+msgid "Main Executable (.exe)"
+msgstr "الملف التنفيذي الرئيسي (.exe)"
+
+msgid "Change"
+msgstr "تغيير"
+
+msgid "Use Discrete GPU"
+msgstr "استخدام البطاقة الرسومية المنفصلة"
+
+msgid "Prefer dedicated NVIDIA/AMD graphics card over integrated GPU."
+msgstr "تفضيل بطاقة NVIDIA/AMD المنفصلة على المعالج الرسومي المدمج."
+
+msgid "NVIDIA DLSS / NVAPI"
+msgstr "NVIDIA DLSS / NVAPI"
+
+msgid "Enable NVAPI, DLSS, and Reflex support (PROTON_ENABLE_NVAPI=1)."
+msgstr "تفعيل دعم NVAPI و DLSS و Reflex (PROTON_ENABLE_NVAPI=1)."
+
+msgid "AMD FidelityFX Super Resolution (FSR)"
+msgstr "AMD FidelityFX Super Resolution (FSR)"
+
+msgid "Enable fullscreen FSR upscaling in supported Proton builds."
+msgstr "تفعيل ترقية الدقة FSR بملء الشاشة في إصدارات Proton المدعومة."
+
+msgid "Enable Vulkan post-processing and sharpening layer."
+msgstr "تفعيل طبقة المعالجة اللاحقة والحدة Vulkan."
+
+msgid "vkBasalt is not installed on the system"
+msgstr "vkBasalt غير مثبت على النظام"
+
+msgid "Prefix & Tools"
+msgstr "البادئة والأدوات"
+
+msgid "Open Program Folder"
+msgstr "فتح مجلد البرنامج"
+
+msgid "Browse program files and prefix directory in file manager."
+msgstr "تصفح ملفات البرنامج ومجلد البادئة في مدير الملفات."
+
+msgid "Open"
+msgstr "فتح"
+
+msgid "Run .exe in Prefix"
+msgstr "تشغيل .exe داخل البادئة"
+
+msgid "Run a patch, update, or redistributable installer inside this prefix."
+msgstr "تشغيل تحديث أو مثبت إضافي داخل هذه البادئة."
+
+msgid "Select .exe"
+msgstr "اختر .exe"
+
+msgid "Wine Tools"
+msgstr "أدوات Wine"
+
+msgid "Open Wine configuration (winecfg) or Winetricks for this prefix."
+msgstr "فتح إعدادات Wine (winecfg) أو Winetricks لهذه البادئة."
+
+msgid "Reset Prefix"
+msgstr "إعادة تعيين البادئة"
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching program files."
+msgstr "حذف وإعادة إنشاء بادئة Wine/Proton (pfx) دون المساس بملفات البرنامج."
+
+msgid "Reset"
+msgstr "إعادة تعيين"
+
+msgid "Prefix Reset!"
+msgstr "تمت إعادة التعيين!"
+
+msgid "Run after installation"
+msgstr "التشغيل بعد التثبيت"
+

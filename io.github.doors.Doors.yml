@@ -1,0 +1,33 @@
+app-id: io.github.doors.Doors
+runtime: org.gnome.Platform
+runtime-version: '47'
+sdk: org.gnome.Sdk
+command: doors
+
+finish-args:
+  - --share=ipc
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --socket=pulseaudio
+  - --device=all
+  - --filesystem=/mnt
+  - --filesystem=/run/media
+  - --filesystem=host
+  - --filesystem=~/.local/share/Steam/compatibilitytools.d:ro
+  - --filesystem=~/.var/app/com.valvesoftware.Steam/.local/share/Steam/compatibilitytools.d:ro
+  - --filesystem=~/.local/share/applications:create
+  - --filesystem=~/.local/share/icons:create
+  - --talk-name=org.freedesktop.Flatpak
+
+modules:
+  - name: doors
+    buildsystem: simple
+    build-commands:
+      - install -Dm755 target/release/doors /app/bin/doors
+      - install -Dm644 data/io.github.doors.Doors.desktop /app/share/applications/io.github.doors.Doors.desktop
+      - install -Dm644 data/io.github.doors.Doors.svg /app/share/icons/hicolor/scalable/apps/io.github.doors.Doors.svg
+      - install -Dm644 data/io.github.doors.Doors.png /app/share/icons/hicolor/512x512/apps/io.github.doors.Doors.png
+      - mkdir -p /app/share/locale && cp -r locale/* /app/share/locale/
+    sources:
+      - type: dir
+        path: .
