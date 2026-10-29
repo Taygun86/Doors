@@ -35,12 +35,14 @@ flatpak build-init "$BUILD_DIR" "$APP_ID" org.gnome.Platform org.gnome.Platform 
 
 mkdir -p "$BUILD_DIR/files/bin" \
          "$BUILD_DIR/files/share/applications" \
+         "$BUILD_DIR/files/share/metainfo" \
          "$BUILD_DIR/files/share/icons/hicolor/scalable/apps" \
          "$BUILD_DIR/files/share/icons/hicolor/512x512/apps" \
          "$BUILD_DIR/files/share/locale"
 
 install -Dm755 target/release/doors "$BUILD_DIR/files/bin/doors"
 install -Dm644 data/io.github.doors.Doors.desktop "$BUILD_DIR/files/share/applications/io.github.doors.Doors.desktop"
+install -Dm644 data/io.github.doors.Doors.metainfo.xml "$BUILD_DIR/files/share/metainfo/io.github.doors.Doors.metainfo.xml"
 install -Dm644 data/io.github.doors.Doors.svg "$BUILD_DIR/files/share/icons/hicolor/scalable/apps/io.github.doors.Doors.svg"
 install -Dm644 data/io.github.doors.Doors.png "$BUILD_DIR/files/share/icons/hicolor/512x512/apps/io.github.doors.Doors.png"
 cp -r locale/* "$BUILD_DIR/files/share/locale/"

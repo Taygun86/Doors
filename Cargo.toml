@@ -1,8 +1,8 @@
 [package]
 name = "doors"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2021"
-description = "Minimal GTK4/Libadwaita Windows (.exe) installer and runner using compatibilitytools.d"
+description = "Minimal GTK4/Libadwaita Windows (.exe) game installer and runner using compatibilitytools.d"
 license = "GPL-3.0-or-later"
 
 [dependencies]

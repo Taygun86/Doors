@@ -1,14 +1,14 @@
 <div align="center">
   <img src="data/io.github.doors.Doors.svg" width="128" height="128" alt="Doors Icon" />
   <h1>Doors</h1>
-  <p><b>A fast, minimal GTK4 / Libadwaita Windows (<code>.exe</code>) program installer and runner for Linux powered by Proton.</b></p>
+  <p><b>A fast, minimal GTK4 / Libadwaita Windows (<code>.exe</code>) game installer and runner for Linux powered by Proton.</b></p>
 </div>
 
 ---
 
 ## Overview
 
-**Doors** (`io.github.doors.Doors`) lets you double-click any Windows `.exe` file in your Linux file manager, choose a target disk and a Proton version, and click **Install**. Doors automatically creates an isolated Proton prefix (`pfx`), handles setup installers or portable program folders, extracts the embedded `.exe` icon, and adds a native application shortcut (`.desktop`) to your desktop environment's app menu.
+**Doors** (`io.github.doors.Doors`) lets you double-click any Windows `.exe` game installer or portable folder in your Linux file manager, choose a target disk and a Proton version, and click **Install**. Doors automatically creates an isolated Proton prefix (`pfx`), handles setup installers or portable game folders, extracts the embedded `.exe` icon, and adds a native application shortcut (`.desktop`) to your desktop environment's game menu.
 
 ---
 
@@ -41,21 +41,22 @@ flatpak install flathub com.vysp3r.ProtonPlus
 
 ## Features
 
-- **Double-Click `.exe` Wizard:** Associate `.exe` files with Doors to get a clean install wizard showing the extracted `.exe` icon, program name, target disk, Proton version, and an optional *"Run after installation"* switch.
+- **Double-Click `.exe` Wizard:** Associate `.exe` files with Doors to get a clean install wizard showing the extracted `.exe` icon, game name, target disk, Proton version, and an optional *"Run after installation"* switch.
 - **Smart Installer & Portable Folder Detection:**
-  - **Portable / Pre-installed Folders:** Automatically detects when an `.exe` is inside a portable program directory, moves the entire folder to `<Disk>/Doors/<Program>/game/` (instant rename on the same drive, or byte-level progress across drives), and configures the prefix.
-  - **Setup Installers (`setup.exe`, `*install*.exe`, repacks):** Runs the installer inside `<Disk>/Doors/<Program>/pfx`, then scans Windows Desktop/Start Menu `.lnk` shortcuts and `pfx/drive_c` to automatically bind the installed main executable or launcher.
-  - **Single Standalone `.exe`:** Runs standalone executables inside an isolated prefix and moves portable single-file programs into `<Disk>/Doors/<Program>/game/`.
+  - **Portable / Pre-installed Folders:** Automatically detects when an `.exe` is inside a portable game directory, moves the entire folder to `<Disk>/Doors/<Game>/game/` (instant rename on the same drive, or byte-level progress across drives), and configures the prefix.
+  - **Setup Installers (`setup.exe`, `*install*.exe`):** Runs the installer inside `<Disk>/Doors/<Game>/pfx`, then scans Windows Desktop/Start Menu `.lnk` shortcuts and `pfx/drive_c` to automatically bind the installed main executable or launcher.
+  - **Single Standalone `.exe`:** Runs standalone executables inside an isolated prefix and moves portable single-file games into `<Disk>/Doors/<Game>/game/`.
 - **Multi-Disk Support:** Automatically detects your main disk (`~/Doors`) as well as secondary drives mounted under `/mnt/*`, `/run/media/$USER/*`, and `/media/$USER/*` with available free space indicators.
 - **Automatic Icon & `.desktop` Shortcut Generation:** Parses PE resources directly from the `.exe` to extract the highest-resolution icon (`.ico` / PNG) and creates a desktop entry in `~/.local/share/applications/`.
-- **Per-Program Settings & Prefix Management:**
+- **Per-Game Settings & Prefix Management:**
   - Switch Proton version at any time
   - Custom launch arguments / environment variables (supports `%command%`)
   - Manually change the target main `.exe`
+  - Rename game title (updates `.desktop` shortcut instantly)
   - **Synchronization:** `NTSYNC` (auto-selected when `/dev/ntsync` is available), `FSYNC`, `ESYNC`, or Disabled
   - **Display & Graphics:** Native Wayland (`PROTON_ENABLE_WAYLAND=1`), HDR (`PROTON_ENABLE_HDR=1`), Discrete GPU offload (`DRI_PRIME=1` & NVIDIA Prime), NVIDIA DLSS / NVAPI (`PROTON_ENABLE_NVAPI=1`), AMD FSR (`WINE_FULLSCREEN_FSR=1`), and **vkBasalt**
   - **Performance & Overlay:** **Feral GameMode** (auto-enabled if installed), **MangoHud**, and **Gamescope** (with custom resolution, FPS limit, and fullscreen controls)
-  - **Prefix Tools:** Open program/prefix folder, run a patch/update `.exe` inside the prefix, open `winecfg` or `Winetricks`, or **Reset Prefix** (`pfx`) without deleting program files.
+  - **Prefix Tools:** Open game/prefix folder, run a patch/update `.exe` inside the prefix, open `winecfg` or `Winetricks`, or **Reset Prefix** (`pfx`) without deleting game files.
 - **Multilingual UI:** English default in source code with built-in translations for 25 additional languages (`tr`, `de`, `fr`, `es`, `it`, `pt`, `ru`, `uk`, `pl`, `nl`, `cs`, `hu`, `ro`, `el`, `sv`, `az`, `kk`, `ar`, `fa`, `hi`, `id`, `vi`, `ja`, `ko`, `zh`).
 
 ---

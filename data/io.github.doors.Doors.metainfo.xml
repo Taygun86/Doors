@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.doors.Doors</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>Doors</name>
+  <summary>Run Windows games on Linux using Proton</summary>
+  <description>
+    <p>
+      Doors is a fast, minimal GTK4 / Libadwaita Windows (.exe) game installer and runner for Linux powered by Valve's Proton compatibility tools.
+    </p>
+    <p>
+      Key features:
+    </p>
+    <ul>
+      <li>Double-click any Windows (.exe or .msi) game installer to launch a clean install wizard.</li>
+      <li>Smart game detection for standalone executables, setup installers, and portable game directories.</li>
+      <li>Automatic extraction of high-resolution application icons directly from Windows executables.</li>
+      <li>Native desktop menu (.desktop) shortcut creation with dedicated isolated Proton prefixes.</li>
+      <li>Support for multiple storage disks with free space indicators.</li>
+      <li>Comprehensive prefix &amp; game settings: Wayland, HDR, discrete GPU offload, MangoHud, GameMode, Gamescope, NTSYNC/FSYNC, Winetricks, and winecfg.</li>
+    </ul>
+  </description>
+
+  <launchable type="desktop-id">io.github.doors.Doors.desktop</launchable>
+
+  <url type="homepage">https://github.com/Taygun86/Doors</url>
+  <url type="bugtracker">https://github.com/Taygun86/Doors/issues</url>
+  <url type="vcs-browser">https://github.com/Taygun86/Doors</url>
+
+  <categories>
+    <category>Game</category>
+    <category>Emulator</category>
+    <category>Utility</category>
+  </categories>
+
+  <developer_name>Taygun86</developer_name>
+
+  <provides>
+    <binary>doors</binary>
+  </provides>
+
+  <content_rating type="oars-1.1" />
+
+  <releases>
+    <release version="0.2.0" date="2026-10-29">
+      <description>
+        <p>Release 0.2.0 with improved compatibility tool discovery, disk filtering, and AppStream metadata.</p>
+      </description>
+    </release>
+  </releases>
+</component>
+

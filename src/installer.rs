@@ -66,10 +66,10 @@ where
             save_config_and_create_desktop_entry(&cfg)?;
 
             if run_after_install {
-                on_progress(1.0, tr("Completed! Launching program..."));
+                on_progress(1.0, tr("Completed! Launching game..."));
                 let _ = spawn_with_proton_config(proton, &cfg, Some(&main_exe));
             } else {
-                on_progress(1.0, tr("Installation completed!"));
+                on_progress(1.0, tr("Game installation completed!"));
             }
 
             Ok(cfg)
@@ -129,10 +129,10 @@ where
             save_config_and_create_desktop_entry(&cfg)?;
 
             if run_after_install {
-                on_progress(1.0, tr("Completed! Launching program..."));
+                on_progress(1.0, tr("Completed! Launching game..."));
                 let _ = spawn_with_proton_config(proton, &cfg, Some(&main_exe));
             } else {
-                on_progress(1.0, tr("Installation completed!"));
+                on_progress(1.0, tr("Game installation completed!"));
             }
             Ok(cfg)
         }
@@ -182,10 +182,10 @@ where
 
             save_config_and_create_desktop_entry(&cfg)?;
             if run_after_install {
-                on_progress(1.0, tr("Completed! Launching program..."));
+                on_progress(1.0, tr("Completed! Launching game..."));
                 let _ = spawn_with_proton_config(proton, &cfg, Some(&main_exe));
             } else {
-                on_progress(1.0, tr("Completed!"));
+                on_progress(1.0, tr("Game installation completed!"));
             }
             Ok(cfg)
         }

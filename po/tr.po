@@ -44,26 +44,26 @@ msgstr "Çalıştırılabilir (.exe) Seç"
 msgid "Windows Executable (*.exe)"
 msgstr "Windows Çalıştırılabilir (*.exe)"
 
-msgid "No Programs Yet"
-msgstr "Henüz Program Yok"
+msgid "No Games Yet"
+msgstr "Henüz Oyun Yok"
 
 msgid "Double-click any .exe file or use the + button to install."
 msgstr "Herhangi bir .exe dosyasına çift tıklayarak veya + butonundan seçerek kurabilirsiniz."
 
-msgid "Installed Programs"
-msgstr "Kurulu Programlar"
+msgid "Installed Games"
+msgstr "Kurulu Oyunlar"
 
 msgid "Run"
 msgstr "Çalıştır"
 
-msgid "Delete Program and Prefix"
-msgstr "Programı ve Prefix'i Sil"
+msgid "Delete Game and Prefix"
+msgstr "Oyunu ve Prefix'i Sil"
 
 msgid "Run with Doors"
 msgstr "Doors ile çalıştır"
 
-msgid "Program"
-msgstr "Program"
+msgid "Game"
+msgstr "Oyun"
 
 msgid "Preparing folder:"
 msgstr "Klasör hazırlanıyor:"
@@ -77,8 +77,11 @@ msgstr "İkon (.ico -> .png) çıkarılıyor..."
 msgid "Creating application shortcut (.desktop)..."
 msgstr "Uygulama kısayolu (.desktop) oluşturuluyor..."
 
-msgid "Completed! Launching program..."
-msgstr "Tamamlandı! Program başlatılıyor..."
+msgid "Completed! Launching game..."
+msgstr "Tamamlandı! Oyun başlatılıyor..."
+
+msgid "Game installation completed!"
+msgstr "Oyun kurulumu tamamlandı!"
 
 msgid "Running installer (Please complete the setup)..."
 msgstr "Kurucu çalışıyor (Lütfen kurulumu tamamlayın)..."
@@ -152,8 +155,8 @@ msgstr "FPS, sıcaklık ve kare süresi katmanını gösterin."
 msgid "mangohud is not installed on the system"
 msgstr "Sistemde mangohud yüklü değil"
 
-msgid "Manage how programs are displayed on screen using Gamescope."
-msgstr "Gamescope kullanarak programların ekranda nasıl görüntüleneceğini yönetin."
+msgid "Manage how games are displayed on screen using Gamescope."
+msgstr "Gamescope kullanarak oyunların ekranda nasıl görüntüleneceğini yönetin."
 
 msgid "gamescope is not installed on the system"
 msgstr "Sistemde gamescope yüklü değil"
@@ -203,11 +206,11 @@ msgstr "Sistemde vkBasalt yüklü değil"
 msgid "Prefix & Tools"
 msgstr "Prefix ve Araçlar"
 
-msgid "Open Program Folder"
-msgstr "Program Klasörünü Aç"
+msgid "Open Game Folder"
+msgstr "Oyun Klasörünü Aç"
 
-msgid "Browse program files and prefix directory in file manager."
-msgstr "Program dosyalarına ve prefix dizinine dosya yöneticisinde göz at."
+msgid "Browse game files and prefix directory in file manager."
+msgstr "Oyun dosyalarına ve prefix dizinine dosya yöneticisinde göz at."
 
 msgid "Open"
 msgstr "Aç"
@@ -230,8 +233,8 @@ msgstr "Bu prefix için Wine yapılandırmasını (winecfg) veya Winetricks'i a�
 msgid "Reset Prefix"
 msgstr "Prefix'i Sıfırla"
 
-msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching program files."
-msgstr "Program dosyalarına dokunmadan Wine/Proton prefix'ini (pfx) sil ve yeniden oluştur."
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching game files."
+msgstr "Oyun dosyalarına dokunmadan Wine/Proton prefix'ini (pfx) sil ve yeniden oluştur."
 
 msgid "Reset"
 msgstr "Sıfırla"
@@ -246,8 +249,20 @@ msgstr "Kurulumdan sonra çalıştır"
 msgid "About"
 msgstr "Hakkında"
 
-msgid "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux."
-msgstr "Linux için minimal GTK4/Libadwaita Windows (.exe) program kurucu ve çalıştırıcı."
+msgid "Minimal GTK4/Libadwaita Windows (.exe) game installer and runner for Linux."
+msgstr "Linux için minimal GTK4/Libadwaita Windows (.exe) oyun kurucu ve çalıştırıcı."
 
-msgid "Program Name"
-msgstr "Program Adı"
+msgid "Game Title"
+msgstr "Oyun Adı"
+
+msgid "Delete Game?"
+msgstr "Oyun Silinsin mi?"
+
+msgid "Are you sure you want to delete this game and its prefix?"
+msgstr "Bu oyunu ve prefix'ini silmek istediğinizden emin misiniz?"
+
+msgid "Cancel"
+msgstr "İptal"
+
+msgid "Delete"
+msgstr "Sil"

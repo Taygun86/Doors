@@ -297,7 +297,7 @@ fn build_exe_preview_image(exe_path: &std::path::Path, size: i32) -> gtk4::Image
             return img;
         }
     }
-    let fallback = gtk4::Image::from_icon_name("application-x-executable-symbolic");
+    let fallback = gtk4::Image::from_icon_name("input-gaming-symbolic");
     fallback.set_pixel_size(size);
     fallback
 }
@@ -311,9 +311,9 @@ pub fn present_about_dialog(parent: &impl IsA<gtk4::Window>) {
         .transient_for(parent)
         .modal(true)
         .program_name("Doors")
-        .version("0.2 Beta")
+        .version("0.2.1 Beta")
         .comments(tr(
-            "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux.",
+            "Minimal GTK4/Libadwaita Windows (.exe) game installer and runner for Linux.",
         ))
         .website("https://github.com/Taygun86/Doors")
         .copyright("© 2026 Doors")
@@ -408,8 +408,8 @@ fn rebuild_library_list(parent_win: &adw::ApplicationWindow, container: &gtk4::B
 
     if programs.is_empty() {
         let status = adw::StatusPage::builder()
-            .icon_name("application-x-executable-symbolic")
-            .title(tr("No Programs Yet"))
+            .icon_name("input-gaming-symbolic")
+            .title(tr("No Games Yet"))
             .description(tr("Double-click any .exe file or use the + button to install."))
             .vexpand(true)
             .build();
@@ -431,7 +431,7 @@ fn rebuild_library_list(parent_win: &adw::ApplicationWindow, container: &gtk4::B
         .build();
 
     let group = adw::PreferencesGroup::builder()
-        .title(tr("Installed Programs"))
+        .title(tr("Installed Games"))
         .build();
 
     for prog in programs {
@@ -445,15 +445,15 @@ fn rebuild_library_list(parent_win: &adw::ApplicationWindow, container: &gtk4::B
             .subtitle(&subtitle)
             .build();
 
-        // Program icon
+        // Game icon
         let img = if let Some(ref icon_path) = prog.icon_png {
             if icon_path.is_file() {
                 gtk4::Image::from_file(icon_path)
             } else {
-                gtk4::Image::from_icon_name("application-x-executable-symbolic")
+                gtk4::Image::from_icon_name("input-gaming-symbolic")
             }
         } else {
-            gtk4::Image::from_icon_name("application-x-executable-symbolic")
+            gtk4::Image::from_icon_name("input-gaming-symbolic")
         };
         img.set_pixel_size(40);
         row.add_prefix(&img);
@@ -508,15 +508,37 @@ fn rebuild_library_list(parent_win: &adw::ApplicationWindow, container: &gtk4::B
         let del_btn = gtk4::Button::from_icon_name("user-trash-symbolic");
         del_btn.add_css_class("flat");
         del_btn.set_valign(gtk4::Align::Center);
-        del_btn.set_tooltip_text(Some(&tr("Delete Program and Prefix")));
+        del_btn.set_tooltip_text(Some(&tr("Delete Game and Prefix")));
 
         let prog_del = prog.clone();
         let parent_win_del = parent_win.clone();
         let container_clone = container.clone();
         del_btn.connect_clicked(move |_| {
-            remove_desktop_shortcut(&prog_del);
-            let _ = fs::remove_dir_all(&prog_del.container_dir);
-            rebuild_library_list(&parent_win_del, &container_clone);
+            let body_text = format!(
+                "\"{}\"\n\n{}",
+                prog_del.name,
+                tr("Are you sure you want to delete this game and its prefix?")
+            );
+            let dialog = adw::AlertDialog::builder()
+                .heading(&tr("Delete Game?"))
+                .body(&body_text)
+                .build();
+            dialog.add_response("cancel", &tr("Cancel"));
+            dialog.add_response("delete", &tr("Delete"));
+            dialog.set_response_appearance("delete", adw::ResponseAppearance::Destructive);
+            dialog.set_default_response(Some("cancel"));
+            dialog.set_close_response("cancel");
+
+            let prog = prog_del.clone();
+            let parent_win = parent_win_del.clone();
+            let container = container_clone.clone();
+            dialog.choose(&parent_win_del, gio::Cancellable::NONE, move |response| {
+                if response == "delete" {
+                    remove_desktop_shortcut(&prog);
+                    let _ = fs::remove_dir_all(&prog.container_dir);
+                    rebuild_library_list(&parent_win, &container);
+                }
+            });
         });
 
         row.add_suffix(&run_btn);
@@ -577,9 +599,9 @@ fn present_program_settings_window(
         .title(tr("Runner & Launch"))
         .build();
 
-    // Program Name EntryRow
+    // Game Title EntryRow
     let name_row = adw::EntryRow::builder()
-        .title(tr("Program Name"))
+        .title(tr("Game Title"))
         .text(&loaded_cfg.name)
         .show_apply_button(true)
         .build();
@@ -758,7 +780,7 @@ fn present_program_settings_window(
     let gamescope_installed = has_host_binary("gamescope");
     let gamescope_row = adw::ActionRow::builder()
         .title("Gamescope")
-        .subtitle(tr("Manage how programs are displayed on screen using Gamescope."))
+        .subtitle(tr("Manage how games are displayed on screen using Gamescope."))
         .build();
 
     let gs_gear_btn = gtk4::MenuButton::builder()
@@ -802,10 +824,10 @@ fn present_program_settings_window(
         .title(tr("Prefix & Tools"))
         .build();
 
-    // Open Program Folder
+    // Open Game Folder
     let open_folder_row = adw::ActionRow::builder()
-        .title(tr("Open Program Folder"))
-        .subtitle(tr("Browse program files and prefix directory in file manager."))
+        .title(tr("Open Game Folder"))
+        .subtitle(tr("Browse game files and prefix directory in file manager."))
         .build();
     let open_folder_btn = gtk4::Button::with_label(&tr("Open"));
     open_folder_btn.set_valign(gtk4::Align::Center);
@@ -838,7 +860,7 @@ fn present_program_settings_window(
     // Reset Prefix
     let reset_pfx_row = adw::ActionRow::builder()
         .title(tr("Reset Prefix"))
-        .subtitle(tr("Delete and recreate the Wine/Proton prefix (pfx) without touching program files."))
+        .subtitle(tr("Delete and recreate the Wine/Proton prefix (pfx) without touching game files."))
         .build();
     let reset_pfx_btn = gtk4::Button::with_label(&tr("Reset"));
     reset_pfx_btn.add_css_class("destructive-action");

@@ -251,3 +251,15 @@ msgstr "Instalator și lansator minimal de programe Windows (.exe) GTK4/Libadwai
 
 msgid "Program Name"
 msgstr "Numele programului"
+
+msgid "Delete Program?"
+msgstr "Ștergeți programul?"
+
+msgid "Are you sure you want to delete this program and its prefix?"
+msgstr "Sigur doriți să ștergeți acest program și prefixul său?"
+
+msgid "Cancel"
+msgstr "Anulează"
+
+msgid "Delete"
+msgstr "Șterge"

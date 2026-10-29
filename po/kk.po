@@ -251,3 +251,15 @@ msgstr "Linux үшін минималды GTK4/Libadwaita Windows (.exe) бағ�
 
 msgid "Program Name"
 msgstr "Бағдарлама атауы"
+
+msgid "Delete Program?"
+msgstr "Бағдарламаны жою керек пе?"
+
+msgid "Are you sure you want to delete this program and its prefix?"
+msgstr "Бұл бағдарламаны және оның префиксін жоюға сенімдісіз бе?"
+
+msgid "Cancel"
+msgstr "Бас тарту"
+
+msgid "Delete"
+msgstr "Жою"

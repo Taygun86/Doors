@@ -251,3 +251,15 @@ msgstr "Installateur et lanceur minimal de programmes Windows (.exe) GTK4/Libadw
 
 msgid "Program Name"
 msgstr "Nom du programme"
+
+msgid "Delete Program?"
+msgstr "Supprimer le programme ?"
+
+msgid "Are you sure you want to delete this program and its prefix?"
+msgstr "Voulez-vous vraiment supprimer ce programme et son préfixe ?"
+
+msgid "Cancel"
+msgstr "Annuler"
+
+msgid "Delete"
+msgstr "Supprimer"

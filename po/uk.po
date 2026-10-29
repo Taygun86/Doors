@@ -251,3 +251,15 @@ msgstr "Мінімалістичний встановлення та запус�
 
 msgid "Program Name"
 msgstr "Назва програми"
+
+msgid "Delete Program?"
+msgstr "Видалити програму?"
+
+msgid "Are you sure you want to delete this program and its prefix?"
+msgstr "Ви впевнені, що хочете видалити цю програму та її префікс?"
+
+msgid "Cancel"
+msgstr "Скасувати"
+
+msgid "Delete"
+msgstr "Видалити"

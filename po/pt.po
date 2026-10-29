@@ -251,3 +251,15 @@ msgstr "Instalador e executor minimalista de programas Windows (.exe) GTK4/Libad
 
 msgid "Program Name"
 msgstr "Nome do programa"
+
+msgid "Delete Program?"
+msgstr "Excluir programa?"
+
+msgid "Are you sure you want to delete this program and its prefix?"
+msgstr "Tem certeza de que deseja excluir este programa e seu prefixo?"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Delete"
+msgstr "Excluir"

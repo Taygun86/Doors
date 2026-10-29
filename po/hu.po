@@ -251,3 +251,15 @@ msgstr "Minimalista GTK4/Libadwaita Windows (.exe) programtelepítő és -indít
 
 msgid "Program Name"
 msgstr "Program neve"
+
+msgid "Delete Program?"
+msgstr "Program törlése?"
+
+msgid "Are you sure you want to delete this program and its prefix?"
+msgstr "Biztosan törölni szeretné ezt a programot és a prefixét?"
+
+msgid "Cancel"
+msgstr "Mégse"
+
+msgid "Delete"
+msgstr "Törlés"

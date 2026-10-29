@@ -251,3 +251,15 @@ msgstr "Installatore e avviatore minimale di programmi Windows (.exe) GTK4/Libad
 
 msgid "Program Name"
 msgstr "Nome del programma"
+
+msgid "Delete Program?"
+msgstr "Eliminare il programma?"
+
+msgid "Are you sure you want to delete this program and its prefix?"
+msgstr "Sicuro di voler eliminare questo programma e il suo prefisso?"
+
+msgid "Cancel"
+msgstr "Annulla"
+
+msgid "Delete"
+msgstr "Elimina"

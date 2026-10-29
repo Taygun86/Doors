@@ -251,3 +251,15 @@ msgstr "Minimal GTK4/Libadwaita Windows (.exe) programinstallerare och startare 
 
 msgid "Program Name"
 msgstr "Programnamn"
+
+msgid "Delete Program?"
+msgstr "Ta bort program?"
+
+msgid "Are you sure you want to delete this program and its prefix?"
+msgstr "Är du säker på att du vill ta bort detta program och dess prefix?"
+
+msgid "Cancel"
+msgstr "Avbryt"
+
+msgid "Delete"
+msgstr "Ta bort"

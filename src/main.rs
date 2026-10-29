@@ -43,57 +43,57 @@ mod tests {
 
     #[test]
     fn test_clean_game_title() {
-        assert_eq!(clean_game_title("Schedule I-SteamRIP.com"), "Schedule I");
+        assert_eq!(clean_game_title("Space_Quest_[v1.2.0]"), "Space Quest");
         assert_eq!(
-            clean_game_title("Hollow_Knight_[SteamRIP.com]"),
-            "Hollow Knight"
+            clean_game_title("My_Adventure_Game_(x64)"),
+            "My Adventure Game"
         );
-        assert_eq!(clean_game_title("setup_cyberpunk"), "cyberpunk");
+        assert_eq!(clean_game_title("setup_racing_simulator"), "racing simulator");
         assert_eq!(
-            clean_game_title("GenshinImpact_install_ua_ef67ba8459b7"),
-            "GenshinImpact"
+            clean_game_title("PixelHero_install_win64_build992"),
+            "PixelHero"
         );
     }
 
     #[test]
-    fn test_analyze_steamrip_and_setup() {
+    fn test_analyze_portable_and_setup() {
         let tmp = std::env::temp_dir().join("doors_test_analyze");
         let _ = fs::remove_dir_all(&tmp);
-        let steamrip_dir = tmp.join("Subnautica-SteamRIP.com");
-        fs::create_dir_all(&steamrip_dir).unwrap();
-        let game_exe = steamrip_dir.join("Subnautica.exe");
+        let game_folder = tmp.join("SpaceQuest-Portable");
+        fs::create_dir_all(&game_folder).unwrap();
+        let game_exe = game_folder.join("SpaceQuest.exe");
         fs::write(&game_exe, b"MZfake").unwrap();
 
         let plan = InstallPlan::analyze(&game_exe);
-        assert_eq!(plan.game_name, "Subnautica");
+        assert_eq!(plan.game_name, "SpaceQuest");
         assert!(matches!(plan.mode, InstallMode::PortableFolder { .. }));
 
-        let setup_exe = steamrip_dir.join("setup.exe");
+        let setup_exe = game_folder.join("setup.exe");
         fs::write(&setup_exe, b"MZsetup").unwrap();
         let setup_plan = InstallPlan::analyze(&setup_exe);
         assert!(matches!(setup_plan.mode, InstallMode::SetupInstaller { .. }));
 
-        let genshin_installer = tmp.join("GenshinImpact_install_ua_ef67ba8459b7.exe");
-        fs::write(&genshin_installer, b"MZinstaller").unwrap();
-        let genshin_plan = InstallPlan::analyze(&genshin_installer);
-        assert_eq!(genshin_plan.game_name, "GenshinImpact");
+        let standalone_installer = tmp.join("ActionGame_install_win64_release.exe");
+        fs::write(&standalone_installer, b"MZinstaller").unwrap();
+        let standalone_plan = InstallPlan::analyze(&standalone_installer);
+        assert_eq!(standalone_plan.game_name, "ActionGame");
         assert!(matches!(
-            genshin_plan.mode,
+            standalone_plan.mode,
             InstallMode::SetupInstaller { .. }
         ));
 
         let container_dir = tmp.join("container");
-        let hoyo_dir = container_dir.join("pfx/drive_c/Program Files/HoYoPlay");
+        let launcher_dir = container_dir.join("pfx/drive_c/Program Files/GameLauncher");
         let steam_dir = container_dir.join("pfx/drive_c/Program Files (x86)/Steam");
-        fs::create_dir_all(&hoyo_dir).unwrap();
+        fs::create_dir_all(&launcher_dir).unwrap();
         fs::create_dir_all(&steam_dir).unwrap();
         fs::write(steam_dir.join("steam.exe"), vec![0u8; 500_000]).unwrap();
-        fs::write(hoyo_dir.join("7z.exe"), vec![0u8; 600_000]).unwrap();
-        fs::write(hoyo_dir.join("uninst.exe"), vec![0u8; 400_000]).unwrap();
-        let launcher_exe = hoyo_dir.join("launcher.exe");
+        fs::write(launcher_dir.join("7z.exe"), vec![0u8; 600_000]).unwrap();
+        fs::write(launcher_dir.join("uninst.exe"), vec![0u8; 400_000]).unwrap();
+        let launcher_exe = launcher_dir.join("launcher.exe");
         fs::write(&launcher_exe, vec![0u8; 300_000]).unwrap();
 
-        let detected = detect_main_executable(&container_dir, None, "GenshinImpact");
+        let detected = detect_main_executable(&container_dir, None, "ActionGame");
         assert_eq!(detected.map(|(p, _)| p), Some(launcher_exe));
 
         let _ = fs::remove_dir_all(&tmp);

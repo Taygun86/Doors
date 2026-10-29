@@ -251,3 +251,15 @@ msgstr "Ελάχιστο πρόγραμμα εγκατάστασης και εκ
 
 msgid "Program Name"
 msgstr "Όνομα προγράμματος"
+
+msgid "Delete Program?"
+msgstr "Διαγραφή προγράμματος;"
+
+msgid "Are you sure you want to delete this program and its prefix?"
+msgstr "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτό το πρόγραμμα και το prefix του;"
+
+msgid "Cancel"
+msgstr "Άκυρο"
+
+msgid "Delete"
+msgstr "Διαγραφή"

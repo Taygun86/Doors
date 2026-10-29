@@ -251,3 +251,15 @@ msgstr "Minimalistický instalátor a spouštěč programů Windows (.exe) v GTK
 
 msgid "Program Name"
 msgstr "Název programu"
+
+msgid "Delete Program?"
+msgstr "Smazat program?"
+
+msgid "Are you sure you want to delete this program and its prefix?"
+msgstr "Opravdu chcete smazat tento program a jeho prefix?"
+
+msgid "Cancel"
+msgstr "Zrušit"
+
+msgid "Delete"
+msgstr "Smazat"

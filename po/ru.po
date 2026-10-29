@@ -251,3 +251,15 @@ msgstr "Минималистичный установщик и лаунчер п
 
 msgid "Program Name"
 msgstr "Название программы"
+
+msgid "Delete Program?"
+msgstr "Удалить программу?"
+
+msgid "Are you sure you want to delete this program and its prefix?"
+msgstr "Вы уверены, что хотите удалить эту программу и её префикс?"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Delete"
+msgstr "Удалить"

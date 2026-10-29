@@ -251,3 +251,15 @@ msgstr "Minimalistyczny instalator i program uruchamiający aplikacje Windows (.
 
 msgid "Program Name"
 msgstr "Nazwa programu"
+
+msgid "Delete Program?"
+msgstr "Usunąć program?"
+
+msgid "Are you sure you want to delete this program and its prefix?"
+msgstr "Czy na pewno chcesz usunąć ten program i jego prefiks?"
+
+msgid "Cancel"
+msgstr "Anuluj"
+
+msgid "Delete"
+msgstr "Usuń"

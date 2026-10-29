@@ -251,3 +251,15 @@ msgstr "Linux 向けのミニマルな GTK4/Libadwaita Windows (.exe) プログ�
 
 msgid "Program Name"
 msgstr "プログラム名"
+
+msgid "Delete Program?"
+msgstr "プログラムを削除しますか？"
+
+msgid "Are you sure you want to delete this program and its prefix?"
+msgstr "このプログラムとプレフィックスを削除してもよろしいですか？"
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgid "Delete"
+msgstr "削除"

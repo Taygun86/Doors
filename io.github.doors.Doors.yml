@@ -26,6 +26,7 @@ modules:
     build-commands:
       - install -Dm755 target/release/doors /app/bin/doors
       - install -Dm644 data/io.github.doors.Doors.desktop /app/share/applications/io.github.doors.Doors.desktop
+      - install -Dm644 data/io.github.doors.Doors.metainfo.xml /app/share/metainfo/io.github.doors.Doors.metainfo.xml
       - install -Dm644 data/io.github.doors.Doors.svg /app/share/icons/hicolor/scalable/apps/io.github.doors.Doors.svg
       - install -Dm644 data/io.github.doors.Doors.png /app/share/icons/hicolor/512x512/apps/io.github.doors.Doors.png
       - mkdir -p /app/share/locale && cp -r locale/* /app/share/locale/

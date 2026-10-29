@@ -251,3 +251,15 @@ msgstr "Linux के लिए न्यूनतम GTK4/Libadwaita Windows (.e
 
 msgid "Program Name"
 msgstr "प्रोग्राम का नाम"
+
+msgid "Delete Program?"
+msgstr "प्रोग्राम हटाएं?"
+
+msgid "Are you sure you want to delete this program and its prefix?"
+msgstr "क्या आप वाकई इस प्रोग्राम और इसके प्रीफ़िक्स को हटाना चाहते हैं?"
+
+msgid "Cancel"
+msgstr "रद्द करें"
+
+msgid "Delete"
+msgstr "हटाएं"

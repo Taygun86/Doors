@@ -251,3 +251,15 @@ msgstr "适用于 Linux 的极简 GTK4/Libadwaita Windows (.exe) 程序安装与
 
 msgid "Program Name"
 msgstr "程序名称"
+
+msgid "Delete Program?"
+msgstr "删除程序？"
+
+msgid "Are you sure you want to delete this program and its prefix?"
+msgstr "确定要删除此程序及其前缀吗？"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Delete"
+msgstr "删除"

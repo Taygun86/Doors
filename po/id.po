@@ -251,3 +251,15 @@ msgstr "Penginstal dan penjalan program Windows (.exe) GTK4/Libadwaita minimalis
 
 msgid "Program Name"
 msgstr "Nama Program"
+
+msgid "Delete Program?"
+msgstr "Hapus Program?"
+
+msgid "Are you sure you want to delete this program and its prefix?"
+msgstr "Apakah Anda yakin ingin menghapus program ini beserta prefix-nya?"
+
+msgid "Cancel"
+msgstr "Batal"
+
+msgid "Delete"
+msgstr "Hapus"

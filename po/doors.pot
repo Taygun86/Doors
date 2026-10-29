@@ -249,3 +249,15 @@ msgstr ""
 
 msgid "Program Name"
 msgstr ""
+
+msgid "Delete Program?"
+msgstr ""
+
+msgid "Are you sure you want to delete this program and its prefix?"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Delete"
+msgstr ""

@@ -251,3 +251,15 @@ msgstr "Trình cài đặt và chạy chương trình Windows (.exe) GTK4/Libadw
 
 msgid "Program Name"
 msgstr "Tên chương trình"
+
+msgid "Delete Program?"
+msgstr "Xóa chương trình?"
+
+msgid "Are you sure you want to delete this program and its prefix?"
+msgstr "Bạn có chắc chắn muốn xóa chương trình này và Prefix của nó không?"
+
+msgid "Cancel"
+msgstr "Hủy"
+
+msgid "Delete"
+msgstr "Xóa"

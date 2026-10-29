@@ -251,3 +251,15 @@ msgstr "نصب‌کننده و اجراکننده مینیمال برنامه‌
 
 msgid "Program Name"
 msgstr "نام برنامه"
+
+msgid "Delete Program?"
+msgstr "حذف برنامه؟"
+
+msgid "Are you sure you want to delete this program and its prefix?"
+msgstr "آیا مطمئن هستید که می‌خواهید این برنامه و پیشوند آن را حذف کنید؟"
+
+msgid "Cancel"
+msgstr "لغو"
+
+msgid "Delete"
+msgstr "حذف"

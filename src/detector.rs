@@ -211,15 +211,13 @@ impl InstallPlan {
 
         let parent_dir = exe_abs.parent().unwrap_or_else(|| Path::new("/tmp"));
 
-        // 1. Check if this is an installer (`*.msi`, `*setup*`, `*install*`, `autorun.exe`, FitGirl/GOG repack)
+        // 1. Check if this is an installer (`*.msi`, `*setup*`, `*install*`, `autorun.exe`, or multipart archive)
         let is_installer_name = file_name_lower.ends_with(".msi")
             || file_name_lower.contains("setup")
             || file_name_lower.contains("install")
-            || file_name_lower == "autorun.exe"
-            || file_name_lower.contains("repack");
+            || file_name_lower == "autorun.exe";
 
-        let has_installer_bins = parent_dir.join("fg-01.bin").exists()
-            || parent_dir.join("setup-1.bin").exists()
+        let has_installer_bins = parent_dir.join("setup-1.bin").exists()
             || parent_dir.join("data-1.bin").exists()
             || parent_dir.join("data1.cab").exists();
 
@@ -263,7 +261,7 @@ impl InstallPlan {
             };
         }
 
-        // 3. Otherwise, it's inside a dedicated folder (like SteamRIP / portable folder).
+        // 3. Otherwise, it's inside a dedicated folder (portable game directory).
         let source_dir = find_portable_root_folder(&exe_abs);
         let clicked_rel_exe = exe_abs
             .strip_prefix(&source_dir)
@@ -369,7 +367,7 @@ pub fn is_protected_directory(dir: &Path) -> bool {
     false
 }
 
-/// Strip scene/release/installer suffixes like `-SteamRIP`, `_install_ua_ef67ba8459b7`, `setup_`, etc.
+/// Strip version tags, bracketed metadata, and installer suffixes like `[v1.0]`, `(x64)`, `_setup`, `setup_`, etc.
 pub fn clean_game_title(raw: &str) -> String {
     let mut s = raw.to_string();
 
@@ -381,8 +379,15 @@ pub fn clean_game_title(raw: &str) -> String {
         }
     }
 
-    // If there is `_install` or `-install` followed by region/hash tags (e.g. `GenshinImpact_install_ua_ef67ba8459b7`),
-    // truncate from `_install` / `-install` if there is a meaningful prefix before it!
+    while let (Some(start), Some(end)) = (s.find('('), s.find(')')) {
+        if end > start {
+            s.replace_range(start..=end, " ");
+        } else {
+            break;
+        }
+    }
+
+    // Truncate installer/setup suffix tags if there is a meaningful title before it
     for sep_pat in ["_install", "-install", "_setup", "-setup"] {
         let lower = s.to_lowercase();
         if let Some(idx) = lower.find(sep_pat) {
@@ -393,19 +398,16 @@ pub fn clean_game_title(raw: &str) -> String {
     }
 
     let junk_patterns = [
-        "-SteamRIP.com",
-        "SteamRIP.com",
-        "-SteamRIP",
-        "_SteamRIP",
-        "SteamRIP",
-        "-SteamGG",
-        "-FitGirl",
-        "FitGirl Repack",
         "setup_",
         "_setup",
         "-setup",
         "installer",
         "install_",
+        "_installer",
+        "-installer",
+        "-portable",
+        "_portable",
+        "portable",
     ];
     for pat in junk_patterns {
         let lower = s.to_lowercase();
