@@ -74,23 +74,76 @@ fn is_executable_file(path: &Path) -> bool {
     }
 }
 
-/// Discover all runners inside `compatibilitytools.d` directories on the system.
+/// Discover all Proton & Wine runners on the system:
+/// 1. Custom runners inside `compatibilitytools.d` (GE-Proton, Proton-CachyOS, etc.)
+/// 2. Official Steam Proton builds (`Proton - Experimental`, `Proton Hotfix`, `Proton 9.0`, etc.)
+///    inside `steamapps/common` across primary and secondary Steam libraries (`libraryfolders.vdf`).
 pub fn discover_proton_tools() -> Vec<ProtonTool> {
     let home = real_user_home();
-    let mut search_dirs = vec![
-        home.join(".local/share/Steam/compatibilitytools.d"),
-        home.join(".steam/root/compatibilitytools.d"),
-        home.join(".steam/steam/compatibilitytools.d"),
-        home.join(".var/app/com.valvesoftware.Steam/.local/share/Steam/compatibilitytools.d"),
-        home.join(".var/app/com.valvesoftware.Steam/.steam/root/compatibilitytools.d"),
-        PathBuf::from("/usr/share/steam/compatibilitytools.d"),
-        PathBuf::from("/usr/local/share/steam/compatibilitytools.d"),
+
+    // (directory_path, require_proton_script_only)
+    let mut search_dirs: Vec<(PathBuf, bool)> = vec![
+        (home.join(".local/share/Steam/compatibilitytools.d"), false),
+        (home.join(".steam/root/compatibilitytools.d"), false),
+        (home.join(".steam/steam/compatibilitytools.d"), false),
+        (
+            home.join(".var/app/com.valvesoftware.Steam/.local/share/Steam/compatibilitytools.d"),
+            false,
+        ),
+        (
+            home.join(".var/app/com.valvesoftware.Steam/.steam/root/compatibilitytools.d"),
+            false,
+        ),
+        (PathBuf::from("/usr/share/steam/compatibilitytools.d"), false),
+        (
+            PathBuf::from("/usr/local/share/steam/compatibilitytools.d"),
+            false,
+        ),
     ];
 
     if let Ok(extra) = std::env::var("DOORS_COMPAT_TOOLS_PATH") {
         for part in extra.split(':') {
             if !part.trim().is_empty() {
-                search_dirs.push(PathBuf::from(part.trim()));
+                search_dirs.push((PathBuf::from(part.trim()), false));
+            }
+        }
+    }
+
+    // Official Steam roots + libraryfolders.vdf discovery for Proton Hotfix / Experimental / 9.0 / etc.
+    let steam_roots = [
+        home.join(".local/share/Steam"),
+        home.join(".steam/root"),
+        home.join(".steam/steam"),
+        home.join(".var/app/com.valvesoftware.Steam/.local/share/Steam"),
+        home.join(".var/app/com.valvesoftware.Steam/.steam/root"),
+    ];
+
+    for root in &steam_roots {
+        search_dirs.push((root.join("steamapps/common"), true));
+        let vdf_path = root.join("steamapps/libraryfolders.vdf");
+        for lib_dir in parse_steam_library_folders(&vdf_path) {
+            search_dirs.push((lib_dir.join("steamapps/common"), true));
+            search_dirs.push((lib_dir.join("compatibilitytools.d"), false));
+        }
+    }
+
+    // Also check direct SteamLibrary folders on mounted drives (/mnt/*, /run/media/*/*)
+    if let Ok(entries) = fs::read_dir("/mnt") {
+        for entry in entries.flatten() {
+            let p = entry.path();
+            if p.is_dir() {
+                search_dirs.push((p.join("SteamLibrary/steamapps/common"), true));
+            }
+        }
+    }
+    for media_base in ["/run/media", "/media"] {
+        if let Ok(users) = fs::read_dir(media_base) {
+            for u in users.flatten() {
+                if let Ok(mounts) = fs::read_dir(u.path()) {
+                    for m in mounts.flatten() {
+                        search_dirs.push((m.path().join("SteamLibrary/steamapps/common"), true));
+                    }
+                }
             }
         }
     }
@@ -99,7 +152,7 @@ pub fn discover_proton_tools() -> Vec<ProtonTool> {
     let mut seen_names = HashSet::new();
     let mut seen_canonical = HashSet::new();
 
-    for dir in search_dirs {
+    for (dir, steamapps_only_proton) in search_dirs {
         let Ok(entries) = fs::read_dir(&dir) else {
             continue;
         };
@@ -124,11 +177,11 @@ pub fn discover_proton_tools() -> Vec<ProtonTool> {
 
             let (executable, is_proton_script) = if proton_script.is_file() {
                 (proton_script, true)
-            } else if files_wine.is_file() {
+            } else if !steamapps_only_proton && files_wine.is_file() {
                 (files_wine, false)
-            } else if dist_wine.is_file() {
+            } else if !steamapps_only_proton && dist_wine.is_file() {
                 (dist_wine, false)
-            } else if bin_wine.is_file() {
+            } else if !steamapps_only_proton && bin_wine.is_file() {
                 (bin_wine, false)
             } else {
                 continue;
@@ -153,6 +206,27 @@ pub fn discover_proton_tools() -> Vec<ProtonTool> {
 
     tools.sort_by(|a, b| b.name.cmp(&a.name));
     tools
+}
+
+/// Parse `"path" "<steam_library_path>"` entries from Steam's `libraryfolders.vdf`.
+fn parse_steam_library_folders(vdf_path: &Path) -> Vec<PathBuf> {
+    let Ok(content) = fs::read_to_string(vdf_path) else {
+        return Vec::new();
+    };
+    let mut paths = Vec::new();
+    for line in content.lines() {
+        let trimmed = line.trim();
+        if let Some(rest) = trimmed.strip_prefix("\"path\"") {
+            let rest = rest.trim();
+            if let Some(quoted) = rest.strip_prefix('"').and_then(|s| s.strip_suffix('"')) {
+                let unescaped = quoted.replace("\\\\", "\\");
+                if !unescaped.is_empty() {
+                    paths.push(PathBuf::from(unescaped));
+                }
+            }
+        }
+    }
+    paths
 }
 
 /// Find the Steam client install path for STEAM_COMPAT_CLIENT_INSTALL_PATH

@@ -248,3 +248,6 @@ msgstr "Бағдарлама туралы"
 
 msgid "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux."
 msgstr "Linux үшін минималды GTK4/Libadwaita Windows (.exe) бағдарлама орнатқышы мен іске қосқышы."
+
+msgid "Program Name"
+msgstr "Бағдарлама атауы"

@@ -248,3 +248,6 @@ msgstr "À propos"
 
 msgid "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux."
 msgstr "Installateur et lanceur minimal de programmes Windows (.exe) GTK4/Libadwaita pour Linux."
+
+msgid "Program Name"
+msgstr "Nom du programme"

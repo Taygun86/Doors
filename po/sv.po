@@ -248,3 +248,6 @@ msgstr "Om"
 
 msgid "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux."
 msgstr "Minimal GTK4/Libadwaita Windows (.exe) programinstallerare och startare för Linux."
+
+msgid "Program Name"
+msgstr "Programnamn"

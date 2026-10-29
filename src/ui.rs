@@ -286,9 +286,10 @@ pub fn present_install_window(app: &adw::Application, exe_path: PathBuf) {
     window.present();
 }
 
-/// Extract `.exe` icon in-memory and create a `gtk4::Image` (with fallback symbolic icon).
+/// Extract `.exe` / `.msi` icon in-memory directly from the file itself and create a `gtk4::Image`
+/// (with default fallback symbolic icon if the file has no embedded icon).
 fn build_exe_preview_image(exe_path: &std::path::Path, size: i32) -> gtk4::Image {
-    if let Some(png_bytes) = extract_exe_icon_png_bytes(exe_path, exe_path.parent()) {
+    if let Some(png_bytes) = extract_exe_icon_png_bytes(exe_path, None) {
         let gbytes = glib::Bytes::from_owned(png_bytes);
         if let Ok(texture) = gdk4::Texture::from_bytes(&gbytes) {
             let img = gtk4::Image::from_paintable(Some(&texture));
@@ -310,7 +311,7 @@ pub fn present_about_dialog(parent: &impl IsA<gtk4::Window>) {
         .transient_for(parent)
         .modal(true)
         .program_name("Doors")
-        .version("0.1 Beta")
+        .version("0.2 Beta")
         .comments(tr(
             "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux.",
         ))
@@ -576,6 +577,15 @@ fn present_program_settings_window(
         .title(tr("Runner & Launch"))
         .build();
 
+    // Program Name EntryRow
+    let name_row = adw::EntryRow::builder()
+        .title(tr("Program Name"))
+        .text(&loaded_cfg.name)
+        .show_apply_button(true)
+        .build();
+    let name_icon = gtk4::Image::from_icon_name("document-edit-symbolic");
+    name_row.add_prefix(&name_icon);
+
     // Proton selector
     let proton_strings: Vec<String> = if protons.is_empty() {
         vec![loaded_cfg.proton_name.clone()]
@@ -640,6 +650,7 @@ fn present_program_settings_window(
     };
     sync_row.set_selected(sync_idx);
 
+    runner_group.add(&name_row);
     runner_group.add(&proton_row);
     runner_group.add(&main_exe_row);
     runner_group.add(&args_row);
@@ -1124,6 +1135,46 @@ fn present_program_settings_window(
         gamescope_switch.connect_state_set(move |_, state| {
             cfg_state.borrow_mut().gamescope = state;
             save_now();
+            glib::Propagation::Proceed
+        });
+    }
+
+    // Program Name update handler (updates doors.json + .desktop shortcut + window/library title)
+    let apply_name_change: Rc<dyn Fn(&str)> = {
+        let cfg_state = cfg_state.clone();
+        let save_now = save_now.clone();
+        let win_weak = win.downgrade();
+        Rc::new(move |raw_text: &str| {
+            let trimmed = raw_text.trim();
+            if trimmed.is_empty() {
+                return;
+            }
+            let mut cfg = cfg_state.borrow_mut();
+            if cfg.name != trimmed {
+                remove_desktop_shortcut(&cfg);
+                cfg.name = trimmed.to_string();
+                cfg.slug = crate::detector::slugify(trimmed);
+                if let Some(w) = win_weak.upgrade() {
+                    w.set_title(Some(&format!("{} — {}", cfg.name, tr("Settings"))));
+                }
+                drop(cfg);
+                save_now();
+            }
+        })
+    };
+
+    {
+        let apply_name = apply_name_change.clone();
+        name_row.connect_apply(move |entry| {
+            apply_name(&entry.text());
+        });
+    }
+
+    {
+        let apply_name = apply_name_change.clone();
+        let name_row_close = name_row.clone();
+        win.connect_close_request(move |_| {
+            apply_name(&name_row_close.text());
             glib::Propagation::Proceed
         });
     }

@@ -28,8 +28,8 @@ pub fn extract_exe_icon_png_bytes(exe_path: &Path, game_dir: Option<&Path>) -> O
         return Some(best.png_bytes);
     }
 
-    // 2. Fallback: look for .ico files or other .exe files in the game directory (skip protected dirs like ~/Downloads)
-    if let Some(dir) = game_dir.or_else(|| exe_path.parent()) {
+    // 2. Fallback: look for .ico files or other .exe files ONLY inside an explicit installed `game_dir`
+    if let Some(dir) = game_dir {
         if crate::detector::is_protected_directory(dir) {
             return None;
         }
@@ -53,16 +53,7 @@ pub fn extract_exe_icon_png_bytes(exe_path: &Path, game_dir: Option<&Path>) -> O
                     }
                 }
             } else if ext.eq_ignore_ascii_case("exe") {
-                let fname = path
-                    .file_name()
-                    .and_then(|n| n.to_str())
-                    .unwrap_or("")
-                    .to_lowercase();
-                if fname.contains("unins")
-                    || fname.contains("crash")
-                    || fname.contains("redist")
-                    || fname.contains("dxsetup")
-                {
+                if crate::detector::is_auxiliary_exe(path) {
                     continue;
                 }
                 if let Some(cand) = extract_best_icon_from_pe_file(path) {

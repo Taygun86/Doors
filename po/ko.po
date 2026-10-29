@@ -248,3 +248,6 @@ msgstr "정보"
 
 msgid "Minimal GTK4/Libadwaita Windows (.exe) program installer and runner for Linux."
 msgstr "Linux용 미니멀한 GTK4/Libadwaita Windows (.exe) 프로그램 설치 및 실행기."
+
+msgid "Program Name"
+msgstr "프로그램 이름"

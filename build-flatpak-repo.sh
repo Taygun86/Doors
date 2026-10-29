@@ -56,8 +56,9 @@ flatpak build-finish "$BUILD_DIR" \
     --filesystem=/mnt \
     --filesystem=/run/media \
     --filesystem=host \
-    --filesystem=~/.local/share/Steam/compatibilitytools.d:ro \
-    --filesystem=~/.var/app/com.valvesoftware.Steam/.local/share/Steam/compatibilitytools.d:ro \
+    --filesystem=~/.local/share/Steam:ro \
+    --filesystem=~/.steam:ro \
+    --filesystem=~/.var/app/com.valvesoftware.Steam:ro \
     --filesystem=~/.local/share/applications:create \
     --filesystem=~/.local/share/icons:create \
     --talk-name=org.freedesktop.Flatpak

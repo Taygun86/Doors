@@ -86,18 +86,41 @@ pub fn create_desktop_shortcut(cfg: &DoorsGameConfig) -> anyhow::Result<()> {
         let _ = fs::set_permissions(&desktop_file, perms);
     }
 
+    refresh_desktop_database(&apps_dir);
+
     Ok(())
 }
 
 pub fn remove_desktop_shortcut(cfg: &DoorsGameConfig) {
     let home = real_user_home();
-    let desktop_file = home
-        .join(".local/share/applications")
-        .join(format!("doors-{}.desktop", cfg.slug));
+    let apps_dir = home.join(".local/share/applications");
+    let desktop_file = apps_dir.join(format!("doors-{}.desktop", cfg.slug));
     let icon_file = home
         .join(".local/share/icons/hicolor/256x256/apps")
         .join(format!("doors-{}.png", cfg.slug));
     let _ = fs::remove_file(desktop_file);
     let _ = fs::remove_file(icon_file);
+    refresh_desktop_database(&apps_dir);
+}
+
+fn refresh_desktop_database(apps_dir: &Path) {
+    use std::process::{Command, Stdio};
+    if Path::new("/.flatpak-info").exists() {
+        let _ = Command::new("flatpak-spawn")
+            .arg("--host")
+            .arg("update-desktop-database")
+            .arg(apps_dir)
+            .stdin(Stdio::null())
+            .stdout(Stdio::null())
+            .stderr(Stdio::null())
+            .spawn();
+    } else {
+        let _ = Command::new("update-desktop-database")
+            .arg(apps_dir)
+            .stdin(Stdio::null())
+            .stdout(Stdio::null())
+            .stderr(Stdio::null())
+            .spawn();
+    }
 }
 
