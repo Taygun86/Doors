@@ -263,3 +263,9 @@ msgstr "Zrušit"
 
 msgid "Delete"
 msgstr "Smazat"
+
+msgid "Desktop Shortcut"
+msgstr "Zástupce na ploše"
+
+msgid "Folder Name"
+msgstr "Název složky"

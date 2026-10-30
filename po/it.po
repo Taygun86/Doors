@@ -263,3 +263,9 @@ msgstr "Annulla"
 
 msgid "Delete"
 msgstr "Elimina"
+
+msgid "Desktop Shortcut"
+msgstr "Scorciatoia sul desktop"
+
+msgid "Folder Name"
+msgstr "Nome della cartella"

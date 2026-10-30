@@ -263,3 +263,9 @@ msgstr "لغو"
 
 msgid "Delete"
 msgstr "حذف"
+
+msgid "Desktop Shortcut"
+msgstr "میانبر دسکتاپ"
+
+msgid "Folder Name"
+msgstr "نام پوشه"

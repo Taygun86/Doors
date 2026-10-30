@@ -263,3 +263,9 @@ msgstr "Hủy"
 
 msgid "Delete"
 msgstr "Xóa"
+
+msgid "Desktop Shortcut"
+msgstr "Lối tắt màn hình"
+
+msgid "Folder Name"
+msgstr "Tên thư mục"

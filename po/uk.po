@@ -263,3 +263,9 @@ msgstr "Скасувати"
 
 msgid "Delete"
 msgstr "Видалити"
+
+msgid "Desktop Shortcut"
+msgstr "Ярлик на робочому столі"
+
+msgid "Folder Name"
+msgstr "Назва папки"

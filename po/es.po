@@ -263,3 +263,9 @@ msgstr "Cancelar"
 
 msgid "Delete"
 msgstr "Eliminar"
+
+msgid "Desktop Shortcut"
+msgstr "Acceso directo en el escritorio"
+
+msgid "Folder Name"
+msgstr "Nombre de la carpeta"

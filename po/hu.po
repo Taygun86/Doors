@@ -263,3 +263,9 @@ msgstr "Mégse"
 
 msgid "Delete"
 msgstr "Törlés"
+
+msgid "Desktop Shortcut"
+msgstr "Asztali parancsikon"
+
+msgid "Folder Name"
+msgstr "Mappanév"

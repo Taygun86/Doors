@@ -263,3 +263,9 @@ msgstr "Annuleren"
 
 msgid "Delete"
 msgstr "Verwijderen"
+
+msgid "Desktop Shortcut"
+msgstr "Bureaublad-snelkoppeling"
+
+msgid "Folder Name"
+msgstr "Mapnaam"

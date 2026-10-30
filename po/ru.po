@@ -263,3 +263,9 @@ msgstr "Отмена"
 
 msgid "Delete"
 msgstr "Удалить"
+
+msgid "Desktop Shortcut"
+msgstr "Ярлык на рабочем столе"
+
+msgid "Folder Name"
+msgstr "Имя папки"

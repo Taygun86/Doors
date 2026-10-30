@@ -263,3 +263,9 @@ msgstr "Anulează"
 
 msgid "Delete"
 msgstr "Șterge"
+
+msgid "Desktop Shortcut"
+msgstr "Comandă rapidă pe desktop"
+
+msgid "Folder Name"
+msgstr "Numele dosarului"

@@ -263,3 +263,9 @@ msgstr "Abbrechen"
 
 msgid "Delete"
 msgstr "Löschen"
+
+msgid "Desktop Shortcut"
+msgstr "Desktop-Verknüpfung"
+
+msgid "Folder Name"
+msgstr "Ordnername"

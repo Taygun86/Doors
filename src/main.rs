@@ -98,4 +98,45 @@ mod tests {
 
         let _ = fs::remove_dir_all(&tmp);
     }
+
+    #[test]
+    fn test_rename_container() {
+        use crate::detector::DoorsGameConfig;
+        use std::path::PathBuf;
+
+        let tmp = std::env::temp_dir().join("doors_test_rename");
+        let _ = fs::remove_dir_all(&tmp);
+        let original = tmp.join("Old Game Name");
+        fs::create_dir_all(&original).unwrap();
+        let main_exe = original.join("bin/game.exe");
+        fs::create_dir_all(main_exe.parent().unwrap()).unwrap();
+        fs::write(&main_exe, b"test").unwrap();
+        let icon = original.join("icon.png");
+        fs::write(&icon, b"icon").unwrap();
+
+        let mut cfg = DoorsGameConfig::new(
+            "Old Game".into(),
+            "old-game".into(),
+            original.clone(),
+            main_exe.clone(),
+            "GE-Proton".into(),
+            PathBuf::from("/proton"),
+            Some(icon.clone()),
+        );
+
+        // Test successful rename
+        assert!(cfg.rename_container("New Game Name").is_ok());
+        assert_eq!(cfg.container_dir, tmp.join("New Game Name"));
+        assert_eq!(cfg.main_exe, tmp.join("New Game Name/bin/game.exe"));
+        assert_eq!(cfg.icon_png, Some(tmp.join("New Game Name/icon.png")));
+        assert!(!original.exists());
+        assert!(cfg.main_exe.exists());
+
+        // Test invalid characters and empty
+        assert!(cfg.rename_container("invalid/name").is_err());
+        assert!(cfg.rename_container("").is_err());
+        assert!(cfg.rename_container("..").is_err());
+
+        let _ = fs::remove_dir_all(&tmp);
+    }
 }

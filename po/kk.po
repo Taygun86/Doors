@@ -263,3 +263,9 @@ msgstr "Бас тарту"
 
 msgid "Delete"
 msgstr "Жою"
+
+msgid "Desktop Shortcut"
+msgstr "Жұмыс үстелі таңбашасы"
+
+msgid "Folder Name"
+msgstr "Бума атауы"

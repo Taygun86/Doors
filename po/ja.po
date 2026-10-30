@@ -263,3 +263,9 @@ msgstr "キャンセル"
 
 msgid "Delete"
 msgstr "削除"
+
+msgid "Desktop Shortcut"
+msgstr "デスクトップショートカット"
+
+msgid "Folder Name"
+msgstr "フォルダー名"

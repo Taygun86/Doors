@@ -63,6 +63,8 @@ pub struct DoorsGameConfig {
     pub fsr: bool,
     #[serde(default)]
     pub vkbasalt: bool,
+    #[serde(default)]
+    pub desktop_shortcut: bool,
 }
 
 impl DoorsGameConfig {
@@ -103,7 +105,66 @@ impl DoorsGameConfig {
             nvapi: false,
             fsr: false,
             vkbasalt: false,
+            desktop_shortcut: false,
         }
+    }
+
+    /// Renames the container folder on disk, updates all internal paths (`container_dir`,
+    /// `main_exe`, `icon_png`), and handles collisions safely.
+    pub fn rename_container(&mut self, new_name: &str) -> anyhow::Result<()> {
+        let trimmed = new_name.trim();
+        if trimmed.is_empty()
+            || trimmed.contains('/')
+            || trimmed.contains('\\')
+            || trimmed.contains('\0')
+            || trimmed == "."
+            || trimmed == ".."
+        {
+            anyhow::bail!("Invalid container folder name");
+        }
+
+        let current_name = self
+            .container_dir
+            .file_name()
+            .and_then(|s| s.to_str())
+            .unwrap_or("");
+
+        if current_name == trimmed {
+            return Ok(());
+        }
+
+        let Some(parent) = self.container_dir.parent().map(|p| p.to_path_buf()) else {
+            anyhow::bail!("No parent directory for container");
+        };
+        let target_dir = parent.join(trimmed);
+
+        if target_dir.exists() {
+            let is_same = match (
+                fs::canonicalize(&self.container_dir),
+                fs::canonicalize(&target_dir),
+            ) {
+                (Ok(a), Ok(b)) => a == b,
+                _ => false,
+            };
+            if !is_same {
+                anyhow::bail!("Target directory already exists");
+            }
+        }
+
+        let old_dir = self.container_dir.clone();
+        fs::rename(&old_dir, &target_dir)?;
+
+        self.container_dir = target_dir.clone();
+        if let Ok(rel) = self.main_exe.strip_prefix(&old_dir) {
+            self.main_exe = target_dir.join(rel);
+        }
+        if let Some(ref icon) = self.icon_png {
+            if let Ok(rel) = icon.strip_prefix(&old_dir) {
+                self.icon_png = Some(target_dir.join(rel));
+            }
+        }
+
+        Ok(())
     }
 }
 
@@ -186,6 +247,20 @@ pub fn discover_installed_games(disks: &[DiskInfo]) -> Vec<DoorsGameConfig> {
                     if let Ok(mut cfg) = serde_json::from_str::<DoorsGameConfig>(&data) {
                         cfg.container_dir = dir;
                         heal_config_if_needed(&mut cfg);
+
+                        // If desktop shortcut is missing (e.g. after system reinstall/format), automatically restore it
+                        let home = real_user_home();
+                        let desk = home
+                            .join(".local/share/applications")
+                            .join(format!("doors-{}.desktop", cfg.slug));
+                        if !desk.exists() {
+                            let _ = crate::desktop::create_desktop_shortcut(&cfg);
+                        }
+
+                        if cfg.desktop_shortcut && !crate::desktop::has_desktop_folder_shortcut(&cfg) {
+                            let _ = crate::desktop::create_desktop_folder_shortcut(&cfg);
+                        }
+
                         games.push(cfg);
                     }
                 }

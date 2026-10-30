@@ -263,3 +263,9 @@ msgstr "Άκυρο"
 
 msgid "Delete"
 msgstr "Διαγραφή"
+
+msgid "Desktop Shortcut"
+msgstr "Συντόμευση επιφάνειας εργασίας"
+
+msgid "Folder Name"
+msgstr "Όνομα φακέλου"

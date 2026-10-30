@@ -263,3 +263,9 @@ msgstr "Cancelar"
 
 msgid "Delete"
 msgstr "Excluir"
+
+msgid "Desktop Shortcut"
+msgstr "Atalho no ambiente de trabalho"
+
+msgid "Folder Name"
+msgstr "Nome da pasta"

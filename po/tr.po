@@ -266,3 +266,9 @@ msgstr "İptal"
 
 msgid "Delete"
 msgstr "Sil"
+
+msgid "Desktop Shortcut"
+msgstr "Masaüstü Kısayolu"
+
+msgid "Folder Name"
+msgstr "Klasör Adı"

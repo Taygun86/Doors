@@ -263,3 +263,9 @@ msgstr "Avbryt"
 
 msgid "Delete"
 msgstr "Ta bort"
+
+msgid "Desktop Shortcut"
+msgstr "Skrivbordsgenväg"
+
+msgid "Folder Name"
+msgstr "Mappnamn"

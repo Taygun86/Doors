@@ -263,3 +263,9 @@ msgstr "취소"
 
 msgid "Delete"
 msgstr "삭제"
+
+msgid "Desktop Shortcut"
+msgstr "바탕화면 바로가기"
+
+msgid "Folder Name"
+msgstr "폴더 이름"

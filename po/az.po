@@ -263,3 +263,9 @@ msgstr "İmtina"
 
 msgid "Delete"
 msgstr "Sil"
+
+msgid "Desktop Shortcut"
+msgstr "İş masası qısayolu"
+
+msgid "Folder Name"
+msgstr "Qovluq adı"

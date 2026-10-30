@@ -263,3 +263,9 @@ msgstr "रद्द करें"
 
 msgid "Delete"
 msgstr "हटाएं"
+
+msgid "Desktop Shortcut"
+msgstr "डेस्कटॉप शॉर्टकट"
+
+msgid "Folder Name"
+msgstr "फ़ोल्डर का नाम"

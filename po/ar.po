@@ -263,3 +263,9 @@ msgstr "إلغاء"
 
 msgid "Delete"
 msgstr "حذف"
+
+msgid "Desktop Shortcut"
+msgstr "اختصار سطح المكتب"
+
+msgid "Folder Name"
+msgstr "اسم المجلد"

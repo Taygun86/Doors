@@ -16,6 +16,7 @@ pub fn execute_install<F>(
     disk: &DiskInfo,
     proton: &ProtonTool,
     run_after_install: bool,
+    desktop_shortcut: bool,
     mut on_progress: F,
 ) -> anyhow::Result<DoorsGameConfig>
 where
@@ -52,7 +53,7 @@ where
             let has_icon =
                 extract_exe_icon_to_png(&main_exe, Some(&game_dir), &icon_png_path);
 
-            let cfg = DoorsGameConfig::new(
+            let mut cfg = DoorsGameConfig::new(
                 plan.game_name.clone(),
                 plan.slug.clone(),
                 container_dir.clone(),
@@ -61,6 +62,7 @@ where
                 proton.dir_path.clone(),
                 if has_icon { Some(icon_png_path) } else { None },
             );
+            cfg.desktop_shortcut = desktop_shortcut;
 
             on_progress(0.97, tr("Creating application shortcut (.desktop)..."));
             save_config_and_create_desktop_entry(&cfg)?;
@@ -115,7 +117,7 @@ where
             let has_icon =
                 extract_exe_icon_to_png(&main_exe, main_exe.parent(), &icon_png_path);
 
-            let cfg = DoorsGameConfig::new(
+            let mut cfg = DoorsGameConfig::new(
                 final_name,
                 final_slug,
                 container_dir.clone(),
@@ -124,6 +126,7 @@ where
                 proton.dir_path.clone(),
                 if has_icon { Some(icon_png_path) } else { None },
             );
+            cfg.desktop_shortcut = desktop_shortcut;
 
             on_progress(0.96, tr("Creating application shortcut (.desktop)..."));
             save_config_and_create_desktop_entry(&cfg)?;
@@ -170,7 +173,7 @@ where
             let has_icon =
                 extract_exe_icon_to_png(&main_exe, main_exe.parent(), &icon_png_path);
 
-            let cfg = DoorsGameConfig::new(
+            let mut cfg = DoorsGameConfig::new(
                 plan.game_name.clone(),
                 plan.slug.clone(),
                 container_dir.clone(),
@@ -179,6 +182,7 @@ where
                 proton.dir_path.clone(),
                 if has_icon { Some(icon_png_path) } else { None },
             );
+            cfg.desktop_shortcut = desktop_shortcut;
 
             save_config_and_create_desktop_entry(&cfg)?;
             if run_after_install {

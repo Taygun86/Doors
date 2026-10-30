@@ -263,3 +263,9 @@ msgstr "Batal"
 
 msgid "Delete"
 msgstr "Hapus"
+
+msgid "Desktop Shortcut"
+msgstr "Pintasan Desktop"
+
+msgid "Folder Name"
+msgstr "Nama Folder"

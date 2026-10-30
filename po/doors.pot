@@ -261,3 +261,9 @@ msgstr ""
 
 msgid "Delete"
 msgstr ""
+
+msgid "Desktop Shortcut"
+msgstr ""
+
+msgid "Folder Name"
+msgstr ""

@@ -62,7 +62,7 @@ pub fn present_install_window(app: &adw::Application, exe_path: PathBuf) {
         .application(app)
         .title(&plan.game_name)
         .default_width(460)
-        .default_height(380)
+        .default_height(420)
         .resizable(false)
         .build();
 
@@ -157,9 +157,18 @@ pub fn present_install_window(app: &adw::Application, exe_path: PathBuf) {
     let run_icon = gtk4::Image::from_icon_name("media-playback-start-symbolic");
     run_after_row.add_prefix(&run_icon);
 
+    // 4. "Desktop Shortcut" SwitchRow (off by default)
+    let desktop_shortcut_row = adw::SwitchRow::builder()
+        .title(tr("Desktop Shortcut"))
+        .active(false)
+        .build();
+    let desktop_icon = gtk4::Image::from_icon_name("video-display-symbolic");
+    desktop_shortcut_row.add_prefix(&desktop_icon);
+
     prefs_group.add(&disk_row);
     prefs_group.add(&proton_row);
     prefs_group.add(&run_after_row);
+    prefs_group.add(&desktop_shortcut_row);
     main_box.append(&prefs_group);
 
     // 4. "Install" button
@@ -197,6 +206,7 @@ pub fn present_install_window(app: &adw::Application, exe_path: PathBuf) {
     let disk_row_clone = disk_row.clone();
     let proton_row_clone = proton_row.clone();
     let run_after_clone = run_after_row.clone();
+    let desktop_shortcut_clone = desktop_shortcut_row.clone();
     let progress_box_clone = progress_box.clone();
     let progress_bar_clone = progress_bar.clone();
     let status_label_clone = status_label.clone();
@@ -205,6 +215,7 @@ pub fn present_install_window(app: &adw::Application, exe_path: PathBuf) {
         let disk_idx = disk_row_clone.selected() as usize;
         let proton_idx = proton_row_clone.selected() as usize;
         let run_after = run_after_clone.is_active();
+        let create_desktop = desktop_shortcut_clone.is_active();
 
         let Some(selected_disk) = disks.get(disk_idx).cloned() else {
             return;
@@ -215,6 +226,7 @@ pub fn present_install_window(app: &adw::Application, exe_path: PathBuf) {
 
         btn.set_visible(false);
         run_after_clone.set_sensitive(false);
+        desktop_shortcut_clone.set_sensitive(false);
         disk_row_clone.set_sensitive(false);
         proton_row_clone.set_sensitive(false);
         progress_box_clone.set_visible(true);
@@ -231,6 +243,7 @@ pub fn present_install_window(app: &adw::Application, exe_path: PathBuf) {
                 &selected_disk,
                 &selected_proton,
                 run_after,
+                create_desktop,
                 move |fraction, msg| {
                     let _ = tx_progress.send(WorkerMessage::Progress(fraction, msg));
                 },
@@ -311,7 +324,7 @@ pub fn present_about_dialog(parent: &impl IsA<gtk4::Window>) {
         .transient_for(parent)
         .modal(true)
         .program_name("Doors")
-        .version("0.2.1 Beta")
+        .version("0.3 Beta")
         .comments(tr(
             "Minimal GTK4/Libadwaita Windows (.exe) game installer and runner for Linux.",
         ))
@@ -608,6 +621,31 @@ fn present_program_settings_window(
     let name_icon = gtk4::Image::from_icon_name("document-edit-symbolic");
     name_row.add_prefix(&name_icon);
 
+    // Folder Name EntryRow
+    let initial_folder_name = loaded_cfg
+        .container_dir
+        .file_name()
+        .and_then(|s| s.to_str())
+        .unwrap_or("")
+        .to_string();
+    let folder_row = adw::EntryRow::builder()
+        .title(tr("Folder Name"))
+        .text(&initial_folder_name)
+        .show_apply_button(true)
+        .build();
+    let folder_icon = gtk4::Image::from_icon_name("folder-symbolic");
+    folder_row.add_prefix(&folder_icon);
+
+    // Desktop Shortcut SwitchRow
+    let is_desktop_active = loaded_cfg.desktop_shortcut
+        || crate::desktop::has_desktop_folder_shortcut(&loaded_cfg);
+    let desktop_shortcut_row = adw::SwitchRow::builder()
+        .title(tr("Desktop Shortcut"))
+        .active(is_desktop_active)
+        .build();
+    let desktop_icon = gtk4::Image::from_icon_name("video-display-symbolic");
+    desktop_shortcut_row.add_prefix(&desktop_icon);
+
     // Proton selector
     let proton_strings: Vec<String> = if protons.is_empty() {
         vec![loaded_cfg.proton_name.clone()]
@@ -673,6 +711,8 @@ fn present_program_settings_window(
     sync_row.set_selected(sync_idx);
 
     runner_group.add(&name_row);
+    runner_group.add(&folder_row);
+    runner_group.add(&desktop_shortcut_row);
     runner_group.add(&proton_row);
     runner_group.add(&main_exe_row);
     runner_group.add(&args_row);
@@ -1038,6 +1078,16 @@ fn present_program_settings_window(
     // Live saving handlers for all switches/combos
     {
         let cfg_state = cfg_state.clone();
+        let save_now = save_now.clone();
+        desktop_shortcut_row.connect_active_notify(move |row| {
+            let active = row.is_active();
+            cfg_state.borrow_mut().desktop_shortcut = active;
+            save_now();
+        });
+    }
+
+    {
+        let cfg_state = cfg_state.clone();
         let protons_clone = protons.clone();
         let save_now = save_now.clone();
         proton_row.connect_selected_notify(move |row| {
@@ -1192,11 +1242,58 @@ fn present_program_settings_window(
         });
     }
 
+    // Folder Name update handler (renames folder on disk, updates all json paths, rewrites .desktop)
+    let apply_folder_change: Rc<dyn Fn(&str)> = {
+        let cfg_state = cfg_state.clone();
+        let save_now = save_now.clone();
+        let folder_row_weak = folder_row.downgrade();
+        Rc::new(move |raw_text: &str| {
+            let mut cfg = cfg_state.borrow_mut();
+            match cfg.rename_container(raw_text) {
+                Ok(()) => {
+                    let actual = cfg
+                        .container_dir
+                        .file_name()
+                        .and_then(|s| s.to_str())
+                        .unwrap_or("")
+                        .to_string();
+                    if let Some(row) = folder_row_weak.upgrade() {
+                        row.set_text(&actual);
+                    }
+                    drop(cfg);
+                    save_now();
+                }
+                Err(e) => {
+                    eprintln!("Doors rename_container error: {e}");
+                    let current = cfg
+                        .container_dir
+                        .file_name()
+                        .and_then(|s| s.to_str())
+                        .unwrap_or("")
+                        .to_string();
+                    if let Some(row) = folder_row_weak.upgrade() {
+                        row.set_text(&current);
+                    }
+                }
+            }
+        })
+    };
+
+    {
+        let apply_folder = apply_folder_change.clone();
+        folder_row.connect_apply(move |entry| {
+            apply_folder(&entry.text());
+        });
+    }
+
     {
         let apply_name = apply_name_change.clone();
+        let apply_folder = apply_folder_change.clone();
         let name_row_close = name_row.clone();
+        let folder_row_close = folder_row.clone();
         win.connect_close_request(move |_| {
             apply_name(&name_row_close.text());
+            apply_folder(&folder_row_close.text());
             glib::Propagation::Proceed
         });
     }
