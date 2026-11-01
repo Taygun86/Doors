@@ -7,6 +7,7 @@ mod installer;
 mod proton;
 mod proton_manager;
 mod ui;
+mod umu;
 
 use desktop::APP_ID;
 use gtk4::prelude::*;
@@ -19,6 +20,7 @@ fn main() -> glib::ExitCode {
         if let Err(e) = proton_manager::run_background_update() {
             eprintln!("Doors: Background update error: {e}");
         }
+        umu::sync_umu_database_in_background();
         return glib::ExitCode::SUCCESS;
     }
 
@@ -62,6 +64,10 @@ mod tests {
         assert_eq!(
             clean_game_title("PixelHero_install_win64_build992"),
             "PixelHero"
+        );
+        assert_eq!(
+            clean_game_title("The-Sims-2-Portable-Release.com"),
+            "The Sims 2"
         );
     }
 
@@ -129,7 +135,7 @@ mod tests {
             "old-game".into(),
             original.clone(),
             main_exe.clone(),
-            "GE-Proton".into(),
+            "Proton-GE".into(),
             PathBuf::from("/proton"),
             Some(icon.clone()),
         );

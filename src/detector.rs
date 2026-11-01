@@ -83,6 +83,10 @@ pub struct DoorsGameConfig {
     pub desktop_shortcut: bool,
     #[serde(default)]
     pub steam_runtime: bool,
+    #[serde(default)]
+    pub umu: bool,
+    #[serde(default)]
+    pub umu_id: String,
 }
 
 impl DoorsGameConfig {
@@ -131,6 +135,8 @@ impl DoorsGameConfig {
             vkbasalt: false,
             desktop_shortcut: false,
             steam_runtime: false,
+            umu: false,
+            umu_id: String::new(),
         }
     }
 
@@ -195,7 +201,7 @@ impl DoorsGameConfig {
 
 #[derive(Debug, Clone)]
 pub enum InstallMode {
-    /// Portable / Pre-installed program directory (e.g. SteamRIP) to be moved to target disk
+    /// Portable / Pre-installed program directory to be moved to target disk
     PortableFolder {
         source_dir: PathBuf,
         clicked_rel_exe: PathBuf,
@@ -508,12 +514,32 @@ pub fn clean_game_title(raw: &str) -> String {
         "-portable",
         "_portable",
         "portable",
+        "standalone",
     ];
     for pat in junk_patterns {
         let lower = s.to_lowercase();
         let pat_lower = pat.to_lowercase();
-        if let Some(idx) = lower.find(&pat_lower) {
+        while let Some(idx) = lower.find(&pat_lower) {
             s.replace_range(idx..idx + pat.len(), " ");
+            break;
+        }
+    }
+
+    // Turn kebab-case hyphen-separated words (e.g. "The-Sims-2-Game") into normal spaces
+    if s.matches('-').count() >= 2 {
+        s = s.replace('-', " ");
+    }
+
+    // Strip generic internet domain patterns (e.g. words ending in .com, .org, .net, etc.)
+    let domain_tlds = [
+        ".com", ".net", ".org", ".io", ".gg", ".tv", ".ru", ".to", ".cc", ".me", ".biz",
+    ];
+    for tld in domain_tlds {
+        let lower = s.to_lowercase();
+        if let Some(idx) = lower.find(tld) {
+            let prefix = &s[..idx];
+            let start = prefix.rfind(' ').map(|i| i + 1).unwrap_or(0);
+            s.replace_range(start..idx + tld.len(), " ");
         }
     }
 
@@ -524,7 +550,18 @@ pub fn clean_game_title(raw: &str) -> String {
         .collect::<Vec<_>>()
         .join(" ");
 
-    let trimmed = cleaned.trim_matches(|c: char| c == '-' || c == ' ').trim();
+    let mut words: Vec<&str> = cleaned.split_whitespace().collect();
+    if let Some(last) = words.last() {
+        let tlds = ["com", "net", "org", "ru", "to", "io", "cc", "gg", "tv", "me"];
+        if tlds.iter().any(|t| last.eq_ignore_ascii_case(t)) {
+            words.pop();
+        }
+    }
+    let trimmed = words
+        .join(" ")
+        .trim_matches(|c: char| c == '-' || c == ' ')
+        .trim()
+        .to_string();
     if trimmed.is_empty() {
         raw.to_string()
     } else {
@@ -619,7 +656,7 @@ pub fn detect_main_executable(
     preferred_exe: Option<&Path>,
     game_name_hint: &str,
 ) -> Option<(PathBuf, Option<String>)> {
-    // 1. If a preferred_exe was provided (e.g. Portable/SteamRIP clicked .exe) and it is NOT an installer/auxiliary exe,
+    // 1. If a preferred_exe was provided (e.g. clicked portable .exe) and it is NOT an installer/auxiliary exe,
     // verify it exists and return it immediately!
     if let Some(pref) = preferred_exe {
         if pref.is_file() && !is_auxiliary_exe(pref) {

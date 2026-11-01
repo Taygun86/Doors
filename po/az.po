@@ -452,3 +452,9 @@ msgstr "Üçüncü tərəf alətləri olmadan daxili DXVK kadr sürəti və GPU 
 
 msgid "FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported."
 msgstr "FSR 4 rəsmi olaraq AMD Radeon RX 6000 seriyası və ya daha yeni (RDNA 2+) GPU tələb edir. Köhnə AMD, NVIDIA və ya Intel GPU-lar rəsmi dəstəklənmir."
+
+msgid "UMU Prefix (Protonfixes)"
+msgstr "UMU Prefix (Protonfixes)"
+
+msgid "Automatic game fixes detected"
+msgstr "Avtomatik oyun düzəlişləri aşkar edildi"

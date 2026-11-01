@@ -452,3 +452,9 @@ msgstr "サードパーティツールなしでDXVK内蔵のフレームレー�
 
 msgid "FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported."
 msgstr "FSR 4は公式にAMD Radeon RX 6000シリーズ以降のGPU (RDNA 2+) を必要とします。古いAMD、NVIDIA、またはIntel製GPUは公式にはサポートされていません。"
+
+msgid "UMU Prefix (Protonfixes)"
+msgstr "UMU プレフィックス (Protonfixes)"
+
+msgid "Automatic game fixes detected"
+msgstr "自動ゲーム修正が検出されました"

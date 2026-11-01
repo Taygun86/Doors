@@ -452,3 +452,9 @@ msgstr "Εμφάνιση ενσωματωμένου μετρητή FPS και φ
 
 msgid "FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported."
 msgstr "Το FSR 4 απαιτεί επίσημα GPU AMD Radeon σειράς RX 6000 ή νεότερη (RDNA 2+). Παλαιότερες GPU AMD, NVIDIA ή Intel δεν υποστηρίζονται επίσημα."
+
+msgid "UMU Prefix (Protonfixes)"
+msgstr "Πρόθεμα UMU (Protonfixes)"
+
+msgid "Automatic game fixes detected"
+msgstr "Εντοπίστηκαν αυτόματες διορθώσεις παιχνιδιού"

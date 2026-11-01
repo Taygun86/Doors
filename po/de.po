@@ -452,3 +452,9 @@ msgstr "Integriertes DXVK-FPS- und GPU-Last-Overlay ohne Drittanbieter-Tools anz
 
 msgid "FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported."
 msgstr "FSR 4 erfordert offiziell eine GPU der AMD Radeon RX 6000-Serie oder neuer (RDNA 2+). Ältere AMD-, NVIDIA- oder Intel-GPUs werden offiziell nicht unterstützt."
+
+msgid "UMU Prefix (Protonfixes)"
+msgstr "UMU-Präfix (Protonfixes)"
+
+msgid "Automatic game fixes detected"
+msgstr "Automatische Spiel-Korrekturen erkannt"

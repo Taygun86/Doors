@@ -452,3 +452,9 @@ msgstr "عرض معدل الإطارات وحمل معالج الرسوميات 
 
 msgid "FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported."
 msgstr "تتطلب تقنية FSR 4 رسميًا معالج رسوميات AMD Radeon RX 6000 أو أحدث (RDNA 2+). معالجات AMD القديمة أو NVIDIA أو Intel غير مدعومة رسميًا."
+
+msgid "UMU Prefix (Protonfixes)"
+msgstr "بادئة UMU (إصلاحات Proton)"
+
+msgid "Automatic game fixes detected"
+msgstr "تم اكتشاف إصلاحات تلقائية للعبة"

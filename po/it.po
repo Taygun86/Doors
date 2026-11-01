@@ -452,3 +452,9 @@ msgstr "Mostra il contatore integrato di frame rate e carico GPU di DXVK senza s
 
 msgid "FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported."
 msgstr "FSR 4 richiede ufficialmente una GPU AMD Radeon serie RX 6000 o più recente (RDNA 2+). Le GPU AMD precedenti, NVIDIA o Intel non sono ufficialmente supportate."
+
+msgid "UMU Prefix (Protonfixes)"
+msgstr "Prefisso UMU (Protonfixes)"
+
+msgid "Automatic game fixes detected"
+msgstr "Rilevate correzioni automatiche del gioco"

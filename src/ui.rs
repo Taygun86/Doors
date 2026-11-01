@@ -159,7 +159,29 @@ pub fn present_install_window(app: &adw::Application, exe_path: PathBuf) {
     let proton_icon = gtk4::Image::from_icon_name("application-x-addon-symbolic");
     proton_row.add_prefix(&proton_icon);
 
-    // 3. "Run after installation" SwitchRow (off by default, switch on the right)
+    // 3. UMU Database check: look up if the game has a known UMU / Protonfixes profile
+    let exe_fname = exe_path.file_name().and_then(|n| n.to_str()).unwrap_or("");
+    let umu_match = crate::umu::lookup_umu_game(&plan.game_name, exe_fname);
+
+    let (umu_row, umu_matched_id) = if let Some(ref matched) = umu_match {
+        let row = adw::SwitchRow::builder()
+            .title(tr("UMU Prefix (Protonfixes)"))
+            .subtitle(format!(
+                "{} ({} • {})",
+                tr("Automatic game fixes detected"),
+                matched.title,
+                matched.umu_id
+            ))
+            .active(true)
+            .build();
+        let umu_icon = gtk4::Image::from_icon_name("system-run-symbolic");
+        row.add_prefix(&umu_icon);
+        (Some(row), Some(matched.umu_id.clone()))
+    } else {
+        (None, None)
+    };
+
+    // 4. "Run after installation" SwitchRow (off by default, switch on the right)
     let run_after_row = adw::SwitchRow::builder()
         .title(tr("Run after installation"))
         .active(false)
@@ -167,7 +189,7 @@ pub fn present_install_window(app: &adw::Application, exe_path: PathBuf) {
     let run_icon = gtk4::Image::from_icon_name("media-playback-start-symbolic");
     run_after_row.add_prefix(&run_icon);
 
-    // 4. "Desktop Shortcut" SwitchRow (off by default)
+    // 5. "Desktop Shortcut" SwitchRow (off by default)
     let desktop_shortcut_row = adw::SwitchRow::builder()
         .title(tr("Desktop Shortcut"))
         .active(false)
@@ -177,11 +199,14 @@ pub fn present_install_window(app: &adw::Application, exe_path: PathBuf) {
 
     prefs_group.add(&disk_row);
     prefs_group.add(&proton_row);
+    if let Some(ref row) = umu_row {
+        prefs_group.add(row);
+    }
     prefs_group.add(&run_after_row);
     prefs_group.add(&desktop_shortcut_row);
     main_box.append(&prefs_group);
 
-    // 4. "Install" button
+    // "Install" button
     let install_btn = gtk4::Button::with_label(&tr("Install"));
     install_btn.add_css_class("suggested-action");
     install_btn.add_css_class("pill");
@@ -215,6 +240,8 @@ pub fn present_install_window(app: &adw::Application, exe_path: PathBuf) {
     let window_weak = window.downgrade();
     let disk_row_clone = disk_row.clone();
     let proton_row_clone = proton_row.clone();
+    let umu_row_clone = umu_row.clone();
+    let umu_id_clone = umu_matched_id.clone();
     let run_after_clone = run_after_row.clone();
     let desktop_shortcut_clone = desktop_shortcut_row.clone();
     let progress_box_clone = progress_box.clone();
@@ -226,6 +253,8 @@ pub fn present_install_window(app: &adw::Application, exe_path: PathBuf) {
         let proton_idx = proton_row_clone.selected() as usize;
         let run_after = run_after_clone.is_active();
         let create_desktop = desktop_shortcut_clone.is_active();
+        let use_umu = umu_row_clone.as_ref().map(|r| r.is_active()).unwrap_or(false);
+        let umu_id = if use_umu { umu_id_clone.clone() } else { None };
 
         let Some(selected_disk) = disks.get(disk_idx).cloned() else {
             return;
@@ -235,6 +264,9 @@ pub fn present_install_window(app: &adw::Application, exe_path: PathBuf) {
         };
 
         btn.set_visible(false);
+        if let Some(ref r) = umu_row_clone {
+            r.set_sensitive(false);
+        }
         run_after_clone.set_sensitive(false);
         desktop_shortcut_clone.set_sensitive(false);
         disk_row_clone.set_sensitive(false);
@@ -254,6 +286,8 @@ pub fn present_install_window(app: &adw::Application, exe_path: PathBuf) {
                 &selected_proton,
                 run_after,
                 create_desktop,
+                use_umu,
+                umu_id,
                 move |fraction, msg| {
                     let _ = tx_progress.send(WorkerMessage::Progress(fraction, msg));
                 },
@@ -396,6 +430,7 @@ pub fn present_library_window(app: &adw::Application) {
     std::thread::spawn(|| {
         let _ = crate::proton_manager::run_background_update();
     });
+    crate::umu::sync_umu_database_in_background();
 
     let view_switcher = adw::ViewSwitcher::builder()
         .stack(&view_stack)

@@ -26,7 +26,7 @@ Doors does not bundle its own Wine or Proton runtime. Instead, it automatically 
 
 ### Installing Proton Versions with ProtonPlus (Recommended)
 
-The easiest way to download, update, and manage Proton versions (such as **GE-Proton**, **Proton-CachyOS**, **Proton-Sarek**, or **Wine-GE**) in `compatibilitytools.d` is **[ProtonPlus](https://github.com/Vysp3r/ProtonPlus)**:
+The easiest way to download, update, and manage Proton versions (such as **Proton-GE**, **Proton-CachyOS**, **Proton-Sarek**, or **Wine-GE**) in `compatibilitytools.d` is **[ProtonPlus](https://github.com/Vysp3r/ProtonPlus)**:
 
 ```bash
 flatpak install flathub com.vysp3r.ProtonPlus
@@ -34,7 +34,7 @@ flatpak install flathub com.vysp3r.ProtonPlus
 
 1. Open **ProtonPlus**.
 2. Select **Steam** as the launcher target (which installs runners into `compatibilitytools.d`).
-3. Download your preferred Proton build (e.g., **GE-Proton Latest**).
+3. Download your preferred Proton build (e.g., **Proton-GE Latest**).
 4. Launch **Doors** — your installed Proton versions will appear automatically in the Proton selector.
 
 ---

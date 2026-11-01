@@ -43,7 +43,7 @@ impl ManagedProton {
 
     pub fn display_name(&self) -> &'static str {
         match self {
-            ManagedProton::GeProton => "GE-Proton",
+            ManagedProton::GeProton => "Proton-GE",
             ManagedProton::DwProton => "DW-Proton",
             ManagedProton::ProtonCachyos => "Proton-CachyOS",
             ManagedProton::ProtonRtsp => "Proton-RTSP",

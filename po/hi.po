@@ -452,3 +452,9 @@ msgstr "बिना किसी तृतीय-पक्ष उपकरण �
 
 msgid "FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported."
 msgstr "FSR 4 के लिए आधिकारिक तौर पर AMD Radeon RX 6000 श्रृंखला या नए GPU (RDNA 2+) की आवश्यकता होती है। पुराने AMD, NVIDIA या Intel GPU आधिकारिक तौर पर समर्थित नहीं हैं।"
+
+msgid "UMU Prefix (Protonfixes)"
+msgstr "UMU प्रीफिक्स (Protonfixes)"
+
+msgid "Automatic game fixes detected"
+msgstr "स्वचालित गेम सुधार पाए गए"

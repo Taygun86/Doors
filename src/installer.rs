@@ -17,6 +17,8 @@ pub fn execute_install<F>(
     proton: &ProtonTool,
     run_after_install: bool,
     desktop_shortcut: bool,
+    use_umu: bool,
+    umu_id: Option<String>,
     mut on_progress: F,
 ) -> anyhow::Result<DoorsGameConfig>
 where
@@ -63,6 +65,14 @@ where
                 if has_icon { Some(icon_png_path) } else { None },
             );
             cfg.desktop_shortcut = desktop_shortcut;
+            cfg.umu = use_umu;
+            if let Some(ref id) = umu_id {
+                cfg.umu_id = id.clone();
+            }
+            cfg.umu = use_umu;
+            if let Some(ref id) = umu_id {
+                cfg.umu_id = id.clone();
+            }
 
             on_progress(0.97, tr("Creating application shortcut (.desktop)..."));
             save_config_and_create_desktop_entry(&cfg)?;
@@ -127,6 +137,10 @@ where
                 if has_icon { Some(icon_png_path) } else { None },
             );
             cfg.desktop_shortcut = desktop_shortcut;
+            cfg.umu = use_umu;
+            if let Some(ref id) = umu_id {
+                cfg.umu_id = id.clone();
+            }
 
             on_progress(0.96, tr("Creating application shortcut (.desktop)..."));
             save_config_and_create_desktop_entry(&cfg)?;
@@ -183,6 +197,10 @@ where
                 if has_icon { Some(icon_png_path) } else { None },
             );
             cfg.desktop_shortcut = desktop_shortcut;
+            cfg.umu = use_umu;
+            if let Some(ref id) = umu_id {
+                cfg.umu_id = id.clone();
+            }
 
             save_config_and_create_desktop_entry(&cfg)?;
             if run_after_install {

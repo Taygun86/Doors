@@ -507,6 +507,15 @@ pub fn spawn_with_proton_config(
         ),
     ];
 
+    // UMU / Protonfixes
+    if cfg.umu {
+        if !cfg.umu_id.is_empty() {
+            envs.push(("GAMEID".to_string(), cfg.umu_id.clone()));
+            envs.push(("UMU_ID".to_string(), cfg.umu_id.clone()));
+        }
+        envs.push(("PROTONFIXES".to_string(), "1".to_string()));
+    }
+
     // Synchronization mode
     match cfg.sync_mode {
         SyncMode::Ntsync => {
