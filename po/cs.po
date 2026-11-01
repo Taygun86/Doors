@@ -269,3 +269,186 @@ msgstr "Zástupce na ploše"
 
 msgid "Folder Name"
 msgstr "Název složky"
+
+msgid "Games"
+msgstr "Hry"
+
+msgid "Protons"
+msgstr "Protony"
+
+msgid "Compatibility Tools"
+msgstr "Compatibility Tools"
+
+msgid "Automatic latest release management for gaming Proton runners."
+msgstr "Automatic latest release management for gaming Proton runners."
+
+msgid "Installed:"
+msgstr "Installed:"
+
+msgid "Not installed"
+msgstr "Not installed"
+
+msgid "Checking latest release..."
+msgstr "Checking latest release..."
+
+msgid "Delete Proton?"
+msgstr "Delete Proton?"
+
+msgid "Are you sure you want to delete this Proton runner?"
+msgstr "Are you sure you want to delete this Proton runner?"
+
+msgid "Community optimized Wine/Proton with media codec patches."
+msgstr "Community optimized Wine/Proton with media codec patches."
+
+msgid "Tailored for anime and gacha games with DXVK-gplasync."
+msgstr "Tailored for anime and gacha games with DXVK-gplasync."
+
+msgid "CachyOS bleeding-edge performance and Wine core optimizations."
+msgstr "CachyOS bleeding-edge performance and Wine core optimizations."
+
+msgid "Not installed in Doors"
+msgstr "Není nainstalováno v Doors"
+
+msgid "Live video streaming (RTSP/MPEG-TS) support, tailored for VRChat and media players."
+msgstr "Podpora živého streamování videa (RTSP/MPEG-TS) pro VRChat a přehrávače médií."
+
+msgid "Already installed in Steam"
+msgstr "Již nainstalováno ve Steamu"
+
+msgid "Downloading..."
+msgstr "Stahování..."
+
+msgid "Extracting..."
+msgstr "Rozbalování..."
+
+msgid "No Games Yet"
+msgstr "Zatím žádné hry"
+
+msgid "Game Title"
+msgstr "Název hry"
+
+msgid "Delete Game?"
+msgstr "Smazat hru?"
+
+msgid "Are you sure you want to delete this game and its prefix?"
+msgstr "Opravdu chcete tuto hru a její prefix smazat?"
+
+msgid "Completed! Launching game..."
+msgstr "Dokončeno! Spouštění hry..."
+
+msgid "Game installation completed!"
+msgstr "Instalace hry byla dokončena!"
+
+msgid "Installed Games"
+msgstr "Nainstalované hry"
+
+msgid "Delete Game and Prefix"
+msgstr "Smazat hru a prefix"
+
+msgid "Open Game Folder"
+msgstr "Otevřít složku hry"
+
+msgid "Browse game files and prefix directory in file manager."
+msgstr "Procházet soubory hry a adresář prefixu ve správci souborů."
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching game files."
+msgstr "Smazat a znovu vytvořit prefix Wine/Proton (pfx) bez dotčení souborů hry."
+
+msgid "Manage how games are displayed on screen using Gamescope."
+msgstr "Spravujte zobrazení her na obrazovce pomocí Gamescope."
+
+msgid "Steam is not installed on the system."
+msgstr "Steam není v systému nainstalován."
+
+msgid "Steam is not installed on the system"
+msgstr "Steam není v systému nainstalován"
+
+msgid "Steam Linux Runtime (Sniper) is not installed in Steam."
+msgstr "Steam Linux Runtime (Sniper) není ve Steamu nainstalován."
+
+msgid "Steam Linux Runtime (Sniper) is not installed"
+msgstr "Steam Linux Runtime (Sniper) není nainstalován"
+
+msgid "Run Proton inside Valve's isolated container environment."
+msgstr "Spustit Proton v izolovaném kontejnerovém prostředí Valve."
+
+msgid "Quality Mode"
+msgstr "Režim kvality"
+
+msgid "Default (In-game Resolution)"
+msgstr "Výchozí (Rozlišení ve hře)"
+
+msgid "Ultra Quality (1.3x)"
+msgstr "Ultra kvalita (1.3x)"
+
+msgid "Quality (1.5x)"
+msgstr "Kvalita (1.5x)"
+
+msgid "Balanced (1.7x)"
+msgstr "Vyvážený (1.7x)"
+
+msgid "Performance (2.0x)"
+msgstr "Výkon (2.0x)"
+
+msgid "Sharpness / Strength"
+msgstr "Ostrost / Síla"
+
+msgid "Maximum Sharpness"
+msgstr "Maximální ostrost"
+
+msgid "High"
+msgstr "Vysoká"
+
+msgid "Balanced (Default)"
+msgstr "Vyvážená (Výchozí)"
+
+msgid "Medium"
+msgstr "Střední"
+
+msgid "Low"
+msgstr "Nízká"
+
+msgid "Soft"
+msgstr "Měkká"
+
+msgid "0 = Maximum Sharpness, 5 = Soft"
+msgstr "0 = Maximální ostrost, 5 = Měkké"
+
+msgid "Balanced"
+msgstr "Vyvážený"
+
+msgid "Done"
+msgstr "Hotovo"
+
+msgid "FSR 4 Upgrade"
+msgstr "Upgrade na FSR 4"
+
+msgid "Force FSR 4 upgrade in supported games and Proton builds."
+msgstr "Vynutit upgrade na FSR 4 v podporovaných hrách a sestaveních Protonu."
+
+msgid "Max"
+msgstr "Max"
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) game installer and runner for Linux."
+msgstr "Minimální instalátor a spouštěč Windows (.exe) her v GTK4/Libadwaita pro Linux."
+
+msgid "Ray Tracing (DXR)"
+msgstr "Ray Tracing (DXR)"
+
+msgid "Enable DirectX Raytracing support in supported DirectX 12 games."
+msgstr "Povolit podporu DirectX Raytracing v podporovaných hrách DirectX 12."
+
+msgid "DXVK Async (Async Shaders)"
+msgstr "DXVK Async (asynchronní shadery)"
+
+msgid "Eliminate shader compilation stutter in DirectX 9/10/11 games using dxvk-gplasync."
+msgstr "Eliminovat záseky při kompilaci shaderů v DirectX 9/10/11 hrách pomocí dxvk-gplasync."
+
+msgid "DXVK HUD (Built-in FPS Overlay)"
+msgstr "DXVK HUD (vestavěný ukazatel FPS)"
+
+msgid "Display built-in DXVK frame rate and GPU load counter without third-party tools."
+msgstr "Zobrazit vestavěný ukazatel FPS a zatížení GPU v DXVK bez externích nástrojů."
+
+msgid "FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported."
+msgstr "FSR 4 oficiálně vyžaduje GPU řady AMD Radeon RX 6000 nebo novější (RDNA 2+). Starší GPU AMD, NVIDIA nebo Intel nejsou oficiálně podporovány."

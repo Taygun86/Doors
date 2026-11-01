@@ -7,9 +7,10 @@ use crate::i18n::tr;
 use crate::icon::{extract_exe_icon_png_bytes, extract_exe_icon_to_png};
 use crate::installer::execute_install;
 use crate::proton::{
-    discover_proton_tools, has_host_binary, has_vkbasalt, spawn_winecfg, spawn_winetricks,
-    spawn_with_proton_config, ProtonTool,
+    discover_proton_tools, has_fsr4_supported_gpu, has_host_binary, has_vkbasalt, spawn_winecfg,
+    spawn_winetricks, spawn_with_proton_config, ProtonTool,
 };
+use crate::proton_manager::ManagedProton;
 use gtk4::prelude::*;
 use libadwaita as adw;
 use libadwaita::prelude::*;
@@ -26,13 +27,22 @@ enum WorkerMessage {
     Finished(Result<DoorsGameConfig, String>),
 }
 
+enum ProtonInstallMessage {
+    Progress(f64, String),
+    Finished(Result<String, String>),
+}
+
 /// Entry point when an `.exe` file is double-clicked or passed via CLI.
 pub fn handle_exe_launch(app: &adw::Application, exe_path: PathBuf) {
     if let Some((_cfg_path, cfg)) = find_existing_doors_config(&exe_path) {
         let tools = discover_proton_tools();
         let matched_tool = tools
             .iter()
-            .find(|t| t.name == cfg.proton_name || t.dir_path == cfg.proton_dir)
+            .find(|t| {
+                t.name == cfg.proton_name
+                    || t.dir_path == cfg.proton_dir
+                    || t.name.trim_end_matches(" (Steam)") == cfg.proton_name.trim_end_matches(" (Steam)")
+            })
             .cloned()
             .or_else(|| tools.into_iter().next());
 
@@ -325,9 +335,7 @@ pub fn present_about_dialog(parent: &impl IsA<gtk4::Window>) {
         .modal(true)
         .program_name("Doors")
         .version("0.3 Beta")
-        .comments(tr(
-            "Minimal GTK4/Libadwaita Windows (.exe) game installer and runner for Linux.",
-        ))
+        .comments(tr("Minimal GTK4/Libadwaita Windows (.exe) game installer and runner for Linux."))
         .website("https://github.com/Taygun86/Doors")
         .copyright("© 2026 Doors")
         .license_type(gtk4::License::Gpl30);
@@ -365,13 +373,38 @@ pub fn present_library_window(app: &adw::Application) {
         present_about_dialog(&win_for_about);
     });
 
-    toolbar_view.add_top_bar(&header);
+    // ViewStack for Games and Protons tabs
+    let view_stack = adw::ViewStack::new();
 
     let content_holder = Rc::new(RefCell::new(gtk4::Box::new(
         gtk4::Orientation::Vertical,
         0,
     )));
-    toolbar_view.set_content(Some(&*content_holder.borrow()));
+
+    let games_page = view_stack.add_titled(&*content_holder.borrow(), Some("games"), &tr("Games"));
+    games_page.set_icon_name(Some("input-gaming-symbolic"));
+
+    // 2nd page: Protons
+    let protons_box = gtk4::Box::new(gtk4::Orientation::Vertical, 0);
+    protons_box.set_vexpand(true);
+    protons_box.set_hexpand(true);
+    let protons_page = view_stack.add_titled(&protons_box, Some("protons"), &tr("Protons"));
+    protons_page.set_icon_name(Some("application-x-addon-symbolic"));
+
+    build_protons_page(&window, &protons_box);
+    crate::proton_manager::ensure_autostart_updater();
+    std::thread::spawn(|| {
+        let _ = crate::proton_manager::run_background_update();
+    });
+
+    let view_switcher = adw::ViewSwitcher::builder()
+        .stack(&view_stack)
+        .policy(adw::ViewSwitcherPolicy::Wide)
+        .build();
+    header.set_title_widget(Some(&view_switcher));
+
+    toolbar_view.add_top_bar(&header);
+    toolbar_view.set_content(Some(&view_stack));
     window.set_content(Some(&toolbar_view));
 
     let app_clone = app.clone();
@@ -475,6 +508,7 @@ fn rebuild_library_list(parent_win: &adw::ApplicationWindow, container: &gtk4::B
         let run_btn = gtk4::Button::with_label(&tr("Run"));
         run_btn.add_css_class("suggested-action");
         run_btn.set_valign(gtk4::Align::Center);
+        run_btn.set_width_request(86);
 
         let prog_run = prog.clone();
         let protons_run: Vec<ProtonTool> = protons.clone();
@@ -487,7 +521,11 @@ fn rebuild_library_list(parent_win: &adw::ApplicationWindow, container: &gtk4::B
 
             let tool = protons_run
                 .iter()
-                .find(|t| t.name == latest_cfg.proton_name || t.dir_path == latest_cfg.proton_dir)
+                .find(|t| {
+                    t.name == latest_cfg.proton_name
+                        || t.dir_path == latest_cfg.proton_dir
+                        || t.name.trim_end_matches(" (Steam)") == latest_cfg.proton_name.trim_end_matches(" (Steam)")
+                })
                 .cloned()
                 .or_else(|| protons_run.first().cloned());
 
@@ -557,6 +595,206 @@ fn rebuild_library_list(parent_win: &adw::ApplicationWindow, container: &gtk4::B
         row.add_suffix(&run_btn);
         row.add_suffix(&settings_btn);
         row.add_suffix(&del_btn);
+        group.add(&row);
+    }
+
+    clamp.set_child(Some(&group));
+    scrolled.set_child(Some(&clamp));
+    container.append(&scrolled);
+}
+
+fn build_protons_page(parent_win: &adw::ApplicationWindow, container: &gtk4::Box) {
+    let scrolled = gtk4::ScrolledWindow::builder()
+        .hscrollbar_policy(gtk4::PolicyType::Never)
+        .vexpand(true)
+        .build();
+
+    let clamp = adw::Clamp::builder()
+        .maximum_size(800)
+        .tightening_threshold(600)
+        .margin_top(24)
+        .margin_bottom(24)
+        .margin_start(16)
+        .margin_end(16)
+        .build();
+
+    let group = adw::PreferencesGroup::builder()
+        .title(tr("Compatibility Tools"))
+        .description(tr("Automatic latest release management for gaming Proton runners."))
+        .build();
+
+    for runner in ManagedProton::ALL {
+        let row = adw::ActionRow::builder()
+            .title(runner.display_name())
+            .tooltip_text(&runner.description())
+            .build();
+
+        let icon = gtk4::Image::from_icon_name("application-x-addon-symbolic");
+        icon.set_pixel_size(32);
+        row.add_prefix(&icon);
+
+        let suffix_box = gtk4::Box::new(gtk4::Orientation::Horizontal, 10);
+        suffix_box.set_valign(gtk4::Align::Center);
+
+        let status_label = gtk4::Label::builder()
+            .visible(false)
+            .css_classes(["dim-label", "caption"])
+            .build();
+
+        let spinner = gtk4::Spinner::builder()
+            .visible(false)
+            .build();
+
+        let action_btn = gtk4::Button::builder()
+            .valign(gtk4::Align::Center)
+            .width_request(86)
+            .build();
+
+        suffix_box.append(&status_label);
+        suffix_box.append(&spinner);
+        suffix_box.append(&action_btn);
+        row.add_suffix(&suffix_box);
+
+        let row_weak = row.downgrade();
+        let btn_weak = action_btn.downgrade();
+        let spinner_weak = spinner.downgrade();
+        let label_weak = status_label.downgrade();
+
+        let refresh_row = {
+            let row_weak = row_weak.clone();
+            let btn_weak = btn_weak.clone();
+            let spinner_weak = spinner_weak.clone();
+            let label_weak = label_weak.clone();
+            Rc::new(move || {
+                let Some(row) = row_weak.upgrade() else { return; };
+                let Some(btn) = btn_weak.upgrade() else { return; };
+                let Some(spin) = spinner_weak.upgrade() else { return; };
+                let Some(lbl) = label_weak.upgrade() else { return; };
+
+                spin.stop();
+                spin.set_visible(false);
+                lbl.set_visible(false);
+                btn.set_sensitive(true);
+
+                if let Some((ver, _)) = runner.installed_version() {
+                    row.set_subtitle(&format!("{}: {}", tr("Installed:"), ver));
+                    btn.set_label(&tr("Delete"));
+                    btn.remove_css_class("suggested-action");
+                    btn.add_css_class("destructive-action");
+                } else {
+                    let steam_ver = crate::proton::discover_proton_tools()
+                        .into_iter()
+                        .find(|t| runner.matches_folder_name(&t.name) && t.name.contains("(Steam)"))
+                        .map(|t| t.name);
+
+                    if let Some(s_name) = steam_ver {
+                        let clean_steam_name = s_name.trim_end_matches(" (Steam)");
+                        row.set_subtitle(&format!("{} ({})", tr("Already installed in Steam"), clean_steam_name));
+                    } else {
+                        row.set_subtitle(&tr("Not installed"));
+                    }
+                    btn.set_label(&tr("Install"));
+                    btn.remove_css_class("destructive-action");
+                    btn.add_css_class("suggested-action");
+                }
+            })
+        };
+
+        refresh_row();
+
+        let parent_win_del = parent_win.clone();
+        let refresh_for_click = refresh_row.clone();
+        action_btn.connect_clicked(move |btn| {
+            if let Some((ver, _)) = runner.installed_version() {
+                let dialog = adw::AlertDialog::builder()
+                    .heading(tr("Delete Proton?"))
+                    .body(&format!(
+                        "{} ({} — {})",
+                        tr("Are you sure you want to delete this Proton runner?"),
+                        runner.display_name(),
+                        ver
+                    ))
+                    .build();
+
+                dialog.add_response("cancel", &tr("Cancel"));
+                dialog.add_response("delete", &tr("Delete"));
+                dialog.set_response_appearance("delete", adw::ResponseAppearance::Destructive);
+                dialog.set_default_response(Some("cancel"));
+                dialog.set_close_response("cancel");
+
+                let refresh_del = refresh_for_click.clone();
+                dialog.choose(&parent_win_del, gio::Cancellable::NONE, move |resp| {
+                    if resp == "delete" {
+                        let _ = runner.delete_installed();
+                        refresh_del();
+                    }
+                });
+            } else {
+                btn.set_sensitive(false);
+                if let Some(spin) = spinner_weak.upgrade() {
+                    spin.set_visible(true);
+                    spin.start();
+                }
+                if let Some(lbl) = label_weak.upgrade() {
+                    lbl.set_visible(true);
+                    lbl.set_text(&tr("Starting..."));
+                }
+
+                let (tx, rx) = mpsc::channel::<ProtonInstallMessage>();
+                let runner_thread = runner;
+
+                std::thread::spawn(move || {
+                    let tx_progress = tx.clone();
+                    let res = runner_thread.install_latest(move |_frac, msg| {
+                        let _ = tx_progress.send(ProtonInstallMessage::Progress(0.0, msg.to_string()));
+                    });
+                    match res {
+                        Ok(new_ver) => {
+                            let _ = tx.send(ProtonInstallMessage::Finished(Ok(new_ver)));
+                        }
+                        Err(err) => {
+                            let _ = tx.send(ProtonInstallMessage::Finished(Err(err.to_string())));
+                        }
+                    }
+                });
+
+                let refresh_after_install = refresh_for_click.clone();
+                let label_ui = label_weak.clone();
+                let btn_ui = btn_weak.clone();
+                let spin_ui = spinner_weak.clone();
+
+                glib::timeout_add_local(Duration::from_millis(100), move || {
+                    while let Ok(msg) = rx.try_recv() {
+                        match msg {
+                            ProtonInstallMessage::Progress(_frac, text) => {
+                                if let Some(lbl) = label_ui.upgrade() {
+                                    lbl.set_text(&text);
+                                }
+                            }
+                            ProtonInstallMessage::Finished(Ok(_new_ver)) => {
+                                refresh_after_install();
+                                return glib::ControlFlow::Break;
+                            }
+                            ProtonInstallMessage::Finished(Err(err)) => {
+                                if let Some(lbl) = label_ui.upgrade() {
+                                    lbl.set_text(&format!("{}: {}", tr("Error:"), err));
+                                }
+                                if let Some(b) = btn_ui.upgrade() {
+                                    b.set_sensitive(true);
+                                }
+                                if let Some(s) = spin_ui.upgrade() {
+                                    s.stop();
+                                    s.set_visible(false);
+                                }
+                                return glib::ControlFlow::Break;
+                            }
+                        }
+                    }
+                    glib::ControlFlow::Continue
+                });
+            }
+        });
+
         group.add(&row);
     }
 
@@ -663,9 +901,52 @@ fn present_program_settings_window(
 
     if let Some(idx) = protons
         .iter()
-        .position(|p| p.name == loaded_cfg.proton_name || p.dir_path == loaded_cfg.proton_dir)
+        .position(|p| {
+            p.name == loaded_cfg.proton_name
+                || p.dir_path == loaded_cfg.proton_dir
+                || p.name.trim_end_matches(" (Steam)") == loaded_cfg.proton_name.trim_end_matches(" (Steam)")
+        })
     {
         proton_row.set_selected(idx as u32);
+    }
+
+    // Steam Linux Runtime (SLR) row
+    let steam_installed = crate::proton::is_steam_installed();
+    let slr_path = crate::proton::detect_steam_linux_runtime();
+    let slr_can_enable = steam_installed && slr_path.is_some();
+
+    let slr_subtitle = if !steam_installed {
+        tr("Steam is not installed on the system.")
+    } else if slr_path.is_none() {
+        tr("Steam Linux Runtime (Sniper) is not installed in Steam.")
+    } else {
+        tr("Run Proton inside Valve's isolated container environment.")
+    };
+
+    let slr_row = adw::ActionRow::builder()
+        .title("Steam Linux Runtime")
+        .subtitle(&slr_subtitle)
+        .build();
+
+    let slr_icon = gtk4::Image::from_icon_name("package-x-generic-symbolic");
+    slr_row.add_prefix(&slr_icon);
+
+    let slr_switch = gtk4::Switch::builder()
+        .valign(gtk4::Align::Center)
+        .active(loaded_cfg.steam_runtime && slr_can_enable)
+        .sensitive(slr_can_enable)
+        .build();
+    slr_row.add_suffix(&slr_switch);
+    slr_row.set_activatable_widget(Some(&slr_switch));
+
+    if !steam_installed {
+        let warn_icon = gtk4::Image::from_icon_name("dialog-warning-symbolic");
+        warn_icon.set_tooltip_text(Some(&tr("Steam is not installed on the system")));
+        slr_row.add_suffix(&warn_icon);
+    } else if slr_path.is_none() {
+        let warn_icon = gtk4::Image::from_icon_name("dialog-warning-symbolic");
+        warn_icon.set_tooltip_text(Some(&tr("Steam Linux Runtime (Sniper) is not installed")));
+        slr_row.add_suffix(&warn_icon);
     }
 
     // Main Executable (.exe) Selector Row
@@ -714,6 +995,7 @@ fn present_program_settings_window(
     runner_group.add(&folder_row);
     runner_group.add(&desktop_shortcut_row);
     runner_group.add(&proton_row);
+    runner_group.add(&slr_row);
     runner_group.add(&main_exe_row);
     runner_group.add(&args_row);
     runner_group.add(&sync_row);
@@ -752,12 +1034,68 @@ fn present_program_settings_window(
         .active(loaded_cfg.nvapi)
         .build();
 
-    // AMD FSR SwitchRow
-    let fsr_row = adw::SwitchRow::builder()
+    // AMD FSR row with gear button and switch
+    let fsr_row = adw::ActionRow::builder()
         .title(tr("AMD FidelityFX Super Resolution (FSR)"))
         .subtitle(tr("Enable fullscreen FSR upscaling in supported Proton builds."))
+        .build();
+
+    let fsr_gear_btn = gtk4::MenuButton::builder()
+        .icon_name("emblem-system-symbolic")
+        .valign(gtk4::Align::Center)
+        .build();
+    fsr_gear_btn.add_css_class("flat");
+
+    let fsr4_main_warn = gtk4::Image::from_icon_name("dialog-warning-symbolic");
+    fsr4_main_warn.set_tooltip_text(Some(&tr("FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported.")));
+    fsr4_main_warn.set_valign(gtk4::Align::Center);
+    fsr4_main_warn.set_visible(!has_fsr4_supported_gpu() && loaded_cfg.fsr4);
+
+    let fsr4_warn_weak = fsr4_main_warn.downgrade();
+    let fsr_popover = build_fsr_popover(
+        cfg_state.clone(),
+        on_saved.clone(),
+        Some(Rc::new(move |active| {
+            if let Some(w) = fsr4_warn_weak.upgrade() {
+                w.set_visible(!has_fsr4_supported_gpu() && active);
+            }
+        })),
+    );
+    fsr_gear_btn.set_popover(Some(&fsr_popover));
+
+    let fsr_switch = gtk4::Switch::builder()
+        .valign(gtk4::Align::Center)
         .active(loaded_cfg.fsr)
         .build();
+
+    fsr_row.add_suffix(&fsr_gear_btn);
+    fsr_row.add_suffix(&fsr_switch);
+    fsr_row.add_suffix(&fsr4_main_warn);
+    fsr_row.set_activatable_widget(Some(&fsr_switch));
+
+    // Ray Tracing (DXR) row
+    let rt_row = adw::ActionRow::builder()
+        .title(tr("Ray Tracing (DXR)"))
+        .subtitle(tr("Enable DirectX Raytracing support in supported DirectX 12 games."))
+        .build();
+    let rt_switch = gtk4::Switch::builder()
+        .valign(gtk4::Align::Center)
+        .active(loaded_cfg.ray_tracing)
+        .build();
+    rt_row.add_suffix(&rt_switch);
+    rt_row.set_activatable_widget(Some(&rt_switch));
+
+    // DXVK Async row
+    let async_row = adw::ActionRow::builder()
+        .title(tr("DXVK Async (Async Shaders)"))
+        .subtitle(tr("Eliminate shader compilation stutter in DirectX 9/10/11 games using dxvk-gplasync."))
+        .build();
+    let async_switch = gtk4::Switch::builder()
+        .valign(gtk4::Align::Center)
+        .active(loaded_cfg.dxvk_async)
+        .build();
+    async_row.add_suffix(&async_switch);
+    async_row.set_activatable_widget(Some(&async_switch));
 
     // vkBasalt row
     let vkbasalt_installed = has_vkbasalt();
@@ -816,6 +1154,18 @@ fn present_program_settings_window(
         mangohud_row.add_suffix(&warn_icon);
     }
 
+    // DXVK HUD row (built-in, no dependencies)
+    let dxvk_hud_row = adw::ActionRow::builder()
+        .title(tr("DXVK HUD (Built-in FPS Overlay)"))
+        .subtitle(tr("Display built-in DXVK frame rate and GPU load counter without third-party tools."))
+        .build();
+    let dxvk_hud_switch = gtk4::Switch::builder()
+        .valign(gtk4::Align::Center)
+        .active(loaded_cfg.dxvk_hud)
+        .build();
+    dxvk_hud_row.add_suffix(&dxvk_hud_switch);
+    dxvk_hud_row.set_activatable_widget(Some(&dxvk_hud_switch));
+
     // Gamescope row
     let gamescope_installed = has_host_binary("gamescope");
     let gamescope_row = adw::ActionRow::builder()
@@ -853,9 +1203,12 @@ fn present_program_settings_window(
     perf_group.add(&dgpu_row);
     perf_group.add(&nvapi_row);
     perf_group.add(&fsr_row);
+    perf_group.add(&rt_row);
+    perf_group.add(&async_row);
     perf_group.add(&vkbasalt_row);
     perf_group.add(&gamemode_row);
     perf_group.add(&mangohud_row);
+    perf_group.add(&dxvk_hud_row);
     perf_group.add(&gamescope_row);
     content_box.append(&perf_group);
 
@@ -1017,7 +1370,11 @@ fn present_program_settings_window(
                         let cfg = cfg_inner.borrow().clone();
                         let tool = protons_inner
                             .iter()
-                            .find(|t| t.name == cfg.proton_name || t.dir_path == cfg.proton_dir)
+                            .find(|t| {
+                                t.name == cfg.proton_name
+                                    || t.dir_path == cfg.proton_dir
+                                    || t.name.trim_end_matches(" (Steam)") == cfg.proton_name.trim_end_matches(" (Steam)")
+                            })
                             .cloned()
                             .or_else(|| protons_inner.first().cloned());
                         if let Some(t) = tool {
@@ -1037,7 +1394,11 @@ fn present_program_settings_window(
             let cfg = cfg_state.borrow().clone();
             let tool = protons_clone
                 .iter()
-                .find(|t| t.name == cfg.proton_name || t.dir_path == cfg.proton_dir)
+                .find(|t| {
+                    t.name == cfg.proton_name
+                        || t.dir_path == cfg.proton_dir
+                        || t.name.trim_end_matches(" (Steam)") == cfg.proton_name.trim_end_matches(" (Steam)")
+                })
                 .cloned()
                 .or_else(|| protons_clone.first().cloned());
             if let Some(t) = tool {
@@ -1054,7 +1415,11 @@ fn present_program_settings_window(
             let cfg = cfg_state.borrow().clone();
             let tool = protons_clone
                 .iter()
-                .find(|t| t.name == cfg.proton_name || t.dir_path == cfg.proton_dir)
+                .find(|t| {
+                    t.name == cfg.proton_name
+                        || t.dir_path == cfg.proton_dir
+                        || t.name.trim_end_matches(" (Steam)") == cfg.proton_name.trim_end_matches(" (Steam)")
+                })
                 .cloned()
                 .or_else(|| protons_clone.first().cloned());
             if let Some(t) = tool {
@@ -1099,6 +1464,16 @@ fn present_program_settings_window(
                 drop(cfg);
                 save_now();
             }
+        });
+    }
+
+    {
+        let cfg_state = cfg_state.clone();
+        let save_now = save_now.clone();
+        slr_switch.connect_state_set(move |_, state| {
+            cfg_state.borrow_mut().steam_runtime = state;
+            save_now();
+            glib::Propagation::Proceed
         });
     }
 
@@ -1165,9 +1540,30 @@ fn present_program_settings_window(
     {
         let cfg_state = cfg_state.clone();
         let save_now = save_now.clone();
-        fsr_row.connect_active_notify(move |row| {
-            cfg_state.borrow_mut().fsr = row.is_active();
+        fsr_switch.connect_state_set(move |_, state| {
+            cfg_state.borrow_mut().fsr = state;
             save_now();
+            glib::Propagation::Proceed
+        });
+    }
+
+    {
+        let cfg_state = cfg_state.clone();
+        let save_now = save_now.clone();
+        rt_switch.connect_state_set(move |_, state| {
+            cfg_state.borrow_mut().ray_tracing = state;
+            save_now();
+            glib::Propagation::Proceed
+        });
+    }
+
+    {
+        let cfg_state = cfg_state.clone();
+        let save_now = save_now.clone();
+        async_switch.connect_state_set(move |_, state| {
+            cfg_state.borrow_mut().dxvk_async = state;
+            save_now();
+            glib::Propagation::Proceed
         });
     }
 
@@ -1196,6 +1592,16 @@ fn present_program_settings_window(
         let save_now = save_now.clone();
         mangohud_switch.connect_state_set(move |_, state| {
             cfg_state.borrow_mut().mangohud = state;
+            save_now();
+            glib::Propagation::Proceed
+        });
+    }
+
+    {
+        let cfg_state = cfg_state.clone();
+        let save_now = save_now.clone();
+        dxvk_hud_switch.connect_state_set(move |_, state| {
+            cfg_state.borrow_mut().dxvk_hud = state;
             save_now();
             glib::Propagation::Proceed
         });
@@ -1298,7 +1704,229 @@ fn present_program_settings_window(
         });
     }
 
+    {
+        let key_ctrl = gtk4::EventControllerKey::new();
+        let win_weak = win.downgrade();
+        key_ctrl.connect_key_pressed(move |_, keyval, _, _| {
+            if keyval == gtk4::gdk::Key::Escape {
+                if let Some(w) = win_weak.upgrade() {
+                    w.close();
+                    return glib::Propagation::Stop;
+                }
+            }
+            glib::Propagation::Proceed
+        });
+        win.add_controller(key_ctrl);
+    }
+
     win.present();
+}
+
+/// Popover attached to the FSR gear icon (`⚙`) for quality mode, sharpness strength, and FSR 4 upgrade.
+fn build_fsr_popover(
+    cfg_state: Rc<RefCell<DoorsGameConfig>>,
+    on_saved: Rc<dyn Fn()>,
+    on_fsr4_changed: Option<Rc<dyn Fn(bool)>>,
+) -> gtk4::Popover {
+    let popover = gtk4::Popover::new();
+    popover.set_autohide(true);
+
+    let vbox = gtk4::Box::new(gtk4::Orientation::Vertical, 12);
+    vbox.set_margin_top(14);
+    vbox.set_margin_bottom(14);
+    vbox.set_margin_start(14);
+    vbox.set_margin_end(14);
+    vbox.set_width_request(280);
+
+    let cfg_init = cfg_state.borrow().clone();
+
+    // 1. Quality Mode (Radio group using CheckButtons)
+    let mode_box = gtk4::Box::new(gtk4::Orientation::Vertical, 6);
+    let mode_lbl = gtk4::Label::new(Some(&tr("Quality Mode")));
+    mode_lbl.set_xalign(0.0);
+    mode_lbl.add_css_class("heading");
+    mode_box.append(&mode_lbl);
+
+    let mode_options = [
+        ("", tr("Default (In-game Resolution)")),
+        ("ultra", tr("Ultra Quality (1.3x)")),
+        ("quality", tr("Quality (1.5x)")),
+        ("balanced", tr("Balanced (1.7x)")),
+        ("performance", tr("Performance (2.0x)")),
+    ];
+
+    let current_mode = cfg_init.fsr_mode.to_lowercase();
+    let mut first_radio: Option<gtk4::CheckButton> = None;
+    let mut radios: Vec<(String, gtk4::CheckButton)> = Vec::new();
+
+    for (mode_val, label) in mode_options {
+        let radio = gtk4::CheckButton::with_label(&label);
+        if let Some(ref first) = first_radio {
+            radio.set_group(Some(first));
+        } else {
+            first_radio = Some(radio.clone());
+        }
+
+        let is_active = if mode_val.is_empty() {
+            current_mode.is_empty()
+                || !["ultra", "quality", "balanced", "performance"].contains(&current_mode.as_str())
+        } else {
+            current_mode == mode_val
+        };
+        radio.set_active(is_active);
+
+        mode_box.append(&radio);
+        radios.push((mode_val.to_string(), radio));
+    }
+
+    // 2. Sharpness / Strength
+    let strength_box = gtk4::Box::new(gtk4::Orientation::Vertical, 4);
+    let strength_lbl = gtk4::Label::new(Some(&tr("Sharpness / Strength")));
+    strength_lbl.set_xalign(0.0);
+    strength_lbl.add_css_class("heading");
+
+    let scale = gtk4::Scale::with_range(gtk4::Orientation::Horizontal, 0.0, 5.0, 1.0);
+    scale.set_draw_value(true);
+    scale.set_value_pos(gtk4::PositionType::Right);
+    scale.set_round_digits(0);
+    scale.add_mark(0.0, gtk4::PositionType::Bottom, Some(&tr("Max")));
+    scale.add_mark(2.0, gtk4::PositionType::Bottom, Some(&tr("Balanced")));
+    scale.add_mark(5.0, gtk4::PositionType::Bottom, Some(&tr("Soft")));
+    scale.set_value(cfg_init.fsr_strength.min(5) as f64);
+
+    let strength_hint = gtk4::Label::new(Some(&tr("0 = Maximum Sharpness, 5 = Soft")));
+    strength_hint.set_xalign(0.0);
+    strength_hint.add_css_class("dim-label");
+    strength_hint.add_css_class("caption");
+
+    strength_box.append(&strength_lbl);
+    strength_box.append(&scale);
+    strength_box.append(&strength_hint);
+
+    // 3. FSR 4 Upgrade Switch
+    let fsr4_box = gtk4::Box::new(gtk4::Orientation::Horizontal, 10);
+    fsr4_box.set_margin_top(4);
+    let fsr4_text_box = gtk4::Box::new(gtk4::Orientation::Vertical, 2);
+    fsr4_text_box.set_hexpand(true);
+
+    let fsr4_lbl = gtk4::Label::new(Some(&tr("FSR 4 Upgrade")));
+    fsr4_lbl.set_xalign(0.0);
+    fsr4_lbl.add_css_class("heading");
+
+    let fsr4_sub = gtk4::Label::new(Some(&tr("Force FSR 4 upgrade in supported games and Proton builds.")));
+    fsr4_sub.set_xalign(0.0);
+    fsr4_sub.set_wrap(true);
+    fsr4_sub.set_max_width_chars(26);
+    fsr4_sub.add_css_class("dim-label");
+    fsr4_sub.add_css_class("caption");
+
+    fsr4_text_box.append(&fsr4_lbl);
+    fsr4_text_box.append(&fsr4_sub);
+
+    let fsr4_switch = gtk4::Switch::builder()
+        .active(cfg_init.fsr4)
+        .valign(gtk4::Align::Center)
+        .build();
+
+    fsr4_box.append(&fsr4_text_box);
+    fsr4_box.append(&fsr4_switch);
+
+    if !has_fsr4_supported_gpu() {
+        let warn_icon = gtk4::Image::from_icon_name("dialog-warning-symbolic");
+        warn_icon.set_tooltip_text(Some(&tr("FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported.")));
+        warn_icon.set_valign(gtk4::Align::Center);
+        fsr4_box.append(&warn_icon);
+    }
+
+    // 4. Separator & Done Button
+    let sep = gtk4::Separator::new(gtk4::Orientation::Horizontal);
+    sep.set_margin_top(4);
+
+    let done_btn = gtk4::Button::builder()
+        .label(&tr("Done"))
+        .valign(gtk4::Align::Center)
+        .halign(gtk4::Align::End)
+        .width_request(80)
+        .build();
+    done_btn.add_css_class("suggested-action");
+
+    let pop_weak = popover.downgrade();
+    done_btn.connect_clicked(move |_| {
+        if let Some(p) = pop_weak.upgrade() {
+            p.popdown();
+        }
+    });
+
+    let btn_box = gtk4::Box::new(gtk4::Orientation::Horizontal, 0);
+    btn_box.set_halign(gtk4::Align::End);
+    btn_box.append(&done_btn);
+
+    vbox.append(&mode_box);
+    vbox.append(&strength_box);
+    vbox.append(&fsr4_box);
+    vbox.append(&sep);
+    vbox.append(&btn_box);
+    popover.set_child(Some(&vbox));
+
+    let save_fsr = {
+        let cfg_state = cfg_state.clone();
+        let on_saved = on_saved.clone();
+        let radios = radios.clone();
+        let scale = scale.clone();
+        let fsr4_switch = fsr4_switch.clone();
+        Rc::new(move || {
+            let mut cfg = cfg_state.borrow_mut();
+            for (mode_val, r) in &radios {
+                if r.is_active() {
+                    cfg.fsr_mode = mode_val.clone();
+                    break;
+                }
+            }
+            cfg.fsr_strength = scale.value().round() as u32;
+            cfg.fsr4 = fsr4_switch.is_active();
+            let cloned = cfg.clone();
+            drop(cfg);
+            let _ = save_config_and_create_desktop_entry(&cloned);
+            on_saved();
+        })
+    };
+
+    for (_, r) in &radios {
+        let s = save_fsr.clone();
+        r.connect_toggled(move |btn| {
+            if btn.is_active() {
+                s();
+            }
+        });
+    }
+
+    let s_scale = save_fsr.clone();
+    scale.connect_value_changed(move |_| s_scale());
+
+    let s_fsr4 = save_fsr.clone();
+    let fsr4_cb = on_fsr4_changed.clone();
+    fsr4_switch.connect_state_set(move |_, state| {
+        s_fsr4();
+        if let Some(ref cb) = fsr4_cb {
+            cb(state);
+        }
+        glib::Propagation::Proceed
+    });
+
+    let key_ctrl = gtk4::EventControllerKey::new();
+    let pop_weak2 = popover.downgrade();
+    key_ctrl.connect_key_pressed(move |_, keyval, _, _| {
+        if keyval == gtk4::gdk::Key::Escape {
+            if let Some(p) = pop_weak2.upgrade() {
+                p.popdown();
+                return glib::Propagation::Stop;
+            }
+        }
+        glib::Propagation::Proceed
+    });
+    popover.add_controller(key_ctrl);
+
+    popover
 }
 
 /// Popover attached to the Gamescope gear icon (`⚙`) for resolution, FPS limit, and fullscreen.
@@ -1307,6 +1935,7 @@ fn build_gamescope_popover(
     on_saved: Rc<dyn Fn()>,
 ) -> gtk4::Popover {
     let popover = gtk4::Popover::new();
+    popover.set_autohide(true);
     let vbox = gtk4::Box::new(gtk4::Orientation::Vertical, 10);
     vbox.set_margin_top(12);
     vbox.set_margin_bottom(12);
@@ -1374,10 +2003,34 @@ fn build_gamescope_popover(
     fs_box.append(&fs_lbl);
     fs_box.append(&fs_switch);
 
+    let sep = gtk4::Separator::new(gtk4::Orientation::Horizontal);
+    sep.set_margin_top(4);
+
+    let done_btn = gtk4::Button::builder()
+        .label(&tr("Done"))
+        .valign(gtk4::Align::Center)
+        .halign(gtk4::Align::End)
+        .width_request(80)
+        .build();
+    done_btn.add_css_class("suggested-action");
+
+    let pop_weak = popover.downgrade();
+    done_btn.connect_clicked(move |_| {
+        if let Some(p) = pop_weak.upgrade() {
+            p.popdown();
+        }
+    });
+
+    let btn_box = gtk4::Box::new(gtk4::Orientation::Horizontal, 0);
+    btn_box.set_halign(gtk4::Align::End);
+    btn_box.append(&done_btn);
+
     vbox.append(&w_box);
     vbox.append(&h_box);
     vbox.append(&fps_box);
     vbox.append(&fs_box);
+    vbox.append(&sep);
+    vbox.append(&btn_box);
     popover.set_child(Some(&vbox));
 
     let save_gs = {
@@ -1411,6 +2064,19 @@ fn build_gamescope_popover(
         s4();
         glib::Propagation::Proceed
     });
+
+    let key_ctrl = gtk4::EventControllerKey::new();
+    let pop_weak2 = popover.downgrade();
+    key_ctrl.connect_key_pressed(move |_, keyval, _, _| {
+        if keyval == gtk4::gdk::Key::Escape {
+            if let Some(p) = pop_weak2.upgrade() {
+                p.popdown();
+                return glib::Propagation::Stop;
+            }
+        }
+        glib::Propagation::Proceed
+    });
+    popover.add_controller(key_ctrl);
 
     popover
 }

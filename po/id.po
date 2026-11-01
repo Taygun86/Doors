@@ -269,3 +269,186 @@ msgstr "Pintasan Desktop"
 
 msgid "Folder Name"
 msgstr "Nama Folder"
+
+msgid "Games"
+msgstr "Game"
+
+msgid "Protons"
+msgstr "Proton"
+
+msgid "Compatibility Tools"
+msgstr "Compatibility Tools"
+
+msgid "Automatic latest release management for gaming Proton runners."
+msgstr "Automatic latest release management for gaming Proton runners."
+
+msgid "Installed:"
+msgstr "Installed:"
+
+msgid "Not installed"
+msgstr "Not installed"
+
+msgid "Checking latest release..."
+msgstr "Checking latest release..."
+
+msgid "Delete Proton?"
+msgstr "Delete Proton?"
+
+msgid "Are you sure you want to delete this Proton runner?"
+msgstr "Are you sure you want to delete this Proton runner?"
+
+msgid "Community optimized Wine/Proton with media codec patches."
+msgstr "Community optimized Wine/Proton with media codec patches."
+
+msgid "Tailored for anime and gacha games with DXVK-gplasync."
+msgstr "Tailored for anime and gacha games with DXVK-gplasync."
+
+msgid "CachyOS bleeding-edge performance and Wine core optimizations."
+msgstr "CachyOS bleeding-edge performance and Wine core optimizations."
+
+msgid "Not installed in Doors"
+msgstr "Not installed in Doors"
+
+msgid "Live video streaming (RTSP/MPEG-TS) support, tailored for VRChat and media players."
+msgstr "Dukungan streaming video langsung (RTSP/MPEG-TS), disesuaikan untuk VRChat dan pemutar media."
+
+msgid "Already installed in Steam"
+msgstr "Sudah terpasang di Steam"
+
+msgid "Downloading..."
+msgstr "Mengunduh..."
+
+msgid "Extracting..."
+msgstr "Mengekstrak..."
+
+msgid "No Games Yet"
+msgstr "Belum Ada Game"
+
+msgid "Game Title"
+msgstr "Judul Game"
+
+msgid "Delete Game?"
+msgstr "Hapus Game?"
+
+msgid "Are you sure you want to delete this game and its prefix?"
+msgstr "Apakah Anda yakin ingin menghapus game ini dan prefiksnya?"
+
+msgid "Completed! Launching game..."
+msgstr "Selesai! Meluncurkan game..."
+
+msgid "Game installation completed!"
+msgstr "Instalasi game selesai!"
+
+msgid "Installed Games"
+msgstr "Game Terpasang"
+
+msgid "Delete Game and Prefix"
+msgstr "Hapus Game dan Prefiks"
+
+msgid "Open Game Folder"
+msgstr "Buka Folder Game"
+
+msgid "Browse game files and prefix directory in file manager."
+msgstr "Jelajahi file game dan direktori prefiks di pengelola file."
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching game files."
+msgstr "Hapus dan buat ulang prefiks Wine/Proton (pfx) tanpa menyentuh file game."
+
+msgid "Manage how games are displayed on screen using Gamescope."
+msgstr "Kelola tampilan game di layar menggunakan Gamescope."
+
+msgid "Steam is not installed on the system."
+msgstr "Steam tidak terpasang di sistem."
+
+msgid "Steam is not installed on the system"
+msgstr "Steam tidak terpasang di sistem"
+
+msgid "Steam Linux Runtime (Sniper) is not installed in Steam."
+msgstr "Steam Linux Runtime (Sniper) tidak terpasang di Steam."
+
+msgid "Steam Linux Runtime (Sniper) is not installed"
+msgstr "Steam Linux Runtime (Sniper) tidak terpasang"
+
+msgid "Run Proton inside Valve's isolated container environment."
+msgstr "Jalankan Proton di dalam lingkungan kontainer terisolasi Valve."
+
+msgid "Quality Mode"
+msgstr "Mode Kualitas"
+
+msgid "Default (In-game Resolution)"
+msgstr "Default (Resolusi Game)"
+
+msgid "Ultra Quality (1.3x)"
+msgstr "Kualitas Ultra (1.3x)"
+
+msgid "Quality (1.5x)"
+msgstr "Kualitas (1.5x)"
+
+msgid "Balanced (1.7x)"
+msgstr "Seimbang (1.7x)"
+
+msgid "Performance (2.0x)"
+msgstr "Performa (2.0x)"
+
+msgid "Sharpness / Strength"
+msgstr "Ketajaman / Kekuatan"
+
+msgid "Maximum Sharpness"
+msgstr "Ketajaman Maksimum"
+
+msgid "High"
+msgstr "Tinggi"
+
+msgid "Balanced (Default)"
+msgstr "Seimbang (Default)"
+
+msgid "Medium"
+msgstr "Sedang"
+
+msgid "Low"
+msgstr "Rendah"
+
+msgid "Soft"
+msgstr "Lembut"
+
+msgid "0 = Maximum Sharpness, 5 = Soft"
+msgstr "0 = Ketajaman Maksimum, 5 = Lembut"
+
+msgid "Balanced"
+msgstr "Seimbang"
+
+msgid "Done"
+msgstr "Selesai"
+
+msgid "FSR 4 Upgrade"
+msgstr "Peningkatan FSR 4"
+
+msgid "Force FSR 4 upgrade in supported games and Proton builds."
+msgstr "Paksa peningkatan FSR 4 pada game dan build Proton yang didukung."
+
+msgid "Max"
+msgstr "Maks"
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) game installer and runner for Linux."
+msgstr "Penginstal dan peluncur game Windows (.exe) GTK4/Libadwaita minimal untuk Linux."
+
+msgid "Ray Tracing (DXR)"
+msgstr "Pelacakan Sinar (DXR)"
+
+msgid "Enable DirectX Raytracing support in supported DirectX 12 games."
+msgstr "Aktifkan dukungan DirectX Raytracing pada game DirectX 12 yang didukung."
+
+msgid "DXVK Async (Async Shaders)"
+msgstr "DXVK Async (Shader Asinkron)"
+
+msgid "Eliminate shader compilation stutter in DirectX 9/10/11 games using dxvk-gplasync."
+msgstr "Hilangkan stuttering kompilasi shader pada game DirectX 9/10/11 menggunakan dxvk-gplasync."
+
+msgid "DXVK HUD (Built-in FPS Overlay)"
+msgstr "DXVK HUD (Hamparan FPS Bawaan)"
+
+msgid "Display built-in DXVK frame rate and GPU load counter without third-party tools."
+msgstr "Tampilkan penghitung FPS dan beban GPU bawaan DXVK tanpa aplikasi pihak ketiga."
+
+msgid "FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported."
+msgstr "FSR 4 secara resmi membutuhkan GPU seri AMD Radeon RX 6000 atau lebih baru (RDNA 2+). GPU AMD lama, NVIDIA, atau Intel tidak didukung secara resmi."

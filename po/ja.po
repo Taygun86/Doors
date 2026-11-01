@@ -269,3 +269,186 @@ msgstr "デスクトップショートカット"
 
 msgid "Folder Name"
 msgstr "フォルダー名"
+
+msgid "Games"
+msgstr "ゲーム"
+
+msgid "Protons"
+msgstr "Proton"
+
+msgid "Compatibility Tools"
+msgstr "Compatibility Tools"
+
+msgid "Automatic latest release management for gaming Proton runners."
+msgstr "Automatic latest release management for gaming Proton runners."
+
+msgid "Installed:"
+msgstr "Installed:"
+
+msgid "Not installed"
+msgstr "Not installed"
+
+msgid "Checking latest release..."
+msgstr "Checking latest release..."
+
+msgid "Delete Proton?"
+msgstr "Delete Proton?"
+
+msgid "Are you sure you want to delete this Proton runner?"
+msgstr "Are you sure you want to delete this Proton runner?"
+
+msgid "Community optimized Wine/Proton with media codec patches."
+msgstr "Community optimized Wine/Proton with media codec patches."
+
+msgid "Tailored for anime and gacha games with DXVK-gplasync."
+msgstr "Tailored for anime and gacha games with DXVK-gplasync."
+
+msgid "CachyOS bleeding-edge performance and Wine core optimizations."
+msgstr "CachyOS bleeding-edge performance and Wine core optimizations."
+
+msgid "Not installed in Doors"
+msgstr "Not installed in Doors"
+
+msgid "Live video streaming (RTSP/MPEG-TS) support, tailored for VRChat and media players."
+msgstr "ライブビデオストリーミング (RTSP/MPEG-TS) をサポート。VRChat やメディアプレーヤー向け。"
+
+msgid "Already installed in Steam"
+msgstr "Steam に既にインストールされています"
+
+msgid "Downloading..."
+msgstr "ダウンロード中..."
+
+msgid "Extracting..."
+msgstr "展開中..."
+
+msgid "No Games Yet"
+msgstr "ゲームはまだありません"
+
+msgid "Game Title"
+msgstr "ゲームタイトル"
+
+msgid "Delete Game?"
+msgstr "ゲームを削除しますか？"
+
+msgid "Are you sure you want to delete this game and its prefix?"
+msgstr "このゲームとそのプレフィックスを削除してもよろしいですか？"
+
+msgid "Completed! Launching game..."
+msgstr "完了しました！ゲームを起動しています..."
+
+msgid "Game installation completed!"
+msgstr "ゲームのインストールが完了しました！"
+
+msgid "Installed Games"
+msgstr "インストール済みゲーム"
+
+msgid "Delete Game and Prefix"
+msgstr "ゲームとプレフィックスを削除"
+
+msgid "Open Game Folder"
+msgstr "ゲームフォルダーを開く"
+
+msgid "Browse game files and prefix directory in file manager."
+msgstr "ファイルマネージャーでゲームファイルとプレフィックスディレクトリを参照します。"
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching game files."
+msgstr "ゲームファイルに影響を与えずに Wine/Proton プレフィックス (pfx) を削除して再作成します。"
+
+msgid "Manage how games are displayed on screen using Gamescope."
+msgstr "Gamescope を使用してゲームの画面表示方法を管理します。"
+
+msgid "Steam is not installed on the system."
+msgstr "Steam がシステムにインストールされていません。"
+
+msgid "Steam is not installed on the system"
+msgstr "Steam がシステムにインストールされていません"
+
+msgid "Steam Linux Runtime (Sniper) is not installed in Steam."
+msgstr "Steam Linux Runtime (Sniper) が Steam にインストールされていません。"
+
+msgid "Steam Linux Runtime (Sniper) is not installed"
+msgstr "Steam Linux Runtime (Sniper) がインストールされていません"
+
+msgid "Run Proton inside Valve's isolated container environment."
+msgstr "Valve の分離されたコンテナ環境内で Proton を実行します。"
+
+msgid "Quality Mode"
+msgstr "品質モード"
+
+msgid "Default (In-game Resolution)"
+msgstr "デフォルト（ゲーム内解像度）"
+
+msgid "Ultra Quality (1.3x)"
+msgstr "最高品質 (1.3x)"
+
+msgid "Quality (1.5x)"
+msgstr "品質 (1.5x)"
+
+msgid "Balanced (1.7x)"
+msgstr "バランス (1.7x)"
+
+msgid "Performance (2.0x)"
+msgstr "パフォーマンス (2.0x)"
+
+msgid "Sharpness / Strength"
+msgstr "シャープネス / 強度"
+
+msgid "Maximum Sharpness"
+msgstr "最大シャープネス"
+
+msgid "High"
+msgstr "高"
+
+msgid "Balanced (Default)"
+msgstr "バランス（デフォルト）"
+
+msgid "Medium"
+msgstr "中"
+
+msgid "Low"
+msgstr "低"
+
+msgid "Soft"
+msgstr "ソフト"
+
+msgid "0 = Maximum Sharpness, 5 = Soft"
+msgstr "0 = 最大鮮明度、5 = ソフト"
+
+msgid "Balanced"
+msgstr "バランス"
+
+msgid "Done"
+msgstr "完了"
+
+msgid "FSR 4 Upgrade"
+msgstr "FSR 4 アップグレード"
+
+msgid "Force FSR 4 upgrade in supported games and Proton builds."
+msgstr "対応ゲームおよびProtonビルドでFSR 4へのアップグレードを強制します。"
+
+msgid "Max"
+msgstr "最大"
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) game installer and runner for Linux."
+msgstr "Linux向けの最小限のGTK4/Libadwaita製Windows (.exe) ゲームインストーラー兼ランナー。"
+
+msgid "Ray Tracing (DXR)"
+msgstr "レイトレーシング (DXR)"
+
+msgid "Enable DirectX Raytracing support in supported DirectX 12 games."
+msgstr "対応するDirectX 12ゲームでDirectX Raytracingサポートを有効にします。"
+
+msgid "DXVK Async (Async Shaders)"
+msgstr "DXVK Async (非同期シェーダー)"
+
+msgid "Eliminate shader compilation stutter in DirectX 9/10/11 games using dxvk-gplasync."
+msgstr "dxvk-gplasyncを使用してDirectX 9/10/11ゲームでのシェーダーコンパイルのカクつきを解消します。"
+
+msgid "DXVK HUD (Built-in FPS Overlay)"
+msgstr "DXVK HUD (内蔵FPSオーバーレイ)"
+
+msgid "Display built-in DXVK frame rate and GPU load counter without third-party tools."
+msgstr "サードパーティツールなしでDXVK内蔵のフレームレートとGPU負荷カウンターを表示します。"
+
+msgid "FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported."
+msgstr "FSR 4は公式にAMD Radeon RX 6000シリーズ以降のGPU (RDNA 2+) を必要とします。古いAMD、NVIDIA、またはIntel製GPUは公式にはサポートされていません。"

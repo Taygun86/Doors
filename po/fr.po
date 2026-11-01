@@ -269,3 +269,186 @@ msgstr "Raccourci sur le bureau"
 
 msgid "Folder Name"
 msgstr "Nom du dossier"
+
+msgid "Games"
+msgstr "Jeux"
+
+msgid "Protons"
+msgstr "Protons"
+
+msgid "Compatibility Tools"
+msgstr "Outils de compatibilité"
+
+msgid "Automatic latest release management for gaming Proton runners."
+msgstr "Gestion automatique de la dernière version des exécuteurs Proton."
+
+msgid "Installed:"
+msgstr "Installé :"
+
+msgid "Not installed"
+msgstr "Non installé"
+
+msgid "Checking latest release..."
+msgstr "Vérification de la dernière version..."
+
+msgid "Delete Proton?"
+msgstr "Supprimer Proton ?"
+
+msgid "Are you sure you want to delete this Proton runner?"
+msgstr "Voulez-vous vraiment supprimer cet exécuteur Proton ?"
+
+msgid "Community optimized Wine/Proton with media codec patches."
+msgstr "Wine/Proton optimisé par la communauté avec correctifs de codecs multimédias."
+
+msgid "Tailored for anime and gacha games with DXVK-gplasync."
+msgstr "Conçu pour les jeux d'anime et gacha avec DXVK-gplasync."
+
+msgid "CachyOS bleeding-edge performance and Wine core optimizations."
+msgstr "Performances de pointe CachyOS et optimisations du noyau Wine."
+
+msgid "Not installed in Doors"
+msgstr "Non installé dans Doors"
+
+msgid "Live video streaming (RTSP/MPEG-TS) support, tailored for VRChat and media players."
+msgstr "Prise en charge du streaming vidéo en direct (RTSP/MPEG-TS), adapté à VRChat et aux lecteurs multimédias."
+
+msgid "Already installed in Steam"
+msgstr "Déjà installé dans Steam"
+
+msgid "Downloading..."
+msgstr "Téléchargement..."
+
+msgid "Extracting..."
+msgstr "Extraction..."
+
+msgid "No Games Yet"
+msgstr "Pas encore de jeux"
+
+msgid "Game Title"
+msgstr "Titre du jeu"
+
+msgid "Delete Game?"
+msgstr "Supprimer le jeu ?"
+
+msgid "Are you sure you want to delete this game and its prefix?"
+msgstr "Êtes-vous sûr de vouloir supprimer ce jeu et son préfixe ?"
+
+msgid "Completed! Launching game..."
+msgstr "Terminé ! Lancement du jeu..."
+
+msgid "Game installation completed!"
+msgstr "Installation du jeu terminée !"
+
+msgid "Installed Games"
+msgstr "Jeux installés"
+
+msgid "Delete Game and Prefix"
+msgstr "Supprimer le jeu et le préfixe"
+
+msgid "Open Game Folder"
+msgstr "Ouvrir le dossier du jeu"
+
+msgid "Browse game files and prefix directory in file manager."
+msgstr "Parcourir les fichiers du jeu et le répertoire du préfixe dans le gestionnaire de fichiers."
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching game files."
+msgstr "Supprimer et recréer le préfixe Wine/Proton (pfx) sans toucher aux fichiers du jeu."
+
+msgid "Manage how games are displayed on screen using Gamescope."
+msgstr "Gérez la façon dont les jeux s'affichent à l'écran à l'aide de Gamescope."
+
+msgid "Steam is not installed on the system."
+msgstr "Steam n'est pas installé sur le système."
+
+msgid "Steam is not installed on the system"
+msgstr "Steam n'est pas installé sur le système"
+
+msgid "Steam Linux Runtime (Sniper) is not installed in Steam."
+msgstr "Steam Linux Runtime (Sniper) n'est pas installé dans Steam."
+
+msgid "Steam Linux Runtime (Sniper) is not installed"
+msgstr "Steam Linux Runtime (Sniper) n'est pas installé"
+
+msgid "Run Proton inside Valve's isolated container environment."
+msgstr "Exécutez Proton dans l'environnement de conteneur isolé de Valve."
+
+msgid "Quality Mode"
+msgstr "Mode de qualité"
+
+msgid "Default (In-game Resolution)"
+msgstr "Par défaut (Résolution du jeu)"
+
+msgid "Ultra Quality (1.3x)"
+msgstr "Qualité ultra (1.3x)"
+
+msgid "Quality (1.5x)"
+msgstr "Qualité (1.5x)"
+
+msgid "Balanced (1.7x)"
+msgstr "Équilibré (1.7x)"
+
+msgid "Performance (2.0x)"
+msgstr "Performance (2.0x)"
+
+msgid "Sharpness / Strength"
+msgstr "Netteté / Force"
+
+msgid "Maximum Sharpness"
+msgstr "Netteté maximale"
+
+msgid "High"
+msgstr "Élevé"
+
+msgid "Balanced (Default)"
+msgstr "Équilibré (Par défaut)"
+
+msgid "Medium"
+msgstr "Moyen"
+
+msgid "Low"
+msgstr "Faible"
+
+msgid "Soft"
+msgstr "Doux"
+
+msgid "0 = Maximum Sharpness, 5 = Soft"
+msgstr "0 = Netteté maximale, 5 = Doux"
+
+msgid "Balanced"
+msgstr "Équilibré"
+
+msgid "Done"
+msgstr "Terminé"
+
+msgid "FSR 4 Upgrade"
+msgstr "Mise à niveau FSR 4"
+
+msgid "Force FSR 4 upgrade in supported games and Proton builds."
+msgstr "Forcer la mise à niveau FSR 4 dans les jeux et versions de Proton pris en charge."
+
+msgid "Max"
+msgstr "Max"
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) game installer and runner for Linux."
+msgstr "Installateur et lanceur minimaliste en GTK4/Libadwaita pour jeux Windows (.exe) sous Linux."
+
+msgid "Ray Tracing (DXR)"
+msgstr "Ray Tracing (DXR)"
+
+msgid "Enable DirectX Raytracing support in supported DirectX 12 games."
+msgstr "Activer la prise en charge de DirectX Raytracing dans les jeux DirectX 12 compatibles."
+
+msgid "DXVK Async (Async Shaders)"
+msgstr "DXVK Async (Shaders asynchrones)"
+
+msgid "Eliminate shader compilation stutter in DirectX 9/10/11 games using dxvk-gplasync."
+msgstr "Éliminer les saccades de compilation de shaders dans les jeux DirectX 9/10/11 avec dxvk-gplasync."
+
+msgid "DXVK HUD (Built-in FPS Overlay)"
+msgstr "DXVK HUD (Superposition FPS intégrée)"
+
+msgid "Display built-in DXVK frame rate and GPU load counter without third-party tools."
+msgstr "Afficher le compteur de FPS et de charge GPU intégré à DXVK sans outil tiers."
+
+msgid "FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported."
+msgstr "FSR 4 nécessite officiellement un GPU AMD Radeon série RX 6000 ou plus récent (RDNA 2+). Les anciens GPU AMD, NVIDIA ou Intel ne sont pas officiellement pris en charge."

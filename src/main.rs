@@ -5,6 +5,7 @@ mod i18n;
 mod icon;
 mod installer;
 mod proton;
+mod proton_manager;
 mod ui;
 
 use desktop::APP_ID;
@@ -12,6 +13,15 @@ use gtk4::prelude::*;
 use libadwaita as adw;
 
 fn main() -> glib::ExitCode {
+    let args: Vec<String> = std::env::args().collect();
+    if args.iter().any(|a| a == "--update-protons-bg" || a == "--update-protons") {
+        eprintln!("Doors: Running background Proton updater...");
+        if let Err(e) = proton_manager::run_background_update() {
+            eprintln!("Doors: Background update error: {e}");
+        }
+        return glib::ExitCode::SUCCESS;
+    }
+
     let app = adw::Application::builder()
         .application_id(APP_ID)
         .flags(gio::ApplicationFlags::HANDLES_OPEN | gio::ApplicationFlags::NON_UNIQUE)

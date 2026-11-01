@@ -272,3 +272,147 @@ msgstr "Masaüstü Kısayolu"
 
 msgid "Folder Name"
 msgstr "Klasör Adı"
+
+msgid "Games"
+msgstr "Oyunlar"
+
+msgid "Protons"
+msgstr "Protonlar"
+
+msgid "Compatibility Tools"
+msgstr "Uyumluluk Araçları"
+
+msgid "Automatic latest release management for gaming Proton runners."
+msgstr "Oyun Proton çalıştırıcıları için otomatik en son sürüm yönetimi."
+
+msgid "Installed:"
+msgstr "Kurulu:"
+
+msgid "Not installed"
+msgstr "Kurulu Değil"
+
+msgid "Checking latest release..."
+msgstr "En son sürüm kontrol ediliyor..."
+
+msgid "Delete Proton?"
+msgstr "Proton Silinsin mi?"
+
+msgid "Are you sure you want to delete this Proton runner?"
+msgstr "Bu Proton çalıştırıcısını silmek istediğinize emin misiniz?"
+
+msgid "Community optimized Wine/Proton with media codec patches."
+msgstr "Topluluk tarafından optimize edilmiş Wine/Proton ve medya kodek yamaları."
+
+msgid "Tailored for anime and gacha games with DXVK-gplasync."
+msgstr "Anime ve gacha oyunları için DXVK-gplasync ve özel uyumluluk yamaları."
+
+msgid "CachyOS bleeding-edge performance and Wine core optimizations."
+msgstr "CachyOS ekibinin en güncel performans ve Wine çekirdek iyileştirmeleri."
+
+msgid "Not installed in Doors"
+msgstr "Doors'ta kurulu değil"
+
+msgid "Live video streaming (RTSP/MPEG-TS) support, tailored for VRChat and media players."
+msgstr "VRChat ve oyun içi canlı video/yayın akışları (RTSP/MPEG-TS) için özel medya yamalı Proton."
+
+msgid "Already installed in Steam"
+msgstr "Steam'de zaten kurulu"
+
+msgid "Downloading..."
+msgstr "İndiriliyor..."
+
+msgid "Extracting..."
+msgstr "Arşivden çıkartılıyor..."
+
+msgid "Steam is not installed on the system."
+msgstr "Steam sistemde kurulu değil."
+
+msgid "Steam is not installed on the system"
+msgstr "Steam sistemde kurulu değil"
+
+msgid "Steam Linux Runtime (Sniper) is not installed in Steam."
+msgstr "Steam Linux Runtime (Sniper) Steam'de kurulu değil."
+
+msgid "Steam Linux Runtime (Sniper) is not installed"
+msgstr "Steam Linux Runtime (Sniper) kurulu değil"
+
+msgid "Run Proton inside Valve's isolated container environment."
+msgstr "Proton'u Valve'ın yalıtılmış konteyner ortamında çalıştır."
+
+msgid "Quality Mode"
+msgstr "Kalite Modu"
+
+msgid "Default (In-game Resolution)"
+msgstr "Varsayılan (Oyun Çözünürlüğü)"
+
+msgid "Ultra Quality (1.3x)"
+msgstr "Ultra Kalite (1.3x)"
+
+msgid "Quality (1.5x)"
+msgstr "Kalite (1.5x)"
+
+msgid "Balanced (1.7x)"
+msgstr "Dengeli (1.7x)"
+
+msgid "Performance (2.0x)"
+msgstr "Performans (2.0x)"
+
+msgid "Sharpness / Strength"
+msgstr "Keskinlik / Güç"
+
+msgid "Maximum Sharpness"
+msgstr "Maksimum Keskinlik"
+
+msgid "High"
+msgstr "Yüksek"
+
+msgid "Balanced (Default)"
+msgstr "Dengeli (Varsayılan)"
+
+msgid "Medium"
+msgstr "Orta"
+
+msgid "Low"
+msgstr "Düşük"
+
+msgid "Soft"
+msgstr "Yumuşak"
+
+msgid "0 = Maximum Sharpness, 5 = Soft"
+msgstr "0 = Maksimum Keskinlik, 5 = Yumuşak"
+
+msgid "Balanced"
+msgstr "Dengeli"
+
+msgid "Done"
+msgstr "Tamam"
+
+msgid "FSR 4 Upgrade"
+msgstr "FSR 4 Yükseltmesi"
+
+msgid "Force FSR 4 upgrade in supported games and Proton builds."
+msgstr "Desteklenen oyunlarda ve Proton sürümlerinde FSR 4 yükseltmesini zorla."
+
+msgid "Max"
+msgstr "Maks"
+
+msgid "Ray Tracing (DXR)"
+msgstr "Işın İzleme (DXR)"
+
+msgid "Enable DirectX Raytracing support in supported DirectX 12 games."
+msgstr "Desteklenen DirectX 12 oyunlarında DirectX Raytracing desteğini etkinleştir."
+
+msgid "DXVK Async (Async Shaders)"
+msgstr "DXVK Async (Asenkron Gölgelendiriciler)"
+
+msgid "Eliminate shader compilation stutter in DirectX 9/10/11 games using dxvk-gplasync."
+msgstr "dxvk-gplasync kullanarak DirectX 9/10/11 oyunlarında gölgelendirici takılmalarını gider."
+
+msgid "DXVK HUD (Built-in FPS Overlay)"
+msgstr "DXVK HUD (Dahili FPS Katmanı)"
+
+msgid "Display built-in DXVK frame rate and GPU load counter without third-party tools."
+msgstr "Harici araçlara ihtiyaç duymadan dahili DXVK kare hızı ve GPU yükü sayacını göster."
+
+msgid "FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported."
+msgstr "FSR 4, resmi olarak AMD Radeon RX 6000 serisi veya daha yeni (RDNA 2+) bir grafik kartı gerektirir. Eski AMD, NVIDIA veya Intel GPU'lar resmi olarak desteklenmez."

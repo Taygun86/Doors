@@ -269,3 +269,186 @@ msgstr "Comandă rapidă pe desktop"
 
 msgid "Folder Name"
 msgstr "Numele dosarului"
+
+msgid "Games"
+msgstr "Jocuri"
+
+msgid "Protons"
+msgstr "Protoni"
+
+msgid "Compatibility Tools"
+msgstr "Compatibility Tools"
+
+msgid "Automatic latest release management for gaming Proton runners."
+msgstr "Automatic latest release management for gaming Proton runners."
+
+msgid "Installed:"
+msgstr "Installed:"
+
+msgid "Not installed"
+msgstr "Not installed"
+
+msgid "Checking latest release..."
+msgstr "Checking latest release..."
+
+msgid "Delete Proton?"
+msgstr "Delete Proton?"
+
+msgid "Are you sure you want to delete this Proton runner?"
+msgstr "Are you sure you want to delete this Proton runner?"
+
+msgid "Community optimized Wine/Proton with media codec patches."
+msgstr "Community optimized Wine/Proton with media codec patches."
+
+msgid "Tailored for anime and gacha games with DXVK-gplasync."
+msgstr "Tailored for anime and gacha games with DXVK-gplasync."
+
+msgid "CachyOS bleeding-edge performance and Wine core optimizations."
+msgstr "CachyOS bleeding-edge performance and Wine core optimizations."
+
+msgid "Not installed in Doors"
+msgstr "Not installed in Doors"
+
+msgid "Live video streaming (RTSP/MPEG-TS) support, tailored for VRChat and media players."
+msgstr "Suport pentru streaming video live (RTSP/MPEG-TS), adaptat pentru VRChat și playere media."
+
+msgid "Already installed in Steam"
+msgstr "Deja instalat în Steam"
+
+msgid "Downloading..."
+msgstr "Se descarcă..."
+
+msgid "Extracting..."
+msgstr "Se extrage..."
+
+msgid "No Games Yet"
+msgstr "Niciun joc încă"
+
+msgid "Game Title"
+msgstr "Titlul jocului"
+
+msgid "Delete Game?"
+msgstr "Ștergeți jocul?"
+
+msgid "Are you sure you want to delete this game and its prefix?"
+msgstr "Sigur doriți să ștergeți acest joc și prefixul său?"
+
+msgid "Completed! Launching game..."
+msgstr "Finalizat! Se lansează jocul..."
+
+msgid "Game installation completed!"
+msgstr "Instalarea jocului a fost finalizată!"
+
+msgid "Installed Games"
+msgstr "Jocuri instalate"
+
+msgid "Delete Game and Prefix"
+msgstr "Ștergeți jocul și prefixul"
+
+msgid "Open Game Folder"
+msgstr "Deschideți dosarul jocului"
+
+msgid "Browse game files and prefix directory in file manager."
+msgstr "Răsfoiți fișierele jocului și directorul prefixului în managerul de fișiere."
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching game files."
+msgstr "Ștergeți și recreați prefixul Wine/Proton (pfx) fără a atinge fișierele jocului."
+
+msgid "Manage how games are displayed on screen using Gamescope."
+msgstr "Gestionați modul în care jocurile sunt afișate pe ecran folosind Gamescope."
+
+msgid "Steam is not installed on the system."
+msgstr "Steam nu este instalat pe sistem."
+
+msgid "Steam is not installed on the system"
+msgstr "Steam nu este instalat pe sistem"
+
+msgid "Steam Linux Runtime (Sniper) is not installed in Steam."
+msgstr "Steam Linux Runtime (Sniper) nu este instalat în Steam."
+
+msgid "Steam Linux Runtime (Sniper) is not installed"
+msgstr "Steam Linux Runtime (Sniper) nu este instalat"
+
+msgid "Run Proton inside Valve's isolated container environment."
+msgstr "Rulați Proton în mediul de container izolat al Valve."
+
+msgid "Quality Mode"
+msgstr "Mod de calitate"
+
+msgid "Default (In-game Resolution)"
+msgstr "Implicit (Rezoluția jocului)"
+
+msgid "Ultra Quality (1.3x)"
+msgstr "Calitate ultra (1.3x)"
+
+msgid "Quality (1.5x)"
+msgstr "Calitate (1.5x)"
+
+msgid "Balanced (1.7x)"
+msgstr "Echilibrat (1.7x)"
+
+msgid "Performance (2.0x)"
+msgstr "Performanță (2.0x)"
+
+msgid "Sharpness / Strength"
+msgstr "Claritate / Putere"
+
+msgid "Maximum Sharpness"
+msgstr "Claritate maximă"
+
+msgid "High"
+msgstr "Ridicată"
+
+msgid "Balanced (Default)"
+msgstr "Echilibrată (Implicit)"
+
+msgid "Medium"
+msgstr "Medie"
+
+msgid "Low"
+msgstr "Scăzută"
+
+msgid "Soft"
+msgstr "Fină"
+
+msgid "0 = Maximum Sharpness, 5 = Soft"
+msgstr "0 = Claritate maximă, 5 = Fin"
+
+msgid "Balanced"
+msgstr "Echilibrat"
+
+msgid "Done"
+msgstr "Gata"
+
+msgid "FSR 4 Upgrade"
+msgstr "Upgrade la FSR 4"
+
+msgid "Force FSR 4 upgrade in supported games and Proton builds."
+msgstr "Forțează upgrade-ul la FSR 4 în jocurile și versiunile Proton compatibile."
+
+msgid "Max"
+msgstr "Max."
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) game installer and runner for Linux."
+msgstr "Instalator și lansator minimalist în GTK4/Libadwaita de jocuri Windows (.exe) pentru Linux."
+
+msgid "Ray Tracing (DXR)"
+msgstr "Urmărire a razelor (DXR)"
+
+msgid "Enable DirectX Raytracing support in supported DirectX 12 games."
+msgstr "Activează suportul DirectX Raytracing în jocurile DirectX 12 compatibile."
+
+msgid "DXVK Async (Async Shaders)"
+msgstr "DXVK Async (Shadere asincrone)"
+
+msgid "Eliminate shader compilation stutter in DirectX 9/10/11 games using dxvk-gplasync."
+msgstr "Elimină sacadarea la compilarea shaderelor în jocurile DirectX 9/10/11 folosind dxvk-gplasync."
+
+msgid "DXVK HUD (Built-in FPS Overlay)"
+msgstr "DXVK HUD (Afișaj FPS integrat)"
+
+msgid "Display built-in DXVK frame rate and GPU load counter without third-party tools."
+msgstr "Afișează contorul integrat DXVK pentru FPS și încărcarea GPU fără instrumente terțe."
+
+msgid "FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported."
+msgstr "FSR 4 necesită oficial un GPU AMD Radeon din seria RX 6000 sau mai nou (RDNA 2+). GPU-urile AMD mai vechi, NVIDIA sau Intel nu sunt acceptate oficial."

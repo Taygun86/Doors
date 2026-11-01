@@ -269,3 +269,186 @@ msgstr "Lối tắt màn hình"
 
 msgid "Folder Name"
 msgstr "Tên thư mục"
+
+msgid "Games"
+msgstr "Trò chơi"
+
+msgid "Protons"
+msgstr "Proton"
+
+msgid "Compatibility Tools"
+msgstr "Compatibility Tools"
+
+msgid "Automatic latest release management for gaming Proton runners."
+msgstr "Automatic latest release management for gaming Proton runners."
+
+msgid "Installed:"
+msgstr "Installed:"
+
+msgid "Not installed"
+msgstr "Not installed"
+
+msgid "Checking latest release..."
+msgstr "Checking latest release..."
+
+msgid "Delete Proton?"
+msgstr "Delete Proton?"
+
+msgid "Are you sure you want to delete this Proton runner?"
+msgstr "Are you sure you want to delete this Proton runner?"
+
+msgid "Community optimized Wine/Proton with media codec patches."
+msgstr "Community optimized Wine/Proton with media codec patches."
+
+msgid "Tailored for anime and gacha games with DXVK-gplasync."
+msgstr "Tailored for anime and gacha games with DXVK-gplasync."
+
+msgid "CachyOS bleeding-edge performance and Wine core optimizations."
+msgstr "CachyOS bleeding-edge performance and Wine core optimizations."
+
+msgid "Not installed in Doors"
+msgstr "Not installed in Doors"
+
+msgid "Live video streaming (RTSP/MPEG-TS) support, tailored for VRChat and media players."
+msgstr "Hỗ trợ phát video trực tiếp (RTSP/MPEG-TS), được thiết kế riêng cho VRChat và trình phát đa phương tiện."
+
+msgid "Already installed in Steam"
+msgstr "Đã được cài đặt trong Steam"
+
+msgid "Downloading..."
+msgstr "Đang tải xuống..."
+
+msgid "Extracting..."
+msgstr "Đang giải nén..."
+
+msgid "No Games Yet"
+msgstr "Chưa có trò chơi nào"
+
+msgid "Game Title"
+msgstr "Tựa đề trò chơi"
+
+msgid "Delete Game?"
+msgstr "Xóa trò chơi?"
+
+msgid "Are you sure you want to delete this game and its prefix?"
+msgstr "Bạn có chắc chắn muốn xóa trò chơi này và prefix của nó không?"
+
+msgid "Completed! Launching game..."
+msgstr "Hoàn tất! Đang khởi chạy trò chơi..."
+
+msgid "Game installation completed!"
+msgstr "Cài đặt trò chơi hoàn tất!"
+
+msgid "Installed Games"
+msgstr "Trò chơi đã cài đặt"
+
+msgid "Delete Game and Prefix"
+msgstr "Xóa trò chơi và prefix"
+
+msgid "Open Game Folder"
+msgstr "Mở thư mục trò chơi"
+
+msgid "Browse game files and prefix directory in file manager."
+msgstr "Duyệt tệp trò chơi và thư mục prefix trong trình quản lý tệp."
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching game files."
+msgstr "Xóa và tạo lại prefix Wine/Proton (pfx) mà không ảnh hưởng đến các tệp trò chơi."
+
+msgid "Manage how games are displayed on screen using Gamescope."
+msgstr "Quản lý cách trò chơi hiển thị trên màn hình bằng Gamescope."
+
+msgid "Steam is not installed on the system."
+msgstr "Steam chưa được cài đặt trên hệ thống."
+
+msgid "Steam is not installed on the system"
+msgstr "Steam chưa được cài đặt trên hệ thống"
+
+msgid "Steam Linux Runtime (Sniper) is not installed in Steam."
+msgstr "Steam Linux Runtime (Sniper) chưa được cài đặt trong Steam."
+
+msgid "Steam Linux Runtime (Sniper) is not installed"
+msgstr "Steam Linux Runtime (Sniper) chưa được cài đặt"
+
+msgid "Run Proton inside Valve's isolated container environment."
+msgstr "Chạy Proton bên trong môi trường container cô lập của Valve."
+
+msgid "Quality Mode"
+msgstr "Chế độ chất lượng"
+
+msgid "Default (In-game Resolution)"
+msgstr "Mặc định (Độ phân giải trò chơi)"
+
+msgid "Ultra Quality (1.3x)"
+msgstr "Chất lượng cực cao (1.3x)"
+
+msgid "Quality (1.5x)"
+msgstr "Chất lượng (1.5x)"
+
+msgid "Balanced (1.7x)"
+msgstr "Cân bằng (1.7x)"
+
+msgid "Performance (2.0x)"
+msgstr "Hiệu suất (2.0x)"
+
+msgid "Sharpness / Strength"
+msgstr "Độ sắc nét / Cường độ"
+
+msgid "Maximum Sharpness"
+msgstr "Độ sắc nét tối đa"
+
+msgid "High"
+msgstr "Cao"
+
+msgid "Balanced (Default)"
+msgstr "Cân bằng (Mặc định)"
+
+msgid "Medium"
+msgstr "Trung bình"
+
+msgid "Low"
+msgstr "Thấp"
+
+msgid "Soft"
+msgstr "Mềm"
+
+msgid "0 = Maximum Sharpness, 5 = Soft"
+msgstr "0 = Độ sắc nét tối đa, 5 = Mềm"
+
+msgid "Balanced"
+msgstr "Cân bằng"
+
+msgid "Done"
+msgstr "Xong"
+
+msgid "FSR 4 Upgrade"
+msgstr "Nâng cấp FSR 4"
+
+msgid "Force FSR 4 upgrade in supported games and Proton builds."
+msgstr "Bắt buộc nâng cấp FSR 4 trong các trò chơi và bản dựng Proton được hỗ trợ."
+
+msgid "Max"
+msgstr "Tối đa"
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) game installer and runner for Linux."
+msgstr "Trình cài đặt và chạy trò chơi Windows (.exe) GTK4/Libadwaita tối giản cho Linux."
+
+msgid "Ray Tracing (DXR)"
+msgstr "Dò tia (DXR)"
+
+msgid "Enable DirectX Raytracing support in supported DirectX 12 games."
+msgstr "Bật hỗ trợ DirectX Raytracing trong các trò chơi DirectX 12 được hỗ trợ."
+
+msgid "DXVK Async (Async Shaders)"
+msgstr "DXVK Async (Shader không đồng bộ)"
+
+msgid "Eliminate shader compilation stutter in DirectX 9/10/11 games using dxvk-gplasync."
+msgstr "Loại bỏ giật lag do biên dịch shader trong các trò chơi DirectX 9/10/11 bằng dxvk-gplasync."
+
+msgid "DXVK HUD (Built-in FPS Overlay)"
+msgstr "DXVK HUD (Lớp phủ FPS tích hợp)"
+
+msgid "Display built-in DXVK frame rate and GPU load counter without third-party tools."
+msgstr "Hiển thị bộ đếm tốc độ khung hình và tải GPU tích hợp của DXVK mà không cần công cụ bên thứ ba."
+
+msgid "FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported."
+msgstr "FSR 4 chính thức yêu cầu GPU dòng AMD Radeon RX 6000 trở lên (RDNA 2+). Các GPU AMD cũ hơn, NVIDIA hoặc Intel không được hỗ trợ chính thức."

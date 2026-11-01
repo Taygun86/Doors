@@ -23,6 +23,10 @@ fn default_true() -> bool {
     true
 }
 
+fn default_fsr_strength() -> u32 {
+    2
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DoorsGameConfig {
     pub name: String,
@@ -61,10 +65,24 @@ pub struct DoorsGameConfig {
     pub nvapi: bool,
     #[serde(default)]
     pub fsr: bool,
+    #[serde(default = "default_fsr_strength")]
+    pub fsr_strength: u32,
+    #[serde(default)]
+    pub fsr_mode: String,
+    #[serde(default)]
+    pub fsr4: bool,
+    #[serde(default)]
+    pub ray_tracing: bool,
+    #[serde(default)]
+    pub dxvk_async: bool,
+    #[serde(default)]
+    pub dxvk_hud: bool,
     #[serde(default)]
     pub vkbasalt: bool,
     #[serde(default)]
     pub desktop_shortcut: bool,
+    #[serde(default)]
+    pub steam_runtime: bool,
 }
 
 impl DoorsGameConfig {
@@ -104,8 +122,15 @@ impl DoorsGameConfig {
             discrete_gpu: true,
             nvapi: false,
             fsr: false,
+            fsr_strength: 2,
+            fsr_mode: String::new(),
+            fsr4: false,
+            ray_tracing: false,
+            dxvk_async: false,
+            dxvk_hud: false,
             vkbasalt: false,
             desktop_shortcut: false,
+            steam_runtime: false,
         }
     }
 

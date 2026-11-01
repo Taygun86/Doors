@@ -269,3 +269,186 @@ msgstr "Asztali parancsikon"
 
 msgid "Folder Name"
 msgstr "Mappanév"
+
+msgid "Games"
+msgstr "Játékok"
+
+msgid "Protons"
+msgstr "Protonok"
+
+msgid "Compatibility Tools"
+msgstr "Compatibility Tools"
+
+msgid "Automatic latest release management for gaming Proton runners."
+msgstr "Automatic latest release management for gaming Proton runners."
+
+msgid "Installed:"
+msgstr "Installed:"
+
+msgid "Not installed"
+msgstr "Not installed"
+
+msgid "Checking latest release..."
+msgstr "Checking latest release..."
+
+msgid "Delete Proton?"
+msgstr "Delete Proton?"
+
+msgid "Are you sure you want to delete this Proton runner?"
+msgstr "Are you sure you want to delete this Proton runner?"
+
+msgid "Community optimized Wine/Proton with media codec patches."
+msgstr "Community optimized Wine/Proton with media codec patches."
+
+msgid "Tailored for anime and gacha games with DXVK-gplasync."
+msgstr "Tailored for anime and gacha games with DXVK-gplasync."
+
+msgid "CachyOS bleeding-edge performance and Wine core optimizations."
+msgstr "CachyOS bleeding-edge performance and Wine core optimizations."
+
+msgid "Not installed in Doors"
+msgstr "Not installed in Doors"
+
+msgid "Live video streaming (RTSP/MPEG-TS) support, tailored for VRChat and media players."
+msgstr "Élő videostreaming (RTSP/MPEG-TS) támogatás VRChathez és médialejátszókhoz."
+
+msgid "Already installed in Steam"
+msgstr "Már telepítve van a Steamben"
+
+msgid "Downloading..."
+msgstr "Letöltés..."
+
+msgid "Extracting..."
+msgstr "Kicsomagolás..."
+
+msgid "No Games Yet"
+msgstr "Még nincsenek játékok"
+
+msgid "Game Title"
+msgstr "Játék címe"
+
+msgid "Delete Game?"
+msgstr "Törli a játékot?"
+
+msgid "Are you sure you want to delete this game and its prefix?"
+msgstr "Biztosan törölni szeretné ezt a játékot és a prefixét?"
+
+msgid "Completed! Launching game..."
+msgstr "Kész! Játék indítása..."
+
+msgid "Game installation completed!"
+msgstr "A játék telepítése befejeződött!"
+
+msgid "Installed Games"
+msgstr "Telepített játékok"
+
+msgid "Delete Game and Prefix"
+msgstr "Játék és prefix törlése"
+
+msgid "Open Game Folder"
+msgstr "Játékmappa megnyitása"
+
+msgid "Browse game files and prefix directory in file manager."
+msgstr "Játékfájlok és prefixkönyvtár böngészése a fájlkezelőben."
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching game files."
+msgstr "A Wine/Proton prefix (pfx) törlése és újralétrehozása a játékfájlok érintése nélkül."
+
+msgid "Manage how games are displayed on screen using Gamescope."
+msgstr "Kezelje a játékok képernyőn történő megjelenítését a Gamescope segítségével."
+
+msgid "Steam is not installed on the system."
+msgstr "A Steam nincs telepítve a rendszerre."
+
+msgid "Steam is not installed on the system"
+msgstr "A Steam nincs telepítve a rendszerre"
+
+msgid "Steam Linux Runtime (Sniper) is not installed in Steam."
+msgstr "A Steam Linux Runtime (Sniper) nincs telepítve a Steamben."
+
+msgid "Steam Linux Runtime (Sniper) is not installed"
+msgstr "A Steam Linux Runtime (Sniper) nincs telepítve"
+
+msgid "Run Proton inside Valve's isolated container environment."
+msgstr "Futtassa a Protont a Valve elszigetelt konténerkörnyezetében."
+
+msgid "Quality Mode"
+msgstr "Minőségi mód"
+
+msgid "Default (In-game Resolution)"
+msgstr "Alapértelmezett (Játékfelbontás)"
+
+msgid "Ultra Quality (1.3x)"
+msgstr "Ultraminőség (1.3x)"
+
+msgid "Quality (1.5x)"
+msgstr "Minőség (1.5x)"
+
+msgid "Balanced (1.7x)"
+msgstr "Kiegyensúlyozott (1.7x)"
+
+msgid "Performance (2.0x)"
+msgstr "Teljesítmény (2.0x)"
+
+msgid "Sharpness / Strength"
+msgstr "Élesség / Erősség"
+
+msgid "Maximum Sharpness"
+msgstr "Maximális élesség"
+
+msgid "High"
+msgstr "Magas"
+
+msgid "Balanced (Default)"
+msgstr "Kiegyensúlyozott (Alapértelmezett)"
+
+msgid "Medium"
+msgstr "Közepes"
+
+msgid "Low"
+msgstr "Alacsony"
+
+msgid "Soft"
+msgstr "Lágy"
+
+msgid "0 = Maximum Sharpness, 5 = Soft"
+msgstr "0 = Maximális élesség, 5 = Lágy"
+
+msgid "Balanced"
+msgstr "Kiegyensúlyozott"
+
+msgid "Done"
+msgstr "Kész"
+
+msgid "FSR 4 Upgrade"
+msgstr "FSR 4 frissítés"
+
+msgid "Force FSR 4 upgrade in supported games and Proton builds."
+msgstr "FSR 4 frissítés kényszerítése a támogatott játékokban és Proton verziókban."
+
+msgid "Max"
+msgstr "Max."
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) game installer and runner for Linux."
+msgstr "Minimális GTK4/Libadwaita Windows (.exe) játéktelepítő és -indító Linuxra."
+
+msgid "Ray Tracing (DXR)"
+msgstr "Sugárkövetés (DXR)"
+
+msgid "Enable DirectX Raytracing support in supported DirectX 12 games."
+msgstr "DirectX Raytracing támogatás engedélyezése a támogatott DirectX 12 játékokban."
+
+msgid "DXVK Async (Async Shaders)"
+msgstr "DXVK Async (Aszinkron árnyékolók)"
+
+msgid "Eliminate shader compilation stutter in DirectX 9/10/11 games using dxvk-gplasync."
+msgstr "Árnyékoló-fordítási akadások megszüntetése DirectX 9/10/11 játékokban a dxvk-gplasync segítségével."
+
+msgid "DXVK HUD (Built-in FPS Overlay)"
+msgstr "DXVK HUD (Beépített FPS számláló)"
+
+msgid "Display built-in DXVK frame rate and GPU load counter without third-party tools."
+msgstr "Beépített DXVK képkockasebesség és GPU-terhelés megjelenítése külső eszközök nélkül."
+
+msgid "FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported."
+msgstr "Az FSR 4 hivatalosan AMD Radeon RX 6000 sorozatú vagy újabb (RDNA 2+) GPU-t igényel. A régebbi AMD, NVIDIA vagy Intel GPU-k hivatalosan nem támogatottak."

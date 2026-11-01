@@ -269,3 +269,186 @@ msgstr "Συντόμευση επιφάνειας εργασίας"
 
 msgid "Folder Name"
 msgstr "Όνομα φακέλου"
+
+msgid "Games"
+msgstr "Παιχνίδια"
+
+msgid "Protons"
+msgstr "Protons"
+
+msgid "Compatibility Tools"
+msgstr "Compatibility Tools"
+
+msgid "Automatic latest release management for gaming Proton runners."
+msgstr "Automatic latest release management for gaming Proton runners."
+
+msgid "Installed:"
+msgstr "Installed:"
+
+msgid "Not installed"
+msgstr "Not installed"
+
+msgid "Checking latest release..."
+msgstr "Checking latest release..."
+
+msgid "Delete Proton?"
+msgstr "Delete Proton?"
+
+msgid "Are you sure you want to delete this Proton runner?"
+msgstr "Are you sure you want to delete this Proton runner?"
+
+msgid "Community optimized Wine/Proton with media codec patches."
+msgstr "Community optimized Wine/Proton with media codec patches."
+
+msgid "Tailored for anime and gacha games with DXVK-gplasync."
+msgstr "Tailored for anime and gacha games with DXVK-gplasync."
+
+msgid "CachyOS bleeding-edge performance and Wine core optimizations."
+msgstr "CachyOS bleeding-edge performance and Wine core optimizations."
+
+msgid "Not installed in Doors"
+msgstr "Not installed in Doors"
+
+msgid "Live video streaming (RTSP/MPEG-TS) support, tailored for VRChat and media players."
+msgstr "Υποστήριξη ζωντανής ροής βίντεο (RTSP/MPEG-TS), προσαρμοσμένη για το VRChat και προγράμματα αναπαραγωγής πολυμέσων."
+
+msgid "Already installed in Steam"
+msgstr "Ήδη εγκατεστημένο στο Steam"
+
+msgid "Downloading..."
+msgstr "Λήψη..."
+
+msgid "Extracting..."
+msgstr "Εξαγωγή..."
+
+msgid "No Games Yet"
+msgstr "Δεν υπάρχουν παιχνίδια ακόμα"
+
+msgid "Game Title"
+msgstr "Τίτλος παιχνιδιού"
+
+msgid "Delete Game?"
+msgstr "Διαγραφή παιχνιδιού;"
+
+msgid "Are you sure you want to delete this game and its prefix?"
+msgstr "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτό το παιχνίδι και το πρόθεμά του;"
+
+msgid "Completed! Launching game..."
+msgstr "Ολοκληρώθηκε! Εκκίνηση παιχνιδιού..."
+
+msgid "Game installation completed!"
+msgstr "Η εγκατάσταση του παιχνιδιού ολοκληρώθηκε!"
+
+msgid "Installed Games"
+msgstr "Εγκατεστημένα παιχνίδια"
+
+msgid "Delete Game and Prefix"
+msgstr "Διαγραφή παιχνιδιού και προθέματος"
+
+msgid "Open Game Folder"
+msgstr "Άνοιγμα φακέλου παιχνιδιού"
+
+msgid "Browse game files and prefix directory in file manager."
+msgstr "Περιήγηση στα αρχεία παιχνιδιού και στον κατάλογο προθέματος στον διαχειριστή αρχείων."
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching game files."
+msgstr "Διαγραφή και εκ νέου δημιουργία του προθέματος Wine/Proton (pfx) χωρίς να αγγίξετε τα αρχεία του παιχνιδιού."
+
+msgid "Manage how games are displayed on screen using Gamescope."
+msgstr "Διαχειριστείτε τον τρόπο εμφάνισης των παιχνιδιών στην οθόνη χρησιμοποιώντας το Gamescope."
+
+msgid "Steam is not installed on the system."
+msgstr "Το Steam δεν είναι εγκατεστημένο στο σύστημα."
+
+msgid "Steam is not installed on the system"
+msgstr "Το Steam δεν είναι εγκατεστημένο στο σύστημα"
+
+msgid "Steam Linux Runtime (Sniper) is not installed in Steam."
+msgstr "Το Steam Linux Runtime (Sniper) δεν είναι εγκατεστημένο στο Steam."
+
+msgid "Steam Linux Runtime (Sniper) is not installed"
+msgstr "Το Steam Linux Runtime (Sniper) δεν είναι εγκατεστημένο"
+
+msgid "Run Proton inside Valve's isolated container environment."
+msgstr "Εκτελέστε το Proton μέσα στο απομονωμένο περιβάλλον κοντέινερ της Valve."
+
+msgid "Quality Mode"
+msgstr "Λειτουργία ποιότητας"
+
+msgid "Default (In-game Resolution)"
+msgstr "Προεπιλογή (Ανάλυση παιχνιδιού)"
+
+msgid "Ultra Quality (1.3x)"
+msgstr "Εξαιρετική ποιότητα (1.3x)"
+
+msgid "Quality (1.5x)"
+msgstr "Ποιότητα (1.5x)"
+
+msgid "Balanced (1.7x)"
+msgstr "Ισορροπημένο (1.7x)"
+
+msgid "Performance (2.0x)"
+msgstr "Απόδοση (2.0x)"
+
+msgid "Sharpness / Strength"
+msgstr "Ευκρίνεια / Ισχύς"
+
+msgid "Maximum Sharpness"
+msgstr "Μέγιστη ευκρίνεια"
+
+msgid "High"
+msgstr "Υψηλό"
+
+msgid "Balanced (Default)"
+msgstr "Ισορροπημένο (Προεπιλογή)"
+
+msgid "Medium"
+msgstr "Μέτριο"
+
+msgid "Low"
+msgstr "Χαμηλό"
+
+msgid "Soft"
+msgstr "Απαλό"
+
+msgid "0 = Maximum Sharpness, 5 = Soft"
+msgstr "0 = Μέγιστη οξύτητα, 5 = Απαλό"
+
+msgid "Balanced"
+msgstr "Ισορροπημένο"
+
+msgid "Done"
+msgstr "Τέλος"
+
+msgid "FSR 4 Upgrade"
+msgstr "Αναβάθμιση FSR 4"
+
+msgid "Force FSR 4 upgrade in supported games and Proton builds."
+msgstr "Επιβολή αναβάθμισης FSR 4 σε υποστηριζόμενα παιχνίδια και εκδόσεις Proton."
+
+msgid "Max"
+msgstr "Μέγ."
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) game installer and runner for Linux."
+msgstr "Μινιμαλιστικός εγκαταστάτης και εκτελεστής παιχνιδιών Windows (.exe) GTK4/Libadwaita για Linux."
+
+msgid "Ray Tracing (DXR)"
+msgstr "Ιχνηλάτηση ακτίνων (DXR)"
+
+msgid "Enable DirectX Raytracing support in supported DirectX 12 games."
+msgstr "Ενεργοποίηση υποστήριξης DirectX Raytracing σε υποστηριζόμενα παιχνίδια DirectX 12."
+
+msgid "DXVK Async (Async Shaders)"
+msgstr "DXVK Async (Ασύγχρονοι σκιαστές)"
+
+msgid "Eliminate shader compilation stutter in DirectX 9/10/11 games using dxvk-gplasync."
+msgstr "Εξάλειψη κολλημάτων μεταγλώττισης σκιαστών σε παιχνίδια DirectX 9/10/11 με το dxvk-gplasync."
+
+msgid "DXVK HUD (Built-in FPS Overlay)"
+msgstr "DXVK HUD (Ενσωματωμένη ένδειξη FPS)"
+
+msgid "Display built-in DXVK frame rate and GPU load counter without third-party tools."
+msgstr "Εμφάνιση ενσωματωμένου μετρητή FPS και φορτίου GPU του DXVK χωρίς εργαλεία τρίτων."
+
+msgid "FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported."
+msgstr "Το FSR 4 απαιτεί επίσημα GPU AMD Radeon σειράς RX 6000 ή νεότερη (RDNA 2+). Παλαιότερες GPU AMD, NVIDIA ή Intel δεν υποστηρίζονται επίσημα."

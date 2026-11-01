@@ -269,3 +269,186 @@ msgstr "میانبر دسکتاپ"
 
 msgid "Folder Name"
 msgstr "نام پوشه"
+
+msgid "Games"
+msgstr "بازی‌ها"
+
+msgid "Protons"
+msgstr "پروتون‌ها"
+
+msgid "Compatibility Tools"
+msgstr "Compatibility Tools"
+
+msgid "Automatic latest release management for gaming Proton runners."
+msgstr "Automatic latest release management for gaming Proton runners."
+
+msgid "Installed:"
+msgstr "Installed:"
+
+msgid "Not installed"
+msgstr "Not installed"
+
+msgid "Checking latest release..."
+msgstr "Checking latest release..."
+
+msgid "Delete Proton?"
+msgstr "Delete Proton?"
+
+msgid "Are you sure you want to delete this Proton runner?"
+msgstr "Are you sure you want to delete this Proton runner?"
+
+msgid "Community optimized Wine/Proton with media codec patches."
+msgstr "Community optimized Wine/Proton with media codec patches."
+
+msgid "Tailored for anime and gacha games with DXVK-gplasync."
+msgstr "Tailored for anime and gacha games with DXVK-gplasync."
+
+msgid "CachyOS bleeding-edge performance and Wine core optimizations."
+msgstr "CachyOS bleeding-edge performance and Wine core optimizations."
+
+msgid "Not installed in Doors"
+msgstr "Not installed in Doors"
+
+msgid "Live video streaming (RTSP/MPEG-TS) support, tailored for VRChat and media players."
+msgstr "پشتیبانی از پخش زنده ویدیو (RTSP/MPEG-TS)، ویژه VRChat و پخش‌کننده‌های رسانه."
+
+msgid "Already installed in Steam"
+msgstr "قبلاً در Steam نصب شده است"
+
+msgid "Downloading..."
+msgstr "در حال دانلود..."
+
+msgid "Extracting..."
+msgstr "در حال استخراج..."
+
+msgid "No Games Yet"
+msgstr "هنوز بازی وجود ندارد"
+
+msgid "Game Title"
+msgstr "عنوان بازی"
+
+msgid "Delete Game?"
+msgstr "حذف بازی؟"
+
+msgid "Are you sure you want to delete this game and its prefix?"
+msgstr "آیا مطمئن هستید که می‌خواهید این بازی و پیشوند آن را حذف کنید؟"
+
+msgid "Completed! Launching game..."
+msgstr "تکمیل شد! در حال اجرای بازی..."
+
+msgid "Game installation completed!"
+msgstr "نصب بازی کامل شد!"
+
+msgid "Installed Games"
+msgstr "بازی‌های نصب‌شده"
+
+msgid "Delete Game and Prefix"
+msgstr "حذف بازی و پیشوند"
+
+msgid "Open Game Folder"
+msgstr "باز کردن پوشه بازی"
+
+msgid "Browse game files and prefix directory in file manager."
+msgstr "مرور فایل‌های بازی و پوشه پیشوند در مدیر فایل."
+
+msgid "Delete and recreate the Wine/Proton prefix (pfx) without touching game files."
+msgstr "حذف و ایجاد مجدد پیشوند Wine/Proton (pfx) بدون دست زدن به فایل‌های بازی."
+
+msgid "Manage how games are displayed on screen using Gamescope."
+msgstr "نحوه نمایش بازی‌ها بر روی صفحه را با استفاده از Gamescope مدیریت کنید."
+
+msgid "Steam is not installed on the system."
+msgstr "Steam روی سیستم نصب نیست."
+
+msgid "Steam is not installed on the system"
+msgstr "Steam روی سیستم نصب نیست"
+
+msgid "Steam Linux Runtime (Sniper) is not installed in Steam."
+msgstr "Steam Linux Runtime (Sniper) در Steam نصب نشده است."
+
+msgid "Steam Linux Runtime (Sniper) is not installed"
+msgstr "Steam Linux Runtime (Sniper) نصب نیست"
+
+msgid "Run Proton inside Valve's isolated container environment."
+msgstr "اجرای Proton در محیط کانتینر ایزوله Valve."
+
+msgid "Quality Mode"
+msgstr "حالت کیفیت"
+
+msgid "Default (In-game Resolution)"
+msgstr "پیش‌فرض (وضوح بازی)"
+
+msgid "Ultra Quality (1.3x)"
+msgstr "کیفیت فوق‌العاده (1.3x)"
+
+msgid "Quality (1.5x)"
+msgstr "کیفیت (1.5x)"
+
+msgid "Balanced (1.7x)"
+msgstr "متعادل (1.7x)"
+
+msgid "Performance (2.0x)"
+msgstr "عملکرد (2.0x)"
+
+msgid "Sharpness / Strength"
+msgstr "وضوح / قدرت"
+
+msgid "Maximum Sharpness"
+msgstr "حداکثر وضوح"
+
+msgid "High"
+msgstr "زیاد"
+
+msgid "Balanced (Default)"
+msgstr "متعادل (پیش‌فرض)"
+
+msgid "Medium"
+msgstr "متوسط"
+
+msgid "Low"
+msgstr "کم"
+
+msgid "Soft"
+msgstr "نرم"
+
+msgid "0 = Maximum Sharpness, 5 = Soft"
+msgstr "0 = بیشترین وضوح، 5 = ملایم"
+
+msgid "Balanced"
+msgstr "متعادل"
+
+msgid "Done"
+msgstr "انجام شد"
+
+msgid "FSR 4 Upgrade"
+msgstr "ارتقا به FSR 4"
+
+msgid "Force FSR 4 upgrade in supported games and Proton builds."
+msgstr "اجبار به ارتقای FSR 4 در بازی‌ها و نسخه‌های پشتیبانی‌شده Proton."
+
+msgid "Max"
+msgstr "حداکثر"
+
+msgid "Minimal GTK4/Libadwaita Windows (.exe) game installer and runner for Linux."
+msgstr "نصب‌کننده و اجراکننده مینیمال بازی‌های ویندوز (.exe) با GTK4/Libadwaita برای لینوکس."
+
+msgid "Ray Tracing (DXR)"
+msgstr "رهگیری پرتو (DXR)"
+
+msgid "Enable DirectX Raytracing support in supported DirectX 12 games."
+msgstr "فعال‌سازی پشتیبانی از DirectX Raytracing در بازی‌های پشتیبانی‌شده DirectX 12."
+
+msgid "DXVK Async (Async Shaders)"
+msgstr "DXVK ناهمگام (شیدرهای ناهمگام)"
+
+msgid "Eliminate shader compilation stutter in DirectX 9/10/11 games using dxvk-gplasync."
+msgstr "حذف لگ کامپایل شیدر در بازی‌های DirectX 9/10/11 با استفاده از dxvk-gplasync."
+
+msgid "DXVK HUD (Built-in FPS Overlay)"
+msgstr "DXVK HUD (نمایشگر FPS داخلی)"
+
+msgid "Display built-in DXVK frame rate and GPU load counter without third-party tools."
+msgstr "نمایش نرخ فریم و بار پردازنده گرافیکی داخلی DXVK بدون نیاز به ابزارهای جانبی."
+
+msgid "FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported."
+msgstr "قابلیت FSR 4 رسماً به کارت گرافیک سری AMD Radeon RX 6000 یا جدیدتر (RDNA 2+) نیاز دارد. کارت‌های قدیمی‌تر AMD، NVIDIA یا Intel رسماً پشتیبانی نمی‌شوند."

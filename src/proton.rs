@@ -66,6 +66,85 @@ pub fn has_vkbasalt() -> bool {
     candidates.iter().any(|p| Path::new(p).exists()) || has_host_binary("vkbasalt")
 }
 
+/// Check if the system has an AMD GPU with RDNA 2, RDNA 3, or RDNA 4 architecture
+/// which officially supports FSR 4.
+pub fn has_fsr4_supported_gpu() -> bool {
+    // 1. Try checking via lspci
+    let mut cmd = crate::proton_manager::build_command("lspci");
+    if let Ok(output) = cmd.output() {
+        if output.status.success() {
+            let stdout = String::from_utf8_lossy(&output.stdout).to_lowercase();
+            for line in stdout.lines() {
+                if line.contains("vga compatible controller")
+                    || line.contains("3d controller")
+                    || line.contains("display controller")
+                {
+                    if line.contains("advanced micro devices")
+                        || line.contains("amd")
+                        || line.contains("ati")
+                    {
+                        if line.contains("navi 2")
+                            || line.contains("navi 3")
+                            || line.contains("navi 4")
+                            || line.contains("rdna 2")
+                            || line.contains("rdna 3")
+                            || line.contains("rdna 4")
+                            || line.contains("rx 6")
+                            || line.contains("rx 7")
+                            || line.contains("rx 9")
+                            || line.contains("van gogh")
+                            || line.contains("rembrandt")
+                            || line.contains("phoenix")
+                            || line.contains("hawk point")
+                            || line.contains("strix")
+                            || line.contains("z1")
+                            || line.contains("z2")
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // 2. Fallback: inspect /sys/class/drm/card*/device/uevent
+    if let Ok(entries) = fs::read_dir("/sys/class/drm") {
+        for entry in entries.flatten() {
+            let name = entry.file_name();
+            let name_str = name.to_string_lossy();
+            if name_str.starts_with("card") && !name_str.contains('-') {
+                let uevent_path = entry.path().join("device/uevent");
+                if let Ok(content) = fs::read_to_string(uevent_path) {
+                    let mut is_amd = false;
+                    let mut pci_id = "";
+                    for line in content.lines() {
+                        if line == "DRIVER=amdgpu" {
+                            is_amd = true;
+                        }
+                        if let Some(id) = line.strip_prefix("PCI_ID=") {
+                            pci_id = id.trim();
+                        }
+                    }
+                    if is_amd || pci_id.starts_with("1002:") {
+                        let dev_id_hex = pci_id.split(':').nth(1).unwrap_or("");
+                        if let Ok(dev_id) = u32::from_str_radix(dev_id_hex, 16) {
+                            // Navi 2x, 3x, 4x: 0x7300..=0x75ff, modern APUs: 0x15bf..=0x16ff
+                            if (0x7300..=0x75ff).contains(&dev_id)
+                                || (0x15bf..=0x16ff).contains(&dev_id)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    false
+}
+
 fn is_executable_file(path: &Path) -> bool {
     if let Ok(meta) = fs::metadata(path) {
         meta.is_file() && (meta.permissions().mode() & 0o111 != 0)
@@ -80,31 +159,40 @@ fn is_executable_file(path: &Path) -> bool {
 ///    inside `steamapps/common` across primary and secondary Steam libraries (`libraryfolders.vdf`).
 pub fn discover_proton_tools() -> Vec<ProtonTool> {
     let home = real_user_home();
+    let doors_compat_dir = crate::proton_manager::get_doors_compatibilitytools_dir();
 
-    // (directory_path, require_proton_script_only)
-    let mut search_dirs: Vec<(PathBuf, bool)> = vec![
-        (home.join(".local/share/Steam/compatibilitytools.d"), false),
-        (home.join(".steam/root/compatibilitytools.d"), false),
-        (home.join(".steam/steam/compatibilitytools.d"), false),
+    // (directory_path, require_proton_script_only, is_steam)
+    let mut search_dirs: Vec<(PathBuf, bool, bool)> = vec![
+        // Doors' own compatibilitytools.d (not Steam)
+        (doors_compat_dir.clone(), false, false),
+        (home.join(".local/share/doors/compatibilitytools.d"), false, false),
+
+        // Steam compatibilitytools.d directories
+        (home.join(".local/share/Steam/compatibilitytools.d"), false, true),
+        (home.join(".steam/root/compatibilitytools.d"), false, true),
+        (home.join(".steam/steam/compatibilitytools.d"), false, true),
         (
             home.join(".var/app/com.valvesoftware.Steam/.local/share/Steam/compatibilitytools.d"),
             false,
+            true,
         ),
         (
             home.join(".var/app/com.valvesoftware.Steam/.steam/root/compatibilitytools.d"),
             false,
+            true,
         ),
-        (PathBuf::from("/usr/share/steam/compatibilitytools.d"), false),
+        (PathBuf::from("/usr/share/steam/compatibilitytools.d"), false, true),
         (
             PathBuf::from("/usr/local/share/steam/compatibilitytools.d"),
             false,
+            true,
         ),
     ];
 
     if let Ok(extra) = std::env::var("DOORS_COMPAT_TOOLS_PATH") {
         for part in extra.split(':') {
             if !part.trim().is_empty() {
-                search_dirs.push((PathBuf::from(part.trim()), false));
+                search_dirs.push((PathBuf::from(part.trim()), false, false));
             }
         }
     }
@@ -119,11 +207,11 @@ pub fn discover_proton_tools() -> Vec<ProtonTool> {
     ];
 
     for root in &steam_roots {
-        search_dirs.push((root.join("steamapps/common"), true));
+        search_dirs.push((root.join("steamapps/common"), true, true));
         let vdf_path = root.join("steamapps/libraryfolders.vdf");
         for lib_dir in parse_steam_library_folders(&vdf_path) {
-            search_dirs.push((lib_dir.join("steamapps/common"), true));
-            search_dirs.push((lib_dir.join("compatibilitytools.d"), false));
+            search_dirs.push((lib_dir.join("steamapps/common"), true, true));
+            search_dirs.push((lib_dir.join("compatibilitytools.d"), false, true));
         }
     }
 
@@ -132,7 +220,7 @@ pub fn discover_proton_tools() -> Vec<ProtonTool> {
         for entry in entries.flatten() {
             let p = entry.path();
             if p.is_dir() {
-                search_dirs.push((p.join("SteamLibrary/steamapps/common"), true));
+                search_dirs.push((p.join("SteamLibrary/steamapps/common"), true, true));
             }
         }
     }
@@ -141,7 +229,7 @@ pub fn discover_proton_tools() -> Vec<ProtonTool> {
             for u in users.flatten() {
                 if let Ok(mounts) = fs::read_dir(u.path()) {
                     for m in mounts.flatten() {
-                        search_dirs.push((m.path().join("SteamLibrary/steamapps/common"), true));
+                        search_dirs.push((m.path().join("SteamLibrary/steamapps/common"), true, true));
                     }
                 }
             }
@@ -152,7 +240,7 @@ pub fn discover_proton_tools() -> Vec<ProtonTool> {
     let mut seen_names = HashSet::new();
     let mut seen_canonical = HashSet::new();
 
-    for (dir, steamapps_only_proton) in search_dirs {
+    for (dir, steamapps_only_proton, is_steam) in search_dirs {
         let Ok(entries) = fs::read_dir(&dir) else {
             continue;
         };
@@ -187,9 +275,14 @@ pub fn discover_proton_tools() -> Vec<ProtonTool> {
                 continue;
             };
 
-            let mut display_name = folder_name.to_string();
+            let mut display_name = if is_steam && !folder_name.ends_with("(Steam)") {
+                format!("{} (Steam)", folder_name)
+            } else {
+                folder_name.to_string()
+            };
+
             if seen_names.contains(&display_name) {
-                display_name = format!("{} ({})", folder_name, dir.display());
+                display_name = format!("{} ({})", display_name, dir.display());
             }
 
             seen_canonical.insert(canonical);
@@ -204,7 +297,16 @@ pub fn discover_proton_tools() -> Vec<ProtonTool> {
         }
     }
 
-    tools.sort_by(|a, b| b.name.cmp(&a.name));
+    // Sort: Doors' own installed Protons first, then Steam Protons
+    tools.sort_by(|a, b| {
+        let a_is_steam = a.name.ends_with("(Steam)");
+        let b_is_steam = b.name.ends_with("(Steam)");
+        match (a_is_steam, b_is_steam) {
+            (false, true) => std::cmp::Ordering::Less,
+            (true, false) => std::cmp::Ordering::Greater,
+            _ => b.name.cmp(&a.name),
+        }
+    });
     tools
 }
 
@@ -244,6 +346,65 @@ pub fn detect_steam_install_path() -> PathBuf {
         }
     }
     home.join(".local/share/Steam")
+}
+
+/// Check if Steam is installed on the user's system.
+pub fn is_steam_installed() -> bool {
+    let home = real_user_home();
+    let candidates = [
+        home.join(".local/share/Steam"),
+        home.join(".var/app/com.valvesoftware.Steam/.local/share/Steam"),
+        home.join(".var/app/com.valvesoftware.Steam/.steam/root"),
+        home.join(".steam/root"),
+        home.join(".steam/steam"),
+    ];
+    candidates.iter().any(|c| c.is_dir())
+}
+
+/// Find the Steam Linux Runtime `run` executable (e.g. SteamLinuxRuntime_sniper/run or soldier/run)
+pub fn detect_steam_linux_runtime() -> Option<PathBuf> {
+    let home = real_user_home();
+    let steam_roots = [
+        home.join(".local/share/Steam"),
+        home.join(".var/app/com.valvesoftware.Steam/.local/share/Steam"),
+        home.join(".var/app/com.valvesoftware.Steam/.steam/root"),
+        home.join(".steam/root"),
+        home.join(".steam/steam"),
+    ];
+
+    let runtimes = [
+        "SteamLinuxRuntime_sniper",
+        "SteamLinuxRuntime_soldier",
+        "SteamLinuxRuntime_medic",
+        "SteamLinuxRuntime",
+    ];
+
+    let mut common_dirs = Vec::new();
+    for root in &steam_roots {
+        common_dirs.push(root.join("steamapps/common"));
+        let vdf_path = root.join("steamapps/libraryfolders.vdf");
+        for lib in parse_steam_library_folders(&vdf_path) {
+            common_dirs.push(lib.join("steamapps/common"));
+        }
+    }
+
+    if let Ok(entries) = fs::read_dir("/mnt") {
+        for entry in entries.flatten() {
+            common_dirs.push(entry.path().join("SteamLibrary/steamapps/common"));
+            common_dirs.push(entry.path().join("steamapps/common"));
+        }
+    }
+
+    for dir in common_dirs {
+        for rt in &runtimes {
+            let run_path = dir.join(rt).join("run");
+            if run_path.is_file() {
+                return Some(run_path);
+            }
+        }
+    }
+
+    None
 }
 
 /// Spawn a Windows `.exe` during initial setup before a `DoorsGameConfig` exists.
@@ -402,7 +563,32 @@ pub fn spawn_with_proton_config(
     // AMD FSR
     if cfg.fsr {
         envs.push(("WINE_FULLSCREEN_FSR".to_string(), "1".to_string()));
-        envs.push(("PROTON_FSR4_UPGRADE".to_string(), "1".to_string()));
+        envs.push((
+            "WINE_FULLSCREEN_FSR_STRENGTH".to_string(),
+            cfg.fsr_strength.min(5).to_string(),
+        ));
+        if !cfg.fsr_mode.trim().is_empty() {
+            envs.push((
+                "WINE_FULLSCREEN_FSR_MODE".to_string(),
+                cfg.fsr_mode.trim().to_lowercase(),
+            ));
+        }
+        if cfg.fsr4 {
+            envs.push(("PROTON_FSR4_UPGRADE".to_string(), "1".to_string()));
+            envs.push(("PROTON_USE_FSR4".to_string(), "1".to_string()));
+            envs.push(("WINE_FULLSCREEN_FSR4".to_string(), "1".to_string()));
+        }
+    }
+
+    // Ray Tracing (DXR)
+    if cfg.ray_tracing {
+        envs.push(("VKD3D_CONFIG".to_string(), "dxr11,dxr".to_string()));
+        envs.push(("PROTON_ENABLE_RAYTRACING".to_string(), "1".to_string()));
+    }
+
+    // DXVK Async (dxvk-gplasync)
+    if cfg.dxvk_async {
+        envs.push(("DXVK_ASYNC".to_string(), "1".to_string()));
     }
 
     // vkBasalt
@@ -414,6 +600,11 @@ pub fn spawn_with_proton_config(
     if cfg.mangohud && has_host_binary("mangohud") {
         envs.push(("MANGOHUD".to_string(), "1".to_string()));
         envs.push(("MANGOHUD_DLSYM".to_string(), "1".to_string()));
+    }
+
+    // DXVK HUD (built-in FPS and GPU load counter)
+    if cfg.dxvk_hud {
+        envs.push(("DXVK_HUD".to_string(), "fps,gpuload".to_string()));
     }
 
     // Parse custom launch_args: support `KEY=VAL`, wrappers before `%command%`, and exe args
@@ -446,6 +637,13 @@ pub fn spawn_with_proton_config(
 
     if cfg.gamemode && has_host_binary("gamemoderun") {
         cmd_parts.push("gamemoderun".to_string());
+    }
+
+    if cfg.steam_runtime {
+        if let Some(slr_run) = detect_steam_linux_runtime() {
+            cmd_parts.push(slr_run.display().to_string());
+            cmd_parts.push("--".to_string());
+        }
     }
 
     cmd_parts.extend(custom_prefix_args);
