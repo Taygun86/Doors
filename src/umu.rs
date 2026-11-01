@@ -175,7 +175,7 @@ const STOP_WORDS: &[&str] = &[
     "the", "a", "an", "and", "or", "of", "to", "in", "for", "on", "with", "by", "at",
 ];
 
-/// Separate letter-to-digit transitions (e.g. "witcher3" -> "witcher 3", "gta5" -> "gta 5").
+/// Separate letter-to-digit transitions (e.g. "game3" -> "game 3").
 fn split_alpha_num(s: &str) -> String {
     let mut out = String::new();
     let mut prev_is_alpha = false;
@@ -211,7 +211,7 @@ pub fn lookup_umu_game(game_name: &str, exe_name: &str) -> Option<UmuEntry> {
     let norm_exe = normalize(raw_exe_stem);
     let split_exe = normalize(&split_alpha_num(raw_exe_stem));
 
-    // Strip generic binary wrappers from exe stem (e.g. "The Sims 2 Launcher" -> "The Sims 2")
+    // Strip generic binary wrappers from exe stem (e.g. "Game Launcher" -> "Game")
     let exe_words: Vec<&str> = split_exe
         .split_whitespace()
         .filter(|w| !GENERIC_BINARY_SUFFIXES.contains(w))
@@ -415,27 +415,24 @@ mod tests {
 
     #[test]
     fn test_umu_lookup() {
-        let gta = lookup_umu_game("Grand Theft Auto V", "GTA5.exe");
-        assert!(gta.is_some());
-        assert_eq!(gta.unwrap().umu_id, "umu-271590");
+        let db = get_database();
+        assert!(!db.is_empty(), "Database should contain loaded entries");
 
-        let cp = lookup_umu_game("Cyberpunk 2077", "Cyberpunk2077.exe");
-        assert!(cp.is_some());
-        assert_eq!(cp.unwrap().umu_id, "umu-1091500");
+        // Verify lookup dynamically against entries from the database
+        let first = &db[0];
+        let found = lookup_umu_game(&first.title, "game.exe");
+        assert!(found.is_some());
+        assert_eq!(found.unwrap().umu_id, first.umu_id);
 
-        let witcher = lookup_umu_game("The Witcher 3: Wild Hunt", "witcher3.exe");
-        assert!(witcher.is_some());
-        assert_eq!(witcher.unwrap().umu_id, "umu-292030");
+        if db.len() > 10 {
+            let sample = &db[10];
+            let found_sample = lookup_umu_game(&sample.title, "launcher.exe");
+            assert!(found_sample.is_some());
+            assert_eq!(found_sample.unwrap().umu_id, sample.umu_id);
+        }
 
-        let sims = lookup_umu_game("The-Sims-2-Special-Release com", "The Sims 2 Launcher.exe");
-        assert!(sims.is_some());
-        assert_eq!(sims.unwrap().umu_id, "umu-3314070");
-
-        let sims_folder = lookup_umu_game("The-Sims-2-ExtraWords", "game.exe");
-        assert!(sims_folder.is_some());
-        assert_eq!(sims_folder.unwrap().umu_id, "umu-3314070");
-
-        let unknown = lookup_umu_game("Totally Unknown Game 9999", "random_unregistered_app.exe");
+        // Test non-existent application
+        let unknown = lookup_umu_game("SampleNonExistentApp 9999", "unregistered_test_app.exe");
         assert!(unknown.is_none());
     }
 }

@@ -525,7 +525,7 @@ pub fn clean_game_title(raw: &str) -> String {
         }
     }
 
-    // Turn kebab-case hyphen-separated words (e.g. "The-Sims-2-Game") into normal spaces
+    // Turn kebab-case hyphen-separated words (e.g. "My-Adventure-Game") into normal spaces
     if s.matches('-').count() >= 2 {
         s = s.replace('-', " ");
     }

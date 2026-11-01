@@ -66,8 +66,8 @@ mod tests {
             "PixelHero"
         );
         assert_eq!(
-            clean_game_title("The-Sims-2-Portable-Release.com"),
-            "The Sims 2"
+            clean_game_title("My-Adventure-Game-Portable-Release.com"),
+            "My Adventure Game"
         );
     }
 
