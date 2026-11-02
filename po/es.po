@@ -453,8 +453,11 @@ msgstr "Mostrar contador de FPS y carga de GPU integrado de DXVK sin herramienta
 msgid "FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported."
 msgstr "FSR 4 requiere oficialmente una GPU AMD Radeon serie RX 6000 o más reciente (RDNA 2+). Las GPU AMD más antiguas, NVIDIA o Intel no son compatibles oficialmente."
 
-msgid "UMU Prefix (Protonfixes)"
-msgstr "Prefijo UMU (Protonfixes)"
+msgid "Game Fixes (UMU Prefix)"
+msgstr "Correcciones de juegos (UMU Prefix)"
 
 msgid "Automatic game fixes detected"
 msgstr "Correcciones automáticas de juego detectadas"
+
+msgid "Proton failed to start the installer."
+msgstr "Proton no pudo iniciar el instalador."

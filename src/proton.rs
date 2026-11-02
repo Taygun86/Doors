@@ -67,8 +67,13 @@ pub fn has_vkbasalt() -> bool {
 }
 
 /// Check if the system has an AMD GPU with RDNA 2, RDNA 3, or RDNA 4 architecture
-/// which officially supports FSR 4.
+/// which officially supports FSR 4. Cached per process so `lspci` never blocks the GTK UI repeatedly.
 pub fn has_fsr4_supported_gpu() -> bool {
+    static CACHED: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
+    *CACHED.get_or_init(detect_fsr4_supported_gpu)
+}
+
+fn detect_fsr4_supported_gpu() -> bool {
     // 1. Try checking via lspci
     let mut cmd = crate::proton_manager::build_command("lspci");
     if let Ok(output) = cmd.output() {
@@ -153,6 +158,84 @@ fn is_executable_file(path: &Path) -> bool {
     }
 }
 
+/// Verify that a Proton/Wine directory matches the host CPU architecture (`x86_64` vs `aarch64`),
+/// checking both folder naming conventions and the ELF `e_machine` header of its Wine binary.
+pub fn is_proton_dir_compatible_with_host(tool_dir: &Path) -> bool {
+    let folder_lower = tool_dir
+        .file_name()
+        .and_then(|n| n.to_str())
+        .unwrap_or("")
+        .to_ascii_lowercase();
+
+    if cfg!(target_arch = "x86_64") {
+        if folder_lower.contains("arm64") || folder_lower.contains("aarch64") {
+            return false;
+        }
+    } else if cfg!(target_arch = "aarch64") {
+        if folder_lower.contains("x86_64") || folder_lower.contains("amd64") {
+            return false;
+        }
+    }
+
+    let wine_candidates = [
+        tool_dir.join("files/bin/wine64"),
+        tool_dir.join("files/bin/wine"),
+        tool_dir.join("dist/bin/wine64"),
+        tool_dir.join("dist/bin/wine"),
+        tool_dir.join("bin/wine64"),
+        tool_dir.join("bin/wine"),
+    ];
+
+    for bin in &wine_candidates {
+        if !bin.is_file() {
+            continue;
+        }
+        let Ok(mut f) = fs::File::open(bin) else {
+            continue;
+        };
+        let mut hdr = [0u8; 20];
+        use std::io::Read;
+        if f.read_exact(&mut hdr).is_ok() && &hdr[0..4] == b"\x7FELF" {
+            let e_machine = u16::from_le_bytes([hdr[18], hdr[19]]);
+            if cfg!(target_arch = "x86_64") {
+                // EM_X86_64 (0x3E = 62) or EM_386 (0x03 = 3)
+                if e_machine != 0x3E && e_machine != 0x03 {
+                    return false;
+                }
+            } else if cfg!(target_arch = "aarch64") {
+                // EM_AARCH64 (0xB7 = 183)
+                if e_machine != 0xB7 {
+                    return false;
+                }
+            }
+            break;
+        }
+    }
+
+    true
+}
+
+fn runner_priority_rank(name: &str) -> u8 {
+    let lower = name.to_ascii_lowercase();
+    if (lower.contains("ge-proton") || lower.contains("proton-ge"))
+        && !lower.contains("rtsp")
+        && !lower.contains("cachyos")
+        && !lower.contains("dwproton")
+    {
+        0
+    } else if lower.contains("dwproton") || lower.contains("dw-proton") {
+        1
+    } else if lower.contains("cachyos") {
+        2
+    } else if lower.contains("experimental") || lower.contains("hotfix") {
+        3
+    } else if lower.contains("rtsp") {
+        5
+    } else {
+        4
+    }
+}
+
 /// Discover all Proton & Wine runners on the system:
 /// 1. Custom runners inside `compatibilitytools.d` (GE-Proton, Proton-CachyOS, etc.)
 /// 2. Official Steam Proton builds (`Proton - Experimental`, `Proton Hotfix`, `Proton 9.0`, etc.)
@@ -163,14 +246,24 @@ pub fn discover_proton_tools() -> Vec<ProtonTool> {
 
     // (directory_path, require_proton_script_only, is_steam)
     let mut search_dirs: Vec<(PathBuf, bool, bool)> = vec![
-        // Doors' own compatibilitytools.d (not Steam)
+        // Doors' own compatibilitytools.d
         (doors_compat_dir.clone(), false, false),
         (home.join(".local/share/doors/compatibilitytools.d"), false, false),
 
-        // Steam compatibilitytools.d directories
+        // Steam compatibilitytools.d directories (native + Debian/Ubuntu + Flatpak Steam + host /usr/share/steam)
         (home.join(".local/share/Steam/compatibilitytools.d"), false, true),
         (home.join(".steam/root/compatibilitytools.d"), false, true),
         (home.join(".steam/steam/compatibilitytools.d"), false, true),
+        (
+            home.join(".steam/debian-installation/compatibilitytools.d"),
+            false,
+            true,
+        ),
+        (
+            home.join(".var/app/com.valvesoftware.Steam/data/Steam/compatibilitytools.d"),
+            false,
+            true,
+        ),
         (
             home.join(".var/app/com.valvesoftware.Steam/.local/share/Steam/compatibilitytools.d"),
             false,
@@ -184,6 +277,16 @@ pub fn discover_proton_tools() -> Vec<ProtonTool> {
         (PathBuf::from("/usr/share/steam/compatibilitytools.d"), false, true),
         (
             PathBuf::from("/usr/local/share/steam/compatibilitytools.d"),
+            false,
+            true,
+        ),
+        (
+            PathBuf::from("/run/host/usr/share/steam/compatibilitytools.d"),
+            false,
+            true,
+        ),
+        (
+            PathBuf::from("/run/host/usr/local/share/steam/compatibilitytools.d"),
             false,
             true,
         ),
@@ -202,6 +305,8 @@ pub fn discover_proton_tools() -> Vec<ProtonTool> {
         home.join(".local/share/Steam"),
         home.join(".steam/root"),
         home.join(".steam/steam"),
+        home.join(".steam/debian-installation"),
+        home.join(".var/app/com.valvesoftware.Steam/data/Steam"),
         home.join(".var/app/com.valvesoftware.Steam/.local/share/Steam"),
         home.join(".var/app/com.valvesoftware.Steam/.steam/root"),
     ];
@@ -215,12 +320,15 @@ pub fn discover_proton_tools() -> Vec<ProtonTool> {
         }
     }
 
-    // Also check direct SteamLibrary folders on mounted drives (/mnt/*, /run/media/*/*)
-    if let Ok(entries) = fs::read_dir("/mnt") {
-        for entry in entries.flatten() {
-            let p = entry.path();
-            if p.is_dir() {
-                search_dirs.push((p.join("SteamLibrary/steamapps/common"), true, true));
+    // Also check direct SteamLibrary / Steam folders on mounted drives (/mnt/*, /var/mnt/*, /run/media/*/*, /media/*/*)
+    let mut mounted_roots: Vec<PathBuf> = Vec::new();
+    for mnt_base in ["/mnt", "/var/mnt"] {
+        if let Ok(entries) = fs::read_dir(mnt_base) {
+            for entry in entries.flatten() {
+                let p = entry.path();
+                if p.is_dir() {
+                    mounted_roots.push(p);
+                }
             }
         }
     }
@@ -229,11 +337,23 @@ pub fn discover_proton_tools() -> Vec<ProtonTool> {
             for u in users.flatten() {
                 if let Ok(mounts) = fs::read_dir(u.path()) {
                     for m in mounts.flatten() {
-                        search_dirs.push((m.path().join("SteamLibrary/steamapps/common"), true, true));
+                        let p = m.path();
+                        if p.is_dir() {
+                            mounted_roots.push(p);
+                        }
                     }
                 }
             }
         }
+    }
+    for mp in mounted_roots {
+        for sub in ["SteamLibrary", "Steam", "steam"] {
+            let base = mp.join(sub);
+            search_dirs.push((base.join("steamapps/common"), true, true));
+            search_dirs.push((base.join("compatibilitytools.d"), false, true));
+        }
+        search_dirs.push((mp.join("steamapps/common"), true, true));
+        search_dirs.push((mp.join("compatibilitytools.d"), false, true));
     }
 
     let mut tools = Vec::new();
@@ -257,6 +377,10 @@ pub fn discover_proton_tools() -> Vec<ProtonTool> {
             let Some(folder_name) = tool_dir.file_name().and_then(|n| n.to_str()) else {
                 continue;
             };
+
+            if !is_proton_dir_compatible_with_host(&tool_dir) {
+                continue;
+            }
 
             let proton_script = tool_dir.join("proton");
             let files_wine = tool_dir.join("files/bin/wine");
@@ -297,14 +421,17 @@ pub fn discover_proton_tools() -> Vec<ProtonTool> {
         }
     }
 
-    // Sort: Doors' own installed Protons first, then Steam Protons
+    // Sort: Doors' own Protons first, then Steam Protons;
+    // within each group prefer general-purpose compatibility runners (GE-Proton > DW-Proton > Proton-CachyOS > others).
     tools.sort_by(|a, b| {
         let a_is_steam = a.name.ends_with("(Steam)");
         let b_is_steam = b.name.ends_with("(Steam)");
         match (a_is_steam, b_is_steam) {
             (false, true) => std::cmp::Ordering::Less,
             (true, false) => std::cmp::Ordering::Greater,
-            _ => b.name.cmp(&a.name),
+            _ => runner_priority_rank(&a.name)
+                .cmp(&runner_priority_rank(&b.name))
+                .then_with(|| b.name.to_ascii_lowercase().cmp(&a.name.to_ascii_lowercase())),
         }
     });
     tools
@@ -331,11 +458,22 @@ fn parse_steam_library_folders(vdf_path: &Path) -> Vec<PathBuf> {
     paths
 }
 
+/// Translate a sandbox `/run/host/...` path back to its real host root path `/...` when spawning on host.
+fn to_host_path(path: &Path) -> PathBuf {
+    if let Ok(rel) = path.strip_prefix("/run/host") {
+        Path::new("/").join(rel)
+    } else {
+        path.to_path_buf()
+    }
+}
+
 /// Find the Steam client install path for STEAM_COMPAT_CLIENT_INSTALL_PATH
 pub fn detect_steam_install_path() -> PathBuf {
     let home = real_user_home();
     let candidates = [
         home.join(".local/share/Steam"),
+        home.join(".steam/debian-installation"),
+        home.join(".var/app/com.valvesoftware.Steam/data/Steam"),
         home.join(".var/app/com.valvesoftware.Steam/.local/share/Steam"),
         home.join(".steam/root"),
         home.join(".steam/steam"),
@@ -353,6 +491,8 @@ pub fn is_steam_installed() -> bool {
     let home = real_user_home();
     let candidates = [
         home.join(".local/share/Steam"),
+        home.join(".steam/debian-installation"),
+        home.join(".var/app/com.valvesoftware.Steam/data/Steam"),
         home.join(".var/app/com.valvesoftware.Steam/.local/share/Steam"),
         home.join(".var/app/com.valvesoftware.Steam/.steam/root"),
         home.join(".steam/root"),
@@ -366,6 +506,8 @@ pub fn detect_steam_linux_runtime() -> Option<PathBuf> {
     let home = real_user_home();
     let steam_roots = [
         home.join(".local/share/Steam"),
+        home.join(".steam/debian-installation"),
+        home.join(".var/app/com.valvesoftware.Steam/data/Steam"),
         home.join(".var/app/com.valvesoftware.Steam/.local/share/Steam"),
         home.join(".var/app/com.valvesoftware.Steam/.steam/root"),
         home.join(".steam/root"),
@@ -408,6 +550,7 @@ pub fn detect_steam_linux_runtime() -> Option<PathBuf> {
 }
 
 /// Spawn a Windows `.exe` during initial setup before a `DoorsGameConfig` exists.
+#[allow(dead_code)]
 pub fn spawn_with_proton(
     tool: &ProtonTool,
     game_container_dir: &Path,
@@ -450,7 +593,7 @@ pub fn spawn_winetricks(tool: &ProtonTool, cfg: &DoorsGameConfig) -> anyhow::Res
             .arg("--watch-bus")
             .arg(format!("--env=WINEPREFIX={}", pfx_dir.display()));
         if let Some(ref wb) = wine_bin {
-            cmd.arg(format!("--env=WINE={}", wb.display()));
+            cmd.arg(format!("--env=WINE={}", to_host_path(wb).display()));
         }
         cmd.arg("winetricks").arg("--gui").stdin(Stdio::null());
         if let Ok(child) = cmd.spawn() {
@@ -508,12 +651,14 @@ pub fn spawn_with_proton_config(
     ];
 
     // UMU / Protonfixes
-    if cfg.umu {
-        if !cfg.umu_id.is_empty() {
-            envs.push(("GAMEID".to_string(), cfg.umu_id.clone()));
-            envs.push(("UMU_ID".to_string(), cfg.umu_id.clone()));
+    if cfg.umu && !cfg.umu_id.is_empty() {
+        envs.push(("GAMEID".to_string(), cfg.umu_id.clone()));
+        envs.push(("UMU_ID".to_string(), cfg.umu_id.clone()));
+        if !cfg.umu_store.is_empty() && !cfg.umu_store.eq_ignore_ascii_case("none") {
+            envs.push(("STORE".to_string(), cfg.umu_store.clone()));
         }
-        envs.push(("PROTONFIXES".to_string(), "1".to_string()));
+    } else {
+        envs.push(("PROTONFIXES_DISABLE".to_string(), "1".to_string()));
     }
 
     // Synchronization mode
@@ -569,7 +714,7 @@ pub fn spawn_with_proton_config(
         envs.push(("PROTON_DLSS_UPGRADE".to_string(), "1".to_string()));
     }
 
-    // AMD FSR
+    // AMD FSR (driver-level spatial upscaling)
     if cfg.fsr {
         envs.push(("WINE_FULLSCREEN_FSR".to_string(), "1".to_string()));
         envs.push((
@@ -582,11 +727,11 @@ pub fn spawn_with_proton_config(
                 cfg.fsr_mode.trim().to_lowercase(),
             ));
         }
-        if cfg.fsr4 {
-            envs.push(("PROTON_FSR4_UPGRADE".to_string(), "1".to_string()));
-            envs.push(("PROTON_USE_FSR4".to_string(), "1".to_string()));
-            envs.push(("WINE_FULLSCREEN_FSR4".to_string(), "1".to_string()));
-        }
+    }
+
+    // AMD FSR 4 DLL upgrade (works independently for native FSR 3.1 games)
+    if cfg.fsr4 {
+        envs.push(("PROTON_FSR4_UPGRADE".to_string(), "1".to_string()));
     }
 
     // Ray Tracing (DXR)
@@ -648,16 +793,45 @@ pub fn spawn_with_proton_config(
         cmd_parts.push("gamemoderun".to_string());
     }
 
+    let in_flatpak = Path::new("/.flatpak-info").exists();
+    let host_tool_dir = if in_flatpak {
+        to_host_path(&tool.dir_path)
+    } else {
+        tool.dir_path.clone()
+    };
+    let host_tool_exec = if in_flatpak {
+        to_host_path(&tool.executable)
+    } else {
+        tool.executable.clone()
+    };
+
     if cfg.steam_runtime {
         if let Some(slr_run) = detect_steam_linux_runtime() {
-            cmd_parts.push(slr_run.display().to_string());
+            let slr_exec = if in_flatpak {
+                to_host_path(&slr_run)
+            } else {
+                slr_run
+            };
+            let mut mount_paths = vec![
+                game_container_dir.display().to_string(),
+                host_tool_dir.display().to_string(),
+                work_dir.display().to_string(),
+            ];
+            for extra in ["/mnt", "/var/mnt", "/run/media", "/media"] {
+                if Path::new(extra).is_dir() {
+                    mount_paths.push(extra.to_string());
+                }
+            }
+            mount_paths.dedup();
+            envs.push(("STEAM_COMPAT_MOUNTS".to_string(), mount_paths.join(":")));
+            cmd_parts.push(slr_exec.display().to_string());
             cmd_parts.push("--".to_string());
         }
     }
 
     cmd_parts.extend(custom_prefix_args);
 
-    cmd_parts.push(tool.executable.display().to_string());
+    cmd_parts.push(host_tool_exec.display().to_string());
     if tool.is_proton_script {
         cmd_parts.push("waitforexitandrun".to_string());
     }
@@ -671,8 +845,6 @@ pub fn spawn_with_proton_config(
     }
     cmd_parts.push(exe_path.display().to_string());
     cmd_parts.extend(exe_args);
-
-    let in_flatpak = Path::new("/.flatpak-info").exists();
 
     if in_flatpak {
         let mut cmd = Command::new("flatpak-spawn");
@@ -707,6 +879,40 @@ pub fn spawn_with_proton_config(
 
     let child = cmd.spawn()?;
     Ok(child)
+}
+
+/// Wait until all Wine child processes inside `pfx_dir` (such as detached Stage-2 setup wizards)
+/// have exited and flushed disk/registry writes.
+pub fn wait_for_prefix_wineserver(tool: &ProtonTool, pfx_dir: &Path) {
+    let candidates = [
+        tool.dir_path.join("files/bin/wineserver"),
+        tool.dir_path.join("dist/bin/wineserver"),
+        tool.dir_path.join("bin/wineserver"),
+    ];
+    let Some(ws_bin) = candidates.into_iter().find(|p| p.is_file()) else {
+        return;
+    };
+
+    let in_flatpak = Path::new("/.flatpak-info").exists();
+    if in_flatpak {
+        let _ = Command::new("flatpak-spawn")
+            .arg("--host")
+            .arg(format!("--env=WINEPREFIX={}", pfx_dir.display()))
+            .arg(to_host_path(&ws_bin))
+            .arg("-w")
+            .stdin(Stdio::null())
+            .stdout(Stdio::null())
+            .stderr(Stdio::null())
+            .status();
+    } else {
+        let _ = Command::new(&ws_bin)
+            .env("WINEPREFIX", pfx_dir)
+            .arg("-w")
+            .stdin(Stdio::null())
+            .stdout(Stdio::null())
+            .stderr(Stdio::null())
+            .status();
+    }
 }
 
 fn parse_launch_options(raw: &str) -> (Vec<(String, String)>, Vec<String>, Vec<String>) {

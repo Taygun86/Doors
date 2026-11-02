@@ -453,8 +453,11 @@ msgstr "Бөгде бағдарламаларсыз DXVK кірістірілг�
 msgid "FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported."
 msgstr "FSR 4 ресми түрде AMD Radeon RX 6000 сериялы немесе жаңалау (RDNA 2+) GPU талап етеді. Ескі AMD, NVIDIA немесе Intel GPU-лары ресми түрде қолдау көрсетілмейді."
 
-msgid "UMU Prefix (Protonfixes)"
-msgstr "UMU префиксі (Protonfixes)"
+msgid "Game Fixes (UMU Prefix)"
+msgstr "Ойын түзетулері (UMU Prefix)"
 
 msgid "Automatic game fixes detected"
 msgstr "Ойынның автоматты түзетулері анықталды"
+
+msgid "Proton failed to start the installer."
+msgstr "Proton орнатқышты іске қоса алмады."

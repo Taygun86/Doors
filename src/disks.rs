@@ -104,12 +104,14 @@ pub fn discover_disks() -> Vec<DiskInfo> {
         }
     }
 
-    // Scan /mnt subdirectories
-    if let Ok(entries) = fs::read_dir("/mnt") {
-        for entry in entries.flatten() {
-            let path = entry.path();
-            if path.is_dir() {
-                candidates.push(path);
+    // Scan /mnt and /var/mnt subdirectories
+    for mnt_base in ["/mnt", "/var/mnt"] {
+        if let Ok(entries) = fs::read_dir(mnt_base) {
+            for entry in entries.flatten() {
+                let path = entry.path();
+                if path.is_dir() {
+                    candidates.push(path);
+                }
             }
         }
     }

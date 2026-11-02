@@ -5,7 +5,7 @@ use std::fs;
 use std::os::unix::fs::PermissionsExt;
 use std::path::{Path, PathBuf};
 
-pub const APP_ID: &str = "io.github.doors.Doors";
+pub const APP_ID: &str = "io.github.Taygun86.Doors";
 
 /// Returns the path to the user's Desktop directory (~/Desktop, ~/Masaüstü, etc.)
 pub fn get_desktop_dir() -> PathBuf {

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-APP_ID="io.github.doors.Doors"
+APP_ID="io.github.Taygun86.Doors"
 REPO_URL="https://taygun86.github.io/taygun86-repo/flatpak"
 BUILD_DIR="build-flatpak"
 REPO_DIR="flatpak"
@@ -41,29 +41,33 @@ mkdir -p "$BUILD_DIR/files/bin" \
          "$BUILD_DIR/files/share/locale"
 
 install -Dm755 target/release/doors "$BUILD_DIR/files/bin/doors"
-install -Dm644 data/io.github.doors.Doors.desktop "$BUILD_DIR/files/share/applications/io.github.doors.Doors.desktop"
-install -Dm644 data/io.github.doors.Doors.metainfo.xml "$BUILD_DIR/files/share/metainfo/io.github.doors.Doors.metainfo.xml"
-install -Dm644 data/io.github.doors.Doors.svg "$BUILD_DIR/files/share/icons/hicolor/scalable/apps/io.github.doors.Doors.svg"
-install -Dm644 data/io.github.doors.Doors.png "$BUILD_DIR/files/share/icons/hicolor/512x512/apps/io.github.doors.Doors.png"
+install -Dm644 data/io.github.Taygun86.Doors.desktop "$BUILD_DIR/files/share/applications/io.github.Taygun86.Doors.desktop"
+install -Dm644 data/io.github.Taygun86.Doors.metainfo.xml "$BUILD_DIR/files/share/metainfo/io.github.Taygun86.Doors.metainfo.xml"
+install -Dm644 data/io.github.Taygun86.Doors.svg "$BUILD_DIR/files/share/icons/hicolor/scalable/apps/io.github.Taygun86.Doors.svg"
+install -Dm644 data/io.github.Taygun86.Doors.png "$BUILD_DIR/files/share/icons/hicolor/512x512/apps/io.github.Taygun86.Doors.png"
 cp -r locale/* "$BUILD_DIR/files/share/locale/"
 
 echo "==> [4/6] Finishing Flatpak permissions..."
 flatpak build-finish "$BUILD_DIR" \
     --command=doors \
     --share=ipc \
+    --share=network \
     --socket=fallback-x11 \
     --socket=wayland \
     --socket=pulseaudio \
     --device=all \
+    --allow=multiarch \
+    --allow=devel \
+    --allow=per-app-dev-shm \
+    --talk-name=org.freedesktop.Flatpak \
+    --talk-name=org.gtk.vfs.* \
+    --filesystem=xdg-run/gvfsd \
+    --filesystem=host \
     --filesystem=/mnt \
     --filesystem=/run/media \
-    --filesystem=host \
-    --filesystem=~/.local/share/Steam:ro \
-    --filesystem=~/.steam:ro \
-    --filesystem=~/.var/app/com.valvesoftware.Steam:ro \
-    --filesystem=~/.local/share/applications:create \
-    --filesystem=~/.local/share/icons:create \
-    --talk-name=org.freedesktop.Flatpak
+    --filesystem=/media \
+    --filesystem=/var/mnt \
+    --filesystem=~/.var/app/com.valvesoftware.Steam/data/Steam:ro
 
 echo "==> [5/6] Exporting and GPG-signing OSTree repository (./${REPO_DIR})..."
 rm -rf "$REPO_DIR"

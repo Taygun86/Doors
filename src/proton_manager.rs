@@ -4,8 +4,11 @@ use crate::i18n::tr;
 use std::fs;
 use std::path::{Path, PathBuf};
 use std::process::Command;
+use std::sync::atomic::{AtomicBool, Ordering};
 use std::thread::sleep;
 use std::time::Duration;
+
+static BG_UPDATE_RUNNING: AtomicBool = AtomicBool::new(false);
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ManagedProton {
@@ -64,6 +67,10 @@ impl ManagedProton {
         let clean = lower.split(" (steam)").next().unwrap_or(&lower).trim();
         match self {
             ManagedProton::GeProton => {
+                if clean.contains("rtsp") || clean.contains("dwproton") || clean.contains("cachyos")
+                {
+                    return false;
+                }
                 clean.starts_with("ge-proton")
                     || clean.starts_with("proton-ge")
                     || clean.starts_with("ge proton")
@@ -109,7 +116,9 @@ impl ManagedProton {
                     let p = entry.path();
                     if p.is_dir() {
                         let name = p.file_name().and_then(|s| s.to_str()).unwrap_or("");
-                        if self.matches_folder_name(name) {
+                        if self.matches_folder_name(name)
+                            && crate::proton::is_proton_dir_compatible_with_host(&p)
+                        {
                             return Some((name.to_string(), p));
                         }
                     }
@@ -125,16 +134,14 @@ impl ManagedProton {
         match self {
             ManagedProton::GeProton => {
                 fetch_github_latest("GloriousEggroll/proton-ge-custom", |name| {
-                    name.starts_with("GE-Proton")
-                        && (name.ends_with(".tar.gz") || name.ends_with(".tar.xz"))
-                        && !name.ends_with(".sha512sum")
+                    name.starts_with("GE-Proton") && is_compatible_host_archive(name)
                 })
             }
             ManagedProton::DwProton => {
                 // Try GitHub mirror first
                 fetch_github_latest("dawn-winery/dwproton-mirror", |name| {
                     (name.starts_with("dwproton") || name.starts_with("DW-Proton"))
-                        && (name.ends_with(".tar.xz") || name.ends_with(".tar.gz") || name.ends_with(".tar.zst"))
+                        && is_compatible_host_archive(name)
                 })
                 .or_else(|_| {
                     // Fallback to Dawn Winery Forgejo instance
@@ -143,16 +150,13 @@ impl ManagedProton {
             }
             ManagedProton::ProtonCachyos => {
                 fetch_github_latest("CachyOS/proton-cachyos", |name| {
-                    name.starts_with("proton-cachyos")
-                        && (name.ends_with(".tar.xz") || name.ends_with(".tar.zst") || name.ends_with(".tar.gz"))
+                    name.starts_with("proton-cachyos") && is_compatible_host_archive(name)
                 })
             }
             ManagedProton::ProtonRtsp => {
                 fetch_github_latest("SpookySkeletons/proton-rtsp", |name| {
                     (name.starts_with("proton-rtsp") || name.starts_with("Proton-RTSP"))
-                        && (name.ends_with(".tar.gz") || name.ends_with(".tar.xz") || name.ends_with(".tar.zst"))
-                        && !name.ends_with(".sha512sum")
-                        && !name.ends_with(".sum")
+                        && is_compatible_host_archive(name)
                 })
             }
         }
@@ -225,21 +229,35 @@ impl ManagedProton {
         }
 
         // Find the newly extracted folder name
-        let mut installed_name = rel.tag_name.clone();
-        if let Ok(entries) = fs::read_dir(&dest_dir) {
-            for entry in entries.flatten() {
-                let p = entry.path();
-                if p.is_dir() {
-                    let name = p.file_name().and_then(|s| s.to_str()).unwrap_or("");
-                    if self.matches_folder_name(name) && name.contains(&rel.tag_name) {
-                        installed_name = name.to_string();
-                        break;
+        let expected_stem = rel
+            .asset_name
+            .trim_end_matches(".tar.xz")
+            .trim_end_matches(".tar.gz")
+            .trim_end_matches(".tar.zst");
+        let mut installed_name = if dest_dir.join(expected_stem).is_dir() {
+            expected_stem.to_string()
+        } else {
+            rel.tag_name.clone()
+        };
+        if !dest_dir.join(&installed_name).is_dir() {
+            if let Ok(entries) = fs::read_dir(&dest_dir) {
+                for entry in entries.flatten() {
+                    let p = entry.path();
+                    if p.is_dir() {
+                        let name = p.file_name().and_then(|s| s.to_str()).unwrap_or("");
+                        if self.matches_folder_name(name)
+                            && name.contains(&rel.tag_name)
+                            && crate::proton::is_proton_dir_compatible_with_host(&p)
+                        {
+                            installed_name = name.to_string();
+                            break;
+                        }
                     }
                 }
             }
         }
 
-        // Remove any older versions of this runner from compatibilitytools.d
+        // Remove any older or incompatible-arch versions of this runner from compatibilitytools.d
         if let Ok(entries) = fs::read_dir(&dest_dir) {
             for entry in entries.flatten() {
                 let p = entry.path();
@@ -257,7 +275,8 @@ impl ManagedProton {
         let disks = discover_disks();
         let games = discover_installed_games(&disks);
         for mut game in games {
-            let is_doors_proton = game.proton_dir.starts_with(&dest_dir) || !game.proton_name.contains("(Steam)");
+            let is_doors_proton =
+                game.proton_dir.starts_with(&dest_dir) || !game.proton_name.contains("(Steam)");
             if is_doors_proton && self.matches_folder_name(&game.proton_name) && game.proton_name != installed_name {
                 game.proton_name = installed_name.clone();
                 game.proton_dir = dest_dir.join(&installed_name);
@@ -272,14 +291,20 @@ impl ManagedProton {
     /// Delete all versions of this runner from Doors' compatibilitytools.d.
     /// Steam's directories are never touched.
     pub fn delete_installed(&self) -> anyhow::Result<()> {
-        let dest_dir = get_doors_compatibilitytools_dir();
-        if let Ok(entries) = fs::read_dir(&dest_dir) {
-            for entry in entries.flatten() {
-                let p = entry.path();
-                if p.is_dir() {
-                    let name = p.file_name().and_then(|s| s.to_str()).unwrap_or("");
-                    if self.matches_folder_name(name) {
-                        let _ = fs::remove_dir_all(&p);
+        let mut dirs = vec![
+            get_doors_compatibilitytools_dir(),
+            real_user_home().join(".local/share/doors/compatibilitytools.d"),
+        ];
+        dirs.dedup();
+        for dest_dir in dirs {
+            if let Ok(entries) = fs::read_dir(&dest_dir) {
+                for entry in entries.flatten() {
+                    let p = entry.path();
+                    if p.is_dir() {
+                        let name = p.file_name().and_then(|s| s.to_str()).unwrap_or("");
+                        if self.matches_folder_name(name) {
+                            let _ = fs::remove_dir_all(&p);
+                        }
                     }
                 }
             }
@@ -289,10 +314,45 @@ impl ManagedProton {
     }
 }
 
+/// Returns true if `asset_name` is a supported tarball matching the host CPU architecture
+/// (excluding ARM64 archives on x86_64 and microarchitecture-locked `x86_64_v2/v3/v4` variants).
+pub(crate) fn is_compatible_host_archive(asset_name: &str) -> bool {
+    let lower = asset_name.to_ascii_lowercase();
+    let is_tar =
+        lower.ends_with(".tar.xz") || lower.ends_with(".tar.gz") || lower.ends_with(".tar.zst");
+    if !is_tar
+        || lower.ends_with(".sha512sum")
+        || lower.ends_with(".sha256sum")
+        || lower.ends_with(".sum")
+        || lower.ends_with(".sig")
+    {
+        return false;
+    }
+
+    if cfg!(target_arch = "x86_64") {
+        if lower.contains("arm64")
+            || lower.contains("aarch64")
+            || lower.contains("x86_64_v")
+            || lower.contains("x86-64-v")
+        {
+            return false;
+        }
+    } else if cfg!(target_arch = "aarch64") {
+        if lower.contains("x86_64") || lower.contains("amd64") {
+            return false;
+        }
+    }
+
+    true
+}
+
 /// Doors' own compatibility tools directory inside its Flatpak app data (or ~/.local/share/doors/compatibilitytools.d)
 pub fn get_doors_compatibilitytools_dir() -> PathBuf {
     let home = real_user_home();
-    let flatpak_dir = home.join(".var/app/io.github.doors.Doors/data/compatibilitytools.d");
+    let flatpak_dir = home.join(format!(
+        ".var/app/{}/data/compatibilitytools.d",
+        crate::desktop::APP_ID
+    ));
     let in_flatpak = Path::new("/.flatpak-info").exists();
 
     if in_flatpak || flatpak_dir.parent().map(|p| p.is_dir()).unwrap_or(false) {
@@ -302,10 +362,25 @@ pub fn get_doors_compatibilitytools_dir() -> PathBuf {
     }
 }
 
-/// Helper to build a host or local command depending on Flatpak isolation.
+/// Helper to build a command: uses tools available directly inside the Flatpak runtime (`curl`, `tar`)
+/// when present, falling back to `flatpak-spawn --host` only for host-only binaries (`lspci`).
 pub fn build_command(binary: &str) -> Command {
     let in_flatpak = Path::new("/.flatpak-info").exists();
-    if in_flatpak {
+    if in_flatpak
+        && !Path::new("/usr/bin").join(binary).is_file()
+        && !Path::new("/bin").join(binary).is_file()
+    {
+        let mut cmd = Command::new("flatpak-spawn");
+        cmd.arg("--host").arg(binary);
+        cmd
+    } else {
+        Command::new(binary)
+    }
+}
+
+/// Always execute `binary` on the host OS (via `flatpak-spawn --host` when running inside Flatpak).
+pub fn build_host_command(binary: &str) -> Command {
+    if Path::new("/.flatpak-info").exists() {
         let mut cmd = Command::new("flatpak-spawn");
         cmd.arg("--host").arg(binary);
         cmd
@@ -390,7 +465,7 @@ fn fetch_forgejo_latest(url: &str) -> anyhow::Result<ProtonReleaseInfo> {
 
     for asset in assets {
         let name = asset["name"].as_str().unwrap_or("");
-        if name.ends_with(".tar.xz") || name.ends_with(".tar.gz") || name.ends_with(".tar.zst") {
+        if is_compatible_host_archive(name) {
             let asset_url = asset["browser_download_url"]
                 .as_str()
                 .ok_or_else(|| anyhow::anyhow!("Missing browser_download_url"))?
@@ -421,38 +496,161 @@ pub fn check_network_connectivity() -> bool {
     cmd.output().map(|o| o.status.success()).unwrap_or(false)
 }
 
-/// Ensure background autostart desktop file is installed in ~/.config/autostart
+/// Ensure background boot & periodic Proton/UMU updater is registered.
+/// Uses a `systemd --user` service + timer (`doors-updater.service` / `doors-updater.timer`,
+/// matching ProtonPlus on Flathub so no `~/.config/autostart` Flatpak permission is needed),
+/// falling back to `~/.config/autostart` only on non-systemd native Linux distributions.
 pub fn ensure_autostart_updater() {
-    let home = real_user_home();
-    let autostart_dir = home.join(".config/autostart");
-    let _ = fs::create_dir_all(&autostart_dir);
-    let autostart_file = autostart_dir.join("io.github.doors.Doors.updater.desktop");
-
     let in_flatpak = Path::new("/.flatpak-info").exists();
-    let exec = if in_flatpak {
-        "flatpak run io.github.doors.Doors --update-protons-bg"
+    let home = real_user_home();
+
+    let exec_start = if in_flatpak {
+        let flatpak_bin = build_host_command("sh")
+            .arg("-c")
+            .arg("command -v flatpak")
+            .output()
+            .ok()
+            .filter(|o| o.status.success())
+            .map(|o| String::from_utf8_lossy(&o.stdout).trim().to_string())
+            .filter(|s| !s.is_empty())
+            .unwrap_or_else(|| "/usr/bin/flatpak".to_string());
+        format!(
+            "{flatpak_bin} run {} --update-protons-bg",
+            crate::desktop::APP_ID
+        )
     } else {
-        "doors --update-protons-bg"
+        let self_exe = std::env::current_exe()
+            .ok()
+            .map(|p| format!("\"{}\"", p.display()))
+            .unwrap_or_else(|| "doors".to_string());
+        format!("{self_exe} --update-protons-bg")
     };
 
-    let content = format!(
-        "[Desktop Entry]\n\
-         Type=Application\n\
-         Name=Doors Proton Updater\n\
-         Comment=Check and update installed Protons in background\n\
-         Exec={exec}\n\
-         Terminal=false\n\
-         Hidden=false\n\
-         NoDisplay=true\n\
-         X-GNOME-Autostart-enabled=true\n"
-    );
+    let systemd_user_dir = home.join(".config/systemd/user");
+    let mut systemd_enabled = false;
+    if fs::create_dir_all(&systemd_user_dir).is_ok() {
+        let service_content = format!(
+            "[Unit]\n\
+             Description=Doors Background Proton and UMU Updater\n\
+             After=network-online.target\n\
+             \n\
+             [Service]\n\
+             Type=oneshot\n\
+             ExecStart={exec_start}\n"
+        );
+        let timer_content = "\
+[Unit]\n\
+Description=Doors Background Proton and UMU Updater Timer\n\
+\n\
+[Timer]\n\
+OnBootSec=1min\n\
+OnUnitActiveSec=12h\n\
+\n\
+[Install]\n\
+WantedBy=timers.target\n";
 
-    let _ = fs::write(autostart_file, content);
+        let service_path = systemd_user_dir.join("doors-updater.service");
+        let timer_path = systemd_user_dir.join("doors-updater.timer");
+
+        if fs::write(&service_path, service_content).is_ok()
+            && fs::write(&timer_path, timer_content).is_ok()
+        {
+            let reload_ok = build_host_command("systemctl")
+                .args(["--user", "daemon-reload"])
+                .output()
+                .map(|o| o.status.success())
+                .unwrap_or(false);
+            let enable_ok = reload_ok
+                && build_host_command("systemctl")
+                    .args(["--user", "enable", "doors-updater.timer"])
+                    .output()
+                    .map(|o| o.status.success())
+                    .unwrap_or(false);
+            if enable_ok {
+                let _ = build_host_command("systemctl")
+                    .args(["--user", "start", "doors-updater.timer"])
+                    .output();
+                systemd_enabled = true;
+            }
+        }
+    }
+
+    if systemd_enabled {
+        // Clean up legacy autostart entries on native installs so updates don't run twice on boot
+        if !in_flatpak {
+            let autostart_dir = home.join(".config/autostart");
+            let _ = fs::remove_file(autostart_dir.join("io.github.doors.Doors.updater.desktop"));
+            let _ = fs::remove_file(
+                autostart_dir.join(format!("{}.updater.desktop", crate::desktop::APP_ID)),
+            );
+        }
+        return;
+    }
+
+    // Fallback for non-systemd native Linux distributions (OpenRC, runit, dinit, etc.)
+    if !in_flatpak {
+        let autostart_dir = home.join(".config/autostart");
+        let _ = fs::create_dir_all(&autostart_dir);
+        let _ = fs::remove_file(autostart_dir.join("io.github.doors.Doors.updater.desktop"));
+        let autostart_file =
+            autostart_dir.join(format!("{}.updater.desktop", crate::desktop::APP_ID));
+
+        let content = format!(
+            "[Desktop Entry]\n\
+             Type=Application\n\
+             Name=Doors Proton Updater\n\
+             Comment=Check and update installed Protons in background\n\
+             Exec={exec_start}\n\
+             Terminal=false\n\
+             Hidden=false\n\
+             NoDisplay=true\n\
+             X-GNOME-Autostart-enabled=true\n"
+        );
+
+        let _ = fs::write(autostart_file, content);
+    }
 }
 
 /// Runs silently in the background on PC startup or via CLI.
 /// Checks installed runners and updates them if a newer version is available.
 pub fn run_background_update() -> anyhow::Result<()> {
+    if BG_UPDATE_RUNNING
+        .compare_exchange(false, true, Ordering::SeqCst, Ordering::SeqCst)
+        .is_err()
+    {
+        return Ok(());
+    }
+    let compat_dir = get_doors_compatibilitytools_dir();
+    let _ = fs::create_dir_all(&compat_dir);
+    let lock_path = compat_dir.join(".doors-bg-update.lock");
+    if let Ok(meta) = fs::metadata(&lock_path) {
+        if let Ok(modified) = meta.modified() {
+            if modified.elapsed().unwrap_or(Duration::from_secs(3600)) < Duration::from_secs(1800) {
+                BG_UPDATE_RUNNING.store(false, Ordering::SeqCst);
+                return Ok(());
+            }
+        }
+        let _ = fs::remove_file(&lock_path);
+    }
+    if fs::OpenOptions::new()
+        .write(true)
+        .create_new(true)
+        .open(&lock_path)
+        .is_err()
+    {
+        BG_UPDATE_RUNNING.store(false, Ordering::SeqCst);
+        return Ok(());
+    }
+
+    struct UpdateGuard(PathBuf);
+    impl Drop for UpdateGuard {
+        fn drop(&mut self) {
+            let _ = fs::remove_file(&self.0);
+            BG_UPDATE_RUNNING.store(false, Ordering::SeqCst);
+        }
+    }
+    let _guard = UpdateGuard(lock_path);
+
     // Retry checking network for up to 30 seconds if PC just booted
     let mut online = false;
     for _ in 0..6 {
@@ -534,8 +732,11 @@ mod tests {
         assert!(!ManagedProton::ProtonCachyos.matches_folder_name("Proton-9.0"));
 
         assert!(ManagedProton::ProtonRtsp.matches_folder_name("proton-rtsp-GE-Proton9-20"));
+        assert!(ManagedProton::ProtonRtsp.matches_folder_name("GE-Proton9-22-rtsp17-1"));
         assert!(ManagedProton::ProtonRtsp.matches_folder_name("Proton-RTSP (Steam)"));
         assert!(!ManagedProton::ProtonRtsp.matches_folder_name("GE-Proton9-25"));
+        assert!(!ManagedProton::GeProton.matches_folder_name("proton-rtsp-GE-Proton9-20"));
+        assert!(!ManagedProton::GeProton.matches_folder_name("GE-Proton9-22-rtsp17-1"));
     }
 
     #[test]

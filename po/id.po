@@ -453,8 +453,11 @@ msgstr "Tampilkan penghitung FPS dan beban GPU bawaan DXVK tanpa aplikasi pihak 
 msgid "FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported."
 msgstr "FSR 4 secara resmi membutuhkan GPU seri AMD Radeon RX 6000 atau lebih baru (RDNA 2+). GPU AMD lama, NVIDIA, atau Intel tidak didukung secara resmi."
 
-msgid "UMU Prefix (Protonfixes)"
-msgstr "Prefiks UMU (Protonfixes)"
+msgid "Game Fixes (UMU Prefix)"
+msgstr "Perbaikan Game (UMU Prefix)"
 
 msgid "Automatic game fixes detected"
 msgstr "Perbaikan game otomatis terdeteksi"
+
+msgid "Proton failed to start the installer."
+msgstr "Proton gagal menjalankan pemasang."

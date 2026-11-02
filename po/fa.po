@@ -453,8 +453,11 @@ msgstr "نمایش نرخ فریم و بار پردازنده گرافیکی د�
 msgid "FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported."
 msgstr "قابلیت FSR 4 رسماً به کارت گرافیک سری AMD Radeon RX 6000 یا جدیدتر (RDNA 2+) نیاز دارد. کارت‌های قدیمی‌تر AMD، NVIDIA یا Intel رسماً پشتیبانی نمی‌شوند."
 
-msgid "UMU Prefix (Protonfixes)"
-msgstr "پیشوند UMU (اصلاحات Proton)"
+msgid "Game Fixes (UMU Prefix)"
+msgstr "اصلاحات بازی (UMU Prefix)"
 
 msgid "Automatic game fixes detected"
 msgstr "رفع خطاهای خودکار بازی شناسایی شد"
+
+msgid "Proton failed to start the installer."
+msgstr "پروتون نتوانست نصب‌کننده را اجرا کند."

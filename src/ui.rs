@@ -32,6 +32,42 @@ enum ProtonInstallMessage {
     Finished(Result<String, String>),
 }
 
+thread_local! {
+    static ACTIVE_LIBRARY_WINDOWS: RefCell<Vec<(
+        glib::WeakRef<adw::ApplicationWindow>,
+        glib::WeakRef<gtk4::Box>,
+        glib::WeakRef<adw::ViewStack>,
+    )>> = const { RefCell::new(Vec::new()) };
+}
+
+fn register_library_window(
+    win: &adw::ApplicationWindow,
+    container: &gtk4::Box,
+    stack: &adw::ViewStack,
+) {
+    ACTIVE_LIBRARY_WINDOWS.with(|wins| {
+        wins.borrow_mut().retain(|(w, c, s)| {
+            w.upgrade().is_some() && c.upgrade().is_some() && s.upgrade().is_some()
+        });
+        wins.borrow_mut().push((win.downgrade(), container.downgrade(), stack.downgrade()));
+    });
+}
+
+pub fn trigger_library_refresh() {
+    ACTIVE_LIBRARY_WINDOWS.with(|wins| {
+        let mut list = wins.borrow_mut();
+        list.retain(|(w, c, s)| {
+            if let (Some(win), Some(container), Some(stack)) = (w.upgrade(), c.upgrade(), s.upgrade()) {
+                stack.set_visible_child_name("games");
+                rebuild_library_list(&win, &container);
+                true
+            } else {
+                false
+            }
+        });
+    });
+}
+
 /// Entry point when an `.exe` file is double-clicked or passed via CLI.
 pub fn handle_exe_launch(app: &adw::Application, exe_path: PathBuf) {
     if let Some((_cfg_path, cfg)) = find_existing_doors_config(&exe_path) {
@@ -58,15 +94,24 @@ pub fn handle_exe_launch(app: &adw::Application, exe_path: PathBuf) {
         }
     }
 
-    present_install_window(app, exe_path);
+    present_install_window(app, exe_path, None);
 }
 
 /// Wizard-style minimal install window:
 /// Shows extracted .exe icon + program title, Disk row with icon, Proton row with icon, and "Install" button.
-pub fn present_install_window(app: &adw::Application, exe_path: PathBuf) {
+pub fn present_install_window(
+    app: &adw::Application,
+    exe_path: PathBuf,
+    on_installed: Option<Rc<dyn Fn()>>,
+) {
     let plan = InstallPlan::analyze(&exe_path);
     let disks = discover_disks();
     let protons = discover_proton_tools();
+
+    std::thread::spawn(|| {
+        crate::proton_manager::ensure_autostart_updater();
+    });
+    crate::umu::sync_umu_database_in_background();
 
     let window = adw::ApplicationWindow::builder()
         .application(app)
@@ -159,13 +204,10 @@ pub fn present_install_window(app: &adw::Application, exe_path: PathBuf) {
     let proton_icon = gtk4::Image::from_icon_name("application-x-addon-symbolic");
     proton_row.add_prefix(&proton_icon);
 
-    // 3. UMU Database check: look up if the game has a known UMU / Protonfixes profile
-    let exe_fname = exe_path.file_name().and_then(|n| n.to_str()).unwrap_or("");
-    let umu_match = crate::umu::lookup_umu_game(&plan.game_name, exe_fname);
-
-    let (umu_row, umu_matched_id) = if let Some(ref matched) = umu_match {
+    // 3. UMU Database check: resolved via multi-signal PE metadata + title/filename analysis in `InstallPlan`
+    let (umu_row, umu_matched_id) = if let Some(ref matched) = plan.umu_match {
         let row = adw::SwitchRow::builder()
-            .title(tr("UMU Prefix (Protonfixes)"))
+            .title(tr("Game Fixes (UMU Prefix)"))
             .subtitle(format!(
                 "{} ({} • {})",
                 tr("Automatic game fixes detected"),
@@ -248,7 +290,9 @@ pub fn present_install_window(app: &adw::Application, exe_path: PathBuf) {
     let progress_bar_clone = progress_bar.clone();
     let status_label_clone = status_label.clone();
 
+    let on_installed_for_click = on_installed.clone();
     install_btn.connect_clicked(move |btn| {
+        let on_installed_clone = on_installed_for_click.clone();
         let disk_idx = disk_row_clone.selected() as usize;
         let proton_idx = proton_row_clone.selected() as usize;
         let run_after = run_after_clone.is_active();
@@ -305,7 +349,9 @@ pub fn present_install_window(app: &adw::Application, exe_path: PathBuf) {
         let progress_bar_ui = progress_bar_clone.clone();
         let status_label_ui = status_label_clone.clone();
         let btn_ui = btn.clone();
+        let umu_row_ui = umu_row_clone.clone();
         let run_after_ui = run_after_clone.clone();
+        let desktop_shortcut_ui = desktop_shortcut_clone.clone();
         let disk_row_ui = disk_row_clone.clone();
         let proton_row_ui = proton_row_clone.clone();
         let win_weak = window_weak.clone();
@@ -324,12 +370,20 @@ pub fn present_install_window(app: &adw::Application, exe_path: PathBuf) {
                         if let Some(win) = win_weak.upgrade() {
                             win.close();
                         }
+                        if let Some(ref cb) = on_installed_clone {
+                            cb();
+                        }
+                        trigger_library_refresh();
                         return glib::ControlFlow::Break;
                     }
                     WorkerMessage::Finished(Err(err_msg)) => {
                         status_label_ui.set_text(&format!("{} {}", tr("Error:"), err_msg));
                         btn_ui.set_visible(true);
+                        if let Some(ref r) = umu_row_ui {
+                            r.set_sensitive(true);
+                        }
                         run_after_ui.set_sensitive(true);
+                        desktop_shortcut_ui.set_sensitive(true);
                         disk_row_ui.set_sensitive(true);
                         proton_row_ui.set_sensitive(true);
                         return glib::ControlFlow::Break;
@@ -361,7 +415,7 @@ fn build_exe_preview_image(exe_path: &std::path::Path, size: i32) -> gtk4::Image
 
 /// Present the About dialog (matching zapret-gtk's AboutDialog design).
 pub fn present_about_dialog(parent: &impl IsA<gtk4::Window>) {
-    let icon_bytes = glib::Bytes::from_static(include_bytes!("../data/io.github.doors.Doors.png"));
+    let icon_bytes = glib::Bytes::from_static(include_bytes!("../data/io.github.Taygun86.Doors.png"));
     let logo_texture = gdk4::Texture::from_bytes(&icon_bytes).ok();
 
     let mut builder = gtk4::AboutDialog::builder()
@@ -426,8 +480,8 @@ pub fn present_library_window(app: &adw::Application) {
     protons_page.set_icon_name(Some("application-x-addon-symbolic"));
 
     build_protons_page(&window, &protons_box);
-    crate::proton_manager::ensure_autostart_updater();
     std::thread::spawn(|| {
+        crate::proton_manager::ensure_autostart_updater();
         let _ = crate::proton_manager::run_background_update();
     });
     crate::umu::sync_umu_database_in_background();
@@ -442,8 +496,13 @@ pub fn present_library_window(app: &adw::Application) {
     toolbar_view.set_content(Some(&view_stack));
     window.set_content(Some(&toolbar_view));
 
+    register_library_window(&window, &content_holder.borrow(), &view_stack);
+
     let app_clone = app.clone();
     let window_clone = window.clone();
+    let container_clone = content_holder.clone();
+    let stack_clone = view_stack.clone();
+
     add_btn.connect_clicked(move |_| {
         let dialog = gtk4::FileDialog::builder()
             .title(tr("Select Executable (.exe)"))
@@ -461,13 +520,27 @@ pub fn present_library_window(app: &adw::Application) {
         dialog.set_filters(Some(&filters));
 
         let app_inner = app_clone.clone();
+        let win_for_install = window_clone.clone();
+        let cont_for_install = container_clone.clone();
+        let stack_for_install = stack_clone.clone();
+
         dialog.open(
             Some(&window_clone),
             gio::Cancellable::NONE,
             move |res| {
                 if let Ok(file) = res {
                     if let Some(path) = file.path() {
-                        present_install_window(&app_inner, path);
+                        let w = win_for_install.clone();
+                        let c = cont_for_install.clone();
+                        let s = stack_for_install.clone();
+                        present_install_window(
+                            &app_inner,
+                            path,
+                            Some(Rc::new(move || {
+                                s.set_visible_child_name("games");
+                                rebuild_library_list(&w, &c.borrow());
+                            })),
+                        );
                     }
                 }
             },

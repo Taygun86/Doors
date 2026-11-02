@@ -18,9 +18,14 @@ mkdir -p "$HOME/.local/share/applications"
 mkdir -p "$HOME/.local/share/icons/hicolor/scalable/apps"
 mkdir -p "$HOME/.local/share/icons/hicolor/512x512/apps"
 
+# Clean up legacy App-ID desktop/icon files if present
+rm -f "$HOME/.local/share/applications/io.github.doors.Doors.desktop"
+rm -f "$HOME/.local/share/icons/hicolor/scalable/apps/io.github.doors.Doors.svg"
+rm -f "$HOME/.local/share/icons/hicolor/512x512/apps/io.github.doors.Doors.png"
+
 install -Dm755 target/release/doors "$HOME/.local/bin/doors"
-install -Dm644 data/io.github.doors.Doors.svg "$HOME/.local/share/icons/hicolor/scalable/apps/io.github.doors.Doors.svg"
-install -Dm644 data/io.github.doors.Doors.png "$HOME/.local/share/icons/hicolor/512x512/apps/io.github.doors.Doors.png"
+install -Dm644 data/io.github.Taygun86.Doors.svg "$HOME/.local/share/icons/hicolor/scalable/apps/io.github.Taygun86.Doors.svg"
+install -Dm644 data/io.github.Taygun86.Doors.png "$HOME/.local/share/icons/hicolor/512x512/apps/io.github.Taygun86.Doors.png"
 
 for mo_file in locale/*/LC_MESSAGES/doors.mo; do
     [ -f "$mo_file" ] || continue
@@ -28,17 +33,17 @@ for mo_file in locale/*/LC_MESSAGES/doors.mo; do
     install -Dm644 "$mo_file" "$HOME/.local/share/locale/$lang/LC_MESSAGES/doors.mo"
 done
 
-sed "s|Exec=doors %f|Exec=\"$HOME/.local/bin/doors\" %f|g" data/io.github.doors.Doors.desktop \
-    > "$HOME/.local/share/applications/io.github.doors.Doors.desktop"
-chmod 755 "$HOME/.local/share/applications/io.github.doors.Doors.desktop"
+sed "s|Exec=doors %f|Exec=\"$HOME/.local/bin/doors\" %f|g" data/io.github.Taygun86.Doors.desktop \
+    > "$HOME/.local/share/applications/io.github.Taygun86.Doors.desktop"
+chmod 755 "$HOME/.local/share/applications/io.github.Taygun86.Doors.desktop"
 
 if command -v xdg-mime >/dev/null 2>&1; then
-    xdg-mime default io.github.doors.Doors.desktop application/x-ms-dos-executable || true
-    xdg-mime default io.github.doors.Doors.desktop application/x-msdownload || true
-    xdg-mime default io.github.doors.Doors.desktop application/vnd.microsoft.portable-executable || true
-    xdg-mime default io.github.doors.Doors.desktop application/x-msi || true
-    xdg-mime default io.github.doors.Doors.desktop application/x-ms-installer || true
-    xdg-mime default io.github.doors.Doors.desktop application/vnd.ms-msi || true
+    xdg-mime default io.github.Taygun86.Doors.desktop application/x-ms-dos-executable || true
+    xdg-mime default io.github.Taygun86.Doors.desktop application/x-msdownload || true
+    xdg-mime default io.github.Taygun86.Doors.desktop application/vnd.microsoft.portable-executable || true
+    xdg-mime default io.github.Taygun86.Doors.desktop application/x-msi || true
+    xdg-mime default io.github.Taygun86.Doors.desktop application/x-ms-installer || true
+    xdg-mime default io.github.Taygun86.Doors.desktop application/vnd.ms-msi || true
 fi
 
 if command -v update-desktop-database >/dev/null 2>&1; then

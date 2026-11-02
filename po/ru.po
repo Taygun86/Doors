@@ -453,8 +453,11 @@ msgstr "Отображать встроенный счетчик FPS и загр
 msgid "FSR 4 officially requires an AMD Radeon RX 6000 series or newer GPU (RDNA 2+). Older AMD, NVIDIA, or Intel GPUs are not officially supported."
 msgstr "FSR 4 официально требует видеокарту серии AMD Radeon RX 6000 или новее (RDNA 2+). Старые видеокарты AMD, NVIDIA или Intel официально не поддерживаются."
 
-msgid "UMU Prefix (Protonfixes)"
-msgstr "Префикс UMU (Protonfixes)"
+msgid "Game Fixes (UMU Prefix)"
+msgstr "Исправления игр (UMU Prefix)"
 
 msgid "Automatic game fixes detected"
 msgstr "Обнаружены автоматические исправления для игры"
+
+msgid "Proton failed to start the installer."
+msgstr "Proton не удалось запустить установщик."
