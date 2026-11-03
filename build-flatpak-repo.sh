@@ -47,6 +47,41 @@ install -Dm644 data/io.github.Taygun86.Doors.svg "$BUILD_DIR/files/share/icons/h
 install -Dm644 data/io.github.Taygun86.Doors.png "$BUILD_DIR/files/share/icons/hicolor/512x512/apps/io.github.Taygun86.Doors.png"
 cp -r locale/* "$BUILD_DIR/files/share/locale/"
 
+echo "==> [3.5/6] Generating AppStream catalog metadata & icons for software centers..."
+mkdir -p "$BUILD_DIR/files/share/app-info/xmls" \
+         "$BUILD_DIR/files/share/app-info/icons/flatpak/128x128" \
+         "$BUILD_DIR/files/share/app-info/icons/flatpak/64x64"
+
+python3 - "$APP_ID" "$BUILD_DIR" << 'PYEOF'
+import sys, gzip
+from PIL import Image
+
+app_id = sys.argv[1]
+build_dir = sys.argv[2]
+
+# 1. Resize icons for AppStream software center cache
+img = Image.open(f"data/{app_id}.png")
+img.resize((128, 128), Image.Resampling.LANCZOS).save(f"{build_dir}/files/share/app-info/icons/flatpak/128x128/{app_id}.png")
+img.resize((64, 64), Image.Resampling.LANCZOS).save(f"{build_dir}/files/share/app-info/icons/flatpak/64x64/{app_id}.png")
+
+# 2. Build AppStream catalog xml
+with open(f"data/{app_id}.metainfo.xml", "r", encoding="utf-8") as f:
+    xml = f.read()
+if xml.startswith("<?xml"):
+    xml = xml.split("?>", 1)[1].strip()
+
+icon_tags = f"""
+    <icon type="cached" width="64" height="64">{app_id}.png</icon>
+    <icon type="cached" width="128" height="128">{app_id}.png</icon>
+    <icon type="stock">{app_id}</icon>
+"""
+xml = xml.replace("</component>", icon_tags + "</component>")
+catalog = f'<?xml version="1.0" encoding="utf-8"?>\n<components version="1.0">\n{xml}\n</components>\n'
+
+with gzip.open(f"{build_dir}/files/share/app-info/xmls/{app_id}.xml.gz", "wb") as f:
+    f.write(catalog.encode("utf-8"))
+PYEOF
+
 echo "==> [4/6] Finishing Flatpak permissions..."
 flatpak build-finish "$BUILD_DIR" \
     --command=doors \
