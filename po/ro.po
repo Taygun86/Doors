@@ -461,3 +461,18 @@ msgstr "S-au detectat remedieri automate ale jocului"
 
 msgid "Proton failed to start the installer."
 msgstr "Proton nu a putut porni programul de instalare."
+
+msgid "Show Hidden Games"
+msgstr "Afișează jocurile ascunse"
+
+msgid "Hide Game"
+msgstr "Ascunde jocul"
+
+msgid "Hide this game from the library and remove its application menu shortcut."
+msgstr "Ascunde acest joc din bibliotecă și elimină scurtătura din meniul de aplicații."
+
+msgid "Search games..."
+msgstr "Caută jocuri..."
+
+msgid "No Games Found"
+msgstr "Nu s-au găsit jocuri"

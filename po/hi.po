@@ -461,3 +461,18 @@ msgstr "स्वचालित गेम सुधार पाए गए"
 
 msgid "Proton failed to start the installer."
 msgstr "Proton इंस्टॉलर शुरू करने में विफल रहा।"
+
+msgid "Show Hidden Games"
+msgstr "छिपे हुए गेम दिखाएं"
+
+msgid "Hide Game"
+msgstr "गेम छिपाएं"
+
+msgid "Hide this game from the library and remove its application menu shortcut."
+msgstr "इस गेम को लाइब्रेरी से छिपाएं और इसका एप्लिकेशन मेनू शॉर्टकट हटाएं।"
+
+msgid "Search games..."
+msgstr "गेम खोजें..."
+
+msgid "No Games Found"
+msgstr "कोई गेम नहीं मिला"

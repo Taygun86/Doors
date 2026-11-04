@@ -461,3 +461,18 @@ msgstr "تم اكتشاف إصلاحات تلقائية للعبة"
 
 msgid "Proton failed to start the installer."
 msgstr "فشل Proton في تشغيل المثبّت."
+
+msgid "Show Hidden Games"
+msgstr "إظهار الألعاب المخفية"
+
+msgid "Hide Game"
+msgstr "إخفاء اللعبة"
+
+msgid "Hide this game from the library and remove its application menu shortcut."
+msgstr "إخفاء هذه اللعبة من المكتبة وإزالة اختصار قائمة التطبيقات الخاص بها."
+
+msgid "Search games..."
+msgstr "البحث عن الألعاب..."
+
+msgid "No Games Found"
+msgstr "لم يتم العثور على ألعاب"

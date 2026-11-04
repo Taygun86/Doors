@@ -461,3 +461,18 @@ msgstr "Perbaikan game otomatis terdeteksi"
 
 msgid "Proton failed to start the installer."
 msgstr "Proton gagal menjalankan pemasang."
+
+msgid "Show Hidden Games"
+msgstr "Tampilkan Game Tersembunyi"
+
+msgid "Hide Game"
+msgstr "Sembunyikan Game"
+
+msgid "Hide this game from the library and remove its application menu shortcut."
+msgstr "Sembunyikan game ini dari pustaka dan hapus pintasan menu aplikasinya."
+
+msgid "Search games..."
+msgstr "Cari game..."
+
+msgid "No Games Found"
+msgstr "Game Tidak Ditemukan"

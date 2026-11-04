@@ -85,6 +85,8 @@ pub struct DoorsGameConfig {
     #[serde(default)]
     pub desktop_shortcut: bool,
     #[serde(default)]
+    pub hidden: bool,
+    #[serde(default)]
     pub steam_runtime: bool,
     #[serde(default)]
     pub umu: bool,
@@ -139,6 +141,7 @@ impl DoorsGameConfig {
             dxvk_hud: false,
             vkbasalt: false,
             desktop_shortcut: false,
+            hidden: false,
             steam_runtime: false,
             umu: false,
             umu_id: String::new(),
@@ -286,17 +289,23 @@ pub fn discover_installed_games(disks: &[DiskInfo]) -> Vec<DoorsGameConfig> {
                         cfg.container_dir = dir;
                         heal_config_if_needed(&mut cfg);
 
-                        // If desktop shortcut is missing (e.g. after system reinstall/format), automatically restore it
                         let home = real_user_home();
                         let desk = home
                             .join(".local/share/applications")
                             .join(format!("doors-{}.desktop", cfg.slug));
-                        if !desk.exists() {
-                            let _ = crate::desktop::create_desktop_shortcut(&cfg);
-                        }
+                        if cfg.hidden {
+                            crate::desktop::remove_desktop_shortcut(&cfg);
+                        } else {
+                            // If desktop shortcut is missing (e.g. after system reinstall/format), automatically restore it
+                            if !desk.exists() {
+                                let _ = crate::desktop::create_desktop_shortcut(&cfg);
+                            }
 
-                        if cfg.desktop_shortcut && !crate::desktop::has_desktop_folder_shortcut(&cfg) {
-                            let _ = crate::desktop::create_desktop_folder_shortcut(&cfg);
+                            if cfg.desktop_shortcut
+                                && !crate::desktop::has_desktop_folder_shortcut(&cfg)
+                            {
+                                let _ = crate::desktop::create_desktop_folder_shortcut(&cfg);
+                            }
                         }
 
                         games.push(cfg);

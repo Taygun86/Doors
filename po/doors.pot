@@ -459,3 +459,18 @@ msgstr ""
 
 msgid "Proton failed to start the installer."
 msgstr ""
+
+msgid "Show Hidden Games"
+msgstr ""
+
+msgid "Hide Game"
+msgstr ""
+
+msgid "Hide this game from the library and remove its application menu shortcut."
+msgstr ""
+
+msgid "Search games..."
+msgstr ""
+
+msgid "No Games Found"
+msgstr ""

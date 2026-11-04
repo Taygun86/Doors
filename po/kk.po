@@ -461,3 +461,18 @@ msgstr "Ойынның автоматты түзетулері анықталд�
 
 msgid "Proton failed to start the installer."
 msgstr "Proton орнатқышты іске қоса алмады."
+
+msgid "Show Hidden Games"
+msgstr "Жасырын ойындарды көрсету"
+
+msgid "Hide Game"
+msgstr "Ойынды жасыру"
+
+msgid "Hide this game from the library and remove its application menu shortcut."
+msgstr "Бұл ойынды кітапханадан жасырып, қолданбалар мәзіріндегі жарлығын өшіру."
+
+msgid "Search games..."
+msgstr "Ойындарды іздеу..."
+
+msgid "No Games Found"
+msgstr "Ойындар табылмады"

@@ -461,3 +461,18 @@ msgstr "Automatikus játékjavítások észlelve"
 
 msgid "Proton failed to start the installer."
 msgstr "A Proton nem tudta elindítani a telepítőt."
+
+msgid "Show Hidden Games"
+msgstr "Rejtett játékok megjelenítése"
+
+msgid "Hide Game"
+msgstr "Játék elrejtése"
+
+msgid "Hide this game from the library and remove its application menu shortcut."
+msgstr "A játék elrejtése a könyvtárból és az alkalmazásmenü parancsikonjának eltávolítása."
+
+msgid "Search games..."
+msgstr "Játékok keresése..."
+
+msgid "No Games Found"
+msgstr "Nem található játék"

@@ -461,3 +461,18 @@ msgstr "Обнаружены автоматические исправления
 
 msgid "Proton failed to start the installer."
 msgstr "Proton не удалось запустить установщик."
+
+msgid "Show Hidden Games"
+msgstr "Показать скрытые игры"
+
+msgid "Hide Game"
+msgstr "Скрыть игру"
+
+msgid "Hide this game from the library and remove its application menu shortcut."
+msgstr "Скрыть эту игру из библиотеки и удалить её ярлык из меню приложений."
+
+msgid "Search games..."
+msgstr "Поиск игр..."
+
+msgid "No Games Found"
+msgstr "Игры не найдены"

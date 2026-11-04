@@ -461,3 +461,18 @@ msgstr "Đã phát hiện bản sửa lỗi trò chơi tự động"
 
 msgid "Proton failed to start the installer."
 msgstr "Proton không thể khởi động trình cài đặt."
+
+msgid "Show Hidden Games"
+msgstr "Hiện trò chơi đã ẩn"
+
+msgid "Hide Game"
+msgstr "Ẩn trò chơi"
+
+msgid "Hide this game from the library and remove its application menu shortcut."
+msgstr "Ẩn trò chơi này khỏi thư viện và xóa lối tắt khỏi menu ứng dụng."
+
+msgid "Search games..."
+msgstr "Tìm kiếm trò chơi..."
+
+msgid "No Games Found"
+msgstr "Không tìm thấy trò chơi"

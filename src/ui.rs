@@ -37,6 +37,8 @@ thread_local! {
         glib::WeakRef<adw::ApplicationWindow>,
         glib::WeakRef<gtk4::Box>,
         glib::WeakRef<adw::ViewStack>,
+        glib::WeakRef<gtk4::ToggleButton>,
+        glib::WeakRef<gtk4::SearchEntry>,
     )>> = const { RefCell::new(Vec::new()) };
 }
 
@@ -44,19 +46,61 @@ fn register_library_window(
     win: &adw::ApplicationWindow,
     container: &gtk4::Box,
     stack: &adw::ViewStack,
+    show_hidden_btn: &gtk4::ToggleButton,
+    search_entry: &gtk4::SearchEntry,
 ) {
     ACTIVE_LIBRARY_WINDOWS.with(|wins| {
-        wins.borrow_mut().retain(|(w, c, s)| {
-            w.upgrade().is_some() && c.upgrade().is_some() && s.upgrade().is_some()
+        wins.borrow_mut().retain(|(w, c, s, b, se)| {
+            w.upgrade().is_some()
+                && c.upgrade().is_some()
+                && s.upgrade().is_some()
+                && b.upgrade().is_some()
+                && se.upgrade().is_some()
         });
-        wins.borrow_mut().push((win.downgrade(), container.downgrade(), stack.downgrade()));
+        wins.borrow_mut().push((
+            win.downgrade(),
+            container.downgrade(),
+            stack.downgrade(),
+            show_hidden_btn.downgrade(),
+            search_entry.downgrade(),
+        ));
     });
+}
+
+fn is_show_hidden_active(win: &adw::ApplicationWindow) -> bool {
+    ACTIVE_LIBRARY_WINDOWS.with(|wins| {
+        wins.borrow()
+            .iter()
+            .find_map(|(w, _, _, b, _)| {
+                if w.upgrade().as_ref() == Some(win) {
+                    b.upgrade().map(|btn| btn.is_active())
+                } else {
+                    None
+                }
+            })
+            .unwrap_or(false)
+    })
+}
+
+fn library_search_query(win: &adw::ApplicationWindow) -> String {
+    ACTIVE_LIBRARY_WINDOWS.with(|wins| {
+        wins.borrow()
+            .iter()
+            .find_map(|(w, _, _, _, se)| {
+                if w.upgrade().as_ref() == Some(win) {
+                    se.upgrade().map(|entry| entry.text().to_string())
+                } else {
+                    None
+                }
+            })
+            .unwrap_or_default()
+    })
 }
 
 pub fn trigger_library_refresh() {
     ACTIVE_LIBRARY_WINDOWS.with(|wins| {
         let mut list = wins.borrow_mut();
-        list.retain(|(w, c, s)| {
+        list.retain(|(w, c, s, _, _)| {
             if let (Some(win), Some(container), Some(stack)) = (w.upgrade(), c.upgrade(), s.upgrade()) {
                 stack.set_visible_child_name("games");
                 rebuild_library_list(&win, &container);
@@ -422,7 +466,7 @@ pub fn present_about_dialog(parent: &impl IsA<gtk4::Window>) {
         .transient_for(parent)
         .modal(true)
         .program_name("Doors")
-        .version("0.3 Beta")
+        .version("0.4 Beta")
         .comments(tr("Minimal GTK4/Libadwaita Windows (.exe) game installer and runner for Linux."))
         .website("https://github.com/Taygun86/Doors")
         .copyright("© 2026 Doors")
@@ -451,6 +495,12 @@ pub fn present_library_window(app: &adw::Application) {
     let add_btn = gtk4::Button::from_icon_name("list-add-symbolic");
     add_btn.set_tooltip_text(Some(&tr("Install .exe")));
     header.pack_start(&add_btn);
+
+    let show_hidden_btn = gtk4::ToggleButton::builder()
+        .icon_name("view-reveal-symbolic")
+        .tooltip_text(tr("Show Hidden Games"))
+        .build();
+    header.pack_start(&show_hidden_btn);
 
     let about_btn = gtk4::Button::from_icon_name("help-about-symbolic");
     about_btn.set_tooltip_text(Some(&tr("About")));
@@ -490,13 +540,110 @@ pub fn present_library_window(app: &adw::Application) {
         .stack(&view_stack)
         .policy(adw::ViewSwitcherPolicy::Wide)
         .build();
-    header.set_title_widget(Some(&view_switcher));
+
+    let search_entry = gtk4::SearchEntry::builder()
+        .placeholder_text(tr("Search games..."))
+        .width_request(280)
+        .build();
+
+    let title_stack = gtk4::Stack::builder()
+        .transition_type(gtk4::StackTransitionType::Crossfade)
+        .transition_duration(150)
+        .build();
+    title_stack.add_named(&view_switcher, Some("switcher"));
+    title_stack.add_named(&search_entry, Some("search"));
+    title_stack.set_visible_child_name("switcher");
+
+    header.set_title_widget(Some(&title_stack));
 
     toolbar_view.add_top_bar(&header);
     toolbar_view.set_content(Some(&view_stack));
     window.set_content(Some(&toolbar_view));
 
-    register_library_window(&window, &content_holder.borrow(), &view_stack);
+    register_library_window(
+        &window,
+        &content_holder.borrow(),
+        &view_stack,
+        &show_hidden_btn,
+        &search_entry,
+    );
+
+    {
+        let win_for_search = window.clone();
+        let cont_for_search = content_holder.clone();
+        let title_stack_for_search = title_stack.clone();
+        search_entry.connect_search_changed(move |entry| {
+            if entry.text().is_empty()
+                && title_stack_for_search.visible_child_name().as_deref() == Some("search")
+            {
+                title_stack_for_search.set_visible_child_name("switcher");
+            }
+            rebuild_library_list(&win_for_search, &cont_for_search.borrow());
+        });
+    }
+
+    {
+        let title_stack_for_stop = title_stack.clone();
+        search_entry.connect_stop_search(move |entry| {
+            entry.set_text("");
+            title_stack_for_stop.set_visible_child_name("switcher");
+        });
+    }
+
+    {
+        let key_ctrl = gtk4::EventControllerKey::new();
+        key_ctrl.set_propagation_phase(gtk4::PropagationPhase::Capture);
+        let title_stack_for_key = title_stack.clone();
+        let search_entry_for_key = search_entry.clone();
+        let view_stack_for_key = view_stack.clone();
+        key_ctrl.connect_key_pressed(move |_, keyval, _, state| {
+            let in_search = title_stack_for_key.visible_child_name().as_deref() == Some("search");
+            if keyval == gtk4::gdk::Key::Escape && in_search {
+                search_entry_for_key.set_text("");
+                title_stack_for_key.set_visible_child_name("switcher");
+                return glib::Propagation::Stop;
+            }
+
+            if state.contains(gtk4::gdk::ModifierType::CONTROL_MASK)
+                && (keyval == gtk4::gdk::Key::f || keyval == gtk4::gdk::Key::F)
+            {
+                view_stack_for_key.set_visible_child_name("games");
+                title_stack_for_key.set_visible_child_name("search");
+                search_entry_for_key.grab_focus();
+                return glib::Propagation::Stop;
+            }
+
+            if !in_search
+                && !state.intersects(
+                    gtk4::gdk::ModifierType::CONTROL_MASK
+                        | gtk4::gdk::ModifierType::ALT_MASK
+                        | gtk4::gdk::ModifierType::SUPER_MASK,
+                )
+            {
+                if let Some(ch) = keyval.to_unicode() {
+                    if !ch.is_control() && !ch.is_whitespace() {
+                        view_stack_for_key.set_visible_child_name("games");
+                        title_stack_for_key.set_visible_child_name("search");
+                        search_entry_for_key.set_text(&ch.to_string());
+                        search_entry_for_key.grab_focus();
+                        search_entry_for_key.set_position(-1);
+                        return glib::Propagation::Stop;
+                    }
+                }
+            }
+
+            glib::Propagation::Proceed
+        });
+        window.add_controller(key_ctrl);
+    }
+
+    {
+        let win_for_hidden = window.clone();
+        let cont_for_hidden = content_holder.clone();
+        show_hidden_btn.connect_toggled(move |_| {
+            rebuild_library_list(&win_for_hidden, &cont_for_hidden.borrow());
+        });
+    }
 
     let app_clone = app.clone();
     let window_clone = window.clone();
@@ -558,15 +705,33 @@ fn rebuild_library_list(parent_win: &adw::ApplicationWindow, container: &gtk4::B
 
     let disks = discover_disks();
     let protons = discover_proton_tools();
-    let programs = discover_installed_games(&disks);
+    let show_hidden = is_show_hidden_active(parent_win);
+    let search_query = library_search_query(parent_win).trim().to_lowercase();
+    let programs: Vec<DoorsGameConfig> = discover_installed_games(&disks)
+        .into_iter()
+        .filter(|p| show_hidden || !p.hidden)
+        .filter(|p| {
+            search_query.is_empty()
+                || p.name.to_lowercase().contains(&search_query)
+                || p.slug.to_lowercase().contains(&search_query)
+        })
+        .collect();
 
     if programs.is_empty() {
-        let status = adw::StatusPage::builder()
-            .icon_name("input-gaming-symbolic")
-            .title(tr("No Games Yet"))
-            .description(tr("Double-click any .exe file or use the + button to install."))
-            .vexpand(true)
-            .build();
+        let status = if !search_query.is_empty() {
+            adw::StatusPage::builder()
+                .icon_name("system-search-symbolic")
+                .title(tr("No Games Found"))
+                .vexpand(true)
+                .build()
+        } else {
+            adw::StatusPage::builder()
+                .icon_name("input-gaming-symbolic")
+                .title(tr("No Games Yet"))
+                .description(tr("Double-click any .exe file or use the + button to install."))
+                .vexpand(true)
+                .build()
+        };
         container.append(&status);
         return;
     }
@@ -992,6 +1157,15 @@ fn present_program_settings_window(
     let desktop_icon = gtk4::Image::from_icon_name("video-display-symbolic");
     desktop_shortcut_row.add_prefix(&desktop_icon);
 
+    // Hide Game SwitchRow
+    let hide_game_row = adw::SwitchRow::builder()
+        .title(tr("Hide Game"))
+        .subtitle(tr("Hide this game from the library and remove its application menu shortcut."))
+        .active(loaded_cfg.hidden)
+        .build();
+    let hide_icon = gtk4::Image::from_icon_name("view-conceal-symbolic");
+    hide_game_row.add_prefix(&hide_icon);
+
     // Proton selector
     let proton_strings: Vec<String> = if protons.is_empty() {
         vec![loaded_cfg.proton_name.clone()]
@@ -1102,6 +1276,7 @@ fn present_program_settings_window(
     runner_group.add(&name_row);
     runner_group.add(&folder_row);
     runner_group.add(&desktop_shortcut_row);
+    runner_group.add(&hide_game_row);
     runner_group.add(&proton_row);
     runner_group.add(&slr_row);
     runner_group.add(&main_exe_row);
@@ -1555,6 +1730,16 @@ fn present_program_settings_window(
         desktop_shortcut_row.connect_active_notify(move |row| {
             let active = row.is_active();
             cfg_state.borrow_mut().desktop_shortcut = active;
+            save_now();
+        });
+    }
+
+    {
+        let cfg_state = cfg_state.clone();
+        let save_now = save_now.clone();
+        hide_game_row.connect_active_notify(move |row| {
+            let active = row.is_active();
+            cfg_state.borrow_mut().hidden = active;
             save_now();
         });
     }

@@ -461,3 +461,18 @@ msgstr "Εντοπίστηκαν αυτόματες διορθώσεις παι�
 
 msgid "Proton failed to start the installer."
 msgstr "Το Proton απέτυχε να εκκινήσει το πρόγραμμα εγκατάστασης."
+
+msgid "Show Hidden Games"
+msgstr "Εμφάνιση κρυφών παιχνιδιών"
+
+msgid "Hide Game"
+msgstr "Απόκρυψη παιχνιδιού"
+
+msgid "Hide this game from the library and remove its application menu shortcut."
+msgstr "Απόκρυψη αυτού του παιχνιδιού από τη βιβλιοθήκη και αφαίρεση της συντόμευσης από το μενού εφαρμογών."
+
+msgid "Search games..."
+msgstr "Αναζήτηση παιχνιδιών..."
+
+msgid "No Games Found"
+msgstr "Δεν βρέθηκαν παιχνίδια"

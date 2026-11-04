@@ -461,3 +461,18 @@ msgstr "Automatiska spelkorrigeringar upptäcktes"
 
 msgid "Proton failed to start the installer."
 msgstr "Proton kunde inte starta installationsprogrammet."
+
+msgid "Show Hidden Games"
+msgstr "Visa dolda spel"
+
+msgid "Hide Game"
+msgstr "Dölj spel"
+
+msgid "Hide this game from the library and remove its application menu shortcut."
+msgstr "Dölj det här spelet från biblioteket och ta bort dess genväg från programmenyn."
+
+msgid "Search games..."
+msgstr "Sök spel..."
+
+msgid "No Games Found"
+msgstr "Inga spel hittades"

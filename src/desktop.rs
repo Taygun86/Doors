@@ -197,12 +197,16 @@ pub fn save_config_and_create_desktop_entry(cfg: &DoorsGameConfig) -> anyhow::Re
     let json_str = serde_json::to_string_pretty(cfg)?;
     fs::write(&json_path, json_str)?;
 
-    create_desktop_shortcut(cfg)?;
-
-    if cfg.desktop_shortcut {
-        let _ = create_desktop_folder_shortcut(cfg);
+    if cfg.hidden {
+        remove_desktop_shortcut(cfg);
     } else {
-        remove_desktop_folder_shortcut(cfg);
+        create_desktop_shortcut(cfg)?;
+
+        if cfg.desktop_shortcut {
+            let _ = create_desktop_folder_shortcut(cfg);
+        } else {
+            remove_desktop_folder_shortcut(cfg);
+        }
     }
 
     Ok(())
@@ -235,6 +239,27 @@ pub fn remove_desktop_shortcut(cfg: &DoorsGameConfig) {
         .join(format!("doors-{}.png", cfg.slug));
     let _ = fs::remove_file(desktop_file);
     let _ = fs::remove_file(icon_file);
+
+    // Also clean up any doors-*.desktop in applications that points to this container_dir or main_exe
+    let container_str = cfg.container_dir.display().to_string();
+    let exe_str = cfg.main_exe.display().to_string();
+    if let Ok(entries) = fs::read_dir(&apps_dir) {
+        for entry in entries.flatten() {
+            let path = entry.path();
+            if let Some(fname) = path.file_name().and_then(|s| s.to_str()) {
+                if fname.starts_with("doors-") && fname.ends_with(".desktop") {
+                    if let Ok(content) = fs::read_to_string(&path) {
+                        if (!container_str.is_empty() && content.contains(&container_str))
+                            || (!exe_str.is_empty() && content.contains(&exe_str))
+                        {
+                            let _ = fs::remove_file(&path);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     remove_desktop_folder_shortcut(cfg);
     refresh_desktop_database(&apps_dir);
 }

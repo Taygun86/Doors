@@ -461,3 +461,18 @@ msgstr "Zjištěny automatické opravy hry"
 
 msgid "Proton failed to start the installer."
 msgstr "Protonu se nepodařilo spustit instalátor."
+
+msgid "Show Hidden Games"
+msgstr "Zobrazit skryté hry"
+
+msgid "Hide Game"
+msgstr "Skrýt hru"
+
+msgid "Hide this game from the library and remove its application menu shortcut."
+msgstr "Skryje tuto hru z knihovny a odstraní její zástupce z nabídky aplikací."
+
+msgid "Search games..."
+msgstr "Hledat hry..."
+
+msgid "No Games Found"
+msgstr "Nebyly nalezeny žádné hry"

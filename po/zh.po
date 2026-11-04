@@ -461,3 +461,18 @@ msgstr "检测到自动游戏修复补丁"
 
 msgid "Proton failed to start the installer."
 msgstr "Proton 无法启动安装程序。"
+
+msgid "Show Hidden Games"
+msgstr "显示隐藏的游戏"
+
+msgid "Hide Game"
+msgstr "隐藏游戏"
+
+msgid "Hide this game from the library and remove its application menu shortcut."
+msgstr "从库中隐藏此游戏并移除其应用程序菜单快捷方式。"
+
+msgid "Search games..."
+msgstr "搜索游戏..."
+
+msgid "No Games Found"
+msgstr "未找到游戏"

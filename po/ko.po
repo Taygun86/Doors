@@ -461,3 +461,18 @@ msgstr "자동 게임 수정 감지됨"
 
 msgid "Proton failed to start the installer."
 msgstr "Proton이 설치 프로그램을 시작하지 못했습니다."
+
+msgid "Show Hidden Games"
+msgstr "숨겨진 게임 표시"
+
+msgid "Hide Game"
+msgstr "게임 숨기기"
+
+msgid "Hide this game from the library and remove its application menu shortcut."
+msgstr "라이브러리에서 이 게임을 숨기고 애플리케이션 메뉴 바로가기를 제거합니다."
+
+msgid "Search games..."
+msgstr "게임 검색..."
+
+msgid "No Games Found"
+msgstr "게임을 찾을 수 없음"

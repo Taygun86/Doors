@@ -461,3 +461,18 @@ msgstr "自動ゲーム修正が検出されました"
 
 msgid "Proton failed to start the installer."
 msgstr "Proton がインストーラーを起動できませんでした。"
+
+msgid "Show Hidden Games"
+msgstr "非表示のゲームを表示"
+
+msgid "Hide Game"
+msgstr "ゲームを非表示"
+
+msgid "Hide this game from the library and remove its application menu shortcut."
+msgstr "このゲームをライブラリから非表示にし、アプリケーションメニューのショートカットを削除します。"
+
+msgid "Search games..."
+msgstr "ゲームを検索..."
+
+msgid "No Games Found"
+msgstr "ゲームが見つかりません"

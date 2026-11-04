@@ -461,3 +461,18 @@ msgstr "Correctifs de jeu automatiques détectés"
 
 msgid "Proton failed to start the installer."
 msgstr "Proton n’a pas pu démarrer l’installateur."
+
+msgid "Show Hidden Games"
+msgstr "Afficher les jeux masqués"
+
+msgid "Hide Game"
+msgstr "Masquer le jeu"
+
+msgid "Hide this game from the library and remove its application menu shortcut."
+msgstr "Masquer ce jeu de la bibliothèque et supprimer son raccourci du menu des applications."
+
+msgid "Search games..."
+msgstr "Rechercher des jeux..."
+
+msgid "No Games Found"
+msgstr "Aucun jeu trouvé"

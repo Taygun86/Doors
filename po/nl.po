@@ -461,3 +461,18 @@ msgstr "Automatische speloplossingen gedetecteerd"
 
 msgid "Proton failed to start the installer."
 msgstr "Proton kon het installatieprogramma niet starten."
+
+msgid "Show Hidden Games"
+msgstr "Verborgen spellen tonen"
+
+msgid "Hide Game"
+msgstr "Spel verbergen"
+
+msgid "Hide this game from the library and remove its application menu shortcut."
+msgstr "Verberg dit spel uit de bibliotheek en verwijder de snelkoppeling uit het toepassingenmenu."
+
+msgid "Search games..."
+msgstr "Spellen zoeken..."
+
+msgid "No Games Found"
+msgstr "Geen spellen gevonden"
